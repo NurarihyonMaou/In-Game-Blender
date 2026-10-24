@@ -14,7 +14,6 @@ struct GSOut
     float2 uv  : TEXCOORD0;
 };
 
-
 #ifdef GEOMETRY_SHADER
 [maxvertexcount(4)]
 void main(point GSIn input[1], inout TriangleStream<GSOut> stream)

@@ -82,7 +82,6 @@ float4 MaskActionButton(uint id, uint hover)
     return float4(0.035f, 0.040f, 0.048f, 0.98f);
 }
 
-
 float BrushSurfaceRing(float2 pixelOffset, float radius, float3 rightLocal, float3 downLocal, float widthPixels)
 {
     float3 localOffset = rightLocal * pixelOffset.x + downLocal * pixelOffset.y;

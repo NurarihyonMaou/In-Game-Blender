@@ -234,7 +234,6 @@ void main(uint3 id : SV_DispatchThreadID)
     bool renameOpen = MASK_UI.y > 0.5f;
     uint renameSlot = (uint)clamp(MASK_UI.z + 0.5f, 0.0f, 7.0f);
 
-
     // -------------------------------------------------------------------------
 
     // Debug
@@ -898,7 +897,6 @@ void main(uint3 id : SV_DispatchThreadID)
             else if (InRect(p, float2(0.833f, 0.600f), float2(0.893f, 0.638f))) hover = 355u; // SMOOTH
             else if (InRect(p, float2(0.898f, 0.600f), float2(0.960f, 0.638f))) hover = 356u; // SHARPEN
 
-
             else if (InRect(p, float2(0.012f, 0.140f), float2(0.100f, 0.205f))) hover = 100u;
             else if (InRect(p, float2(0.012f, 0.213f), float2(0.100f, 0.278f))) hover = 101u;
             else if (InRect(p, float2(0.012f, 0.286f), float2(0.100f, 0.351f))) hover = 102u;
@@ -916,7 +914,6 @@ void main(uint3 id : SV_DispatchThreadID)
             else if (InRect(p, float2(0.80f, 0.060f), float2(0.84f, 0.082f))) hover = 212u;
             else if (InRect(p, float2(0.86f, 0.060f), float2(0.97f, 0.082f))) hover = 220u;
 
-            
             else if (InRect(p, float2(0.780f, 0.516f), float2(0.860f, 0.548f)))
                 hover = 361u; // ALL / NONE
 

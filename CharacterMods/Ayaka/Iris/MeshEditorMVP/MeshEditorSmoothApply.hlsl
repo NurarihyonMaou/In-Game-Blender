@@ -77,7 +77,6 @@ float CalculateFalloff(float3 vertexPos, float3 brushPos, float radius)
     return 1.0f - t * t * (3.0f - 2.0f * t);
 }
 
-
 float MirrorEnabled()
 {
     return MIRROR_PARAMS.x > 0.5f ? 1.0f : 0.0f;

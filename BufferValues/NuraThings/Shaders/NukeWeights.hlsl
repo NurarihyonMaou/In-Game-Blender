@@ -66,8 +66,10 @@ void main(uint3 DTid : SV_DispatchThreadID)
             }
             else
             {
-                // No alternative bone influences.
-                weights = float4(0, 0, 0, 0);
+                // Do not create an all-zero skinning record if Weight Paint
+                // has intentionally assigned only the two Nuke/Jiggle VG IDs.
+                // In that case there is no valid alternative influence to normalize.
+                weights = originalWeights;
             }
         }
         // Strength > 0: redistribute weight between

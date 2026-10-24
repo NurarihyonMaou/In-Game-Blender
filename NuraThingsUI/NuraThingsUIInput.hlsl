@@ -722,6 +722,12 @@ void main(uint3 id : SV_DispatchThreadID)
                 else if (InRect(p, float2(0.50f, 0.610f), float2(0.74f, 0.650f))) hover = 522u;
                 else if (InRect(p, float2(0.50f, 0.675f), float2(0.74f, 0.715f))) hover = 523u;
                 else if (InRect(p, float2(0.50f, 0.740f), float2(0.74f, 0.780f))) hover = 524u;
+
+                else if (InRect(p, float2(0.35f, 0.480f), float2(0.495f, 0.520f))) hover = 560u;
+                else if (InRect(p, float2(0.35f, 0.545f), float2(0.495f, 0.585f))) hover = 561u;
+                else if (InRect(p, float2(0.35f, 0.610f), float2(0.495f, 0.650f))) hover = 562u;
+                else if (InRect(p, float2(0.35f, 0.675f), float2(0.495f, 0.715f))) hover = 563u;
+                else if (InRect(p, float2(0.35f, 0.740f), float2(0.495f, 0.780f))) hover = 564u;
             }
             else if (jiggleTab == 1u)
             {
@@ -732,6 +738,10 @@ void main(uint3 id : SV_DispatchThreadID)
                 else if (InRect(p, float2(0.50f, 0.690f), float2(0.575f, 0.735f))) hover = 530u;
                 else if (InRect(p, float2(0.585f, 0.690f), float2(0.660f, 0.735f))) hover = 531u;
                 else if (InRect(p, float2(0.670f, 0.690f), float2(0.745f, 0.735f))) hover = 532u;
+
+                 else if (InRect(p, float2(0.35f, 0.480f), float2(0.495f, 0.520f))) hover = 565u;
+                else if (InRect(p, float2(0.35f, 0.545f), float2(0.495f, 0.585f))) hover = 566u;
+                else if (InRect(p, float2(0.35f, 0.610f), float2(0.495f, 0.650f))) hover = 567u;
             }
             else
             {
@@ -743,6 +753,7 @@ void main(uint3 id : SV_DispatchThreadID)
                 else if (InRect(p, float2(0.365f, 0.635f), float2(0.505f, 0.685f))) hover = 543u;
                 else if (InRect(p, float2(0.515f, 0.635f), float2(0.655f, 0.685f))) hover = 544u;
                 else if (InRect(p, float2(0.665f, 0.635f), float2(0.815f, 0.685f))) hover = 545u;
+                else if (InRect(p, float2(0.35f, 0.480f), float2(0.495f, 0.520f))) hover = 568u;
             }
 
             if (click)

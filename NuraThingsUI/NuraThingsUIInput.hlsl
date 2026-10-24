@@ -43,9 +43,15 @@ Texture1D<float4> IniParams : register(t120);
 
 #define TOOL_MASK 7u
 
+#define TOOL_WEIGHT 15u
+
 #define UI_FALLOFF UIState[16]
 #define UI_FALLOFF_OPEN UIState[17]
 #define MASK_UI IniParams[38]
+
+#define WEIGHT_UI IniParams[116]
+#define CURRENT_MESH_TOOL IniParams[117].x
+#define WEIGHT_VG_LIST_SCROLL IniParams[118].x
 
 #define WRITE_NAME(BASE, OFFSET) \
     MaskNames[(OFFSET) + 0]  = (uint)max(IniParams[(BASE) + 0].x, 0.0f); \
@@ -76,37 +82,24 @@ bool InRect(float2 p, float2 mn, float2 mx)
 }
 
 float GetStrengthDefault(uint tool)
-
 {
-
-    if (tool <= 1u)
-
-        return STRENGTH_SCULPT;
-
-    else if (tool == 2u)
-
-        return STRENGTH_SMOOTH;
-
-    else if (tool == 3u)
-
-        return STRENGTH_PINCH;
-
-    else if (tool == 4u)
-
-        return STRENGTH_CREASE;
-
-    else if (tool == 5u)
-
-        return STRENGTH_FLATTEN;
-
-    else if (tool == 6u)
-
-        return STRENGTH_SCALE;
-
-    else
-
-        return STRENGTH_MASK;
-
+    switch(tool){
+        case 0:
+        case 1:
+            return STRENGTH_SCULPT;
+        case 2:
+            return STRENGTH_SMOOTH;
+        case 3:
+            return STRENGTH_PINCH;
+        case 4:
+            return STRENGTH_CREASE;
+        case 5:
+            return STRENGTH_FLATTEN;
+        case 6:
+            return STRENGTH_SCALE;
+        default:
+            return STRENGTH_MASK;
+    }
 }
 
 float GetStrengthMin(uint tool)
@@ -290,6 +283,16 @@ void main(uint3 id : SV_DispatchThreadID)
         UIState[21] = (float)clamp(MASK_UI.w + 0.5f, 0.0f, 7.0f);
         UIState[29] = 0.0f;
 
+        UIState[37] = clamp(WEIGHT_UI.x, 0.0f, 117.0f);
+        UIState[38] = clamp(WEIGHT_UI.y, 0.0f, 2.0f);
+        UIState[39] = saturate(WEIGHT_UI.z);
+        UIState[40] = clamp(WEIGHT_UI.w, 0.05f, 1.0f);
+        UIState[41] = 0.0f;
+        UIState[42] = 0.0f;
+        UIState[43] = 0.0f;
+        UIState[44] = floor(clamp(WEIGHT_VG_LIST_SCROLL, 0.0f, 110.0f) + 0.5f);
+        UIState[45] = 0.0f;
+
     }
 
     uint page = (uint)max(UIState[0] + 0.5f, 0.0f);
@@ -310,6 +313,59 @@ void main(uint3 id : SV_DispatchThreadID)
 
     uint falloffMode = (uint)clamp(UIState[16] + 0.5f, 0.0f, 4.0f);
     bool falloffOpen = UI_FALLOFF_OPEN > 0.5f;
+
+    float weightVG = clamp(WEIGHT_UI.x, 0.0f, 117.0f);
+    uint weightMode = (uint)clamp(WEIGHT_UI.y + 0.5f, 0.0f, 2.0f);
+    float weightTarget = saturate(WEIGHT_UI.z);
+    float weightStrength = clamp(WEIGHT_UI.w, 0.05f, 1.0f);
+    bool weightModeOpen = UIState[41] > 0.5f;
+    bool mirrorOpen = UIState[42] > 0.5f;
+    bool weightVGListOpen = UIState[43] > 0.5f;
+    float weightVGListScroll = floor(clamp(WEIGHT_VG_LIST_SCROLL, 0.0f, 110.0f) + 0.5f);
+    uint currentMeshTool = (uint)clamp(CURRENT_MESH_TOOL + 0.5f, 0.0f, 15.0f);
+    uint previousTool = tool;
+
+    // In Overlay mode the real Mesh Editor tool is authoritative. This keeps the UI
+    // synchronized when V cycles into/out of Weight Paint instead of writing stale UIState[1].
+    if (overlay && !mainUI)
+    {
+        tool = currentMeshTool;
+        if (tool != previousTool)
+        {
+            activeSlider = 0u;
+            falloffOpen = false;
+            weightModeOpen = false;
+            mirrorOpen = false;
+            if (tool == 15u)
+            {
+                strength = saturate((weightStrength - 0.05f) / 0.95f);
+                actualStrength = weightStrength;
+            }
+            else
+            {
+                strength = GetStrengthUI(tool);
+                actualStrength = GetStrengthDefault(tool);
+            }
+        }
+        if (tool == 15u)
+        {
+            weightVG = clamp(WEIGHT_UI.x, 0.0f, 117.0f);
+            weightMode = (uint)clamp(WEIGHT_UI.y + 0.5f, 0.0f, 2.0f);
+            weightTarget = saturate(WEIGHT_UI.z);
+            weightStrength = clamp(WEIGHT_UI.w, 0.05f, 1.0f);
+            if (activeSlider != 51u)
+            {
+                strength = saturate((weightStrength - 0.05f) / 0.95f);
+                actualStrength = weightStrength;
+            }
+        }
+        else
+        {
+            weightModeOpen = false;
+            mirrorOpen = false;
+        }
+    }
+    if (tool != 15u) weightVGListOpen = false;
 
     // -------------------------------------------------------------------------
     // Jiggle System state. Each group occupies two IniParams rows beginning at 39:
@@ -841,62 +897,42 @@ void main(uint3 id : SV_DispatchThreadID)
             else if (InRect(p, float2(0.51f, 0.58f), float2(0.64f, 0.625f)))
                 hover = 341u;
         }
-        else
+        else if (tool == 15u)
         {
-            if (falloffOpen && InRect(p, float2(+0.5600f, +0.0764f), float2(+0.6600f, +0.1104f))) hover = 231u;
-            else if (falloffOpen && InRect(p, float2(+0.5600f, +0.1106f), float2(+0.6600f, +0.1446f))) hover = 232u;
-            else if (falloffOpen && InRect(p, float2(+0.5600f, +0.1460f), float2(+0.6600f, +0.1800f))) hover = 233u;
-            else if (falloffOpen && InRect(p, float2(+0.5600f, +0.1850f), float2(+0.6600f, +0.2190f))) hover = 234u;
-            else if (falloffOpen && InRect(p, float2(+0.5600f, +0.2222f), float2(+0.6600f, +0.2562f))) hover = 235u;
+            // Weight Paint controls: centred slider cells, dropdowns and a scrollable VG list.
+            if (weightVGListOpen && InRect(p, float2(0.286f, 0.130f), float2(0.299f, 0.402f))) hover = 268u;
+            else if (weightVGListOpen && InRect(p, float2(0.120f, 0.126f), float2(0.300f, 0.404f)))
+            {
+                uint listRow = (uint)clamp(floor((p.y - 0.130f) / 0.034f), 0.0f, 7.0f);
+                hover = 260u + listRow;
+            }
+            else if (falloffOpen && InRect(p, float2(0.500f, 0.084f), float2(0.620f, 0.118f))) hover = 231u;
+            else if (falloffOpen && InRect(p, float2(0.500f, 0.120f), float2(0.620f, 0.154f))) hover = 232u;
+            else if (falloffOpen && InRect(p, float2(0.500f, 0.156f), float2(0.620f, 0.190f))) hover = 233u;
+            else if (falloffOpen && InRect(p, float2(0.500f, 0.192f), float2(0.620f, 0.226f))) hover = 234u;
+            else if (falloffOpen && InRect(p, float2(0.500f, 0.228f), float2(0.620f, 0.262f))) hover = 235u;
 
-            // Row 1
-            else if (InRect(p, float2(0.760f, 0.140f), float2(0.783f, 0.183f))) hover = 330u;
-            else if (InRect(p, float2(0.787f, 0.140f), float2(0.874f, 0.183f))) hover = 300u;
-            else if (InRect(p, float2(0.880f, 0.140f), float2(0.960f, 0.183f))) hover = 320u;
+            else if (weightModeOpen && InRect(p, float2(0.640f, 0.084f), float2(0.770f, 0.118f))) hover = 243u;
+            else if (weightModeOpen && InRect(p, float2(0.640f, 0.120f), float2(0.770f, 0.154f))) hover = 244u;
+            else if (weightModeOpen && InRect(p, float2(0.640f, 0.156f), float2(0.770f, 0.190f))) hover = 245u;
 
-            // Row 2
-            else if (InRect(p, float2(0.760f, 0.187f), float2(0.783f, 0.230f))) hover = 331u;
-            else if (InRect(p, float2(0.787f, 0.187f), float2(0.874f, 0.230f))) hover = 301u;
-            else if (InRect(p, float2(0.880f, 0.187f), float2(0.960f, 0.230f))) hover = 321u;
+            else if (mirrorOpen && InRect(p, float2(0.790f, 0.084f), float2(0.960f, 0.118f))) hover = 247u;
+            else if (mirrorOpen && InRect(p, float2(0.790f, 0.120f), float2(0.960f, 0.154f))) hover = 248u;
+            else if (mirrorOpen && InRect(p, float2(0.790f, 0.156f), float2(0.960f, 0.190f))) hover = 249u;
+            else if (mirrorOpen && InRect(p, float2(0.790f, 0.192f), float2(0.960f, 0.226f))) hover = 250u;
 
-            // Row 3
-            else if (InRect(p, float2(0.760f, 0.234f), float2(0.783f, 0.277f))) hover = 332u;
-            else if (InRect(p, float2(0.787f, 0.234f), float2(0.874f, 0.277f))) hover = 302u;
-            else if (InRect(p, float2(0.880f, 0.234f), float2(0.960f, 0.277f))) hover = 322u;
+            // One selector button opens the vertically scrollable VG ID list.
+            else if (InRect(p, float2(0.120f, 0.087f), float2(0.300f, 0.120f))) hover = 240u;
 
-            // Row 4
-            else if (InRect(p, float2(0.760f, 0.281f), float2(0.783f, 0.324f))) hover = 333u;
-            else if (InRect(p, float2(0.787f, 0.281f), float2(0.874f, 0.324f))) hover = 303u;
-            else if (InRect(p, float2(0.880f, 0.281f), float2(0.960f, 0.324f))) hover = 323u;
+            // Slider hitboxes include their label/value line and the track below.
+            else if (InRect(p, float2(0.150f, 0.035f), float2(0.250f, 0.084f))) hover = 200u;
+            else if (InRect(p, float2(0.290f, 0.035f), float2(0.375f, 0.084f))) hover = 201u;
+            else if (InRect(p, float2(0.395f, 0.035f), float2(0.480f, 0.084f))) hover = 202u;
+            else if (InRect(p, float2(0.500f, 0.047f), float2(0.620f, 0.081f))) hover = 230u;
+            else if (InRect(p, float2(0.640f, 0.047f), float2(0.770f, 0.081f))) hover = 242u;
+            else if (InRect(p, float2(0.790f, 0.047f), float2(0.960f, 0.081f))) hover = 246u;
 
-            // Row 5
-            else if (InRect(p, float2(0.760f, 0.328f), float2(0.783f, 0.371f))) hover = 334u;
-            else if (InRect(p, float2(0.787f, 0.328f), float2(0.874f, 0.371f))) hover = 304u;
-            else if (InRect(p, float2(0.880f, 0.328f), float2(0.960f, 0.371f))) hover = 324u;
-
-            // Row 6
-            else if (InRect(p, float2(0.760f, 0.375f), float2(0.783f, 0.418f))) hover = 335u;
-            else if (InRect(p, float2(0.787f, 0.375f), float2(0.874f, 0.418f))) hover = 305u;
-            else if (InRect(p, float2(0.880f, 0.375f), float2(0.960f, 0.418f))) hover = 325u;
-
-            // Row 7
-            else if (InRect(p, float2(0.760f, 0.422f), float2(0.783f, 0.465f))) hover = 336u;
-            else if (InRect(p, float2(0.787f, 0.422f), float2(0.874f, 0.465f))) hover = 306u;
-            else if (InRect(p, float2(0.880f, 0.422f), float2(0.960f, 0.465f))) hover = 326u;
-
-            // Row 8
-            else if (InRect(p, float2(0.760f, 0.469f), float2(0.783f, 0.512f))) hover = 337u;
-            else if (InRect(p, float2(0.787f, 0.469f), float2(0.874f, 0.512f))) hover = 307u;
-            else if (InRect(p, float2(0.880f, 0.469f), float2(0.960f, 0.512f))) hover = 327u;
-            // Mask operations — IDs 350..356 are handled by NuraThingsUIFrame.
-            else if (InRect(p, float2(0.760f, 0.555f), float2(0.805f, 0.593f))) hover = 350u; // CLEAR
-            else if (InRect(p, float2(0.810f, 0.555f), float2(0.855f, 0.593f))) hover = 351u; // FILL
-            else if (InRect(p, float2(0.860f, 0.555f), float2(0.905f, 0.593f))) hover = 352u; // INVERT
-            else if (InRect(p, float2(0.910f, 0.555f), float2(0.960f, 0.593f))) hover = 353u; // THRESHOLD
-            else if (InRect(p, float2(0.768f, 0.600f), float2(0.828f, 0.638f))) hover = 354u; // CONTRAST
-            else if (InRect(p, float2(0.833f, 0.600f), float2(0.893f, 0.638f))) hover = 355u; // SMOOTH
-            else if (InRect(p, float2(0.898f, 0.600f), float2(0.960f, 0.638f))) hover = 356u; // SHARPEN
-
+            // Existing tool buttons remain available; Weight Paint itself is selected with V.
             else if (InRect(p, float2(0.012f, 0.140f), float2(0.100f, 0.205f))) hover = 100u;
             else if (InRect(p, float2(0.012f, 0.213f), float2(0.100f, 0.278f))) hover = 101u;
             else if (InRect(p, float2(0.012f, 0.286f), float2(0.100f, 0.351f))) hover = 102u;
@@ -905,20 +941,69 @@ void main(uint3 id : SV_DispatchThreadID)
             else if (InRect(p, float2(0.012f, 0.505f), float2(0.100f, 0.570f))) hover = 105u;
             else if (InRect(p, float2(0.012f, 0.578f), float2(0.100f, 0.643f))) hover = 106u;
             else if (InRect(p, float2(0.012f, 0.651f), float2(0.100f, 0.716f))) hover = 107u;
+            else if (InRect(p, float2(0.012f, 0.724), float2(0.100f, 0.789f))) hover = 115u;
+        }
+        else
+        {
+            // Existing overlay controls for the non-Weight-Paint tools are unchanged.
+            if (falloffOpen && InRect(p, float2(+0.5600f, +0.0764f), float2(+0.6600f, +0.1104f))) hover = 231u;
+            else if (falloffOpen && InRect(p, float2(+0.5600f, +0.1106f), float2(+0.6600f, +0.1446f))) hover = 232u;
+            else if (falloffOpen && InRect(p, float2(+0.5600f, +0.1460f), float2(+0.6600f, +0.1800f))) hover = 233u;
+            else if (falloffOpen && InRect(p, float2(+0.5600f, +0.1850f), float2(+0.6600f, +0.2190f))) hover = 234u;
+            else if (falloffOpen && InRect(p, float2(+0.5600f, +0.2222f), float2(+0.6600f, +0.2562f))) hover = 235u;
+
+            // Named mask slots and operations.
+            else if (InRect(p, float2(0.760f, 0.140f), float2(0.783f, 0.183f))) hover = 330u;
+            else if (InRect(p, float2(0.787f, 0.140f), float2(0.874f, 0.183f))) hover = 300u;
+            else if (InRect(p, float2(0.880f, 0.140f), float2(0.960f, 0.183f))) hover = 320u;
+            else if (InRect(p, float2(0.760f, 0.187f), float2(0.783f, 0.230f))) hover = 331u;
+            else if (InRect(p, float2(0.787f, 0.187f), float2(0.874f, 0.230f))) hover = 301u;
+            else if (InRect(p, float2(0.880f, 0.187f), float2(0.960f, 0.230f))) hover = 321u;
+            else if (InRect(p, float2(0.760f, 0.234f), float2(0.783f, 0.277f))) hover = 332u;
+            else if (InRect(p, float2(0.787f, 0.234f), float2(0.874f, 0.277f))) hover = 302u;
+            else if (InRect(p, float2(0.880f, 0.234f), float2(0.960f, 0.277f))) hover = 322u;
+            else if (InRect(p, float2(0.760f, 0.281f), float2(0.783f, 0.324f))) hover = 333u;
+            else if (InRect(p, float2(0.787f, 0.281f), float2(0.874f, 0.324f))) hover = 303u;
+            else if (InRect(p, float2(0.880f, 0.281f), float2(0.960f, 0.324f))) hover = 323u;
+            else if (InRect(p, float2(0.760f, 0.328f), float2(0.783f, 0.371f))) hover = 334u;
+            else if (InRect(p, float2(0.787f, 0.328f), float2(0.874f, 0.371f))) hover = 304u;
+            else if (InRect(p, float2(0.880f, 0.328f), float2(0.960f, 0.371f))) hover = 324u;
+            else if (InRect(p, float2(0.760f, 0.375f), float2(0.783f, 0.418f))) hover = 335u;
+            else if (InRect(p, float2(0.787f, 0.375f), float2(0.874f, 0.418f))) hover = 305u;
+            else if (InRect(p, float2(0.880f, 0.375f), float2(0.960f, 0.418f))) hover = 325u;
+            else if (InRect(p, float2(0.760f, 0.422f), float2(0.783f, 0.465f))) hover = 336u;
+            else if (InRect(p, float2(0.787f, 0.422f), float2(0.874f, 0.465f))) hover = 306u;
+            else if (InRect(p, float2(0.880f, 0.422f), float2(0.960f, 0.465f))) hover = 326u;
+            else if (InRect(p, float2(0.760f, 0.469f), float2(0.783f, 0.512f))) hover = 337u;
+            else if (InRect(p, float2(0.787f, 0.469f), float2(0.874f, 0.512f))) hover = 307u;
+            else if (InRect(p, float2(0.880f, 0.469f), float2(0.960f, 0.512f))) hover = 327u;
+            else if (InRect(p, float2(0.760f, 0.555f), float2(0.805f, 0.593f))) hover = 350u;
+            else if (InRect(p, float2(0.810f, 0.555f), float2(0.855f, 0.593f))) hover = 351u;
+            else if (InRect(p, float2(0.860f, 0.555f), float2(0.905f, 0.593f))) hover = 352u;
+            else if (InRect(p, float2(0.910f, 0.555f), float2(0.960f, 0.593f))) hover = 353u;
+            else if (InRect(p, float2(0.768f, 0.600f), float2(0.828f, 0.638f))) hover = 354u;
+            else if (InRect(p, float2(0.833f, 0.600f), float2(0.893f, 0.638f))) hover = 355u;
+            else if (InRect(p, float2(0.898f, 0.600f), float2(0.960f, 0.638f))) hover = 356u;
+
+            // Tool buttons and existing top bar.
+            else if (InRect(p, float2(0.012f, 0.140f), float2(0.100f, 0.205f))) hover = 100u;
+            else if (InRect(p, float2(0.012f, 0.213f), float2(0.100f, 0.278f))) hover = 101u;
+            else if (InRect(p, float2(0.012f, 0.286f), float2(0.100f, 0.351f))) hover = 102u;
+            else if (InRect(p, float2(0.012f, 0.359f), float2(0.100f, 0.424f))) hover = 103u;
+            else if (InRect(p, float2(0.012f, 0.432f), float2(0.100f, 0.497f))) hover = 104u;
+            else if (InRect(p, float2(0.012f, 0.505f), float2(0.100f, 0.570f))) hover = 105u;
+            else if (InRect(p, float2(0.012f, 0.578f), float2(0.100f, 0.643f))) hover = 106u;
+            else if (InRect(p, float2(0.012f, 0.651f), float2(0.100f, 0.716f))) hover = 107u;
+            else if (InRect(p, float2(0.012f, 0.724), float2(0.100f, 0.789f))) hover = 115u;
             else if (InRect(p, float2(0.16f, 0.039f), float2(0.245f, 0.069f))) hover = 200u;
             else if (InRect(p, float2(+0.3629f, +0.0405f), float2(+0.4379f, +0.0705f))) hover = 201u;
             else if (InRect(p, float2(+0.5600f, +0.0414f), float2(+0.6600f, +0.0714f))) hover = 230u;
-
             else if (InRect(p, float2(0.70f, 0.060f), float2(0.74f, 0.082f))) hover = 210u;
             else if (InRect(p, float2(0.75f, 0.060f), float2(0.79f, 0.082f))) hover = 211u;
             else if (InRect(p, float2(0.80f, 0.060f), float2(0.84f, 0.082f))) hover = 212u;
             else if (InRect(p, float2(0.86f, 0.060f), float2(0.97f, 0.082f))) hover = 220u;
-
-            else if (InRect(p, float2(0.780f, 0.516f), float2(0.860f, 0.548f)))
-                hover = 361u; // ALL / NONE
-
-            else if (InRect(p, float2(0.885f, 0.516f), float2(0.960f, 0.548f)))
-                hover = 362u; // Preview mode
+            else if (InRect(p, float2(0.780f, 0.516f), float2(0.860f, 0.548f))) hover = 361u;
+            else if (InRect(p, float2(0.885f, 0.516f), float2(0.960f, 0.548f))) hover = 362u;
         }
 
         if (click)
@@ -932,43 +1017,126 @@ void main(uint3 id : SV_DispatchThreadID)
                     activeSlider = 0u;
                 }
             }
-            else if (hover >= 300u && hover <= 307u)
+            else if (tool == 15u)
             {
-                maskSlot = hover - 300u;
-                activeSlider = 0u;
-            }
-            else if (hover >= 320u && hover <= 327u)
-            {
-                renameSlot = hover - 320u;
-                renameOpen = true;
-                activeSlider = 0u;
-                falloffOpen = false;
-            }
-            else if (falloffOpen)
-            {
-                if (hover >= 231u && hover <= 235u)
+                if (hover >= 260u && hover <= 267u)
+                {
+                    weightVG = clamp(floor(weightVGListScroll + (float)(hover - 260u) + 0.5f), 0.0f, 117.0f);
+                    weightVGListOpen = false;
+                    falloffOpen = false; weightModeOpen = false; mirrorOpen = false; activeSlider = 0u;
+                }
+                else if (hover >= 231u && hover <= 235u)
+                {
                     falloffMode = hover - 231u;
-                falloffOpen = false;
-                activeSlider = 0u;
+                    falloffOpen = false; weightModeOpen = false; mirrorOpen = false; weightVGListOpen = false;
+                    activeSlider = 0u;
+                }
+                else if (hover >= 243u && hover <= 245u)
+                {
+                    weightMode = hover - 243u;
+                    weightModeOpen = false;
+                    falloffOpen = false;
+                    mirrorOpen = false;
+                    activeSlider = 0u;
+                }
+                else if (hover >= 247u && hover <= 250u)
+                {
+                    uint mirrorChoice = hover - 247u;
+                    if (mirrorChoice == 0u)
+                    {
+                        mirror = 0.0f;
+                    }
+                    else
+                    {
+                        mirror = 1.0f;
+                        mirrorAxis = mirrorChoice - 1u;
+                    }
+                    mirrorOpen = false;
+                    falloffOpen = false;
+                    weightModeOpen = false;
+                    activeSlider = 0u;
+                }
+                else if (hover == 268u)
+                {
+                    activeSlider = 53u;
+                    weightVGListScroll = floor(clamp(((p.y - 0.143f) / 0.233f) * 110.0f, 0.0f, 110.0f) + 0.5f);
+                    falloffOpen = false; weightModeOpen = false; mirrorOpen = false;
+                }
+                else if (hover == 240u)
+                {
+                    bool openingVGList = !weightVGListOpen;
+                    weightVGListOpen = openingVGList;
+                    if (openingVGList)
+                        weightVGListScroll = floor(clamp(weightVG - 3.5f, 0.0f, 110.0f) + 0.5f);
+                    falloffOpen = false; weightModeOpen = false; mirrorOpen = false; activeSlider = 0u;
+                }
+                else if (hover == 200u) { activeSlider = 50u; falloffOpen = false; weightModeOpen = false; mirrorOpen = false; }
+                else if (hover == 201u) { activeSlider = 51u; falloffOpen = false; weightModeOpen = false; mirrorOpen = false; }
+                else if (hover == 202u) { activeSlider = 52u; falloffOpen = false; weightModeOpen = false; mirrorOpen = false; }
+                else if (hover == 230u) { falloffOpen = !falloffOpen; weightModeOpen = false; mirrorOpen = false; weightVGListOpen = false; activeSlider = 0u; }
+                else if (hover == 242u) { weightModeOpen = !weightModeOpen; falloffOpen = false; mirrorOpen = false; weightVGListOpen = false; activeSlider = 0u; }
+                else if (hover == 246u) { mirrorOpen = !mirrorOpen; falloffOpen = false; weightModeOpen = false; weightVGListOpen = false; activeSlider = 0u; }
+                else if (hover >= 100u && hover <= 115u)
+                {
+                    tool = hover - 100u;
+                    activeSlider = 0u;
+                    falloffOpen = false; weightModeOpen = false; mirrorOpen = false; weightVGListOpen = false;
+                    strength = GetStrengthUI(tool);
+                    actualStrength = GetStrengthDefault(tool);
+                }
+                else if (hover != 0u)
+                {
+                    falloffOpen = false; weightModeOpen = false; mirrorOpen = false; weightVGListOpen = false;
+                    activeSlider = 0u;
+                }
             }
-            else if (hover >= 100u && hover <= 107u)
+            else
             {
-                tool = hover - 100u;
-                activeSlider = 0u;
-                strength = GetStrengthUI(tool);
-                actualStrength = GetStrengthDefault(tool);
+                if (hover >= 300u && hover <= 307u)
+                {
+                    maskSlot = hover - 300u;
+                    activeSlider = 0u;
+                }
+                else if (hover >= 320u && hover <= 327u)
+                {
+                    renameSlot = hover - 320u;
+                    renameOpen = true;
+                    activeSlider = 0u;
+                    falloffOpen = false;
+                }
+                else if (hover >= 231u && hover <= 235u)
+                {
+                    falloffMode = hover - 231u;
+                    falloffOpen = false;
+                    activeSlider = 0u;
+                }
+                else if (hover >= 100u && hover <= 115u)
+                {
+                    tool = hover - 100u;
+                    activeSlider = 0u;
+                    strength = GetStrengthUI(tool);
+                    actualStrength = GetStrengthDefault(tool);
+                }
+                else if (hover == 200u) activeSlider = 50u;
+                else if (hover == 201u) activeSlider = 51u;
+                else if (hover >= 210u && hover <= 212u)
+                {
+                    uint newAxis = hover - 210u;
+                    if (mirror > 0.5f && mirrorAxis == newAxis) mirror = 0.0f;
+                    else { mirror = 1.0f; mirrorAxis = newAxis; }
+                    activeSlider = 0u;
+                }
+                else if (hover == 220u) activeSlider = 0u;
+                else if (hover == 230u) { falloffOpen = !falloffOpen; activeSlider = 0u; }
+                else if (hover == 361u)
+                {
+                    clicked = hover;
+                }
+                else if (hover == 362u)
+                {
+                    clicked = hover;
+                }
             }
-            else if (hover == 200u) activeSlider = 50u;
-            else if (hover == 201u) activeSlider = 51u;
-            else if (hover >= 210u && hover <= 212u)
-            {
-                uint newAxis = hover - 210u;
-                if (mirror > 0.5f && mirrorAxis == newAxis) mirror = 0.0f;
-                else { mirror = 1.0f; mirrorAxis = newAxis; }
-                activeSlider = 0u;
-            }
-            else if (hover == 220u) activeSlider = 0u;
-            else if (hover == 230u) { falloffOpen = true; activeSlider = 0u; }
         }
 
         if (lmb && activeSlider == 50u)
@@ -978,9 +1146,27 @@ void main(uint3 id : SV_DispatchThreadID)
         }
         else if (lmb && activeSlider == 51u)
         {
-            float t = saturate((p.x - 0.3660f) / 0.075f);
-            strength = t;
-            actualStrength = GetStrengthValue(tool, t);
+            if (tool == 15u)
+            {
+                float t = saturate((p.x - 0.30f) / 0.065f);
+                strength = t;
+                weightStrength = lerp(0.05f, 1.0f, t);
+                actualStrength = weightStrength;
+            }
+            else
+            {
+                float t = saturate((p.x - 0.3660f) / 0.075f);
+                strength = t;
+                actualStrength = GetStrengthValue(tool, t);
+            }
+        }
+        else if (lmb && activeSlider == 52u && tool == 15u)
+        {
+            weightTarget = saturate((p.x - 0.405f) / 0.065f);
+        }
+        else if (lmb && activeSlider == 53u && tool == 15u && weightVGListOpen)
+        {
+            weightVGListScroll = floor(clamp(((p.y - 0.143f) / 0.233f) * 110.0f, 0.0f, 110.0f) + 0.5f);
         }
         if (!lmb) activeSlider = 0u;
     }
@@ -1052,6 +1238,16 @@ void main(uint3 id : SV_DispatchThreadID)
     UIState[34] = jiggleMotionSensitivity;
     UIState[35] = jiggleMotionSmoothing;
     UIState[36] = jiggleEdgeFalloff;
+
+    UIState[37] = clamp(weightVG, 0.0f, 117.0f);
+    UIState[38] = (float)clamp(weightMode, 0u, 2u);
+    UIState[39] = saturate(weightTarget);
+    UIState[40] = clamp(weightStrength, 0.05f, 1.0f);
+    UIState[41] = weightModeOpen ? 1.0f : 0.0f;
+    UIState[42] = mirrorOpen ? 1.0f : 0.0f;
+    UIState[43] = weightVGListOpen ? 1.0f : 0.0f;
+    UIState[44] = floor(clamp(weightVGListScroll, 0.0f, 110.0f) + 0.5f);
+    UIState[45] = (weightVGListOpen && InRect(p, float2(0.120f, 0.126f), float2(0.300f, 0.404f))) ? 1.0f : 0.0f;
 
     WRITE_NAME(80, 0);
     WRITE_NAME(84, 16);

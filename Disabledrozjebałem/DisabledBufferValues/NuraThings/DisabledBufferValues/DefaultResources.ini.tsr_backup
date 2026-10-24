@@ -1,0 +1,185 @@
+namespace = NuraThings\ModManager\DefaultResources
+[ResourceAyakaDressDiffuse]
+
+[TextureOverrideAyakaDress]
+hash = 0cafd227
+match_priority = -100
+match_first_index = 58209
+
+
+if ResourceAyakaDressDiffuse == null
+	if ps == 037730.0 || ps == 037730.1
+		ResourceAyakaDressDiffuse = copy ps-t1
+	else
+		ResourceAyakaDressDiffuse = copy ps-t0
+	endif
+endif
+
+[ResourceAyakaHeadDiffuse]
+
+[TextureOverrideAyakaHead]
+hash = 0cafd227
+match_priority = -100
+match_first_index = 0
+
+
+if ResourceAyakaHeadDiffuse == null
+	if ps == 037730.0 || ps == 037730.1
+		ResourceAyakaHeadDiffuse = copy ps-t1
+	else
+		ResourceAyakaHeadDiffuse = copy ps-t0
+	endif
+endif
+
+[ResourceChascaBodyDiffuse]
+
+[TextureOverrideChascaBody]
+hash = 980cee65
+match_priority = -100
+match_first_index = 32064
+
+
+if ResourceChascaBodyDiffuse == null
+	if ps == 037730.0 || ps == 037730.1
+		ResourceChascaBodyDiffuse = copy ps-t1
+	else
+		ResourceChascaBodyDiffuse = copy ps-t0
+	endif
+endif
+
+[ResourceChascaHeadDiffuse]
+
+[TextureOverrideChascaHead]
+hash = 980cee65
+match_priority = -100
+match_first_index = 0
+
+
+if ResourceChascaHeadDiffuse == null
+	if ps == 037730.0 || ps == 037730.1
+		ResourceChascaHeadDiffuse = copy ps-t1
+	else
+		ResourceChascaHeadDiffuse = copy ps-t0
+	endif
+endif
+
+[ResourceChascaDressDiffuse]
+
+[TextureOverrideChascaDress]
+hash = 980cee65
+match_priority = -100
+match_first_index = 79233
+
+
+if ResourceChascaDressDiffuse == null
+	if ps == 037730.0 || ps == 037730.1
+		ResourceChascaDressDiffuse = copy ps-t1
+	else
+		ResourceChascaDressDiffuse = copy ps-t0
+	endif
+endif
+
+[ResourceRaidenShogunBodyDiffuse]
+
+[TextureOverrideRaidenShogunBody]
+hash = 7a583c12
+match_priority = -100
+match_first_index = 17769
+
+
+if ResourceRaidenShogunBodyDiffuse == null
+	if ps == 037730.0 || ps == 037730.1
+		ResourceRaidenShogunBodyDiffuse = copy ps-t1
+	else
+		ResourceRaidenShogunBodyDiffuse = copy ps-t0
+	endif
+endif
+
+[ResourceXilonenHeadDiffuse]
+
+[TextureOverrideXilonenHead]
+hash = 4c2fa96d
+match_priority = -100
+match_first_index = 0
+
+
+if ResourceXilonenHeadDiffuse == null
+	if ps == 037730.0 || ps == 037730.1
+		ResourceXilonenHeadDiffuse = copy ps-t1
+	else
+		ResourceXilonenHeadDiffuse = copy ps-t0
+	endif
+endif
+
+[ResourceXilonenCoatBodyDiffuse]
+
+[TextureOverrideXilonenCoatBody]
+hash = 24afd7b2
+match_priority = -100
+match_first_index = 8697
+
+
+if ResourceXilonenCoatBodyDiffuse == null
+	if ps == 037730.0 || ps == 037730.1
+		ResourceXilonenCoatBodyDiffuse = copy ps-t1
+	else
+		ResourceXilonenCoatBodyDiffuse = copy ps-t0
+	endif
+endif
+
+[ResourceXilonenCoatHeadDiffuse]
+
+[TextureOverrideXilonenCoatHead]
+hash = 24afd7b2
+match_priority = -100
+match_first_index = 0
+
+
+if ResourceXilonenCoatHeadDiffuse == null
+	if ps == 037730.0 || ps == 037730.1
+		ResourceXilonenCoatHeadDiffuse = copy ps-t1
+	else
+		ResourceXilonenCoatHeadDiffuse = copy ps-t0
+	endif
+endif
+
+[ResourceFurinaWhiteHairAIB]
+
+[TextureOverrideFurinaWhiteHairA]
+hash = 5e4f8d68
+match_priority = -100
+match_first_index = 0
+
+if ResourceFurinaWhiteHairAIB == null
+    ResourceFurinaWhiteHairAIB = copy IB
+endif
+
+
+[ResourceChascaHatHeadIB]
+
+[TextureOverrideChascaHatHead]
+hash = 00ec59a7
+match_priority = -100
+match_first_index = 0
+
+if ResourceChascaHatHeadIB == null
+    ResourceChascaHatHeadIB = copy IB
+endif
+
+
+[ResourceMavuikaBodyDiffuse]
+
+[TextureOverrideMavuikaBody]
+hash = 43f8af29
+match_priority = -100
+match_first_index = 16914
+
+
+if ResourceMavuikaBodyDiffuse == null
+	if ps == 037730.0 || ps == 037730.1
+		ResourceMavuikaBodyDiffuse = copy ps-t1
+	else
+		ResourceMavuikaBodyDiffuse = copy ps-t0
+	endif
+endif
+

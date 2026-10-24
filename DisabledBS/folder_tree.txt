@@ -1,0 +1,1450 @@
+F:\XXMI\Games\Genshin\GIMI\Mods
+├── BufferValues
+│   ├── Adventure Map+
+│   │   ├── Buffers
+│   │   ├── ReMap
+│   │   ├── Shaders
+│   │   ├── Texture2D
+│   │   └── v3
+│   │       ├── Buffers
+│   │       ├── PointLogicResource
+│   │       └── Shaders
+│   ├── NuraThings
+│   │   ├── 2Shaders
+│   │   ├── Colors
+│   │   ├── Core
+│   │   │   ├── Resources
+│   │   ├── Debug
+│   │   │   └── Unicorn
+│   │   ├── Disabled2BufferValues
+│   │   │   └── NuraThings
+│   │   │       ├── Core
+│   │   │       ├── Math
+│   │   │       └── Shaders
+│   │   ├── DisabledBufferValues
+│   │   │   └── NuraThings
+│   │   │       ├── Core
+│   │   │       ├── Math
+│   │   │       └── Shaders
+│   │   ├── Fonts
+│   │   ├── Math
+│   │   ├── MiniGames
+│   │   │   ├── 2DMon
+│   │   │   │   ├── Resources
+│   │   │   ├── FloppyBirb
+│   │   ├── ModManager
+│   │   │   ├── Resources
+│   │   ├── Numbers
+│   │   │   ├── Black
+│   │   ├── Print
+│   │   └── Shaders
+├── CharacterMods
+│   ├── Aether
+│   │   └── Aether X Lumine 3 in 1
+│   │       ├── AETHER X LUMINE HANDS FREE
+│   │       │   ├── TravelerBoyModf0000
+│   │       │   ├── TravelerBoyModf0001
+│   │       │   ├── TravelerBoyModf0002
+│   │       │   ├── TravelerBoyModf0003
+│   │       │   ├── TravelerBoyModf0004
+│   │       │   ├── TravelerBoyModf0005
+│   │       │   ├── TravelerBoyModf0006
+│   │       │   ├── TravelerBoyModf0007
+│   │       │   ├── TravelerBoyModf0008
+│   │       │   ├── TravelerBoyModf0009
+│   │       │   ├── TravelerBoyModf0010
+│   │       │   ├── TravelerBoyModf0011
+│   │       │   ├── TravelerBoyModf0012
+│   │       │   ├── TravelerBoyModf0013
+│   │       │   ├── TravelerBoyModf0014
+│   │       │   ├── TravelerBoyModf0015
+│   │       │   ├── TravelerBoyModf0016
+│   │       │   ├── TravelerBoyModf0017
+│   │       │   ├── TravelerBoyModf0018
+│   │       │   ├── TravelerBoyModf0019
+│   │       │   └── TravelerBoyModf0020
+│   │       ├── AETHER X LUMINE HANDS ON ASS
+│   │       │   ├── TravelerBoyModf0000
+│   │       │   ├── TravelerBoyModf0001
+│   │       │   ├── TravelerBoyModf0002
+│   │       │   ├── TravelerBoyModf0003
+│   │       │   ├── TravelerBoyModf0004
+│   │       │   ├── TravelerBoyModf0005
+│   │       │   ├── TravelerBoyModf0006
+│   │       │   ├── TravelerBoyModf0007
+│   │       │   ├── TravelerBoyModf0008
+│   │       │   ├── TravelerBoyModf0009
+│   │       │   ├── TravelerBoyModf0010
+│   │       │   ├── TravelerBoyModf0011
+│   │       │   ├── TravelerBoyModf0012
+│   │       │   ├── TravelerBoyModf0013
+│   │       │   ├── TravelerBoyModf0014
+│   │       │   ├── TravelerBoyModf0015
+│   │       │   ├── TravelerBoyModf0016
+│   │       │   ├── TravelerBoyModf0017
+│   │       │   ├── TravelerBoyModf0018
+│   │       │   ├── TravelerBoyModf0019
+│   │       │   └── TravelerBoyModf0020
+│   │       ├── AETHER X LUMINE P2 MOD
+│   │       │   ├── TravelerBoyModf0000
+│   │       │   ├── TravelerBoyModf0001
+│   │       │   ├── TravelerBoyModf0002
+│   │       │   ├── TravelerBoyModf0003
+│   │       │   ├── TravelerBoyModf0004
+│   │       │   ├── TravelerBoyModf0005
+│   │       │   ├── TravelerBoyModf0006
+│   │       │   ├── TravelerBoyModf0007
+│   │       │   ├── TravelerBoyModf0008
+│   │       │   ├── TravelerBoyModf0009
+│   │       │   ├── TravelerBoyModf0010
+│   │       │   ├── TravelerBoyModf0011
+│   │       │   ├── TravelerBoyModf0012
+│   │       │   ├── TravelerBoyModf0013
+│   │       │   ├── TravelerBoyModf0014
+│   │       │   ├── TravelerBoyModf0015
+│   │       │   ├── TravelerBoyModf0016
+│   │       │   ├── TravelerBoyModf0017
+│   │       │   ├── TravelerBoyModf0018
+│   │       │   ├── TravelerBoyModf0019
+│   │       │   └── TravelerBoyModf0020
+│   ├── Albedo
+│   ├── Alhaitham
+│   ├── Aloy
+│   ├── Amber
+│   ├── Arlecchino
+│   │   ├── arlecchino_shiroko_mod
+│   │   ├── ArlSummr
+│   │   ├── DisabledArlecchino
+│   │   └── JeanneD'ArcAlter
+│   │       ├── RyuuNoMajouArlecchino
+│   │       │   ├── DDS
+│   │       │   │   ├── Dark
+│   │       │   │   ├── Saint
+│   │       │   │   └── Witch
+│   │       │   ├── MOD
+│   │       │   │   ├── Full
+│   │       │   │   │   ├── Long
+│   │       │   │   │   └── Short
+│   │       │   │   ├── None
+│   │       │   │   │   ├── Long
+│   │       │   │   │   └── Short
+│   │       │   │   └── Part
+│   │       │   │       ├── Long
+│   │       │   │       └── Short
+│   │       └── UmibeNoMousouArlecchino
+│   │           ├── DDS
+│   │           ├── MOD
+│   │           │   ├── Long
+│   │           │   │   ├── Jacket
+│   │           │   │   └── NoJacket
+│   │           │   └── Short
+│   │           │       ├── Jacket
+│   │           │       └── NoJacket
+│   ├── Ayaka
+│   │   ├── Ayaka Mecha Musume [FULL]
+│   │   │   ├── res
+│   │   ├── BufferValues
+│   │   │   └── NuraThings
+│   │   │       └── Shaders
+│   │   ├── Disabled3Iris
+│   │   ├── DisabledIris
+│   │   ├── DisabledIris2
+│   ├── Baizhu
+│   ├── Barbara
+│   ├── Beidou
+│   ├── Candace
+│   ├── Charlotte
+│   ├── Chasca
+│   │   ├── [LL] Chasca Ultimate Edition
+│   │   │   ├── Hat
+│   │   ├── DisabledIdk
+│   │   ├── DisabledOceanPiercerChasca
+│   │   └── Webowz
+│   ├── Chevreuse
+│   ├── Chiori
+│   │   └── HyakkaChiori
+│   │       ├── ADDON
+│   │       │   └── Urakumisugiri
+│   │       ├── DDS
+│   │       │   ├── Alter
+│   │       │   │   ├── Alter
+│   │       │   │   └── Original
+│   │       │   ├── Chiori
+│   │       │   │   ├── Alter
+│   │       │   │   └── Original
+│   │       │   ├── Hyakka
+│   │       │   │   ├── Alter
+│   │       │   │   └── Original
+│   │       ├── MOD
+│   │       │   ├── Bikini
+│   │       │   │   ├── Alter
+│   │       │   │   │   ├── Main
+│   │       │   │   │   ├── MainSub
+│   │       │   │   │   ├── None
+│   │       │   │   │   ├── Sub
+│   │       │   │   │   └── SubSub
+│   │       │   │   └── Original
+│   │       │   │       ├── Main
+│   │       │   │       ├── MainSub
+│   │       │   │       ├── None
+│   │       │   │       ├── Sub
+│   │       │   │       └── SubSub
+│   │       │   └── Sailor
+│   │       │       ├── Alter
+│   │       │       │   ├── Main
+│   │       │       │   ├── MainSub
+│   │       │       │   ├── None
+│   │       │       │   ├── Sub
+│   │       │       │   └── SubSub
+│   │       │       └── Original
+│   │       │           ├── Main
+│   │       │           ├── MainSub
+│   │       │           ├── None
+│   │       │           ├── Sub
+│   │       │           └── SubSub
+│   ├── Chongyun
+│   ├── Citlali
+│   │   ├── Citlali Valentine Bride [FULL w ANIM]
+│   │   │   ├── res
+│   │   ├── CitlaliGoth
+│   │   │   ├── long-boots
+│   │   │   ├── short-boots
+│   │   │   ├── textures
+│   │   ├── DisabledJK
+│   │   │   ├── 1
+│   │   │   ├── 2
+│   │   ├── DisabledSnaccubus-CitlaliCyberKittyBETA
+│   │   │   ├── buffers
+│   │   │   ├── presets
+│   │   │   ├── resources
+│   │   │   ├── textures
+│   │   └── DisabledViginDestroyerCitlali
+│   ├── Clorinde
+│   │   ├── Clorinde Emo Casual [FULL w ANIM]
+│   │   │   ├── res
+│   │   ├── ClorindeMaidV2
+│   │   ├── Disabledaio_nsfw_1-2
+│   │   │   ├── Readme_Menu
+│   │   │   ├── Textures
+│   │   ├── General Clorinde
+│   │   │   ├── General Clorinde
+│   │   │   ├── No Cape
+│   │   │   ├── OG Cape
+│   │   │   ├── Textures
+│   │   ├── Gladiateur Lapine Clorinde
+│   │   ├── HyF Turboflux Clorinde
+│   │   └── weebovz_-_policewoman_og_clorinde
+│   │       ├── 00ClorindeMod
+│   │       ├── 01ClorindeMod
+│   │       ├── 02ClorindeMod
+│   │       ├── 03ClorindeMod
+│   │       ├── 04ClorindeMod
+│   │       ├── 05ClorindeMod
+│   │       ├── 06ClorindeMod
+│   │       ├── 07ClorindeMod
+│   ├── Collei
+│   ├── Cyno
+│   ├── Diluc
+│   ├── Diona
+│   │   └── AzhdahaMod
+│   │       ├── Icons
+│   │       └── ShaderFixes
+│   ├── Disabled3VirginDestroyerNavia
+│   │   ├── Navia
+│   │   └── NaviaMod
+│   │       ├── Disabled
+│   │       ├── resources
+│   ├── DisabledAquaBunny Mualani
+│   │   ├── DDS
+│   │   ├── MOD
+│   │   │   └── Mualani
+│   │   │       ├── NoTail
+│   │   │       │   ├── Collar
+│   │   │       │   │   ├── NoSkirt
+│   │   │       │   │   │   ├── NoRibbon
+│   │   │       │   │   │   └── Ribbon
+│   │   │       │   │   ├── Skirt
+│   │   │       │   │   │   ├── NoRibbon
+│   │   │       │   │   │   └── Ribbon
+│   │   │       │   │   └── TransparentSkirt
+│   │   │       │   │       ├── NoRibbon
+│   │   │       │   │       └── Ribbon
+│   │   │       │   └── NoCollar
+│   │   │       │       ├── NoSkirt
+│   │   │       │       │   ├── NoRibbon
+│   │   │       │       │   └── Ribbon
+│   │   │       │       ├── Skirt
+│   │   │       │       │   ├── NoRibbon
+│   │   │       │       │   └── Ribbon
+│   │   │       │       └── TransparentSkirt
+│   │   │       │           ├── NoRibbon
+│   │   │       │           └── Ribbon
+│   │   │       └── Tail
+│   │   │           ├── Collar
+│   │   │           │   ├── NoSkirt
+│   │   │           │   │   ├── NoRibbon
+│   │   │           │   │   └── Ribbon
+│   │   │           │   ├── Skirt
+│   │   │           │   │   ├── NoRibbon
+│   │   │           │   │   └── Ribbon
+│   │   │           │   └── TransparentSkirt
+│   │   │           │       ├── NoRibbon
+│   │   │           │       └── Ribbon
+│   │   │           └── NoCollar
+│   │   │               ├── NoSkirt
+│   │   │               │   ├── NoRibbon
+│   │   │               │   └── Ribbon
+│   │   │               ├── Skirt
+│   │   │               │   ├── NoRibbon
+│   │   │               │   └── Ribbon
+│   │   │               └── TransparentSkirt
+│   │   │                   ├── NoRibbon
+│   │   │                   └── Ribbon
+│   ├── DisabledAyato
+│   │   └── xAyaya
+│   │       ├── HANDS FREE
+│   │       │   ├── AyatoModf0000
+│   │       │   ├── AyatoModf0001
+│   │       │   ├── AyatoModf0002
+│   │       │   ├── AyatoModf0003
+│   │       │   ├── AyatoModf0004
+│   │       │   ├── AyatoModf0005
+│   │       │   ├── AyatoModf0006
+│   │       │   ├── AyatoModf0007
+│   │       │   ├── AyatoModf0008
+│   │       │   ├── AyatoModf0009
+│   │       │   ├── AyatoModf0010
+│   │       │   ├── AyatoModf0011
+│   │       │   ├── AyatoModf0012
+│   │       │   ├── AyatoModf0013
+│   │       │   ├── AyatoModf0014
+│   │       │   ├── AyatoModf0015
+│   │       │   ├── AyatoModf0016
+│   │       │   ├── AyatoModf0017
+│   │       │   ├── AyatoModf0018
+│   │       │   ├── AyatoModf0019
+│   │       │   ├── AyatoModf0020
+│   │       ├── HANDS ON ASS
+│   │       │   ├── AyatoModf0000
+│   │       │   ├── AyatoModf0001
+│   │       │   ├── AyatoModf0002
+│   │       │   ├── AyatoModf0003
+│   │       │   ├── AyatoModf0004
+│   │       │   ├── AyatoModf0005
+│   │       │   ├── AyatoModf0006
+│   │       │   ├── AyatoModf0007
+│   │       │   ├── AyatoModf0008
+│   │       │   ├── AyatoModf0009
+│   │       │   ├── AyatoModf0010
+│   │       │   ├── AyatoModf0011
+│   │       │   ├── AyatoModf0012
+│   │       │   ├── AyatoModf0013
+│   │       │   ├── AyatoModf0014
+│   │       │   ├── AyatoModf0015
+│   │       │   ├── AyatoModf0016
+│   │       │   ├── AyatoModf0017
+│   │       │   ├── AyatoModf0018
+│   │       │   ├── AyatoModf0019
+│   │       │   ├── AyatoModf0020
+│   │       ├── POSITION 2
+│   │       │   ├── AyatoModf0000
+│   │       │   ├── AyatoModf0001
+│   │       │   ├── AyatoModf0002
+│   │       │   ├── AyatoModf0003
+│   │       │   ├── AyatoModf0004
+│   │       │   ├── AyatoModf0005
+│   │       │   ├── AyatoModf0006
+│   │       │   ├── AyatoModf0007
+│   │       │   ├── AyatoModf0008
+│   │       │   ├── AyatoModf0009
+│   │       │   ├── AyatoModf0010
+│   │       │   ├── AyatoModf0011
+│   │       │   ├── AyatoModf0012
+│   │       │   ├── AyatoModf0013
+│   │       │   ├── AyatoModf0014
+│   │       │   ├── AyatoModf0015
+│   │       │   ├── AyatoModf0016
+│   │       │   ├── AyatoModf0017
+│   │       │   ├── AyatoModf0018
+│   │       │   ├── AyatoModf0019
+│   │       │   ├── AyatoModf0020
+│   ├── DisabledFischl
+│   │   ├── Fischl - Yellow Rat Cosplay
+│   │   ├── fischl_6b334
+│   │   │   └── Fischl
+│   │   │       ├── 1
+│   │   │       ├── 2
+│   │   ├── fischl_sion
+│   │   │   ├── Fischl_sion
+│   │   │   └── Fischl_sion_Healthy
+│   │   ├── FischlChristmas [FULL]
+│   │   │   ├── 001FischlPumpkin_Clothed
+│   │   │   ├── 002FischlPumpkin_Pasties
+│   │   │   ├── 003FischlPumpkin_Topless
+│   │   │   ├── 004FischlPumpkin_Bottomless
+│   │   │   ├── 005FischlPumpkin_Bottomless_Pasties
+│   │   │   ├── 006FischlPumpkin_Nude
+│   │   ├── fischlmod_54552
+│   │   │   ├── FischlMod_Nomal
+│   │   │   ├── FischlMod_NoShirt
+│   │   │   ├── FischlMod_NpBra
+│   │   │   ├── FischlMod_Nude
+│   │   └── Mitternachtoffice
+│   ├── DisabledGorou
+│   │   └── xKokomi
+│   │       ├── HAND ON ASS
+│   │       │   ├── GorouModf0000
+│   │       │   ├── GorouModf0001
+│   │       │   ├── GorouModf0002
+│   │       │   ├── GorouModf0003
+│   │       │   ├── GorouModf0004
+│   │       │   ├── GorouModf0005
+│   │       │   ├── GorouModf0006
+│   │       │   ├── GorouModf0007
+│   │       │   ├── GorouModf0008
+│   │       │   ├── GorouModf0009
+│   │       │   ├── GorouModf0010
+│   │       │   ├── GorouModf0011
+│   │       │   ├── GorouModf0012
+│   │       │   ├── GorouModf0013
+│   │       │   ├── GorouModf0014
+│   │       │   ├── GorouModf0015
+│   │       │   ├── GorouModf0016
+│   │       │   ├── GorouModf0017
+│   │       │   ├── GorouModf0018
+│   │       │   ├── GorouModf0019
+│   │       │   └── GorouModf0020
+│   │       ├── HANDSFREE
+│   │       │   ├── GorouModf0000
+│   │       │   ├── GorouModf0001
+│   │       │   ├── GorouModf0002
+│   │       │   ├── GorouModf0003
+│   │       │   ├── GorouModf0004
+│   │       │   ├── GorouModf0005
+│   │       │   ├── GorouModf0006
+│   │       │   ├── GorouModf0007
+│   │       │   ├── GorouModf0008
+│   │       │   ├── GorouModf0009
+│   │       │   ├── GorouModf0010
+│   │       │   ├── GorouModf0011
+│   │       │   ├── GorouModf0012
+│   │       │   ├── GorouModf0013
+│   │       │   ├── GorouModf0014
+│   │       │   ├── GorouModf0015
+│   │       │   ├── GorouModf0016
+│   │       │   ├── GorouModf0017
+│   │       │   ├── GorouModf0018
+│   │       │   ├── GorouModf0019
+│   │       │   └── GorouModf0020
+│   │       ├── POSITION 2
+│   │       │   ├── GorouModf0000
+│   │       │   ├── GorouModf0001
+│   │       │   ├── GorouModf0002
+│   │       │   ├── GorouModf0003
+│   │       │   ├── GorouModf0004
+│   │       │   ├── GorouModf0005
+│   │       │   ├── GorouModf0006
+│   │       │   ├── GorouModf0007
+│   │       │   ├── GorouModf0008
+│   │       │   ├── GorouModf0009
+│   │       │   ├── GorouModf0010
+│   │       │   ├── GorouModf0011
+│   │       │   ├── GorouModf0012
+│   │       │   ├── GorouModf0013
+│   │       │   ├── GorouModf0014
+│   │       │   ├── GorouModf0015
+│   │       │   ├── GorouModf0016
+│   │       │   ├── GorouModf0017
+│   │       │   ├── GorouModf0018
+│   │       │   ├── GorouModf0019
+│   │       │   └── GorouModf0020
+│   ├── DisabledKazuha
+│   │   ├── Beidou
+│   │   │   ├── hands off ass version
+│   │   │   │   ├── KazuhaModf0000
+│   │   │   │   ├── KazuhaModf0001
+│   │   │   │   ├── KazuhaModf0002
+│   │   │   │   ├── KazuhaModf0003
+│   │   │   │   ├── KazuhaModf0004
+│   │   │   │   ├── KazuhaModf0005
+│   │   │   │   ├── KazuhaModf0006
+│   │   │   │   ├── KazuhaModf0007
+│   │   │   │   ├── KazuhaModf0008
+│   │   │   │   ├── KazuhaModf0009
+│   │   │   │   ├── KazuhaModf0010
+│   │   │   │   ├── KazuhaModf0011
+│   │   │   │   ├── KazuhaModf0012
+│   │   │   │   ├── KazuhaModf0013
+│   │   │   │   ├── KazuhaModf0014
+│   │   │   │   ├── KazuhaModf0015
+│   │   │   │   ├── KazuhaModf0016
+│   │   │   │   ├── KazuhaModf0017
+│   │   │   │   ├── KazuhaModf0018
+│   │   │   │   ├── KazuhaModf0019
+│   │   │   │   ├── KazuhaModf0020
+│   │   │   ├── hands on ass version
+│   │   │   │   ├── KazuhaModf0000
+│   │   │   │   ├── KazuhaModf0001
+│   │   │   │   ├── KazuhaModf0002
+│   │   │   │   ├── KazuhaModf0003
+│   │   │   │   ├── KazuhaModf0004
+│   │   │   │   ├── KazuhaModf0005
+│   │   │   │   ├── KazuhaModf0006
+│   │   │   │   ├── KazuhaModf0007
+│   │   │   │   ├── KazuhaModf0008
+│   │   │   │   ├── KazuhaModf0009
+│   │   │   │   ├── KazuhaModf0010
+│   │   │   │   ├── KazuhaModf0011
+│   │   │   │   ├── KazuhaModf0012
+│   │   │   │   ├── KazuhaModf0013
+│   │   │   │   ├── KazuhaModf0014
+│   │   │   │   ├── KazuhaModf0015
+│   │   │   │   ├── KazuhaModf0016
+│   │   │   │   ├── KazuhaModf0017
+│   │   │   │   ├── KazuhaModf0018
+│   │   │   │   ├── KazuhaModf0019
+│   │   │   │   ├── KazuhaModf0020
+│   │   │   ├── invisible 5star swords
+│   │   └── Raiden
+│   │       ├── hands off ass version
+│   │       │   ├── KazuhaModf0000
+│   │       │   ├── KazuhaModf0001
+│   │       │   ├── KazuhaModf0002
+│   │       │   ├── KazuhaModf0003
+│   │       │   ├── KazuhaModf0004
+│   │       │   ├── KazuhaModf0005
+│   │       │   ├── KazuhaModf0006
+│   │       │   ├── KazuhaModf0007
+│   │       │   ├── KazuhaModf0008
+│   │       │   ├── KazuhaModf0009
+│   │       │   ├── KazuhaModf0010
+│   │       │   ├── KazuhaModf0011
+│   │       │   ├── KazuhaModf0012
+│   │       │   ├── KazuhaModf0013
+│   │       │   ├── KazuhaModf0014
+│   │       │   ├── KazuhaModf0015
+│   │       │   ├── KazuhaModf0016
+│   │       │   ├── KazuhaModf0017
+│   │       │   ├── KazuhaModf0018
+│   │       │   ├── KazuhaModf0019
+│   │       │   ├── KazuhaModf0020
+│   │       ├── hands on ass version
+│   │       │   ├── KazuhaModf0000
+│   │       │   ├── KazuhaModf0001
+│   │       │   ├── KazuhaModf0002
+│   │       │   ├── KazuhaModf0003
+│   │       │   ├── KazuhaModf0004
+│   │       │   ├── KazuhaModf0005
+│   │       │   ├── KazuhaModf0006
+│   │       │   ├── KazuhaModf0007
+│   │       │   ├── KazuhaModf0008
+│   │       │   ├── KazuhaModf0009
+│   │       │   ├── KazuhaModf0010
+│   │       │   ├── KazuhaModf0011
+│   │       │   ├── KazuhaModf0012
+│   │       │   ├── KazuhaModf0013
+│   │       │   ├── KazuhaModf0014
+│   │       │   ├── KazuhaModf0015
+│   │       │   ├── KazuhaModf0016
+│   │       │   ├── KazuhaModf0017
+│   │       │   ├── KazuhaModf0018
+│   │       │   ├── KazuhaModf0019
+│   │       │   ├── KazuhaModf0020
+│   │       └── invisible 5star swords
+│   ├── DisabledVDN
+│   ├── DisabledVirgin Destroyer Navia
+│   │   ├── resources
+│   │   ├── TextureShader
+│   ├── Dori
+│   ├── Emilie
+│   │   └── DisabledEmilieMod
+│   │       ├── Resources
+│   │       ├── TextureShader
+│   ├── Eula
+│   ├── Faruzan
+│   ├── Freminet
+│   ├── Furina
+│   │   ├── furina_m
+│   │   │   └── Furina M
+│   │   │       ├── FurinaMod
+│   │   │       ├── FurinaMod 1
+│   │   └── JKGyaruFurina
+│   ├── GaMing
+│   │   └── GamingLionDancer
+│   │       ├── gamingeffectMod
+│   │       ├── GamingHoodDownMod
+│   │       ├── GamingHoodUpMod
+│   ├── Ganyu
+│   │   ├── ganyu_bunny_suit
+│   │   │   ├── Ganyu Bunny Suit
+│   │   ├── Ganyumod_nomal_2cde0
+│   │   ├── ganyumodoverhaul
+│   │   │   └── GanyuMod
+│   │   ├── ganyuraphtaliawith_horns
+│   │   │   └── GanyuMod
+│   │   └── succubus_ganyu
+│   │       └── Succubus Ganyu
+│   ├── Heizou
+│   ├── Itto
+│   │   └── xShinobu
+│   │       ├── ITTO X SHINOBU HANDS FREE
+│   │       │   ├── IttoModf0000
+│   │       │   ├── IttoModf0001
+│   │       │   ├── IttoModf0002
+│   │       │   ├── IttoModf0003
+│   │       │   ├── IttoModf0004
+│   │       │   ├── IttoModf0005
+│   │       │   ├── IttoModf0006
+│   │       │   ├── IttoModf0007
+│   │       │   ├── IttoModf0008
+│   │       │   ├── IttoModf0009
+│   │       │   ├── IttoModf0010
+│   │       │   ├── IttoModf0011
+│   │       │   ├── IttoModf0012
+│   │       │   ├── IttoModf0013
+│   │       │   ├── IttoModf0014
+│   │       │   ├── IttoModf0015
+│   │       │   ├── IttoModf0016
+│   │       │   ├── IttoModf0017
+│   │       │   ├── IttoModf0018
+│   │       │   ├── IttoModf0019
+│   │       │   └── IttoModf0020
+│   │       ├── ITTO X SHINOBU HANDS ON ASS
+│   │       │   ├── IttoModf0000
+│   │       │   ├── IttoModf0001
+│   │       │   ├── IttoModf0002
+│   │       │   ├── IttoModf0003
+│   │       │   ├── IttoModf0004
+│   │       │   ├── IttoModf0005
+│   │       │   ├── IttoModf0006
+│   │       │   ├── IttoModf0007
+│   │       │   ├── IttoModf0008
+│   │       │   ├── IttoModf0009
+│   │       │   ├── IttoModf0010
+│   │       │   ├── IttoModf0011
+│   │       │   ├── IttoModf0012
+│   │       │   ├── IttoModf0013
+│   │       │   ├── IttoModf0014
+│   │       │   ├── IttoModf0015
+│   │       │   ├── IttoModf0016
+│   │       │   ├── IttoModf0017
+│   │       │   ├── IttoModf0018
+│   │       │   ├── IttoModf0019
+│   │       │   └── IttoModf0020
+│   │       ├── ITTO X SJINOBU POSITION 2
+│   │       │   ├── IttoModf0000
+│   │       │   ├── IttoModf0001
+│   │       │   ├── IttoModf0002
+│   │       │   ├── IttoModf0003
+│   │       │   ├── IttoModf0004
+│   │       │   ├── IttoModf0005
+│   │       │   ├── IttoModf0006
+│   │       │   ├── IttoModf0007
+│   │       │   ├── IttoModf0008
+│   │       │   ├── IttoModf0009
+│   │       │   ├── IttoModf0010
+│   │       │   ├── IttoModf0011
+│   │       │   ├── IttoModf0012
+│   │       │   ├── IttoModf0013
+│   │       │   ├── IttoModf0014
+│   │       │   ├── IttoModf0015
+│   │       │   ├── IttoModf0016
+│   │       │   ├── IttoModf0017
+│   │       │   ├── IttoModf0018
+│   │       │   ├── IttoModf0019
+│   │       │   └── IttoModf0020
+│   ├── Jean
+│   ├── Kachina
+│   │   └── JS
+│   ├── Kaeya
+│   ├── Kaveh
+│   ├── Keqing
+│   ├── Kirara
+│   │   ├── Kirara hottie kitty GB
+│   │   │   ├── Kirara hottie kitty 1
+│   │   │   ├── Kirara hottie kitty 1 no boots
+│   │   │   ├── Kirara hottie kitty 1 no gloves
+│   │   │   ├── Kirara hottie kitty 1 no gloves and boots
+│   │   │   ├── Kirara hottie kitty 1 no tail
+│   │   │   ├── Kirara hottie kitty 1 no tail and boots
+│   │   │   ├── Kirara hottie kitty 1 no tail and gloves
+│   │   │   ├── Kirara hottie kitty 1 no tail boots and gloves
+│   │   │   ├── Kirara hottie kitty 2
+│   │   │   ├── Kirara hottie kitty 2 no boots
+│   │   │   ├── Kirara hottie kitty 2 no gloves
+│   │   │   ├── Kirara hottie kitty 2 no gloves and boots
+│   │   │   ├── Kirara hottie kitty 2 no tail
+│   │   │   ├── Kirara hottie kitty 2 no tail and boots
+│   │   │   ├── Kirara hottie kitty 2 no tail and gloves
+│   │   │   ├── Kirara hottie kitty 2 no tail boots and gloves
+│   │   │   ├── Kirara hottie kitty 3
+│   │   │   ├── Kirara hottie kitty 3 no boots
+│   │   │   ├── Kirara hottie kitty 3 no gloves
+│   │   │   ├── Kirara hottie kitty 3 no gloves and boots
+│   │   │   ├── Kirara hottie kitty 3 no tail
+│   │   │   ├── Kirara hottie kitty 3 no tail and boots
+│   │   │   ├── Kirara hottie kitty 3 no tail and gloves
+│   │   │   ├── Kirara hottie kitty 3 no tail boots and gloves
+│   │   │   ├── Kirara hottie kitty 4
+│   │   │   ├── Kirara hottie kitty 4 no boots
+│   │   │   ├── Kirara hottie kitty 4 no gloves
+│   │   │   ├── Kirara hottie kitty 4 no gloves and boots
+│   │   │   ├── Kirara hottie kitty 4 no tail
+│   │   │   ├── Kirara hottie kitty 4 no tail and boots
+│   │   │   ├── Kirara hottie kitty 4 no tail and gloves
+│   │   │   ├── Kirara hottie kitty 4 no tail boots and gloves
+│   │   │   ├── Kirara hottie kitty 5
+│   │   │   ├── Kirara hottie kitty 5 no boots
+│   │   │   ├── Kirara hottie kitty 5 no gloves
+│   │   │   ├── Kirara hottie kitty 5 no gloves and boots
+│   │   │   ├── Kirara hottie kitty 5 no tail
+│   │   │   ├── Kirara hottie kitty 5 no tail and boots
+│   │   │   ├── Kirara hottie kitty 5 no tail and gloves
+│   │   │   ├── Kirara hottie kitty 5 no tail boots and gloves
+│   │   │   ├── textures
+│   │   └── kiraraMiniskirt
+│   │       ├── KiraraAyaka
+│   │       ├── KiraraAyakaBareFoot
+│   │       ├── KiraraModHalfNude
+│   ├── Klee
+│   ├── LanYan
+│   ├── Lauma
+│   ├── Layla
+│   ├── Lisa
+│   ├── Lumine
+│   │   ├── (unsure) lumine_v2_the_twin_sword
+│   │   ├── broken
+│   │   │   ├── CrimsonAbyssLumine
+│   │   │   │   ├── 1 - CrimsonLumine
+│   │   │   │   ├── 2 - CrimsonLumineMaskless
+│   │   │   │   ├── 3 - LumineDefaultEye
+│   │   │   │   ├── 4 - LumineDefaultEyeMaskless
+│   │   │   ├── lumineprincess-toggle-P-kaichume
+│   │   │   │   ├── lumineprincess-noveil-longhair
+│   │   │   │   ├── lumineprincess-noveil-shorthair
+│   │   │   │   ├── lumineprincess-veil-longhair
+│   │   │   │   ├── lumineprincess-veil-shorthair
+│   │   │   └── Noctis Monaka Lumine Merge
+│   │   │       ├── Noctis Monaka Lumine - C1
+│   │   │       ├── Noctis Monaka Lumine - C2
+│   │   │       ├── Noctis Monaka Lumine - C3
+│   │   │       ├── Noctis Monaka Lumine - C4
+│   │   ├── GensouKakuseiHotaru
+│   │   │   ├── ADDON
+│   │   │   ├── DDS
+│   │   │   ├── Size
+│   │   │   │   ├── Big
+│   │   │   │   │   ├── Brave
+│   │   │   │   │   ├── Chou
+│   │   │   │   │   ├── Dash
+│   │   │   │   │   ├── Flow
+│   │   │   │   │   ├── Full
+│   │   │   │   │   ├── Light
+│   │   │   │   │   └── Mizugi
+│   │   │   │   └── Normal
+│   │   │   │       ├── Brave
+│   │   │   │       ├── Chou
+│   │   │   │       ├── Dash
+│   │   │   │       ├── Flow
+│   │   │   │       ├── Full
+│   │   │   │       ├── Light
+│   │   │   │       └── Mizugi
+│   │   ├── missing
+│   │   │   ├── Ethereal Ripples Lumine
+│   │   │   ├── Lumine - Celestial Elemental
+│   │   │   │   └── 4 - LumineDefaultEyeMaskless
+│   │   │   ├── Lumine Focalors Dress - LeoTorreZ
+│   │   │   ├── lumine_breeze_of_sabaa_mod
+│   │   │   ├── PaletteSwapLumine
+│   │   │   ├── PaletteSwapLumine NoGold
+│   │   │   └── TwilightLumine
+│   │   └── working
+│   │       └── LumineWithPantsMerged
+│   │           ├── Aether
+│   │           ├── Lumine
+│   ├── Lynette
+│   │   └── DisabledLynette x Lyney (lynette version)
+│   │       ├── Lynettef0000Mod
+│   │       ├── Lynettef0001Mod
+│   │       ├── Lynettef0002Mod
+│   │       ├── Lynettef0003Mod
+│   │       ├── Lynettef0004Mod
+│   │       ├── Lynettef0005Mod
+│   │       ├── Lynettef0006Mod
+│   │       ├── Lynettef0007Mod
+│   │       ├── Lynettef0008Mod
+│   │       ├── Lynettef0009Mod
+│   │       ├── Lynettef0010Mod
+│   │       ├── Lynettef0011Mod
+│   │       ├── Lynettef0012Mod
+│   │       ├── Lynettef0013Mod
+│   │       ├── Lynettef0014Mod
+│   │       ├── Lynettef0015Mod
+│   │       ├── Lynettef0016Mod
+│   │       ├── Lynettef0017Mod
+│   │       ├── Lynettef0018Mod
+│   │       ├── Lynettef0019Mod
+│   │       └── Lynettef0020Mod
+│   ├── Lyney
+│   ├── Mavuika
+│   │   ├── DisabledMavuika
+│   │   ├── DisabledMavuika Nora - by Primordial - Non Patreon Version
+│   │   ├── DisabledMidnight Motorist - Mavuika (Alt Version)
+│   │   │   ├── Electro Mavuika
+│   │   │   │   ├── Bike
+│   │   │   └── Shader Fixes
+│   │   └── DisabledPhantom Dream
+│   ├── Mika
+│   ├── Mizuki
+│   │   └── Mizuki Dream Illusionist [GB]
+│   │       ├── colors
+│   │       ├── res
+│   ├── Mona
+│   │   └── (CN)MonaRevealingSwimsuit
+│   │       ├── MonaMod-01
+│   │       ├── MonaMod-01-H
+│   │       ├── MonaMod-02
+│   │       ├── MonaMod-02-H
+│   ├── Nahida
+│   ├── Navia
+│   │   └── KyokuMiniNavia
+│   │       ├── AddOn
+│   │       │   ├── Sunglass
+│   │       │   ├── Umbrella
+│   │       │   ├── UmbrellaBurst
+│   │       │   ├── UmbrellaClosed
+│   │       │   ├── UmbrellaShotgun
+│   │       │   └── Verdict
+│   │       ├── DDS
+│   │       │   ├── Alter
+│   │       │   ├── Asuka
+│   │       │   ├── Colourful
+│   │       │   ├── Fantasy
+│   │       │   ├── Kancolle
+│   │       │   ├── Original
+│   │       ├── HatType
+│   │       │   ├── Band
+│   │       │   │   ├── 0
+│   │       │   │   ├── 1
+│   │       │   │   └── 2
+│   │       │   ├── Hat
+│   │       │   │   ├── 0
+│   │       │   │   ├── 1
+│   │       │   │   └── 2
+│   │       │   └── None
+│   │       │       ├── 0
+│   │       │       ├── 1
+│   │       │       └── 2
+│   ├── Nefer
+│   ├── Neuvillette
+│   │   └── Neuvillette - Magicarp - LeoTorreZ
+│   │       ├── GARY
+│   │       │   ├── NeuvilletteModf0031
+│   │       │   ├── NeuvilletteModf0032
+│   │       │   ├── NeuvilletteModf0033
+│   │       │   ├── NeuvilletteModf0034
+│   │       │   ├── NeuvilletteModf0035
+│   │       │   ├── NeuvilletteModf0036
+│   │       │   ├── NeuvilletteModf0037
+│   │       │   ├── NeuvilletteModf0038
+│   │       │   ├── NeuvilletteModf0039
+│   │       │   └── NeuvilletteModf0040
+│   │       ├── MAGISWIM
+│   │       │   ├── NeuvilletteModf0001
+│   │       │   ├── NeuvilletteModf0002
+│   │       │   ├── NeuvilletteModf0003
+│   │       │   ├── NeuvilletteModf0004
+│   │       │   ├── NeuvilletteModf0005
+│   │       │   ├── NeuvilletteModf0006
+│   │       │   ├── NeuvilletteModf0007
+│   │       │   ├── NeuvilletteModf0008
+│   │       │   ├── NeuvilletteModf0009
+│   │       │   ├── NeuvilletteModf0010
+│   │       │   ├── NeuvilletteModf0011
+│   │       │   ├── NeuvilletteModf0012
+│   │       │   ├── NeuvilletteModf0013
+│   │       │   ├── NeuvilletteModf0014
+│   │       │   ├── NeuvilletteModf0015
+│   │       │   ├── NeuvilletteModf0016
+│   │       │   ├── NeuvilletteModf0017
+│   │       │   ├── NeuvilletteModf0018
+│   │       │   ├── NeuvilletteModf0019
+│   │       │   ├── NeuvilletteModf0020
+│   │       │   ├── NeuvilletteModf0021
+│   │       │   ├── NeuvilletteModf0022
+│   │       │   ├── NeuvilletteModf0023
+│   │       │   ├── NeuvilletteModf0024
+│   │       │   ├── NeuvilletteModf0025
+│   │       │   ├── NeuvilletteModf0026
+│   │       │   ├── NeuvilletteModf0027
+│   │       │   ├── NeuvilletteModf0028
+│   │       │   ├── NeuvilletteModf0029
+│   │       │   ├── NeuvilletteModf0030
+│   │       │   ├── NeuvilletteModf0031
+│   │       │   ├── NeuvilletteModf0032
+│   │       │   ├── NeuvilletteModf0033
+│   │       │   ├── NeuvilletteModf0034
+│   │       │   ├── NeuvilletteModf0035
+│   │       │   ├── NeuvilletteModf0036
+│   │       │   ├── NeuvilletteModf0037
+│   │       │   ├── NeuvilletteModf0038
+│   │       │   ├── NeuvilletteModf0039
+│   │       │   ├── NeuvilletteModf0040
+│   │       │   ├── NeuvilletteModf0041
+│   │       │   ├── NeuvilletteModf0042
+│   │       │   ├── NeuvilletteModf0043
+│   │       │   ├── NeuvilletteModf0044
+│   │       │   ├── NeuvilletteModf0045
+│   │       │   ├── NeuvilletteModf0046
+│   │       │   ├── NeuvilletteModf0047
+│   │       │   ├── NeuvilletteModf0048
+│   │       │   ├── NeuvilletteModf0049
+│   │       │   ├── NeuvilletteModf0050
+│   │       │   ├── NeuvilletteModf0051
+│   │       │   ├── NeuvilletteModf0052
+│   │       │   ├── NeuvilletteModf0053
+│   │       │   ├── NeuvilletteModf0054
+│   │       │   ├── NeuvilletteModf0055
+│   │       │   ├── NeuvilletteModf0056
+│   │       │   ├── NeuvilletteModf0057
+│   │       │   ├── NeuvilletteModf0058
+│   │       │   ├── NeuvilletteModf0059
+│   │       │   ├── NeuvilletteModf0060
+│   │       │   ├── NeuvilletteModf0061
+│   │       │   ├── NeuvilletteModf0062
+│   │       │   ├── NeuvilletteModf0063
+│   │       │   ├── NeuvilletteModf0064
+│   │       │   ├── NeuvilletteModf0065
+│   │       │   ├── NeuvilletteModf0066
+│   │       │   ├── NeuvilletteModf0067
+│   │       │   ├── NeuvilletteModf0068
+│   │       │   ├── NeuvilletteModf0069
+│   │       │   ├── NeuvilletteModf0070
+│   │       │   ├── NeuvilletteModf0071
+│   │       │   ├── NeuvilletteModf0072
+│   │       │   ├── NeuvilletteModf0073
+│   │       │   ├── NeuvilletteModf0074
+│   │       │   ├── NeuvilletteModf0075
+│   │       │   ├── NeuvilletteModf0076
+│   │       │   ├── NeuvilletteModf0077
+│   │       │   ├── NeuvilletteModf0078
+│   │       │   ├── NeuvilletteModf0079
+│   │       │   ├── NeuvilletteModf0080
+│   │       ├── MAKIGARP
+│   │       │   ├── NeuvilletteModf0001
+│   │       │   ├── NeuvilletteModf0002
+│   │       │   ├── NeuvilletteModf0003
+│   │       │   ├── NeuvilletteModf0004
+│   │       │   ├── NeuvilletteModf0005
+│   │       │   ├── NeuvilletteModf0006
+│   │       │   ├── NeuvilletteModf0007
+│   │       │   ├── NeuvilletteModf0008
+│   │       │   ├── NeuvilletteModf0009
+│   │       │   ├── NeuvilletteModf0010
+│   │       │   ├── NeuvilletteModf0011
+│   │       │   ├── NeuvilletteModf0012
+│   │       │   ├── NeuvilletteModf0013
+│   │       │   ├── NeuvilletteModf0014
+│   │       │   ├── NeuvilletteModf0015
+│   │       │   ├── NeuvilletteModf0016
+│   │       │   ├── NeuvilletteModf0017
+│   │       │   ├── NeuvilletteModf0018
+│   │       │   ├── NeuvilletteModf0019
+│   │       │   ├── NeuvilletteModf0020
+│   │       ├── MEGABURST
+│   │       │   ├── Neuvillettef0001Mod
+│   │       │   ├── Neuvillettef0002Mod
+│   │       │   ├── Neuvillettef0003Mod
+│   │       │   ├── Neuvillettef0004Mod
+│   │       │   ├── Neuvillettef0005Mod
+│   │       │   ├── Neuvillettef0006Mod
+│   │       │   ├── Neuvillettef0007Mod
+│   │       │   ├── Neuvillettef0008Mod
+│   │       │   ├── Neuvillettef0009Mod
+│   │       │   ├── Neuvillettef0010Mod
+│   │       │   ├── Neuvillettef0011Mod
+│   │       │   ├── Neuvillettef0012Mod
+│   │       │   ├── Neuvillettef0013Mod
+│   │       │   ├── Neuvillettef0014Mod
+│   │       │   ├── Neuvillettef0015Mod
+│   │       │   ├── Neuvillettef0016Mod
+│   │       │   ├── Neuvillettef0017Mod
+│   │       │   ├── Neuvillettef0018Mod
+│   │       │   ├── Neuvillettef0019Mod
+│   │       │   ├── Neuvillettef0020Mod
+│   │       │   ├── Neuvillettef0021Mod
+│   │       │   ├── Neuvillettef0022Mod
+│   │       │   ├── Neuvillettef0023Mod
+│   │       │   ├── Neuvillettef0024Mod
+│   │       │   ├── Neuvillettef0025Mod
+│   │       │   ├── Neuvillettef0026Mod
+│   │       │   ├── Neuvillettef0027Mod
+│   │       │   ├── Neuvillettef0028Mod
+│   │       │   ├── Neuvillettef0029Mod
+│   │       │   ├── Neuvillettef0030Mod
+│   │       │   ├── Neuvillettef0031Mod
+│   │       │   ├── Neuvillettef0032Mod
+│   │       │   ├── Neuvillettef0033Mod
+│   │       │   ├── Neuvillettef0034Mod
+│   │       │   ├── Neuvillettef0035Mod
+│   │       │   ├── Neuvillettef0036Mod
+│   │       │   ├── Neuvillettef0037Mod
+│   │       │   ├── Neuvillettef0038Mod
+│   │       │   ├── Neuvillettef0039Mod
+│   │       │   ├── Neuvillettef0040Mod
+│   │       │   ├── Neuvillettef0041Mod
+│   │       │   ├── Neuvillettef0042Mod
+│   │       │   ├── Neuvillettef0043Mod
+│   │       │   ├── Neuvillettef0044Mod
+│   │       │   ├── Neuvillettef0045Mod
+│   │       │   ├── Neuvillettef0046Mod
+│   │       │   ├── Neuvillettef0047Mod
+│   │       │   └── Neuvillettef0048Mod
+│   │       ├── MEGACHARGE
+│   │       │   ├── Neuvillettef0001Mod
+│   │       │   ├── Neuvillettef0002Mod
+│   │       │   ├── Neuvillettef0003Mod
+│   │       │   ├── Neuvillettef0004Mod
+│   │       │   ├── Neuvillettef0005Mod
+│   │       │   ├── Neuvillettef0006Mod
+│   │       │   ├── Neuvillettef0007Mod
+│   │       │   ├── Neuvillettef0008Mod
+│   │       │   ├── Neuvillettef0009Mod
+│   │       │   └── Neuvillettef0010Mod
+│   ├── Nilou
+│   │   ├── fortune_dreams_-_nilou
+│   │   │   └── Fortune Dreams - Nilou
+│   │   ├── nilou2710
+│   │   │   └── NilouMod
+│   │   ├── nilou_eishin_flash_swimsuit_mod
+│   │   └── NilouMod
+│   ├── Ningguang
+│   ├── Noelle
+│   ├── Razor
+│   ├── Sara
+│   │   └── Kujou Sara Bunny
+│   │       ├── 000_Clothed
+│   │       ├── 001_Topless
+│   │       ├── 002_Bottomless
+│   │       ├── 003_Naked
+│   ├── Sayu
+│   ├── Sethos
+│   ├── Shenhe
+│   │   ├── pekoramamareversebunny
+│   │   │   └── PekoraMamaReverseBunny
+│   │   ├── Shenhe
+│   │   │   ├── Face
+│   │   │   ├── kannacon
+│   │   │   ├── ShenheMod0
+│   │   │   ├── ShenheMod1
+│   │   │   ├── ShenheMod2
+│   │   ├── shenhe_eremite_merge
+│   │   │   └── ShenheEremiteMerge
+│   │   │       ├── ShenheEremite
+│   │   │       ├── ShenheEremiteCloth
+│   │   ├── shenhecatmerged
+│   │   │   └── ShenheCatMerged
+│   │   │       ├── ShenheCatBlackFull
+│   │   │       ├── ShenheCatBlackNoBra
+│   │   │       ├── ShenheCatBlackNoBraAndSling
+│   │   │       ├── ShenheCatBlackNoSling
+│   │   │       ├── ShenheCatRedFull
+│   │   │       ├── ShenheCatRedNoBra
+│   │   │       ├── ShenheCatRedNoBraAndSling
+│   │   │       ├── ShenheCatRedNoSling
+│   │   ├── snow_fox_shenhe
+│   │   │   └── snow_fox_shenhe
+│   │   └── succubusshenhemod
+│   │       └── SuccubusShenheMod
+│   ├── Shinobu
+│   ├── Sigewinne
+│   │   └── SigewinneMod blood overdose
+│   │       ├── RecurveBowMod SilvershowerHeartstrings
+│   │       ├── SequenceSolitudeMod SilvershowerHeartstrings
+│   │       ├── SilvershowerHeartstringsMod
+│   │       ├── syringe and gun
+│   ├── Skirk
+│   │   └── Skirk DarkStar Knight and OG Megatoggle
+│   ├── Sucrose
+│   │   └── SucroseMod
+│   ├── Tartaglia
+│   ├── Thoma
+│   │   └── xYoi
+│   │       ├── HANDS ON ASS
+│   │       │   ├── ThomaModf0000
+│   │       │   ├── ThomaModf0001
+│   │       │   ├── ThomaModf0002
+│   │       │   ├── ThomaModf0003
+│   │       │   ├── ThomaModf0004
+│   │       │   ├── ThomaModf0005
+│   │       │   ├── ThomaModf0006
+│   │       │   ├── ThomaModf0007
+│   │       │   ├── ThomaModf0008
+│   │       │   ├── ThomaModf0009
+│   │       │   ├── ThomaModf0010
+│   │       │   ├── ThomaModf0011
+│   │       │   ├── ThomaModf0012
+│   │       │   ├── ThomaModf0013
+│   │       │   ├── ThomaModf0014
+│   │       │   ├── ThomaModf0015
+│   │       │   ├── ThomaModf0016
+│   │       │   ├── ThomaModf0017
+│   │       │   ├── ThomaModf0018
+│   │       │   ├── ThomaModf0019
+│   │       │   └── ThomaModf0020
+│   │       ├── HANDSFREE
+│   │       │   ├── ThomaModf0000
+│   │       │   ├── ThomaModf0001
+│   │       │   ├── ThomaModf0002
+│   │       │   ├── ThomaModf0003
+│   │       │   ├── ThomaModf0004
+│   │       │   ├── ThomaModf0005
+│   │       │   ├── ThomaModf0006
+│   │       │   ├── ThomaModf0007
+│   │       │   ├── ThomaModf0008
+│   │       │   ├── ThomaModf0009
+│   │       │   ├── ThomaModf0010
+│   │       │   ├── ThomaModf0011
+│   │       │   ├── ThomaModf0012
+│   │       │   ├── ThomaModf0013
+│   │       │   ├── ThomaModf0014
+│   │       │   ├── ThomaModf0015
+│   │       │   ├── ThomaModf0016
+│   │       │   ├── ThomaModf0017
+│   │       │   ├── ThomaModf0018
+│   │       │   ├── ThomaModf0019
+│   │       │   └── ThomaModf0020
+│   │       ├── POSITION 2
+│   │       │   ├── ThomaModf0000
+│   │       │   ├── ThomaModf0001
+│   │       │   ├── ThomaModf0002
+│   │       │   ├── ThomaModf0003
+│   │       │   ├── ThomaModf0004
+│   │       │   ├── ThomaModf0005
+│   │       │   ├── ThomaModf0006
+│   │       │   ├── ThomaModf0007
+│   │       │   ├── ThomaModf0008
+│   │       │   ├── ThomaModf0009
+│   │       │   ├── ThomaModf0010
+│   │       │   ├── ThomaModf0011
+│   │       │   ├── ThomaModf0012
+│   │       │   ├── ThomaModf0013
+│   │       │   ├── ThomaModf0014
+│   │       │   ├── ThomaModf0015
+│   │       │   ├── ThomaModf0016
+│   │       │   ├── ThomaModf0017
+│   │       │   ├── ThomaModf0018
+│   │       │   ├── ThomaModf0019
+│   │       │   └── ThomaModf0020
+│   ├── Tighnari
+│   ├── Varesa
+│   │   └── Varesa-BottomHeavy(NSFW)
+│   ├── VDN
+│   ├── Venti
+│   ├── Wanderer
+│   ├── Wriothesley
+│   ├── Xiangling
+│   │   ├── xianglingeremitemod
+│   │   │   └── XianglingEremiteMod
+│   │   │       ├── XianglingEremiteMod
+│   │   │       ├── XianglingMaskMod
+│   │   └── XianglingMod - Topaz - By Sachiomi
+│   ├── Xianyun
+│   ├── Xiao
+│   ├── Xilonen
+│   │   ├── AlleywayShironen
+│   │   │   ├── DDS
+│   │   │   │   ├── Gal
+│   │   │   │   ├── Pink
+│   │   │   ├── MOD
+│   │   │   │   ├── Body
+│   │   │   │   │   ├── Belt
+│   │   │   │   │   │   ├── Necklace
+│   │   │   │   │   │   │   ├── NoTop
+│   │   │   │   │   │   │   └── Top
+│   │   │   │   │   │   └── NoNecklace
+│   │   │   │   │   │       ├── NoTop
+│   │   │   │   │   │       └── Top
+│   │   │   │   │   └── NoBelt
+│   │   │   │   │       ├── Necklace
+│   │   │   │   │       │   ├── NoTop
+│   │   │   │   │       │   └── Top
+│   │   │   │   │       └── NoNecklace
+│   │   │   │   │           ├── NoTop
+│   │   │   │   │           └── Top
+│   │   │   │   └── Coat
+│   │   │   │       ├── Fur
+│   │   │   │       │   ├── NoTail
+│   │   │   │       │   └── Tail
+│   │   │   │       └── NoFur
+│   │   │   │           ├── NoTail
+│   │   │   │           └── Tail
+│   │   ├── DeltaOverXilonen(XilonenFace)Mod
+│   │   ├── DisabledAlleywayShironen
+│   │   │   ├── DDS
+│   │   │   │   ├── Gal
+│   │   │   │   ├── Pink
+│   │   │   ├── MOD
+│   │   │   │   ├── Body
+│   │   │   │   │   ├── Belt
+│   │   │   │   │   │   ├── Necklace
+│   │   │   │   │   │   │   ├── NoTop
+│   │   │   │   │   │   │   └── Top
+│   │   │   │   │   │   └── NoNecklace
+│   │   │   │   │   │       ├── NoTop
+│   │   │   │   │   │       └── Top
+│   │   │   │   │   └── NoBelt
+│   │   │   │   │       ├── Necklace
+│   │   │   │   │       │   ├── NoTop
+│   │   │   │   │       │   └── Top
+│   │   │   │   │       └── NoNecklace
+│   │   │   │   │           ├── NoTop
+│   │   │   │   │           └── Top
+│   │   │   │   └── Coat
+│   │   │   │       ├── Fur
+│   │   │   │       │   ├── NoTail
+│   │   │   │       │   └── Tail
+│   │   │   │       └── NoFur
+│   │   │   │           ├── NoTail
+│   │   │   │           └── Tail
+│   │   ├── DisabledTemple Of Silence Xilonen
+│   │   │   ├── CoatMod
+│   │   │   ├── RollersMod
+│   │   │   └── XilonenMod
+│   │   ├── Xilonen Ecchi DJ [FULL w ANIM]
+│   │   │   ├── res
+│   │   ├── Xilonen gyaru public improved
+│   │   │   ├── 1 Fully clothed
+│   │   │   ├── 3 Bikini set only
+│   │   │   ├── 6 Shirt WO bikini bra
+│   │   ├── xilonen_gimlet_outfit_mod
+│   │   └── XilonenMod
+│   ├── Xingqiu
+│   │   └── xingqiuclearwater_d25bc
+│   │       └── XingqiuClearwater
+│   │           ├── XingqiuMasked
+│   │           ├── XingqiuMaskedJeht
+│   │           ├── XingqiuUnmasked
+│   │           └── XingqiuUnmaskedJeht
+│   ├── Xinyan
+│   ├── YaeMiko
+│   │   ├── LURE
+│   │   ├── maid_yae_gb__27407
+│   │   │   └── Maid Yae [gb]
+│   │   ├── racequeenmiko
+│   │   │   └── RaceQueenMiko
+│   │   │       ├── YaeMod
+│   │   │       ├── YaeMod2
+│   │   │       └── YaeMod3
+│   │   ├── yae_full_cake_bride_miko_high_heels_with_insertion
+│   │   │   └── Yae Full Cake Bride Miko High Heels with Insertion
+│   │   └── yaecicinmod
+│   │       └── YaeCicinMod
+│   ├── Yanfei
+│   ├── YaoYao
+│   │   └── YaoYao - Swim Toggle - LeoTorreZ v1.1
+│   │       ├── YaoYao - Black Leotard - LeoTorreZ
+│   │       └── YaoYao - Green Dress - LeoTorreZ
+│   ├── YunJin
+│   └── Zhongli
+├── Disabled2
+│   └── NuraThings
+│       ├── Colors
+│       ├── Core
+│       ├── Fonts
+│       ├── Math
+│       ├── ModManager
+│       │   ├── Resources
+│       ├── Numbers
+│       │   ├── Black
+│       ├── Print
+│       └── Shaders
+├── Disabled2BufferValues
+│   ├── NuraThings
+│   │   ├── Colors
+│   │   ├── Core
+│   │   ├── Fonts
+│   │   ├── Letters
+│   │   ├── Math
+│   │   ├── MiniGames
+│   │   │   ├── Disabled2DMon
+│   │   │   │   ├── Resources
+│   │   │   ├── FloppyBirb
+│   │   │   └── Snek
+│   │   │       ├── Resources
+│   │   ├── ModManager
+│   │   │   ├── Resources
+│   │   ├── Numbers
+│   │   │   ├── Black
+│   │   ├── Print
+│   │   └── Shaders
+├── DisabledAdventure Map+
+│   ├── Buffers
+│   ├── ReMap
+│   ├── Shaders
+│   ├── Texture2D
+│   └── v3
+│       ├── Buffers
+│       ├── PointLogicResource
+│       ├── Shaders
+├── DisabledBufferValues
+│   ├── BufferValues
+│   │   └── NuraThings
+│   │       ├── Colors
+│   │       ├── Core
+│   │       ├── Fonts
+│   │       ├── Math
+│   │       ├── ModManager
+│   │       │   ├── Resources
+│   │       ├── Numbers
+│   │       │   ├── Black
+│   │       ├── Print
+│   │       └── Shaders
+│   ├── Caverabbit's Shared Variables
+│   │   ├── Shaders
+│   ├── Disabled
+│   │   ├── DisabledBufferValues
+│   │   │   └── NuraThings
+│   │   │       ├── Letters
+│   │   │       ├── ModManager
+│   │   │       ├── Numbers
+│   │   │       │   ├── Black
+│   │   │       ├── Print
+│   │   │       └── Shaders
+│   │   ├── DisabledNThings
+│   │   │   ├── Letters
+│   │   │   ├── ModManager
+│   │   │   ├── Numbers
+│   │   │   │   ├── Black
+│   │   │   ├── Print
+│   │   │   └── Shaders
+│   ├── NuraThings
+│   │   ├── BufferValues
+│   │   │   └── NuraThings
+│   │   ├── Colors
+│   │   ├── Disabled33BufferValues
+│   │   ├── DisabledBufferValues
+│   │   │   └── NuraThings
+│   │   │       ├── Letters
+│   │   │       ├── ModManager
+│   │   │       ├── Numbers
+│   │   │       │   ├── Black
+│   │   │       ├── Print
+│   │   │       ├── Shaders
+│   │   │       └── SpectrumsTextPrint
+│   │   │           ├── Fonts
+│   │   │           └── Shaders
+│   │   ├── DisabledFontsBs
+│   │   ├── DisabledHideUID
+│   │   ├── DisabledSkillCounter
+│   │   │   ├── Icons
+│   │   ├── Fonts
+│   │   ├── Letters
+│   │   ├── Math
+│   │   ├── MiniGames
+│   │   │   ├── Disabled2DMon
+│   │   │   │   ├── Resources
+│   │   │   ├── FloppyBirb
+│   │   │   └── Snek
+│   │   │       ├── Resources
+│   │   ├── ModManager
+│   │   │   ├── Resources
+│   │   ├── Numbers
+│   │   │   ├── Black
+│   │   ├── Print
+│   │   ├── Shaders
+│   │   ├── SpectrumsTextPrint
+│   │   │   ├── Fonts
+│   │   │   └── Shaders
+│   │   └── VariousInis
+│   └── TileGUI
+│       ├── Modules
+│       │   ├── Textures
+│       ├── Shaders
+├── DisabledCharacterModsForVid
+│   ├── Dehya
+│   │   ├── GoldLeoClothDehya
+│   │   └── RaceQueenDehyaToggle
+│   │       ├── Default
+│   │       ├── Textures
+│   │       ├── Thicc
+│   ├── Eula
+│   │   └── NightOwlSurplisEula
+│   ├── Xiao
+│   │   ├── AbyssTaintedXiao
+│   │   └── XiaoMod
+│   └── Yoimiya
+│       ├── ChristmasYoimiyaToggleWithHair
+│       │   ├── Bootless
+│       │   ├── Default
+│       │   ├── HairBoots
+│       │   ├── HairNoBoots
+│       │   ├── Hatless
+│       │   ├── NoBoth
+│       │   ├── Textures
+│       ├── KohakuToggle
+│       │   ├── BiggerBoobaKohaku
+│       │   ├── Kohaku
+│       │   ├── Textures
+│       └── Zlevir Xmas Yoimiya [Full]
+│           ├── res
+├── Disableddurin
+│   ├── wings
+│   └── wingsopen
+├── DisabledFrostmoon Princess Columbina
+│   └── Resources
+├── DisabledMenuTest
+├── DisabledMisc
+│   ├── Citlali
+│   ├── FocusLines
+│   │   ├── Chest
+│   │   │   ├── 00
+│   │   │   ├── 01
+│   │   └── Culus
+│   │       ├── CrimsonAgateMod
+│   │       ├── CulusAnemoMod
+│   │       ├── CulusDendroMod
+│   │       ├── CulusElectroMod
+│   │       ├── CulusGeoMod
+│   │       ├── CulusHydroMod
+│   │       ├── LumensparMod
+│   │       ├── PurifyingLightMod
+│   │       ├── PyroculusMod
+│   │       └── SacredSealMod
+│   ├── HideUID
+│   ├── LSreen
+│   │   └── output
+│   ├── Resources
+│   ├── ShowInvisibleWalls
+│   │   ├── Shaders
+│   ├── TTESTT
+│   │   ├── DisabledBrokenTest
+│   │   │   ├── Resources
+│   │   ├── DisabledBufferValues
+│   │   │   └── NuraThings
+│   │   │       ├── Core
+│   │   │       ├── Math
+│   │   │       └── Shaders
+│   │   ├── DisabledKok
+│   │   │   ├── Resources
+│   │   ├── DisabledTiger Bomb Jufufu
+│   │   │   └── Resources
+│   │   ├── Resources
+├── DisabledNPC
+│   ├── KatheryneMaid241105
+│   │   ├── body_maid
+│   │   └── head_maid
+├── Disabledrozjebałem
+│   ├── Frostmoon Princess Columbina
+│   │   ├── Resources
+│   ├── KokomiPoolParty ~ Aotanist
+│   │   ├── Makeup
+│   │   ├── Resources
+│   ├── Lauma Heavenly Priest Mod (toggle)
+│   ├── The Catch Raiden Shogun Edition
+│   └── VentiWardrobeMod
+├── Disabledtest
+│   ├── resources
+├── Skirk - Lunar Sword Master w Toggle Guide
+│   ├── DisabledSkirk - Lunar Sword Master Battle Form
+│   ├── Skirk - Lunar Sword Master Main

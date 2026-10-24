@@ -1,0 +1,8 @@
+Toggle (Amount): Key(s) and Back(s)
+
+Top (2): no_modifiers h
+Necklace (2): no_modifiers n
+Belt (1): no_modifiers b
+Tail (3): no_modifiers t
+Fur (2): no_modifiers 6
+Colour (2): no_modifiers y

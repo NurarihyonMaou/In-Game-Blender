@@ -1,0 +1,35 @@
+namespace = math\ceil
+
+[Constants]
+global $in
+global $out
+
+[CommandListRun]
+if $in == inf || $in == -inf || $in == NaN || $in == null
+    $out = NaN
+else
+    if $in%1*10 != 0
+        $out = $in*100//1 + 1
+
+    else
+        $out = $in*100//1
+    endif
+endif
+
+$in = 0
+
+
+
+[CommandListRun99]
+if $in == inf || $in == -inf || $in == NaN || $in == null
+    $out = NaN
+else
+    if $in*10 >= 2.499
+        $out = $in*100//1 + 1
+
+    else
+        $out = $in*100//1
+    endif
+endif
+
+$in = 0

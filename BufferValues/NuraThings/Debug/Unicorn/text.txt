@@ -1,0 +1,24 @@
+Examples:
+The current runtime is {x0:.0f}s, which is {y1:i}m
+
+The value of $foo is {y0:5.1f}
+The cursor position is [{z0:4i},{w0:4i}]
+Average framerate is {x1:.2f} FPS
+
+Here's how you use the syntax (until I add buffers too):
+
+To view z0 as a float with at least 3 numbers total and 2 decimals, write "\{z0:3.2f}" or "\{z0:3.2f}"
+
+To view y12 as an int, write "\{y12:i}"
+
+
+Notes:
+You have to use a backslash to escape a \{sequence} formed by an open bracket \{
+It will look like this: \\{sequence}
+
+Inputing the wrong syntax will probably end up breaking shit, so make sure your syntax is correct.
+(For example, only use xyzw for slot letters)
+
+There shouldn't be ANY spaces inside string formatting brackets
+
+

@@ -1,0 +1,21 @@
+namespace = math\sin
+
+; ---------------------------DESCRIPTION---
+; sin(in)
+; Returns a Float value or NaN
+; -------------------------------EXAMPLE---
+; $\math\sin\in = 40
+; run = commandlist\math\sin\run
+; x = $\math\sin\out
+
+[Constants]
+global $in
+global $out
+
+[CommandListRun]
+local $pi = 3.14159265
+$\math\cos\in = $in - $pi / 2
+run = commandlist\math\cos\run
+$out = $\math\cos\out
+$in = 0
+

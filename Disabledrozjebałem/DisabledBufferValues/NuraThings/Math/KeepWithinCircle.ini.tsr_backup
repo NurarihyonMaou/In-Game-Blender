@@ -1,0 +1,23 @@
+namespace = NuraThings\KeepWithinCircle
+
+[Constants]
+global $start_x
+global $start_y
+
+global $center_x
+global $center_y
+
+global $dstSqrd
+global $result
+
+global $circle_size
+
+
+[CommandListRun]
+local $radius = ($circle_size/2)+0.5
+
+$center_x = $start_x * res_width + $radius
+$center_y = $start_y * res_height + $radius
+
+$dstSqrd = ((cursor_screen_x/rt_width) * res_width - $center_x) ** 2 + ((cursor_screen_y/rt_height) * res_height - $center_y) ** 2
+$result = $dstSqrd <= $radius ** 2

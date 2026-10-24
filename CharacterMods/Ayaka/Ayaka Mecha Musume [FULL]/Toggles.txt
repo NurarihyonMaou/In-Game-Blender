@@ -1,0 +1,5 @@
+Action   Type            Keys            Amt
+-------  -----  -----------------------  ---
+Menu     Cycle      no_modifiers /        2 
+Hold     hold    no_ctrl no_shift alt     1 
+                VK_LBUTTON                  

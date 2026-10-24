@@ -1,0 +1,164 @@
+; Textures
+
+; Constants -------------------------
+
+[Constants]
+global $active = 0
+
+global persist $colour = 0
+
+[KeyColour]
+condition = $active == 1
+key = no_modifiers y
+type = cycle
+$colour = 0,1
+
+[Present]
+post $active = 0
+
+; Overrides -------------------------
+
+; Body
+
+[TextureOverrideBodyDiffuse]
+hash = a99422b8
+run = CommandListLoadDiffuse
+$active = 1
+
+[TextureOverrideBodyDiffuse.LOD]
+hash = a5f4e5dc
+run = CommandListLoadDiffuse
+$active = 1
+
+[TextureOverrideBodyLightMap]
+hash = c3668f76
+this = ResourceLightMap
+
+[TextureOverrideBodyNormalMap]
+hash = 3196ebcf
+this = ResourceNormalMap
+
+; Head
+
+[TextureOverrideHeadDiffuse]
+hash = 617dafcb
+run = CommandListLoadDiffuse
+$active = 1
+
+[TextureOverrideHeadLightMap]
+hash = e3f4ee7a
+this = ResourceLightMap
+
+[TextureOverrideHeadNormalMap]
+hash = cbed2a4d
+this = ResourceNormalMap
+
+[TextureOverrideNataFX]
+hash = bceb6c4b
+this = ResourceNataFX
+
+; Misc
+
+[TextureOverrideFaceDiffuse]
+hash = ded724d2
+run = CommandListLoadFaceDiffuse
+
+[TextureOverrideFaceDiffuse.LOD]
+hash = c6b64611
+run = CommandListLoadFaceDiffuse
+
+[TextureOverrideSkateDiffuse]
+hash = 026f5488
+run = CommandListLoadSkateDiffuse
+
+[TextureOverrideCoatTossHeadDiffuse]
+hash = 44c8e6d1
+run = CommandListLoadDiffuse
+
+[TextureOverrideSwordDiffuse]
+hash = 0ff893e8
+run = CommandListLoadSwordDiffuse
+
+[TextureOverrideMusicMixer]
+hash = 38dce4f1
+run = CommandListLoadMusicMixerDiffuse
+
+; CommandList -----------------------
+
+[CommandListLoadDiffuse]
+if $colour == 0
+	this = ResourceDiffuse.Gal
+else
+	this = ResourceDiffuse.Pink
+endif
+
+[CommandListLoadFaceDiffuse]
+if $colour == 0
+	this = ResourceFaceDiffuse.Gal
+else
+	this = ResourceFaceDiffuse.Pink
+endif
+
+[CommandListLoadSkateDiffuse]
+if $colour == 0
+	this = ResourceSkateDiffuse.Gal
+else
+	this = ResourceSkateDiffuse.Pink
+endif
+
+[CommandListLoadSwordDiffuse]
+if $colour == 0
+	this = ResourceGanhouWoMeguruUtaDiffuse.Gal
+else
+	this = ResourceGanhouWoMeguruUtaDiffuse.Pink
+endif
+
+[CommandListLoadMusicMixerDiffuse]
+if $colour == 0
+	this = ResourceShironenMusicMixer.Gal
+else
+	this = ResourceShironenMusicMixer.Pink
+endif
+
+; Resources -------------------------
+
+[ResourceDiffuse.Gal]
+filename = ./Gal/Diffuse.dds
+
+[ResourceFaceDiffuse.Gal]
+filename = ./Gal/FaceDiffuse.dds
+
+[ResourceSkateDiffuse.Gal]
+filename = ./Gal/SkateDiffuse.dds
+
+[ResourceGanhouWoMeguruUtaDiffuse.Gal]
+filename = ./Gal/GanhouWoMeguruUtaDiffuse.dds
+
+[ResourceShironenMusicMixer.Gal]
+filename = ./Gal/MusicMixer.dds
+
+
+[ResourceDiffuse.Pink]
+filename = ./Pink/Diffuse.dds
+
+[ResourceFaceDiffuse.Pink]
+filename = ./Pink/FaceDiffuse.dds
+
+[ResourceSkateDiffuse.Pink]
+filename = ./Pink/SkateDiffuse.dds
+
+[ResourceGanhouWoMeguruUtaDiffuse.Pink]
+filename = ./Pink/GanhouWoMeguruUtaDiffuse.dds
+
+[ResourceShironenMusicMixer.Pink]
+filename = ./Pink/MusicMixer.dds
+
+
+[ResourceLightMap]
+filename = ./LightMap.dds
+
+[ResourceNormalMap]
+filename = ./NormalMap.dds
+
+[ResourceNataFX]
+filename = ./NataFX.dds

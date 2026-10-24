@@ -1,0 +1,12 @@
+Which command fixes mods that use Normal Maps?
+Which command fixes mods without Normal Maps?
+Which slot should contain the Normal Map?
+Which slot should contain the Diffuse texture?
+Which slot should contain the LightMap texture?
+Which snippet correctly applies ORFix before drawindexed?
+Which tool can automatically fix many ORFix issues?
+What happens when ORFix is broken?
+What should NOT be added under Face Texture Overrides?
+Which alternative method can replace ps-t# slots and ORFix?
+Where should ORFix be located in XXMI installations?
+What is the correct slot order for mods with Normal Maps?

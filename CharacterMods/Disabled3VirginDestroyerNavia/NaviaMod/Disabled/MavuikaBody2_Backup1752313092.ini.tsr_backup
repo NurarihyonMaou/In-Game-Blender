@@ -1,0 +1,467 @@
+; MavuikaBody
+
+; Constants -------------------------
+
+[Constants]
+global $active = 0
+global $creditinfo = 0
+global persist $top = 0
+global persist $bottom = 0
+global persist $legs = 0
+global persist $shoes = 0
+global persist $jacket = 0
+global persist $choker = 0
+global persist $nipples = 0
+global persist $pussy = 0
+
+[Keytop]
+condition = $active == 1
+key = no_modifiers y
+type = cycle
+$top = 0,1,2,3,4,5
+$creditinfo = 0
+
+[Keybottom]
+condition = $active == 1
+key = no_modifiers h
+type = cycle
+$bottom = 0,1
+$creditinfo = 0
+
+[Keylegs]
+condition = $active == 1
+key = no_modifiers n
+type = cycle
+$legs = 0,1,2,3,4
+$creditinfo = 0
+
+[KeyShoes]
+condition = $active == 1
+key = alt n
+key = 8
+type = cycle
+$shoes = 0,1
+$creditinfo = 0
+
+[Keyjacket]
+condition = $active == 1
+key = 6
+type = cycle
+$jacket = 0,1,2,3,4,5,6,7
+$creditinfo = 0
+
+[Keychoker]
+condition = $active == 1
+key = 7
+type = cycle
+$choker = 0,1
+$creditinfo = 0
+
+[Keynipples]
+condition = $active == 1
+key = u
+key = alt y
+type = cycle
+$nipples = 0,1,2,3
+$creditinfo = 0
+
+[Keypussy]
+condition = $active == 1
+key = i
+key = alt h
+type = cycle
+$pussy = 0,1,2,3
+$creditinfo = 0
+
+[Present]
+post $active = 0
+run = CommandListCreditInfo
+
+; Overrides -------------------------
+
+[TextureOverrideMavuikaBodyPosition]
+hash = 80b13a2f
+vb0 = ResourceMavuikaBodyPosition
+$active = 1
+
+[TextureOverrideMavuikaBodyBlend]
+hash = 00088f8d
+vb1 = ResourceMavuikaBodyBlend
+handling = skip
+draw = 216492,0 
+
+[TextureOverrideMavuikaBodyTexcoord]
+hash = 3af262c1
+vb1 = ResourceMavuikaBodyTexcoord
+
+[TextureOverrideMavuikaBodyVertexLimitRaise]
+hash = 00323c91
+; override_vertex_count = 18491
+; override_byte_stride = 84
+
+[TextureOverrideMavuikaBodyIB]
+hash = 43f8af29
+handling = skip
+
+[TextureOverrideMavuikaBodyHead]
+hash = 43f8af29
+match_first_index = 0
+ib = ResourceMavuikaBodyHeadIB
+ps-t0 = ResourceMavuikaBodyHeadNormalMap
+ps-t1 = ResourceMavuikaBodyHeadDiffuse
+ps-t2 = ResourceMavuikaBodyHeadLightMap
+run = CommandList\global\ORFix\ORFix
+; MavuikaBodyHead (0)
+drawindexed = 0, 0, 0
+; MavuikaBodyHead
+	; Earrings (616)
+	drawindexed = 1332, 0, 0
+	; Eyes (200)
+	drawindexed = 576, 1332, 0
+
+[TextureOverrideMavuikaBodyBody]
+hash = 43f8af29
+match_first_index = 16914
+ib = ResourceMavuikaBodyBodyIB
+ps-t0 = ResourceMavuikaBodyBodyNormalMap
+ps-t1 = ResourceMavuikaBodyBodyDiffuse
+ps-t2 = ResourceMavuikaBodyBodyLightMap
+run = CommandList\global\ORFix\ORFix
+; MavuikaBodyBody (0)
+drawindexed = 0, 0, 0
+; MavuikaBodyBody
+
+if $jacket == 0
+;Full Jacket
+	; Shoulder Fur (1457)
+	drawindexed = 4581, 4716, 0
+	; Jacket Full (7062)
+	drawindexed = 19626, 1081479, 0
+	; Bracelet.Left (172)
+	drawindexed = 432, 24603, 0
+	; Bracelet.Right (172)
+	drawindexed = 432, 25035, 0
+elif $jacket == 1
+;Cuffless
+	; Shoulder Fur (1457)
+	drawindexed = 4581, 4716, 0
+	; Jacket Full.Cuffless (2996)
+	drawindexed = 9822, 1101105, 0
+	; Bracelet.Left (172)
+	drawindexed = 432, 24603, 0
+	; Bracelet.Right (172)
+	drawindexed = 432, 25035, 0
+	; Mavuika Collar (1130)
+	drawindexed = 2358, 13293, 0
+elif $jacket == 2
+;Vest + Arm bands
+	; Shoulder Fur (1457)
+	drawindexed = 4581, 4716, 0
+	; Jacket Vest (2408)
+	drawindexed = 6906, 1110927, 0
+	; Arm Gloves (1654)
+	drawindexed = 8952, 15651, 0
+	; Punk Wristbands (2300)
+	drawindexed = 5652, 35751, 0
+	; Mavuika Collar (1130)
+	drawindexed = 2358, 13293, 0
+elif $jacket == 3
+	; Shoulder Fur (1457)
+	drawindexed = 4581, 4716, 0
+	; Punk Wristbands (2300)
+	drawindexed = 5652, 35751, 0
+	; Arm.Strap.Left (604)
+	drawindexed = 1536, 0, 0
+	; Choker.MavuikaZipper (636)
+	drawindexed = 1494, 11799, 0
+elif $jacket == 4
+;Full Jacket
+	; Jacket Full (7062)
+	drawindexed = 19626, 1081479, 0
+	; Bracelet.Left (172)
+	drawindexed = 432, 24603, 0
+	; Bracelet.Right (172)
+	drawindexed = 432, 25035, 0
+elif $jacket == 5
+;Cuffless
+	; Jacket Full.Cuffless (2996)
+	drawindexed = 9822, 1101105, 0
+	; Bracelet.Left (172)
+	drawindexed = 432, 24603, 0
+	; Bracelet.Right (172)
+	drawindexed = 432, 25035, 0
+	; Mavuika Collar (1130)
+	drawindexed = 2358, 13293, 0
+elif $jacket == 6
+;Vest + Arm bands
+	; Jacket Vest (2408)
+	drawindexed = 6906, 1110927, 0
+	; Arm Gloves (1654)
+	drawindexed = 8952, 15651, 0
+	; Punk Wristbands (2300)
+	drawindexed = 5652, 35751, 0
+	; Mavuika Collar (1130)
+	drawindexed = 2358, 13293, 0
+elif $jacket == 7
+	; Punk Wristbands (2300)
+	drawindexed = 5652, 35751, 0
+	; Arm.Strap.Left (604)
+	drawindexed = 1536, 0, 0
+	; Choker.MavuikaZipper (636)
+	drawindexed = 1494, 11799, 0
+endif
+	; Arms
+		; Glove.Left (1249)
+		drawindexed = 5142, 25467, 0
+		; Glove.Right (1249)
+		drawindexed = 5142, 30609, 0
+		; ; Shoulder Fur (1457)
+		; drawindexed = 4581, 4716, 0
+		; 	; Neck
+
+if $top == 0
+	; Torso
+		; Waist Belt.001 (504)
+		drawindexed = 1344, 296847, 0
+	if $bottom == 0
+		; Body Mesh Suit (25198)
+		drawindexed = 199752, 298191, 0
+	else
+		; Body Mesh Suit.Crotchless (24238)
+		drawindexed = 191760, 497943, 0
+	endif
+elif $top == 1
+	; Torso
+		; Waist Belt.001 (504)
+		drawindexed = 1344, 296847, 0
+	if $bottom == 0
+		; Body Mesh Suit.Tits Out (25198)
+		drawindexed = 199752, 689703, 0
+	else
+		; Body Mesh Suit.Tits Out.Crotchless (24264)
+		drawindexed = 192024, 889455, 0
+	endif
+elif $top == 2
+	if $bottom == 0
+		; Body Mesh Suit (25198)
+		drawindexed = 199752, 298191, 0
+	else
+		; Body Mesh Suit.Crotchless (24238)
+		drawindexed = 191760, 497943, 0
+	endif
+elif $top == 3
+	if $bottom == 0
+		; Body Mesh Suit.Tits Out (25198)
+		drawindexed = 199752, 689703, 0
+	else
+		; Body Mesh Suit.Tits Out.Crotchless (24264)
+		drawindexed = 192024, 889455, 0
+	endif
+elif $top == 4
+endif
+
+if $nipples == 0
+	; Nipple X Pasties (144)
+	drawindexed = 540, 2400, 0
+elif $nipples == 1
+	; Nipple Barbells (166)
+	drawindexed = 864, 1536, 0
+	; Mauvika Body.Nipples (434)
+	drawindexed = 2376, 294471, 0
+elif $nipples == 2
+	; Nipple Rings
+	; Mauvika Body.Nipples (434)
+	drawindexed = 2376, 294471, 0
+elif $nipples == 3
+	; Mauvika Body.Nipples (434)
+	drawindexed = 2376, 294471, 0
+endif
+
+
+if $pussy == 0
+	; Pussy Strip Pasty (135)
+	drawindexed = 624, 3468, 0
+	; Pussy Strip Pasty.001 (135)
+	drawindexed = 624, 4092, 0
+elif $pussy == 1
+	; Pussy Barbell (101)
+	drawindexed = 528, 2940, 0
+elif $pussy == 2
+	; Pussy Strip Pasty (135)
+	drawindexed = 624, 3468, 0
+elif $pussy == 3
+endif
+
+	; Head
+		; Neck and Jaw (545)
+		drawindexed = 2502, 9297, 0
+
+if $legs == 0
+;Stockings Hip Hugging
+elif $legs == 1
+;Stockings Longer
+	; Mavuika Legs.Stockings (672)
+	drawindexed = 3528, 1184049, 0
+elif $legs == 2
+;Stockings Shorter
+	; Mavuika Legs.Stockings (672)
+	drawindexed = 3528, 1184049, 0
+	; Mauvika Legs.Thigh Squeeze.L (198)
+	drawindexed = 960, 1181937, 0
+	; Mauvika Legs.Thigh Squeeze.R (231)
+	drawindexed = 1152, 1182897, 0
+elif $legs == 3
+;Thigh Straps
+	; Mauvika Body.Legs.Thigh Straps.002 (5872)
+	drawindexed = 27768, 1117833, 0
+elif $legs == 4
+;No Straps
+	; Mauvika Legs (6930)
+	drawindexed = 36336, 1145601, 0
+endif
+
+	; Body
+	; ; Mauvika Body.Full (27471)
+	; drawindexed = 145890, 148581, 0
+	; Body Legs
+		; Mauvika Body (20179)
+		drawindexed = 107178, 41403, 0
+
+if $shoes == 0
+		; Boots (8101)
+		drawindexed = 31896, 1187577, 0
+elif $shoes == 1
+		; Heels (3380)
+		drawindexed = 13410, 1219473, 0
+elif $shoes == 2
+endif
+
+[TextureOverrideMavuikaBodyDress]
+hash = 43f8af29
+match_first_index = 42618
+ib = ResourceMavuikaBodyDressIB
+ps-t0 = ResourceMavuikaBodyDressNormalMap
+ps-t1 = ResourceMavuikaBodyDressDiffuse
+ps-t2 = ResourceMavuikaBodyDressLightMap
+run = CommandList\global\ORFix\ORFix
+; MavuikaBodyDress (0)
+drawindexed = 0, 0, 0
+; MavuikaBodyDress
+
+
+if $nipples == 0
+	; Nipple Barbells (166)
+elif $nipples == 1
+	; Nipple X Pasties (144)
+elif $nipples == 2
+	; Nipple Rings
+	; Nipple Rings.001 (580)
+	drawindexed = 1284, 0, 0
+elif $nipples == 3
+	; Mauvika Body.Nipples (434)
+endif
+
+if $legs == 0
+;Stockings Hip Hugging
+	; Stockings Hip Hugging  (6572)
+	drawindexed = 34809, 1284, 0
+elif $legs == 1
+;Stockings Longer
+	; Mavuika Legs.Stockings (672)
+	; Stockings.Longer.L (2832)
+	drawindexed = 13902, 36093, 0
+	; Stockings.Longer.R (2843)
+	drawindexed = 13902, 49995, 0
+elif $legs == 2
+;Stockings Shorter
+	; Mavuika Legs.Stockings (672)
+	; Mauvika Legs.Thigh Squeeze.L (198)
+	; Mauvika Legs.Thigh Squeeze.R (231)
+	; Stockings.Shorter.L (2832)
+	drawindexed = 13602, 63897, 0
+	; Stockings.Shorter.R (2832)
+	drawindexed = 13602, 77499, 0
+elif $legs == 3
+;Thigh Straps
+	; Mauvika Body.Legs.Thigh Straps.002 (5872)
+elif $legs == 4
+;No Straps
+	; Mauvika Legs (6930)
+endif
+	; Dress Legs
+
+; CommandList -----------------------
+
+[CommandListCreditInfo]
+if $creditinfo == 0 && $active == 1
+    pre Resource\ShaderFixes\help.ini\Notification = ResourceCreditInfo
+    pre run = CustomShader\ShaderFixes\help.ini\FormatText
+    pre $\ShaderFixes\help.ini\notification_timeout = time + 5.0
+    $creditinfo = 1
+endif
+
+; Resources -------------------------
+
+[ResourceMavuikaBodyPosition]
+type = Buffer
+stride = 40
+filename = MavuikaBodyPosition.buf
+
+[ResourceMavuikaBodyBlend]
+type = Buffer
+stride = 32
+filename = MavuikaBodyBlend.buf
+
+[ResourceMavuikaBodyTexcoord]
+type = Buffer
+stride = 12
+filename = MavuikaBodyTexcoord.buf
+
+[ResourceMavuikaBodyHeadIB]
+type = Buffer
+format = DXGI_FORMAT_R32_UINT
+filename = MavuikaBodyHead.ib
+
+[ResourceMavuikaBodyBodyIB]
+type = Buffer
+format = DXGI_FORMAT_R32_UINT
+filename = MavuikaBodyBody.ib
+
+[ResourceMavuikaBodyDressIB]
+type = Buffer
+format = DXGI_FORMAT_R32_UINT
+filename = MavuikaBodyDress.ib
+
+[ResourceMavuikaBodyHeadNormalMap]
+filename = MavuikaBodyHeadNormalMap.dds
+
+[ResourceMavuikaBodyHeadDiffuse]
+filename = MavuikaBodyHeadDiffuse.dds
+
+[ResourceMavuikaBodyHeadLightMap]
+filename = MavuikaBodyHeadLightMap.dds
+
+[ResourceMavuikaBodyBodyNormalMap]
+filename = MavuikaBodyBodyNormalMap.dds
+
+[ResourceMavuikaBodyBodyDiffuse]
+filename = MavuikaBodyBodyDiffuse.dds
+
+[ResourceMavuikaBodyBodyLightMap]
+filename = MavuikaBodyBodyLightMap.dds
+
+[ResourceMavuikaBodyDressNormalMap]
+filename = MavuikaBodyDressNormalMap.dds
+
+[ResourceMavuikaBodyDressDiffuse]
+filename = MavuikaBodyDressDiffuse.dds
+
+[ResourceMavuikaBodyDressLightMap]
+filename = MavuikaBodyDressLightMap.dds
+
+[ResourceCreditInfo]
+type = Buffer
+data = "Created by www.patreon.com/lewd_lad"
+
+; .ini generated by XXMI (XX-Model-Importer)
+; If you have any issues or find any bugs, please open a ticket at https://github.com/leotorrez/XXMI-Tools/issues

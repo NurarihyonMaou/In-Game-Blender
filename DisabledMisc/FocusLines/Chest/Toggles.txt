@@ -1,0 +1,3 @@
+Action   Type   Keys  Amt
+-------  -----  ----  ---
+Swapvar  Cycle   p     1 

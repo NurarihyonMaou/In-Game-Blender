@@ -1,0 +1,608 @@
+namespace = NuraThings\ModManager
+
+[Constants]
+global $activeCharas = 0
+
+global $secondID = 0
+
+global $activeID = 0
+
+global $startTime = -1
+
+global $currentModID = 1
+global $currentCharacterID = -1
+global $previousCharacterID = -1
+
+global $config_mode = 0
+
+global $debug_mode = 0
+
+global $currentCharMaxID = 0
+global $previousCharacterMaxID = 0
+global $charSwap = 0
+global $first_run = 0
+
+global $string1
+global $string2 = 22
+global $string3 = 991324
+global $string4 = 231022
+global $string5 = 141610
+global $string6 = 119927
+global $string7 = 239934
+global $string8 = 102730
+global $string9 = 171827
+global $string10 = 232434
+
+global $first_run_time = -1
+
+global $show_path = 0
+
+global $frame_count = 0
+
+
+global $leftID = -1
+global $middleID = -1
+global $rightID = -1
+
+global $hold = 0
+global $rotate = 0
+global persist $angle
+;global persist $v_angle
+
+global $gallery_mode = 1
+
+global $gallery_draw_count = 0
+
+post $angle = ((cursor_window_x/res_width) * 18)+0.4
+;post $v_angle = ((cursor_window_y/res_height) * 9)-1
+[Present]
+
+post $activeCharas = 0
+
+
+if $debug_mode
+
+    $\NuraThings\Print\Numbers\Number = $activeCharas
+    $\NuraThings\Print\Numbers\widthScale = 1
+    $\NuraThings\Print\Numbers\heightScale = 6
+    run = CommandList\NuraThings\Print\Numbers\Run
+
+
+    $\NuraThings\Print\Numbers\Number = $secondID
+    $\NuraThings\Print\Numbers\widthScale = 1
+    $\NuraThings\Print\Numbers\heightScale = 7
+    run = CommandList\NuraThings\Print\Numbers\Run
+
+    $\NuraThings\Print\Numbers\Number = $activeID
+    $\NuraThings\Print\Numbers\widthScale = 1
+    $\NuraThings\Print\Numbers\heightScale = 8
+    run = CommandList\NuraThings\Print\Numbers\Run
+
+    $\NuraThings\Print\Numbers\Number = $\NuraThings\ModManager\CharacterModData\Active_Yelan
+    $\NuraThings\Print\Numbers\widthScale = 2
+    $\NuraThings\Print\Numbers\heightScale = 6
+    run = CommandList\NuraThings\Print\Numbers\Run
+
+    $\NuraThings\Print\Numbers\Number = $\NuraThings\ModManager\CharacterModData\Active_Clorinde
+    $\NuraThings\Print\Numbers\widthScale = 3
+    $\NuraThings\Print\Numbers\heightScale = 6
+    run = CommandList\NuraThings\Print\Numbers\Run
+
+    $\NuraThings\Print\Numbers\Number = $\NuraThings\ModManager\CharacterModData\Active_Ganyu
+    $\NuraThings\Print\Numbers\widthScale = 4
+    $\NuraThings\Print\Numbers\heightScale = 6
+    run = CommandList\NuraThings\Print\Numbers\Run
+
+    $\NuraThings\Print\Numbers\Number = $startTime
+    $\NuraThings\Print\Numbers\widthScale = 6
+    $\NuraThings\Print\Numbers\heightScale = 6
+    run = CommandList\NuraThings\Print\Numbers\Run
+
+    $\NuraThings\Print\Numbers\Number = time-$startTime
+    $\NuraThings\Print\Numbers\widthScale = 7
+    $\NuraThings\Print\Numbers\heightScale = 6
+    run = CommandList\NuraThings\Print\Numbers\Run
+
+    $\NuraThings\Print\Numbers\Number = $first_run
+    $\NuraThings\Print\Numbers\widthScale = 1
+    $\NuraThings\Print\Numbers\heightScale = 3
+    run = CommandList\NuraThings\Print\Numbers\Run
+
+    $\NuraThings\Print\Numbers\Number = $first_run_time
+    $\NuraThings\Print\Numbers\widthScale = 3
+    $\NuraThings\Print\Numbers\heightScale = 3
+    run = CommandList\NuraThings\Print\Numbers\Run
+
+    $\NuraThings\Print\Numbers\Number = $charSwap
+    $\NuraThings\Print\Numbers\widthScale = 4
+    $\NuraThings\Print\Numbers\heightScale = 3
+    run = CommandList\NuraThings\Print\Numbers\Run
+
+    $\NuraThings\Print\Numbers\Number = $config_mode
+    $\NuraThings\Print\Numbers\widthScale = 2
+    $\NuraThings\Print\Numbers\heightScale = 4
+    run = CommandList\NuraThings\Print\Numbers\Run
+
+    $\NuraThings\Print\Numbers\Number = $currentModID
+    $\NuraThings\Print\Numbers\widthScale = 3
+    $\NuraThings\Print\Numbers\heightScale = 4
+    run = CommandList\NuraThings\Print\Numbers\Run
+
+    $\NuraThings\Print\Numbers\Number = $currentCharacterID
+    $\NuraThings\Print\Numbers\widthScale = 4
+    $\NuraThings\Print\Numbers\heightScale = 4
+    run = CommandList\NuraThings\Print\Numbers\Run
+
+    $\NuraThings\Print\Numbers\Number = $previousCharacterID
+    $\NuraThings\Print\Numbers\widthScale = 5
+    $\NuraThings\Print\Numbers\heightScale = 4
+    run = CommandList\NuraThings\Print\Numbers\Run
+
+    $\NuraThings\Print\Numbers\Number = $currentCharMaxID
+    $\NuraThings\Print\Numbers\widthScale = 3
+    $\NuraThings\Print\Numbers\heightScale = 5
+    run = CommandList\NuraThings\Print\Numbers\Run
+
+    $\NuraThings\Print\Numbers\Number = $previousCharacterMaxID
+    $\NuraThings\Print\Numbers\widthScale = 3
+    $\NuraThings\Print\Numbers\heightScale = 7
+    run = CommandList\NuraThings\Print\Numbers\Run
+
+    $\NuraThings\Print\Numbers\Number = $gallery_draw_count
+    $\NuraThings\Print\Numbers\widthScale = 5
+    $\NuraThings\Print\Numbers\heightScale = 7
+    run = CommandList\NuraThings\Print\Numbers\Run
+
+endif
+
+
+if $first_run == 1 && $config_mode == 1
+
+     if $first_run_time == -1
+        ; run = CommandList\NuraThings\ModManager\CharacterModData\SaveModID
+         $first_run = 0
+         $first_run_time = time
+     endif
+
+endif
+
+if $first_run == 1 && $config_mode == 0
+
+     if $first_run_time == -1
+         ;run = CommandList\NuraThings\ModManager\CharacterModData\SaveModID
+         $first_run_time = time
+         $config_mode = 1
+     endif
+
+endif
+
+
+if $charSwap == 1
+    $charSwap = 0
+endif
+
+
+if $config_mode == 1
+
+    if $rotate
+        local $tempAngle = ((cursor_window_x/res_width) * 18)+0.4
+
+        if $angle != $tempAngle
+            $angle = $tempAngle
+	        $gallery_draw_count = 0
+        endif
+        ;$v_angle = ((cursor_window_y/res_height) * 9)-1
+    endif
+
+    y79 = $angle
+    ;y81 = $v_angle
+
+    run = CommandListHandleGalleryIDs
+
+    if $frame_count > 0
+       $\NuraThings\Print\Numbers\Number = $frame_count
+       $\NuraThings\Print\Numbers\widthScale = 9
+       $\NuraThings\Print\Numbers\heightScale = 8
+       run = CommandList\NuraThings\Print\Numbers\Run
+       $frame_count = $frame_count+1
+
+       if $frame_count <= 5
+           run = CommandListResetChara
+       else
+           run = CommandListResetChara
+           $charSwap = 1
+           $frame_count = 0
+       endif
+   endif
+
+    if $previousCharacterMaxID < $currentCharMaxID
+        $previousCharacterMaxID = $currentCharMaxID
+        $currentCharMaxID = 0
+        run = CommandListResetResources
+        $charSwap = 1
+    endif
+
+    if $previousCharacterID != $currentCharacterID
+        $frame_count = 1
+        $previousCharacterMaxID = $currentCharMaxID
+        $currentCharMaxID = 0
+        run = CommandListResetResources
+        $charSwap = 1
+        if $activeCharas >= 2 && $previousCharacterID != -1
+            $secondID = $previousCharacterID
+            $activeID = $currentCharacterID
+        endif
+        $previousCharacterID = $currentCharacterID
+    endif
+
+
+    if $first_run == 0
+
+        if $currentModID > $currentCharMaxID
+            $currentModID = $currentCharMaxID
+        endif
+
+
+        if $gallery_mode
+            run = CommandListGalleryMode
+        else
+
+            if ResourceModLogo === null
+                ResourceModLogo = ref ResourceModLogoDefault
+            endif
+
+
+            if ResourceModName !== null || ResourceModAuthor !== null || ResourceModDescription !== null || ResourceModLink !== null
+                run = CommandListPrintInfo
+
+                $\NuraThings\Print\Numbers\Number = $currentModID
+                $\NuraThings\Print\Numbers\widthScale = 3.075
+                $\NuraThings\Print\Numbers\heightScale = 2.15
+
+                run = CommandList\NuraThings\Print\Numbers\Run
+
+                $\NuraThings\Print\Numbers\Number = $currentCharMaxID
+                $\NuraThings\Print\Numbers\widthScale = 5.94
+                $\NuraThings\Print\Numbers\heightScale = 2.15
+
+                run = CommandList\NuraThings\Print\Numbers\Run
+
+            else
+                $\NuraThings\Print\Letters\offset_x = 0.275
+                $\NuraThings\Print\Letters\offset_y = 0.075
+                $\NuraThings\Print\Letters\String2 = 22
+                $\NuraThings\Print\Letters\String3 = 991324
+                $\NuraThings\Print\Letters\String4 = 231022
+                $\NuraThings\Print\Letters\String5 = 141610
+                $\NuraThings\Print\Letters\String6 = 119927
+                $\NuraThings\Print\Letters\String7 = 239934
+                $\NuraThings\Print\Letters\String8 = 102730
+                $\NuraThings\Print\Letters\String9 = 171827
+                $\NuraThings\Print\Letters\String10 = 232434
+
+                $\NuraThings\Print\Letters\Line_Break1 = 13
+                $\NuraThings\Print\Letters\Line_Break2 = 15
+                $\NuraThings\Print\Letters\Line_Break3 = 15
+
+                $\NuraThings\Print\Letters\Custom_Offset_X = 0.09
+                $\NuraThings\Print\Letters\reset_x = 1
+
+                pre run = CommandList\NuraThings\Print\Letters\Run
+                run = CommandList\NuraThings\Print\Letters\Reset
+
+                $\NuraThings\Print\Numbers\Number = $currentModID
+
+                if $currentModID < 10
+                    $\NuraThings\Print\Numbers\widthScale = 3.1
+                else
+                    $\NuraThings\Print\Numbers\widthScale = 2.835
+                endif
+                $\NuraThings\Print\Numbers\heightScale = 1.45
+
+                run = CommandList\NuraThings\Print\Numbers\Run
+
+                $\NuraThings\Print\Numbers\Number = $currentCharMaxID
+                $\NuraThings\Print\Numbers\widthScale = 4.1
+                $\NuraThings\Print\Numbers\heightScale = 1.45
+                run = CommandList\NuraThings\Print\Numbers\Run
+            endif
+
+            if ResourceModToggles !== null
+                run = CommandListPrintToggles
+            endif
+
+            if $show_path && ResourceModPath !== null
+                run = CommandListPrintPath
+            endif
+
+            ps-t100 = ResourceModLogo
+            run = CustomShaderDraw
+        endif
+    endif
+
+endif
+
+if $first_run_time != -1 && (time - $first_run_time >= 0.1)
+     if $first_run == 1
+        $config_mode = 0
+     endif
+     $first_run = 0
+     $first_run_time = -1
+endif
+
+
+[KeyR]
+condition = $config_mode == 1
+key = VK_CONTROL VK_DOWN
+type = toggle
+$show_path = 1
+
+[KeyA]
+key = VK_CONTROL VK_UP
+type = cycle
+$config_mode = 0,1
+
+[KeyC]
+condition = $config_mode == 1
+key = VK_CONTROL VK_RIGHT
+type = hold
+run = CommandListAdd
+
+[KeyD]
+condition = $config_mode == 1
+key = VK_CONTROL VK_LEFT
+type = hold
+run = CommandListMinus
+
+[KeyDebug]
+key = `
+type = toggle
+$debug_mode = 1
+
+[KeyNextChara]
+key = VK_CONTROL N
+type = hold
+run = CommandListSetActive
+
+
+[KeyGalleryMode]
+key = VK_CAPITAL
+type = cycle
+$gallery_mode = 0,1
+
+[KeyHold]
+key = VK_ALT
+type = hold
+$hold = 1
+
+[KeyRotate]
+condition = $config_mode && $hold
+key = VK_CTRL
+type = hold
+$rotate = 1
+
+[KeyMouseClick]
+condition = $config_mode && $gallery_mode
+key = VK_LBUTTON
+type = hold
+run = CommandListChangeMod
+;[KeyResetChara]
+;condition = $activeID != 0
+;key = VK_LBUTTON
+;type = hold
+;release_delay = 1
+;run = CommandListResetChara
+
+[CommandListChangeMod]
+local $cursor_x = cursor_screen_x/rt_width
+
+if $cursor_x >= 0.1 && $cursor_x <= 0.4
+    run = CommandListMinus
+else if $cursor_x >= 0.6 && $cursor_x <= 1.0
+    run = CommandListAdd
+endif
+
+[CommandListSetTime]
+run = CommandListResetChara
+
+[CommandListResetChara]
+run = CommandListResetResources
+post $activeID = 0
+post $secondID = 0
+post $currentCharacterID = -1
+
+
+[CommandListSetActive]
+if $activeID == $currentCharacterID
+    $activeID = $secondID
+    $currentCharacterID = $secondID
+    $currentCharMaxID = 0
+    run = CommandListResetResources
+    $charSwap = 1
+else
+    $secondID = $activeID
+    $activeID = $currentCharacterID
+    $currentCharMaxID = 0
+    run = CommandListResetResources
+    $charSwap = 1
+endif
+
+
+[CommandListAdd]
+$currentModID = $currentModID+1
+
+if $currentModID > $currentCharMaxID
+    $currentModID = 0
+endif
+
+run = CommandListResetResources
+run = CommandList\NuraThings\ModManager\CharacterModData\SaveModID
+
+[CommandListMinus]
+$currentModID = $currentModID-1
+
+if $currentModID < 0
+    $currentModID = $currentCharMaxID
+endif
+
+run = CommandListResetResources
+run = CommandList\NuraThings\ModManager\CharacterModData\SaveModID
+
+
+[CommandListGalleryMode]
+$\NuraThings\Print\Letters\String7 = 211016
+$\NuraThings\Print\Letters\String8 = 271421
+$\NuraThings\Print\Letters\String9 = 229934
+$\NuraThings\Print\Letters\String10 = 141324
+
+$\NuraThings\Print\Letters\offset_x = 0.23825
+$\NuraThings\Print\Letters\offset_y = 0.9
+
+pre run = CommandList\NuraThings\Print\Letters\Run
+run = CommandList\NuraThings\Print\Letters\Reset
+
+[CommandListResetResources]
+ResourceModName = null
+ResourceModAuthor = null
+ResourceModDescription = null
+ResourceModLink = null
+ResourceModLogo = ResourceModLogoDefault
+ResourceModToggles = null
+
+
+[CommandListPrintInfo]
+Resource\NuraThings\SpectrumsPrint\Text = ref ResourceBackground
+Resource\NuraThings\SpectrumsPrint\TextParams = ref ResourceTextParamsBackground
+run = CommandList\NuraThings\SpectrumsPrint\PrintText
+
+Resource\NuraThings\SpectrumsPrint\Text = ref ResourceModName
+Resource\NuraThings\SpectrumsPrint\TextParams = ref ResourceTextParamsModName
+run = CommandList\NuraThings\SpectrumsPrint\PrintText
+
+Resource\NuraThings\SpectrumsPrint\Text = ref ResourceModAuthor
+Resource\NuraThings\SpectrumsPrint\TextParams = ref ResourceTextParamsModAuthor
+run = CommandList\NuraThings\SpectrumsPrint\PrintText
+
+Resource\NuraThings\SpectrumsPrint\Text = ref ResourceModDescription
+Resource\NuraThings\SpectrumsPrint\TextParams = ref ResourceTextParamsModDescription
+run = CommandList\NuraThings\SpectrumsPrint\PrintText
+
+Resource\NuraThings\SpectrumsPrint\Text = ref ResourceModLink
+Resource\NuraThings\SpectrumsPrint\TextParams = ref ResourceTextParamsModLink
+run = CommandList\NuraThings\SpectrumsPrint\PrintText
+
+
+[CommandListPrintToggles]
+Resource\NuraThings\SpectrumsPrint\Text = ref ResourceModToggles
+Resource\NuraThings\SpectrumsPrint\TextParams = ref ResourceTextParamsToggles
+run = CommandList\NuraThings\SpectrumsPrint\PrintText
+
+[CommandListPrintPath]
+Resource\NuraThings\SpectrumsPrint\Text = ref ResourceModPath
+Resource\NuraThings\SpectrumsPrint\TextParams = ref ResourceTextParamsPath
+run = CommandList\NuraThings\SpectrumsPrint\PrintText
+
+
+[CommandListHandleGalleryIDs]
+$middleID = -1
+$leftID = -1
+$rightID = -1
+
+if $currentModID != -1 || $currentModID != 0
+    $middleID = $currentModID
+endif
+
+if $middleID > 1
+    $leftID = $currentModID-1
+endif
+
+if $currentCharMaxID > $activeID
+    $rightID = $currentModID+1
+endif
+
+if $currentModID == 0 && $currentCharMaxID > 1
+    $leftID = $currentCharMaxID
+    $rightID = 1
+endif
+
+
+[CustomShaderDraw]
+hs = null
+ds = null
+gs = null
+cs = null
+run = BuiltInCommandListUnbindAllRenderTargets
+
+x87 = 128/res_width
+y87 = 128/res_height
+z87 = 0.5975
+w87 = -0.005
+
+vs = ../Shaders/UIElement.hlsl
+ps = ../Shaders/UIElement.hlsl
+blend = ADD SRC_ALPHA INV_SRC_ALPHA
+cull = none
+topology = triangle_strip
+o0 = set_viewport bb
+Draw = 4,0
+
+clear = ps-t100
+
+
+
+[ResourceBackground]
+type = buffer
+format = R8_UINT
+filename = Background.txt
+
+[ResourceModName]
+
+[ResourceModAuthor]
+
+[ResourceModDescription]
+
+[ResourceModLink]
+
+[ResourceModLogo]
+
+[ResourceModLogoDefault]
+filename = Logo.dds
+
+[ResourceModToggles]
+
+[ResourceModPath]
+
+[ResourceTextParamsBackground]
+type = StructuredBuffer
+array = 1
+data = R32_FLOAT  -0.75 +0.9 +0.75 -0.05   0.00 1.00 0.00 1.00   0.00 0.00 0.00 0.95   0.02  0.05   2 1   1   1.0
+
+[ResourceTextParamsModName]
+type = StructuredBuffer
+array = 1
+data = R32_FLOAT  -0.75 +0.9 +0.75 -0.05   0.00 1.00 0.00 1.00   0.00 0.00 0.00 0.00   0.02  0.05   2 1   1   1.0
+
+[ResourceTextParamsModAuthor]
+type = StructuredBuffer
+array = 1
+data = R32_FLOAT  -0.75 +0.8 +0.75 -0.05   0.00 1.00 0.00 1.00   0.00 0.00 0.00 0.00   0.02  0.05   2 1   1   1.0
+
+[ResourceTextParamsModDescription]
+type = StructuredBuffer
+array = 1
+data = R32_FLOAT  -0.75 +0.7 +0.75 -0.05   0.00 1.00 0.00 1.00   0.00 0.00 0.00 0.00   0.02  0.05   2 1   1   1.0
+
+[ResourceTextParamsModLink]
+type = StructuredBuffer
+array = 1
+data = R32_FLOAT  -0.75 +0.6 +0.75 -0.05   0.00 1.00 0.00 1.00   0.00 0.00 0.00 0.00   0.02  0.05   2 1   1   1.0
+
+[ResourceTextParamsToggles]
+type = StructuredBuffer
+array = 1
+data = R32_FLOAT  -0.1 +0.25 +0.75 -0.05   0.00 1.00 0.00 1.00   0.00 0.00 0.00 0.95   0.02  0.05   2 1   1   1.0
+
+[ResourceTextParamsPath]
+type = StructuredBuffer
+array = 1
+data = R32_FLOAT  -0.5 +0.4 +0.75 -0.05   0.00 1.00 0.00 1.00   0.00 0.00 0.00 0.95   0.02  0.05   2 1   1   1.0

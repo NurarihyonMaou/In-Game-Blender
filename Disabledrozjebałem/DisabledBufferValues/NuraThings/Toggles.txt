@@ -1,0 +1,65 @@
+Toggle (Amount): Key(s) and Back(s)
+
+Swap1/Variable1 (2): 8
+Swap2/Variable2 (2): 9
+Rgbtoggle/Rgb_toggle (3): 7
+Rgbtypetoggle/Rgb_slider_type (3): 6
+Togglemenu/Menu (2): >
+Reset0/Wheel_x (2): 0
+Reset1/Wheel_x1 (2): 0
+Reset2/Wheel_x2 (2): 0
+Resetbody/Key1 (2): <
+Stepsselector/Selector (8): VK_DOWN NO_CTRL and VK_UP
+
+
+Hold: Key(s)
+
+Toggleclick: VK_LBUTTON
+Click: VK_RBUTTON
+Stepsincrease/Keysteps: VK_RIGHT NO_CTRL
+Stepsdecrease/Keysteps: VK_LEFT NO_CTRL
+Holdhover/Hover: VK_ALT VK_CTRL
+
+Toggle (Amount): Key(s) and Back(s)
+
+Swap1/Variable1 (2): 8
+Swap2/Variable2 (2): 9
+Rgbtoggle/Rgb_toggle (3): 7
+Rgbtypetoggle/Rgb_slider_type (3): 6
+Togglemenu/Menu (2): >
+Reset0/Wheel_x (2): 0
+Reset1/Wheel_x1 (2): 0
+Reset2/Wheel_x2 (2): 0
+Resetbody/Key1 (2): <
+Stepsselector/Selector (8): VK_DOWN NO_CTRL and VK_UP
+
+
+Hold: Key(s)
+
+Toggleclick: VK_LBUTTON
+Click: VK_RBUTTON
+Stepsincrease/Keysteps: VK_RIGHT NO_CTRL
+Stepsdecrease/Keysteps: VK_LEFT NO_CTRL
+Holdhover/Hover: VK_ALT VK_CTRL
+
+Toggle (Amount): Key(s) and Back(s)
+
+Swap1/Variable1 (2): 8
+Swap2/Variable2 (2): 9
+Rgbtoggle/Rgb_toggle (3): 7
+Rgbtypetoggle/Rgb_slider_type (3): 6
+Togglemenu/Menu (2): >
+Reset0/Wheel_x (2): 0
+Reset1/Wheel_x1 (2): 0
+Reset2/Wheel_x2 (2): 0
+Resetbody/Key1 (2): <
+Stepsselector/Selector (8): VK_DOWN NO_CTRL and VK_UP
+
+
+Hold: Key(s)
+
+Toggleclick: VK_LBUTTON
+Click: VK_RBUTTON
+Stepsincrease/Keysteps: VK_RIGHT NO_CTRL
+Stepsdecrease/Keysteps: VK_LEFT NO_CTRL
+Holdhover/Hover: VK_ALT VK_CTRL

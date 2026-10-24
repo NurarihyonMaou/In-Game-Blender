@@ -1,0 +1,27 @@
+[Constants]
+global $once = 1
+
+[Present]
+
+if $once
+    run = CustomShaderGibDims
+    $once = 0
+endif
+
+Resource\Debugger\DebugRW = ref ResourceDebugRW
+
+[CustomShaderGibDims]
+cs = ../Shaders/GibDims.hlsl
+
+cs-t0 = Resource\GIMIv8\Font
+cs-u0 = ResourceDebugRW
+
+dispatch = 128,1,1
+
+cs-t0 = null
+cs-u0 = null
+
+[ResourceDebugRW]
+type = RWBuffer
+format = R32G32B32A32_FLOAT
+array = 128

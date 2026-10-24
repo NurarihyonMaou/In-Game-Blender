@@ -1,0 +1,363 @@
+[Constants]
+global $q = -1
+global $seed = 12345
+
+global $move
+global $dragging
+global $scroll_y = 0.077
+global $scroll_norm
+global $grab_offset
+
+global $start_reading = -1
+global $read
+
+global persist $passed
+
+global $y2 
+
+global $x46
+global $y46
+global $z46
+global $w46
+
+global $x49
+global $y49
+global $z49
+global $w49
+
+global $click
+
+[Present]
+if !$passed
+    if !$read
+
+        if $start_reading == -1
+            run =  CommandListHandleStartReading
+        else
+            run = CommandListPrint
+
+            if (time - $start_reading) >= 45 && $scroll_norm >= 0.9
+                run = CommandListIHaveRead
+            endif
+        endif
+
+    endif
+endif
+
+
+[CommandListHandleStartReading]
+run = CommandListBackupParams
+
+run = CommandListSetCommonParams
+
+Resource\NuraThings\Print\Custom\Text = ref ResourceStartReading
+Resource\NuraThings\Print\Custom\TextParams = ref ResourceStartReadingParams
+run = CommandList\NuraThings\Print\Custom\PrintText
+
+run = CommandListRestoreParams
+
+if $click && (cursor_x >= 0.47 && cursor_x <= 0.52) && (cursor_y >= 0.1 && cursor_y <= 0.11)
+    $click = 0
+    $start_reading = time
+endif
+
+
+[CommandListIHaveRead]
+run = CommandListBackupParams
+run = CommandListSetCommonParams
+
+x46 = 69
+y46 = 69
+Resource\NuraThings\Print\Custom\Text = ref ResourceIHaveRead
+Resource\NuraThings\Print\Custom\TextParams = ref ResourceIHaveReadParams
+run = CommandList\NuraThings\Print\Custom\PrintText
+
+run = CommandListRestoreParams
+
+
+[CommandListBackupParams]
+$y2 = y2
+
+$x46 = x46
+$y46 = y46
+$z46 = z46
+$w46 = w46
+
+$x49 = x49
+$y49 = y49
+$z49 = z49
+$w49 = w49
+
+[CommandListRestoreParams]
+y2 = $y2
+
+x46 = $x46
+y46 = $y46
+z46 = $z46
+w46 = $w46
+
+x49 = $x49
+y49 = $y49
+z49 = $z49
+w49 = $w49
+
+[CommandListSetCommonParams]
+y2 = 0
+
+x46 = 69
+y46 = 0
+z46 = 0
+w46 = 0
+
+x49 = 0
+y49 = 0 
+z49 = 0
+w49 = 0
+
+[CommandListPrint]
+if $q == -1
+    run = CommandListCalcScroll
+
+    Resource\NuraThings\Print\Custom\Text = ref ResourceGuide
+else
+    run = CustomShaderGen
+    Resource\NuraThings\Print\Custom\Text = ref ResourceText
+endif
+
+run = CommandListBackupParams
+
+run = CommandListSetCommonParams
+
+y2 = (cursor_y * 2) -1
+
+x49 = $scroll_norm
+
+Resource\NuraThings\Print\Custom\TextParams = ref ResourceInitParams
+run = CommandList\NuraThings\Print\Custom\PrintText
+
+run = CommandListDrawScroll
+
+Resource\Debugger\DebugRW = ref ResourceDebug
+
+run = CommandListRestoreParams
+
+
+
+[KeyMove]
+key = VK_LBUTTON
+type = hold
+$move = 1
+
+[KeyClick]
+key = VK_LBUTTON
+$click = 1
+
+[CommandListDrawScroll]
+$\NuraThings\Draw\width = 0.005 
+$\NuraThings\Draw\height = 0.1
+
+$\NuraThings\Draw\offset_x = 0.807
+$\NuraThings\Draw\offset_y = $scroll_y
+     
+$\NuraThings\Draw\special_effect = 96
+
+ps-t100 = ResourceScrollBar
+run = CommandList\NuraThings\Draw\Run
+
+
+[CommandListCalcScroll]
+local $new_pos
+
+if $move
+
+    if cursor_x >= 0.807 && cursor_x <= 0.807 + 0.005
+        if cursor_y >= $scroll_y && cursor_y <= ($scroll_y + 0.1)
+            $dragging = 1
+            $grab_offset = cursor_y - $scroll_y
+        endif
+    endif
+
+    if $dragging
+    
+        $new_pos = cursor_y - $grab_offset
+    
+        if $new_pos < 0.069
+            $new_pos = 0.069
+        endif
+    
+        if $new_pos > (0.92 - 0.1)
+            $new_pos = 0.82
+        endif
+    
+        $scroll_y = $new_pos
+        $scroll_norm = ($scroll_y - 0.069) / (0.92 - 0.069 - 0.1)
+    endif
+else
+    $dragging = 0
+endif
+
+
+[CustomShaderGen]
+cs = Mods/BufferValues/NuraThings/Shaders/Quiz.hlsl
+
+clear = ResourceText
+
+cs-u0 = ResourceText         
+; StringData
+cs-u1 = ResourceCorrectPos   
+; GeneratedCorrectIdx
+cs-u2 = ResourceDebug        
+; DebugBuf
+
+cs-t121 = ResourceQuestionChars
+cs-t122 = ResourceQuestionPrefixOffsets
+cs-t123 = ResourceQuestionSuffixOffsets
+cs-t124 = ResourceQuestionBankIndex
+cs-t125 = ResourceQuestionCorrectWordIndex
+
+cs-t126 = ResourceWordBankChars
+cs-t127 = ResourceWordBankOffsets
+cs-t119 = ResourceWordBankCounts
+
+x78 = 2
+y78 = $seed
+
+x79 = 12   
+; totalQuestions
+y79 = 4
+
+dispatch = 1,1,1
+
+x210 = $q
+y210 = $seed
+
+x211 = 1   
+; totalQuestions
+y211 = 4   
+; maxWordsPerBank (not strictly required)
+
+cs-u0 = null
+; Str = null
+cs-u1 = null
+; Gen = null
+cs-u2 = null
+
+cs-t119 = null
+cs-t120 = null
+cs-t121 = null
+cs-t122 = null
+cs-t123 = null
+cs-t124 = null
+cs-t125 = null
+cs-t126 = null
+cs-t127 = null
+
+; ---- resources ----
+[ResourceText]
+type = RWBuffer
+format = R8_UINT
+array = 1024
+
+[ResourceCorrectPos]
+type = RWBuffer
+format = R32_UINT
+array = 32
+
+[ResourceDebug]
+type = RWBuffer
+format = R32G32B32A32_FLOAT
+array = 16
+
+; QUESTION CHARS (prefixes/suffixes) -- one question "Select the fruit:" + empty suffix
+[ResourceQuestionChars]
+type = Buffer
+format = R8_UINT
+array = 64
+data = R8_UINT 83 101 108 101 99 116 32 116 104 101 32 102 114 117 105 116 58 10 10
+; "Select the fruit:\n\n"
+; offsets: prefix 0, suffix 18
+
+[ResourceQuestionPrefixOffsets]
+type = Buffer
+format = R32_UINT
+array = 8
+data = R32_UINT 0
+
+[ResourceQuestionSuffixOffsets]
+type = Buffer
+format = R32_UINT
+array = 8
+data = R32_UINT 18
+
+[ResourceQuestionBankIndex]
+type = Buffer
+format = R32_UINT
+array = 8
+data = R32_UINT 0
+
+[ResourceQuestionCorrectWordIndex]
+type = Buffer
+format = R32_UINT
+array = 8
+data = R32_UINT 0   
+; 'apple' index inside bank
+
+; WORD BANK CHARS (one bank containing "apple\ncar\nbanana\nchair\n")
+[ResourceWordBankChars]
+type = Buffer
+format = R8_UINT
+array = 128
+data = R8_UINT 97 112 112 108 101 10 99 97 114 10 98 97 110 97 110 97 10 99 104 97 105 114 10
+; "apple\ncar\nbanana\nchair\n"
+
+; bank char offset: bank 0 starts at char offset 0
+[ResourceWordBankOffsets]
+type = Buffer
+format = R32_UINT
+array = 8
+data = R32_UINT 0
+
+[ResourceWordBankCounts]
+type = Buffer
+format = R32_UINT
+array = 8
+data = R32_UINT 4
+
+[ResourceInitParams]
+type = StructuredBuffer
+array = 1
+data = R32_FLOAT   -0.6 0.8 0.6 -0.8  0.00 0.25 0.75 1   0.00001 0.0054901 0.014117 1.0   0.02  0.05   2 2   0   1
+
+
+
+[ResourceStartReading]
+type = Buffer
+format = R8_UINT
+data = "Start Reading"
+
+[ResourceStartReadingParams]
+type = StructuredBuffer
+array = 1
+data = R32_FLOAT   -0.6 0.8 0.6 -0.8  0.00 0.25 0.75 1   0.00001 0.0054901 0.014117 1.0   0.02  0.05   2 2   1   1
+
+;                x49-^  x46-^  x2-^  y2-^   | R-^  G-^  B-^  A-^  | R-^  G-^  B-^  A-^  | ^-H    V-^ | ^ ^ | ^- text alignment: 0=left 1=center 2=right | ^- font scale
+;                Rectangle (range -1:+1)  | Text Color          | Background Color    | Border     |  ^- h/v-anchor: 0=none 1=left/top 2=center 3=right/bottom 
+
+[ResourceIHaveRead]
+type = Buffer
+format = R8_UINT
+data = "I have Read and Understand"
+
+[ResourceIHaveReadParams]
+type = StructuredBuffer
+array = 1
+data = R32_FLOAT   -0.15 -0.83 0.15 -0.85  0.00 0.25 0.75 1   0.00001 0.0054901 0.014117 1.0   0.02  0.05   2 2   1   1
+
+
+[ResourceGuide]
+type = Buffer
+format = R8_UINT
+filename = Mods/BufferValues/NuraThings/Core/ORFixGuide.txt
+
+[ResourceScrollBar]
+filename = Mods\BufferValues\NuraThings\Core\Resources\ScrollBar.dds

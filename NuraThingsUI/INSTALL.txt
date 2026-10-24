@@ -1,0 +1,34 @@
+NuraThings UI Core - first prototype
+
+1. Copy these files into a folder visible to the mod:
+   NuraThingsUI/NuraThingsUIInput.hlsl
+   NuraThingsUI/NuraThingsUI.hlsl
+
+2. Paste NuraThingsUI_Integration.ini into the SAME INI that currently owns
+   the NuraThings/Mesh Editor globals. Keep the existing [Constants] blocks;
+   duplicate [Constants] sections are normal in these generated files.
+
+3. Add this line to the FINAL [Present] block, after the existing Mesh Editor
+   overlay/history code:
+
+   run = CommandListNuraThingsUIFrame
+
+4. Press F8. The UI opens. LMB clicks the sidebar pages and Mesh tool buttons.
+
+Current Mesh tool enum is taken from the current editor: 0 Select, 1 Inflate,
+2 Smooth. The UI writes that selection back to $mesh_editor_tool.
+
+Current toggle bridge:
+   UI Mirror -> $mesh_editor_mirror
+   UI Invert -> $mesh_editor_invert_direction
+
+This prototype deliberately does NOT replace the old Ctrl+Alt menu yet.
+It is a separate UI shell so it can be tested without touching the existing
+outfit menu. Once the shell behaves correctly, we can move the remaining tools
+and controls into it.
+
+5. Your current INI also has an older LMB interaction key. Add this line to its existing [KeyInteraction] section so menu clicks do not pass through:
+
+   condition = $nt_ui == 0
+
+   Do the same for any other LMB-driven tool you want to block while the UI is open.

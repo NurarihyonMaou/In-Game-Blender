@@ -1,0 +1,11 @@
+W A S D to Move
+
+CTRL + ALT + P to Toggle Snake
+I to Toggle Instruction
+L to Toggle Easy Mode
+F (Hold) to Show Current Mode (N for Normal, E for Easy)
+
+When Snake is Static:
+
+- Upper Number is Best Score
+- Lower Number is Best Score in Easy Mode

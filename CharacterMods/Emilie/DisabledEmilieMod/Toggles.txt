@@ -1,0 +1,17 @@
+   Action      Type         Keys         Amt
+------------  ------  -----------------  ---
+Menu          toggle          >           1 
+Click          hold      VK_RBUTTON       1 
+Keysteps       hold   VK_RIGHT NO_CTRL    2 
+Keysteps       hold    VK_LEFT NO_CTRL    2 
+Selector      Cycle   VK_DOWN NO_CTRL +   4 
+                      VK_UP                 
+Hover          hold    VK_ALT VK_CTRL     1 
+Toggleclick    hold      VK_LBUTTON       1 
+Rgb_toggle    Cycle           7           3 
+Rgb_slider_t  Cycle           6           3 
+ype                                         
+Wheel_x       toggle          0           1 
+Wheel_x1      toggle          0           1 
+Wheel_x2      toggle          0           1 
+Key1          toggle          <           1 

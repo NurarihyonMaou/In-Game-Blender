@@ -1,0 +1,14 @@
+; ---------------------------DESCRIPTION---
+; Constants and other data
+; Resets them every Present, incase they are overwritten
+;
+; -------------------------------EXAMPLE---
+; $x = $\math\pi
+; $y = $\math\e
+
+; ;Pi
+; local $pi  = 3.14159265359
+; ;Euler's Number
+; local $e   = 2.71828182846
+; ;Golden Ratio
+; local $phi = 1.61803398874

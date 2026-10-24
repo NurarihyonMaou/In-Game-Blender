@@ -1,0 +1,2016 @@
+namespace = NuraThings\MiniGames\Snek
+
+[Constants]
+global persist $first_run = 1
+global $show_instruction = 0
+
+
+global persist $best_score = 0
+global persist $best_score_easy_mode = 0
+
+global $score = 0
+
+global $show_mode = 0
+
+global $apple_x = -1
+global $apple_y = -1
+
+global $snake = 0
+global $last_time = 0
+
+global $snake_x = 0.5
+global $snake_y = 0.5
+
+global $snake_x1 = -1
+global $snake_y1 = -1
+            
+global $snake_x2 = -1
+global $snake_y2 = -1
+            
+global $snake_x3 = -1
+global $snake_y3 = -1
+            
+global $snake_x4 = -1
+global $snake_y4 = -1
+            
+global $snake_x5 = -1
+global $snake_y5 = -1
+            
+global $snake_x6 = -1
+global $snake_y6 = -1
+            
+global $snake_x7 = -1
+global $snake_y7 = -1
+            
+global $snake_x8 = -1
+global $snake_y8 = -1
+            
+global $snake_x9 = -1
+global $snake_y9 = -1
+
+global $snake_x10 = -1
+global $snake_y10 = -1
+            
+global $snake_x11 = -1
+global $snake_y11 = -1
+            
+global $snake_x12 = -1
+global $snake_y12 = -1
+            
+global $snake_x13 = -1
+global $snake_y13 = -1
+            
+global $snake_x14 = -1
+global $snake_y14 = -1
+            
+global $snake_x15 = -1
+global $snake_y15 = -1
+            
+global $snake_x16 = -1
+global $snake_y16 = -1
+            
+global $snake_x17 = -1
+global $snake_y17 = -1
+            
+global $snake_x18 = -1
+global $snake_y18 = -1
+            
+global $snake_x19 = -1
+global $snake_y19 = -1
+            
+global $snake_x20 = -1
+global $snake_y20 = -1
+            
+global $snake_x21 = -1
+global $snake_y21 = -1
+            
+global $snake_x22 = -1
+global $snake_y22 = -1
+            
+global $snake_x23 = -1
+global $snake_y23 = -1
+            
+global $snake_x24 = -1
+global $snake_y24 = -1
+            
+global $snake_x25 = -1
+global $snake_y25 = -1
+            
+global $snake_x26 = -1
+global $snake_y26 = -1
+            
+global $snake_x27 = -1
+global $snake_y27 = -1
+            
+global $snake_x28 = -1
+global $snake_y28 = -1
+            
+global $snake_x29 = -1
+global $snake_y29 = -1
+            
+global $snake_x30 = -1
+global $snake_y30 = -1
+            
+global $snake_x31 = -1
+global $snake_y31 = -1
+            
+global $snake_x32 = -1
+global $snake_y32 = -1
+            
+global $snake_x33 = -1
+global $snake_y33 = -1
+            
+global $snake_x34 = -1
+global $snake_y34 = -1
+            
+global $snake_x35 = -1
+global $snake_y35 = -1
+            
+global $snake_x36 = -1
+global $snake_y36 = -1
+            
+global $snake_x37 = -1
+global $snake_y37 = -1
+            
+global $snake_x38 = -1
+global $snake_y38 = -1
+            
+global $snake_x39 = -1
+global $snake_y39 = -1
+            
+global $snake_x40 = -1
+global $snake_y40 = -1
+            
+global $snake_x41 = -1
+global $snake_y41 = -1
+            
+global $snake_x42 = -1
+global $snake_y42 = -1
+            
+global $snake_x43 = -1
+global $snake_y43 = -1
+            
+global $snake_x44 = -1
+global $snake_y44 = -1
+            
+global $snake_x45 = -1
+global $snake_y45 = -1
+            
+global $snake_x46 = -1
+global $snake_y46 = -1
+            
+global $snake_x47 = -1
+global $snake_y47 = -1
+            
+global $snake_x48 = -1
+global $snake_y48 = -1
+            
+global $snake_x49 = -1
+global $snake_y49 = -1
+            
+global $snake_x50 = -1
+global $snake_y50 = -1
+            
+global $snake_x51 = -1
+global $snake_y51 = -1
+            
+global $snake_x52 = -1
+global $snake_y52 = -1
+            
+global $snake_x53 = -1
+global $snake_y53 = -1
+            
+global $snake_x54 = -1
+global $snake_y54 = -1
+            
+global $snake_x55 = -1
+global $snake_y55 = -1
+            
+global $snake_x56 = -1
+global $snake_y56 = -1
+            
+global $snake_x57 = -1
+global $snake_y57 = -1
+            
+global $snake_x58 = -1
+global $snake_y58 = -1
+            
+global $snake_x59 = -1
+global $snake_y59 = -1
+            
+global $snake_x60 = -1
+global $snake_y60 = -1
+            
+global $snake_x61 = -1
+global $snake_y61 = -1
+            
+global $snake_x62 = -1
+global $snake_y62 = -1
+            
+global $snake_x63 = -1
+global $snake_y63 = -1
+            
+global $snake_x64 = -1
+global $snake_y64 = -1
+            
+global $snake_x65 = -1
+global $snake_y65 = -1
+            
+global $snake_x66 = -1
+global $snake_y66 = -1
+            
+global $snake_x67 = -1
+global $snake_y67 = -1
+            
+global $snake_x68 = -1
+global $snake_y68 = -1
+            
+global $snake_x69 = -1
+global $snake_y69 = -1
+            
+global $snake_x70 = -1
+global $snake_y70 = -1
+            
+global $snake_x71 = -1
+global $snake_y71 = -1
+            
+global $snake_x72 = -1
+global $snake_y72 = -1
+            
+global $snake_x73 = -1
+global $snake_y73 = -1
+            
+global $snake_x74 = -1
+global $snake_y74 = -1
+            
+global $snake_x75 = -1
+global $snake_y75 = -1
+            
+global $snake_x76 = -1
+global $snake_y76 = -1
+            
+global $snake_x77 = -1
+global $snake_y77 = -1
+            
+global $snake_x78 = -1
+global $snake_y78 = -1
+            
+global $snake_x79 = -1
+global $snake_y79 = -1
+            
+global $snake_x80 = -1
+global $snake_y80 = -1
+            
+global $snake_x81 = -1
+global $snake_y81 = -1
+            
+global $snake_x82 = -1
+global $snake_y82 = -1
+            
+global $snake_x83 = -1
+global $snake_y83 = -1
+            
+global $snake_x84 = -1
+global $snake_y84 = -1
+            
+global $snake_x85 = -1
+global $snake_y85 = -1
+            
+global $snake_x86 = -1
+global $snake_y86 = -1
+            
+global $snake_x87 = -1
+global $snake_y87 = -1
+            
+global $snake_x88 = -1
+global $snake_y88 = -1
+            
+global $snake_x89 = -1
+global $snake_y89 = -1
+            
+global $snake_x90 = -1
+global $snake_y90 = -1
+            
+global $snake_x91 = -1
+global $snake_y91 = -1
+            
+global $snake_x92 = -1
+global $snake_y92 = -1
+            
+global $snake_x93 = -1
+global $snake_y93 = -1
+            
+global $snake_x94 = -1
+global $snake_y94 = -1
+            
+global $snake_x95 = -1
+global $snake_y95 = -1
+            
+global $snake_x96 = -1
+global $snake_y96 = -1
+            
+global $snake_x97 = -1
+global $snake_y97 = -1
+            
+global $snake_x98 = -1
+global $snake_y98 = -1
+            
+global $snake_x99 = -1
+global $snake_y99 = -1
+
+global $snake_size_x = 0.005
+global $snake_size_y = 0.01
+
+global $go_x = 0
+global $go_y = 0
+
+global $apple_ate = 1
+
+global $show_hs = 1
+
+global persist $easy_mode = 0
+
+[Present]
+if $snake
+    run = CommandListRun
+
+    if $First_run
+        $first_run = 0
+        $show_instruction = 1
+    endif
+
+
+    if $show_instruction
+        Resource\NuraThings\Print\Custom\Text = ref ResourceInstruction
+        Resource\NuraThings\Print\Custom\TextParams = ref ResourceTextInstructionParams
+        run = CommandList\NuraThings\Print\Custom\PrintText
+    endif
+    
+    if $go_x != 0 || $go_y != 0
+
+        if $show_hs
+            $score = 0
+            $show_hs = 0
+        endif
+
+        if $show_instruction
+            $show_instruction = 0
+        endif
+
+    endif
+
+    if time - $last_time > 0.025
+                    
+        if $score >= 99
+            $snake_x99 = $snake_x98
+            $snake_y99 = $snake_y98
+        endif
+                    
+        if $score >= 98
+            $snake_x98 = $snake_x97
+            $snake_y98 = $snake_y97
+        endif
+                    
+        if $score >= 97
+            $snake_x97 = $snake_x96
+            $snake_y97 = $snake_y96
+        endif
+                    
+        if $score >= 96
+            $snake_x96 = $snake_x95
+            $snake_y96 = $snake_y95
+        endif
+                    
+        if $score >= 95
+            $snake_x95 = $snake_x94
+            $snake_y95 = $snake_y94
+        endif
+                    
+        if $score >= 94
+            $snake_x94 = $snake_x93
+            $snake_y94 = $snake_y93
+        endif
+                    
+        if $score >= 93
+            $snake_x93 = $snake_x92
+            $snake_y93 = $snake_y92
+        endif
+                    
+        if $score >= 92
+            $snake_x92 = $snake_x91
+            $snake_y92 = $snake_y91
+        endif
+                    
+        if $score >= 91
+            $snake_x91 = $snake_x90
+            $snake_y91 = $snake_y90
+        endif
+                    
+        if $score >= 90
+            $snake_x90 = $snake_x89
+            $snake_y90 = $snake_y89
+        endif
+                    
+        if $score >= 89
+            $snake_x89 = $snake_x88
+            $snake_y89 = $snake_y88
+        endif
+                    
+        if $score >= 88
+            $snake_x88 = $snake_x87
+            $snake_y88 = $snake_y87
+        endif
+                    
+        if $score >= 87
+            $snake_x87 = $snake_x86
+            $snake_y87 = $snake_y86
+        endif
+                    
+        if $score >= 86
+            $snake_x86 = $snake_x85
+            $snake_y86 = $snake_y85
+        endif
+                    
+        if $score >= 85
+            $snake_x85 = $snake_x84
+            $snake_y85 = $snake_y84
+        endif
+                    
+        if $score >= 84
+            $snake_x84 = $snake_x83
+            $snake_y84 = $snake_y83
+        endif
+                    
+        if $score >= 83
+            $snake_x83 = $snake_x82
+            $snake_y83 = $snake_y82
+        endif
+                    
+        if $score >= 82
+            $snake_x82 = $snake_x81
+            $snake_y82 = $snake_y81
+        endif
+                    
+        if $score >= 81
+            $snake_x81 = $snake_x80
+            $snake_y81 = $snake_y80
+        endif
+                    
+        if $score >= 80
+            $snake_x80 = $snake_x79
+            $snake_y80 = $snake_y79
+        endif
+                    
+        if $score >= 79
+            $snake_x79 = $snake_x78
+            $snake_y79 = $snake_y78
+        endif
+                    
+        if $score >= 78
+            $snake_x78 = $snake_x77
+            $snake_y78 = $snake_y77
+        endif
+                    
+        if $score >= 77
+            $snake_x77 = $snake_x76
+            $snake_y77 = $snake_y76
+        endif
+                    
+        if $score >= 76
+            $snake_x76 = $snake_x75
+            $snake_y76 = $snake_y75
+        endif
+                    
+        if $score >= 75
+            $snake_x75 = $snake_x74
+            $snake_y75 = $snake_y74
+        endif
+                    
+        if $score >= 74
+            $snake_x74 = $snake_x73
+            $snake_y74 = $snake_y73
+        endif
+                    
+        if $score >= 73
+            $snake_x73 = $snake_x72
+            $snake_y73 = $snake_y72
+        endif
+                    
+        if $score >= 72
+            $snake_x72 = $snake_x71
+            $snake_y72 = $snake_y71
+        endif
+                    
+        if $score >= 71
+            $snake_x71 = $snake_x70
+            $snake_y71 = $snake_y70
+        endif
+                    
+        if $score >= 70
+            $snake_x70 = $snake_x69
+            $snake_y70 = $snake_y69
+        endif
+                    
+        if $score >= 69
+            $snake_x69 = $snake_x68
+            $snake_y69 = $snake_y68
+        endif
+                    
+        if $score >= 68
+            $snake_x68 = $snake_x67
+            $snake_y68 = $snake_y67
+        endif
+                    
+        if $score >= 67
+            $snake_x67 = $snake_x66
+            $snake_y67 = $snake_y66
+        endif
+                    
+        if $score >= 66
+            $snake_x66 = $snake_x65
+            $snake_y66 = $snake_y65
+        endif
+                    
+        if $score >= 65
+            $snake_x65 = $snake_x64
+            $snake_y65 = $snake_y64
+        endif
+                    
+        if $score >= 64
+            $snake_x64 = $snake_x63
+            $snake_y64 = $snake_y63
+        endif
+                    
+        if $score >= 63
+            $snake_x63 = $snake_x62
+            $snake_y63 = $snake_y62
+        endif
+                    
+        if $score >= 62
+            $snake_x62 = $snake_x61
+            $snake_y62 = $snake_y61
+        endif
+                    
+        if $score >= 61
+            $snake_x61 = $snake_x60
+            $snake_y61 = $snake_y60
+        endif
+                    
+        if $score >= 60
+            $snake_x60 = $snake_x59
+            $snake_y60 = $snake_y59
+        endif
+                    
+        if $score >= 59
+            $snake_x59 = $snake_x58
+            $snake_y59 = $snake_y58
+        endif
+                    
+        if $score >= 58
+            $snake_x58 = $snake_x57
+            $snake_y58 = $snake_y57
+        endif
+                    
+        if $score >= 57
+            $snake_x57 = $snake_x56
+            $snake_y57 = $snake_y56
+        endif
+                    
+        if $score >= 56
+            $snake_x56 = $snake_x55
+            $snake_y56 = $snake_y55
+        endif
+                    
+        if $score >= 55
+            $snake_x55 = $snake_x54
+            $snake_y55 = $snake_y54
+        endif
+                    
+        if $score >= 54
+            $snake_x54 = $snake_x53
+            $snake_y54 = $snake_y53
+        endif
+                    
+        if $score >= 53
+            $snake_x53 = $snake_x52
+            $snake_y53 = $snake_y52
+        endif
+                    
+        if $score >= 52
+            $snake_x52 = $snake_x51
+            $snake_y52 = $snake_y51
+        endif
+                    
+        if $score >= 51
+            $snake_x51 = $snake_x50
+            $snake_y51 = $snake_y50
+        endif
+                    
+        if $score >= 50
+            $snake_x50 = $snake_x49
+            $snake_y50 = $snake_y49
+        endif
+                    
+        if $score >= 49
+            $snake_x49 = $snake_x48
+            $snake_y49 = $snake_y48
+        endif
+                    
+        if $score >= 48
+            $snake_x48 = $snake_x47
+            $snake_y48 = $snake_y47
+        endif
+                    
+        if $score >= 47
+            $snake_x47 = $snake_x46
+            $snake_y47 = $snake_y46
+        endif
+                    
+        if $score >= 46
+            $snake_x46 = $snake_x45
+            $snake_y46 = $snake_y45
+        endif
+                    
+        if $score >= 45
+            $snake_x45 = $snake_x44
+            $snake_y45 = $snake_y44
+        endif
+                    
+        if $score >= 44
+            $snake_x44 = $snake_x43
+            $snake_y44 = $snake_y43
+        endif
+                    
+        if $score >= 43
+            $snake_x43 = $snake_x42
+            $snake_y43 = $snake_y42
+        endif
+                    
+        if $score >= 42
+            $snake_x42 = $snake_x41
+            $snake_y42 = $snake_y41
+        endif
+                    
+        if $score >= 41
+            $snake_x41 = $snake_x40
+            $snake_y41 = $snake_y40
+        endif
+                    
+        if $score >= 40
+            $snake_x40 = $snake_x39
+            $snake_y40 = $snake_y39
+        endif
+                    
+        if $score >= 39
+            $snake_x39 = $snake_x38
+            $snake_y39 = $snake_y38
+        endif
+                    
+        if $score >= 38
+            $snake_x38 = $snake_x37
+            $snake_y38 = $snake_y37
+        endif
+                    
+        if $score >= 37
+            $snake_x37 = $snake_x36
+            $snake_y37 = $snake_y36
+        endif
+                    
+        if $score >= 36
+            $snake_x36 = $snake_x35
+            $snake_y36 = $snake_y35
+        endif
+                    
+        if $score >= 35
+            $snake_x35 = $snake_x34
+            $snake_y35 = $snake_y34
+        endif
+                    
+        if $score >= 34
+            $snake_x34 = $snake_x33
+            $snake_y34 = $snake_y33
+        endif
+                    
+        if $score >= 33
+            $snake_x33 = $snake_x32
+            $snake_y33 = $snake_y32
+        endif
+                    
+        if $score >= 32
+            $snake_x32 = $snake_x31
+            $snake_y32 = $snake_y31
+        endif
+                    
+        if $score >= 31
+            $snake_x31 = $snake_x30
+            $snake_y31 = $snake_y30
+        endif
+                    
+        if $score >= 30
+            $snake_x30 = $snake_x29
+            $snake_y30 = $snake_y29
+        endif
+                    
+        if $score >= 29
+            $snake_x29 = $snake_x28
+            $snake_y29 = $snake_y28
+        endif
+                    
+        if $score >= 28
+            $snake_x28 = $snake_x27
+            $snake_y28 = $snake_y27
+        endif
+                    
+        if $score >= 27
+            $snake_x27 = $snake_x26
+            $snake_y27 = $snake_y26
+        endif
+                    
+        if $score >= 26
+            $snake_x26 = $snake_x25
+            $snake_y26 = $snake_y25
+        endif
+                    
+        if $score >= 25
+            $snake_x25 = $snake_x24
+            $snake_y25 = $snake_y24
+        endif
+                    
+        if $score >= 24
+            $snake_x24 = $snake_x23
+            $snake_y24 = $snake_y23
+        endif
+                    
+        if $score >= 23
+            $snake_x23 = $snake_x22
+            $snake_y23 = $snake_y22
+        endif
+                    
+        if $score >= 22
+            $snake_x22 = $snake_x21
+            $snake_y22 = $snake_y21
+        endif
+                    
+        if $score >= 21
+            $snake_x21 = $snake_x20
+            $snake_y21 = $snake_y20
+        endif
+                    
+        if $score >= 20
+            $snake_x20 = $snake_x19
+            $snake_y20 = $snake_y19
+        endif
+                    
+        if $score >= 19
+            $snake_x19 = $snake_x18
+            $snake_y19 = $snake_y18
+        endif
+                    
+        if $score >= 18
+            $snake_x18 = $snake_x17
+            $snake_y18 = $snake_y17
+        endif
+                    
+        if $score >= 17
+            $snake_x17 = $snake_x16
+            $snake_y17 = $snake_y16
+        endif
+                    
+        if $score >= 16
+            $snake_x16 = $snake_x15
+            $snake_y16 = $snake_y15
+        endif
+                    
+        if $score >= 15
+            $snake_x15 = $snake_x14
+            $snake_y15 = $snake_y14
+        endif
+                    
+        if $score >= 14
+            $snake_x14 = $snake_x13
+            $snake_y14 = $snake_y13
+        endif
+                    
+        if $score >= 13
+            $snake_x13 = $snake_x12
+            $snake_y13 = $snake_y12
+        endif
+                    
+        if $score >= 12
+            $snake_x12 = $snake_x11
+            $snake_y12 = $snake_y11
+        endif
+                    
+        if $score >= 11
+            $snake_x11 = $snake_x10
+            $snake_y11 = $snake_y10
+        endif
+                    
+        if $score >= 10
+            $snake_x10 = $snake_x9
+            $snake_y10 = $snake_y9
+        endif
+
+        if $score >= 9
+            $snake_x9 = $snake_x8
+            $snake_y9 = $snake_y8
+        endif
+
+        if $score >= 8
+            $snake_x8 = $snake_x7
+            $snake_y8 = $snake_y7
+        endif
+
+        if $score >= 7
+            $snake_x7 = $snake_x6
+            $snake_y7 = $snake_y6
+        endif
+
+        if $score >= 6
+            $snake_x6 = $snake_x5
+            $snake_y6 = $snake_y5
+        endif
+        
+        if $score >= 5
+            $snake_x5 = $snake_x4
+            $snake_y5 = $snake_y4
+        endif
+
+        if $score >= 4
+            $snake_x4 = $snake_x3
+            $snake_y4 = $snake_y3
+        endif
+
+        if $score >= 3
+            $snake_x3 = $snake_x2
+            $snake_y3 = $snake_y2
+        endif
+
+        if $score >= 2
+            $snake_x2 = $snake_x1
+            $snake_y2 = $snake_y1
+        endif
+
+        if $score >= 1
+            $snake_x1 = $snake_x
+            $snake_y1 = $snake_y
+        endif
+     
+        $snake_x = $snake_x+$go_x
+        $snake_y = $snake_y+$go_y
+        $last_time = time
+        
+    endif
+
+    run = CommandListGenerateSegments
+
+    if (($snake_x == $snake_x1 && $snake_y == $snake_y1) || ($snake_x == $snake_x2 && $snake_y == $snake_y2) || ($snake_x == $snake_x3 && $snake_y == $snake_y3) || ($snake_x == $snake_x4 && $snake_y == $snake_y4) || ($snake_x == $snake_x5 && $snake_y == $snake_y5) || ($snake_x == $snake_x6 && $snake_y == $snake_y6) || ($snake_x == $snake_x7 && $snake_y == $snake_y7) || ($snake_x == $snake_x8 && $snake_y == $snake_y8) || ($snake_x == $snake_x9 && $snake_y == $snake_y9) || ($snake_x == $snake_x10 && $snake_y == $snake_y10) || ($snake_x == $snake_x11 && $snake_y == $snake_y11) || ($snake_x == $snake_x12 && $snake_y == $snake_y12) || ($snake_x == $snake_x13 && $snake_y == $snake_y13) || ($snake_x == $snake_x14 && $snake_y == $snake_y14) || ($snake_x == $snake_x15 && $snake_y == $snake_y15) || ($snake_x == $snake_x16 && $snake_y == $snake_y16) || ($snake_x == $snake_x17 && $snake_y == $snake_y17) || ($snake_x == $snake_x18 && $snake_y == $snake_y18) || ($snake_x == $snake_x19 && $snake_y == $snake_y19) || ($snake_x == $snake_x20 && $snake_y == $snake_y20) || ($snake_x == $snake_x21 && $snake_y == $snake_y21) || ($snake_x == $snake_x22 && $snake_y == $snake_y22) || ($snake_x == $snake_x23 && $snake_y == $snake_y23) || ($snake_x == $snake_x24 && $snake_y == $snake_y24) || ($snake_x == $snake_x25 && $snake_y == $snake_y25) || ($snake_x == $snake_x26 && $snake_y == $snake_y26) || ($snake_x == $snake_x27 && $snake_y == $snake_y27) || ($snake_x == $snake_x28 && $snake_y == $snake_y28) || ($snake_x == $snake_x29 && $snake_y == $snake_y29) || ($snake_x == $snake_x30 && $snake_y == $snake_y30) || ($snake_x == $snake_x31 && $snake_y == $snake_y31) || ($snake_x == $snake_x32 && $snake_y == $snake_y32) || ($snake_x == $snake_x33 && $snake_y == $snake_y33) || ($snake_x == $snake_x34 && $snake_y == $snake_y34) || ($snake_x == $snake_x35 && $snake_y == $snake_y35) || ($snake_x == $snake_x36 && $snake_y == $snake_y36) || ($snake_x == $snake_x37 && $snake_y == $snake_y37) || ($snake_x == $snake_x38 && $snake_y == $snake_y38) || ($snake_x == $snake_x39 && $snake_y == $snake_y39) || ($snake_x == $snake_x40 && $snake_y == $snake_y40) || ($snake_x == $snake_x41 && $snake_y == $snake_y41) || ($snake_x == $snake_x42 && $snake_y == $snake_y42) || ($snake_x == $snake_x43 && $snake_y == $snake_y43) || ($snake_x == $snake_x44 && $snake_y == $snake_y44) || ($snake_x == $snake_x45 && $snake_y == $snake_y45) || ($snake_x == $snake_x46 && $snake_y == $snake_y46) || ($snake_x == $snake_x47 && $snake_y == $snake_y47) || ($snake_x == $snake_x48 && $snake_y == $snake_y48) || ($snake_x == $snake_x49 && $snake_y == $snake_y49) || ($snake_x == $snake_x50 && $snake_y == $snake_y50) || ($snake_x == $snake_x51 && $snake_y == $snake_y51) || ($snake_x == $snake_x52 && $snake_y == $snake_y52) || ($snake_x == $snake_x53 && $snake_y == $snake_y53) || ($snake_x == $snake_x54 && $snake_y == $snake_y54) || ($snake_x == $snake_x55 && $snake_y == $snake_y55) || ($snake_x == $snake_x56 && $snake_y == $snake_y56) || ($snake_x == $snake_x57 && $snake_y == $snake_y57) || ($snake_x == $snake_x58 && $snake_y == $snake_y58) || ($snake_x == $snake_x59 && $snake_y == $snake_y59) || ($snake_x == $snake_x60 && $snake_y == $snake_y60) || ($snake_x == $snake_x61 && $snake_y == $snake_y61) || ($snake_x == $snake_x62 && $snake_y == $snake_y62) || ($snake_x == $snake_x63 && $snake_y == $snake_y63) || ($snake_x == $snake_x64 && $snake_y == $snake_y64) || ($snake_x == $snake_x65 && $snake_y == $snake_y65) || ($snake_x == $snake_x66 && $snake_y == $snake_y66) || ($snake_x == $snake_x67 && $snake_y == $snake_y67) || ($snake_x == $snake_x68 && $snake_y == $snake_y68) || ($snake_x == $snake_x69 && $snake_y == $snake_y69) || ($snake_x == $snake_x70 && $snake_y == $snake_y70) || ($snake_x == $snake_x71 && $snake_y == $snake_y71) || ($snake_x == $snake_x72 && $snake_y == $snake_y72) || ($snake_x == $snake_x73 && $snake_y == $snake_y73) || ($snake_x == $snake_x74 && $snake_y == $snake_y74) || ($snake_x == $snake_x75 && $snake_y == $snake_y75) || ($snake_x == $snake_x76 && $snake_y == $snake_y76) || ($snake_x == $snake_x77 && $snake_y == $snake_y77) || ($snake_x == $snake_x78 && $snake_y == $snake_y78) || ($snake_x == $snake_x79 && $snake_y == $snake_y79) || ($snake_x == $snake_x80 && $snake_y == $snake_y80) || ($snake_x == $snake_x81 && $snake_y == $snake_y81) || ($snake_x == $snake_x82 && $snake_y == $snake_y82) || ($snake_x == $snake_x83 && $snake_y == $snake_y83) || ($snake_x == $snake_x84 && $snake_y == $snake_y84) || ($snake_x == $snake_x85 && $snake_y == $snake_y85) || ($snake_x == $snake_x86 && $snake_y == $snake_y86) || ($snake_x == $snake_x87 && $snake_y == $snake_y87) || ($snake_x == $snake_x88 && $snake_y == $snake_y88) || ($snake_x == $snake_x89 && $snake_y == $snake_y89) || ($snake_x == $snake_x90 && $snake_y == $snake_y90) || ($snake_x == $snake_x91 && $snake_y == $snake_y91) || ($snake_x == $snake_x92 && $snake_y == $snake_y92) || ($snake_x == $snake_x93 && $snake_y == $snake_y93) || ($snake_x == $snake_x94 && $snake_y == $snake_y94) || ($snake_x == $snake_x95 && $snake_y == $snake_y95) || ($snake_x == $snake_x96 && $snake_y == $snake_y96) || ($snake_x == $snake_x97 && $snake_y == $snake_y97) || ($snake_x == $snake_x98 && $snake_y == $snake_y98) || ($snake_x == $snake_x99 && $snake_y == $snake_y99))
+       run = CommandListReset
+    endif
+       
+    if (($snake_x >= $apple_x || $snake_x+$snake_size_x >= $apple_x) && ($snake_y >= $apple_y || $snake_y+$snake_size_y >= $apple_y)) && (($snake_x <= $apple_x+0.005 || $snake_x+$snake_size_x<= $apple_x+0.005) && ($snake_y <= $apple_y+0.01 || $snake_y+$snake_size_y<= $apple_y+0.01))
+        $score = $score+1
+        
+        if !$easy_mode
+            if $score > $best_score
+                $best_score = $score
+            endif
+        else
+            if $score > $best_score_easy_mode
+                $best_score_easy_mode = $score
+            endif
+        endif
+        
+        $apple_ate = 1
+        run = CommandListGenerateApple
+    endif
+
+
+    if $easy_mode
+        if $snake_x <= 0
+            $snake_x = 0.99
+
+        else if $snake_x >= 1
+            $snake_x = 0.01
+
+        else if $snake_y <= 0
+            $snake_y = 0.99
+
+        else if $snake_y >= 1
+            $snake_y = 0.01
+        endif
+    else
+        if $snake_x <= 0 || $snake_x >= 1 || $snake_y <= 0 || $snake_y >= 1
+            run = CommandListReset
+        endif
+    endif
+endif
+
+
+
+[ResourceSnakeHead]
+filename = resources/SnakeHead.dds
+[ResourceSnake]
+filename = resources/Snake.dds
+[ResourceBackgroundUI]
+filename = resources/backgroundDefault.dds
+[ResourceApple]
+filename = resources/Apple.dds
+
+[ResourceNumber0]
+filename = resources/numbers/num_0.dds
+[ResourceNumber1]
+filename = resources/numbers/num_1.dds
+[ResourceNumber2]
+filename = resources/numbers/num_2.dds
+[ResourceNumber3]
+filename = resources/numbers/num_3.dds
+[ResourceNumber4]
+filename = resources/numbers/num_4.dds
+[ResourceNumber5]
+filename = resources/numbers/num_5.dds
+[ResourceNumber6]
+filename = resources/numbers/num_6.dds
+[ResourceNumber7]
+filename = resources/numbers/num_7.dds
+[ResourceNumber8]
+filename = resources/numbers/num_8.dds
+[ResourceNumber9]
+filename = resources/numbers/num_9.dds
+
+[KeyShowMode]
+condition = $snake
+key = F
+type = hold
+$show_mode = 1
+
+[KeySnakeToggle]
+key = VK_CTRL VK_ALT P
+type = toggle
+$snake = 1
+
+[KeyEasyModeInstruction]
+condition = $snake
+key = I
+type = cycle
+$show_instruction = 0,1
+
+[KeyEasyModeToggle]
+condition = $snake && $go_x == 0 && $go_y == 0
+key = L
+type = cycle
+$easy_mode = 0,1
+
+[KeyMoveLeft]
+condition = $snake && $easy_mode == 0
+key = A
+$go_x = -0.0075
+$go_y = 0
+
+[KeyMoveRight]
+condition = $snake && $easy_mode == 0
+key = D
+$go_x = 0.0075
+$go_y = 0
+
+[KeyMoveUp]
+condition = $snake && $easy_mode == 0
+key = W
+$go_y = -0.015
+$go_x = 0
+
+[KeyMoveDown]
+condition = $snake && $easy_mode == 0
+key = S
+$go_y = 0.015
+$go_x = 0
+
+[KeyMoveLeftEasy]
+condition = $snake && $go_x != 0.0075
+key = A
+$go_x = -0.0075
+$go_y = 0
+
+[KeyMoveRightEasy]
+condition = $snake && $go_x != -0.0075
+key = D
+$go_x = 0.0075
+$go_y = 0
+
+[KeyMoveUpEasy]
+condition = $snake && $go_y != 0.015
+key = W
+$go_y = -0.015
+$go_x = 0
+
+[KeyMoveDowEasy]
+condition = $snake && $go_y != -0.015
+key = S
+$go_y = 0.015
+$go_x = 0
+
+[CustomShaderSliderMenu]
+vs = ../../Shaders/UIElement.hlsl
+ps = ../../Shaders/UIElement.hlsl
+blend = ADD SRC_ALPHA INV_SRC_ALPHA
+cull = none
+topology = triangle_strip
+o0 = set_viewport bb
+Draw = 4,0
+
+[CommandListBackdrop]
+x87 = 1
+y87 = 1
+z87 = 0
+w87 = 0
+ps-t100 = ResourceBackgroundUI
+run = CustomShaderSliderMenu
+
+[CommandListReset]
+$snake_x = 0.5
+$snake_y = 0.5
+$score = 0
+$go_x = 0
+$go_y = 0
+$show_hs = 1
+
+$snake_x1 = -1
+$snake_y1 = -1
+            
+$snake_x2 = -1
+$snake_y2 = -1
+            
+$snake_x3 = -1
+$snake_y3 = -1
+            
+$snake_x4 = -1
+$snake_y4 = -1
+            
+$snake_x5 = -1
+$snake_y5 = -1
+            
+$snake_x6 = -1
+$snake_y6 = -1
+            
+$snake_x7 = -1
+$snake_y7 = -1
+            
+$snake_x8 = -1
+$snake_y8 = -1
+            
+$snake_x9 = -1
+$snake_y9 = -1
+            
+$snake_x10 = -1
+$snake_y10 = -1
+            
+$snake_x11 = -1
+$snake_y11 = -1
+            
+$snake_x12 = -1
+$snake_y12 = -1
+            
+$snake_x13 = -1
+$snake_y13 = -1
+            
+$snake_x14 = -1
+$snake_y14 = -1
+            
+$snake_x15 = -1
+$snake_y15 = -1
+            
+$snake_x16 = -1
+$snake_y16 = -1
+            
+$snake_x17 = -1
+$snake_y17 = -1
+            
+$snake_x18 = -1
+$snake_y18 = -1
+            
+$snake_x19 = -1
+$snake_y19 = -1
+            
+$snake_x20 = -1
+$snake_y20 = -1
+            
+$snake_x21 = -1
+$snake_y21 = -1
+            
+$snake_x22 = -1
+$snake_y22 = -1
+            
+$snake_x23 = -1
+$snake_y23 = -1
+            
+$snake_x24 = -1
+$snake_y24 = -1
+            
+$snake_x25 = -1
+$snake_y25 = -1
+            
+$snake_x26 = -1
+$snake_y26 = -1
+            
+$snake_x27 = -1
+$snake_y27 = -1
+            
+$snake_x28 = -1
+$snake_y28 = -1
+            
+$snake_x29 = -1
+$snake_y29 = -1
+            
+$snake_x30 = -1
+$snake_y30 = -1
+            
+$snake_x31 = -1
+$snake_y31 = -1
+            
+$snake_x32 = -1
+$snake_y32 = -1
+            
+$snake_x33 = -1
+$snake_y33 = -1
+            
+$snake_x34 = -1
+$snake_y34 = -1
+            
+$snake_x35 = -1
+$snake_y35 = -1
+            
+$snake_x36 = -1
+$snake_y36 = -1
+            
+$snake_x37 = -1
+$snake_y37 = -1
+            
+$snake_x38 = -1
+$snake_y38 = -1
+            
+$snake_x39 = -1
+$snake_y39 = -1
+            
+$snake_x40 = -1
+$snake_y40 = -1
+            
+$snake_x41 = -1
+$snake_y41 = -1
+            
+$snake_x42 = -1
+$snake_y42 = -1
+            
+$snake_x43 = -1
+$snake_y43 = -1
+            
+$snake_x44 = -1
+$snake_y44 = -1
+            
+$snake_x45 = -1
+$snake_y45 = -1
+            
+$snake_x46 = -1
+$snake_y46 = -1
+            
+$snake_x47 = -1
+$snake_y47 = -1
+            
+$snake_x48 = -1
+$snake_y48 = -1
+            
+$snake_x49 = -1
+$snake_y49 = -1
+            
+$snake_x50 = -1
+$snake_y50 = -1
+            
+$snake_x51 = -1
+$snake_y51 = -1
+            
+$snake_x52 = -1
+$snake_y52 = -1
+            
+$snake_x53 = -1
+$snake_y53 = -1
+            
+$snake_x54 = -1
+$snake_y54 = -1
+            
+$snake_x55 = -1
+$snake_y55 = -1
+            
+$snake_x56 = -1
+$snake_y56 = -1
+            
+$snake_x57 = -1
+$snake_y57 = -1
+            
+$snake_x58 = -1
+$snake_y58 = -1
+            
+$snake_x59 = -1
+$snake_y59 = -1
+            
+$snake_x60 = -1
+$snake_y60 = -1
+            
+$snake_x61 = -1
+$snake_y61 = -1
+            
+$snake_x62 = -1
+$snake_y62 = -1
+            
+$snake_x63 = -1
+$snake_y63 = -1
+            
+$snake_x64 = -1
+$snake_y64 = -1
+            
+$snake_x65 = -1
+$snake_y65 = -1
+            
+$snake_x66 = -1
+$snake_y66 = -1
+            
+$snake_x67 = -1
+$snake_y67 = -1
+            
+$snake_x68 = -1
+$snake_y68 = -1
+            
+$snake_x69 = -1
+$snake_y69 = -1
+            
+$snake_x70 = -1
+$snake_y70 = -1
+            
+$snake_x71 = -1
+$snake_y71 = -1
+            
+$snake_x72 = -1
+$snake_y72 = -1
+            
+$snake_x73 = -1
+$snake_y73 = -1
+            
+$snake_x74 = -1
+$snake_y74 = -1
+            
+$snake_x75 = -1
+$snake_y75 = -1
+            
+$snake_x76 = -1
+$snake_y76 = -1
+            
+$snake_x77 = -1
+$snake_y77 = -1
+            
+$snake_x78 = -1
+$snake_y78 = -1
+            
+$snake_x79 = -1
+$snake_y79 = -1
+            
+$snake_x80 = -1
+$snake_y80 = -1
+            
+$snake_x81 = -1
+$snake_y81 = -1
+            
+$snake_x82 = -1
+$snake_y82 = -1
+            
+$snake_x83 = -1
+$snake_y83 = -1
+            
+$snake_x84 = -1
+$snake_y84 = -1
+            
+$snake_x85 = -1
+$snake_y85 = -1
+            
+$snake_x86 = -1
+$snake_y86 = -1
+            
+$snake_x87 = -1
+$snake_y87 = -1
+            
+$snake_x88 = -1
+$snake_y88 = -1
+            
+$snake_x89 = -1
+$snake_y89 = -1
+            
+$snake_x90 = -1
+$snake_y90 = -1
+            
+$snake_x91 = -1
+$snake_y91 = -1
+            
+$snake_x92 = -1
+$snake_y92 = -1
+            
+$snake_x93 = -1
+$snake_y93 = -1
+            
+$snake_x94 = -1
+$snake_y94 = -1
+            
+$snake_x95 = -1
+$snake_y95 = -1
+            
+$snake_x96 = -1
+$snake_y96 = -1
+            
+$snake_x97 = -1
+$snake_y97 = -1
+            
+$snake_x98 = -1
+$snake_y98 = -1
+            
+$snake_x99 = -1
+$snake_y99 = -1
+
+
+[CommandListGenerateSegments]
+x87 = $snake_size_x
+y87 = $snake_size_y
+z87 = $snake_x
+w87 = $snake_y
+
+ps-t100 = ResourceSnakeHead
+run = CustomShaderSliderMenu
+
+ps-t100 = ResourceSnake
+
+if $score >= 1
+    z87 = $snake_x1
+    w87 = $snake_y1
+    run = CustomShaderSliderMenu
+endif
+
+if $score >= 2
+    z87 = $snake_x2
+    w87 = $snake_y2
+    run = CustomShaderSliderMenu
+endif
+
+if $score >= 3
+    z87 = $snake_x3
+    w87 = $snake_y3
+    run = CustomShaderSliderMenu
+endif
+
+if $score >= 4
+    z87 = $snake_x4
+    w87 = $snake_y4
+    run = CustomShaderSliderMenu
+endif
+
+if $score >= 5
+    z87 = $snake_x5
+    w87 = $snake_y5
+    run = CustomShaderSliderMenu
+endif
+
+if $score >= 6
+    z87 = $snake_x6
+    w87 = $snake_y6
+    run = CustomShaderSliderMenu
+endif
+
+if $score >= 7
+    z87 = $snake_x7
+    w87 = $snake_y7
+    run = CustomShaderSliderMenu
+endif
+
+if $score >= 8
+    z87 = $snake_x8
+    w87 = $snake_y8
+    run = CustomShaderSliderMenu
+endif
+
+if $score >= 9
+    z87 = $snake_x9
+    w87 = $snake_y9
+    run = CustomShaderSliderMenu
+endif
+
+if $score >= 10
+    z87 = $snake_x10
+    w87 = $snake_y10
+    run = CustomShaderSliderMenu
+endif
+            
+if $score >= 11
+    z87 = $snake_x11
+    w87 = $snake_y11
+    run = CustomShaderSliderMenu
+endif
+            
+if $score >= 12
+    z87 = $snake_x12
+    w87 = $snake_y12
+    run = CustomShaderSliderMenu
+endif
+            
+if $score >= 13
+    z87 = $snake_x13
+    w87 = $snake_y13
+    run = CustomShaderSliderMenu
+endif
+            
+if $score >= 14
+    z87 = $snake_x14
+    w87 = $snake_y14
+    run = CustomShaderSliderMenu
+endif
+            
+if $score >= 15
+    z87 = $snake_x15
+    w87 = $snake_y15
+    run = CustomShaderSliderMenu
+endif
+            
+if $score >= 16
+    z87 = $snake_x16
+    w87 = $snake_y16
+    run = CustomShaderSliderMenu
+endif
+            
+if $score >= 17
+    z87 = $snake_x17
+    w87 = $snake_y17
+    run = CustomShaderSliderMenu
+endif
+            
+if $score >= 18
+    z87 = $snake_x18
+    w87 = $snake_y18
+    run = CustomShaderSliderMenu
+endif
+            
+if $score >= 19
+    z87 = $snake_x19
+    w87 = $snake_y19
+    run = CustomShaderSliderMenu
+endif
+            
+if $score >= 20
+    z87 = $snake_x20
+    w87 = $snake_y20
+    run = CustomShaderSliderMenu
+endif
+            
+if $score >= 21
+    z87 = $snake_x21
+    w87 = $snake_y21
+    run = CustomShaderSliderMenu
+endif
+            
+if $score >= 22
+    z87 = $snake_x22
+    w87 = $snake_y22
+    run = CustomShaderSliderMenu
+endif
+            
+if $score >= 23
+    z87 = $snake_x23
+    w87 = $snake_y23
+    run = CustomShaderSliderMenu
+endif
+            
+if $score >= 24
+    z87 = $snake_x24
+    w87 = $snake_y24
+    run = CustomShaderSliderMenu
+endif
+            
+if $score >= 25
+    z87 = $snake_x25
+    w87 = $snake_y25
+    run = CustomShaderSliderMenu
+endif
+            
+if $score >= 26
+    z87 = $snake_x26
+    w87 = $snake_y26
+    run = CustomShaderSliderMenu
+endif
+            
+if $score >= 27
+    z87 = $snake_x27
+    w87 = $snake_y27
+    run = CustomShaderSliderMenu
+endif
+            
+if $score >= 28
+    z87 = $snake_x28
+    w87 = $snake_y28
+    run = CustomShaderSliderMenu
+endif
+            
+if $score >= 29
+    z87 = $snake_x29
+    w87 = $snake_y29
+    run = CustomShaderSliderMenu
+endif
+            
+if $score >= 30
+    z87 = $snake_x30
+    w87 = $snake_y30
+    run = CustomShaderSliderMenu
+endif
+            
+if $score >= 31
+    z87 = $snake_x31
+    w87 = $snake_y31
+    run = CustomShaderSliderMenu
+endif
+            
+if $score >= 32
+    z87 = $snake_x32
+    w87 = $snake_y32
+    run = CustomShaderSliderMenu
+endif
+            
+if $score >= 33
+    z87 = $snake_x33
+    w87 = $snake_y33
+    run = CustomShaderSliderMenu
+endif
+            
+if $score >= 34
+    z87 = $snake_x34
+    w87 = $snake_y34
+    run = CustomShaderSliderMenu
+endif
+            
+if $score >= 35
+    z87 = $snake_x35
+    w87 = $snake_y35
+    run = CustomShaderSliderMenu
+endif
+            
+if $score >= 36
+    z87 = $snake_x36
+    w87 = $snake_y36
+    run = CustomShaderSliderMenu
+endif
+            
+if $score >= 37
+    z87 = $snake_x37
+    w87 = $snake_y37
+    run = CustomShaderSliderMenu
+endif
+            
+if $score >= 38
+    z87 = $snake_x38
+    w87 = $snake_y38
+    run = CustomShaderSliderMenu
+endif
+            
+if $score >= 39
+    z87 = $snake_x39
+    w87 = $snake_y39
+    run = CustomShaderSliderMenu
+endif
+            
+if $score >= 40
+    z87 = $snake_x40
+    w87 = $snake_y40
+    run = CustomShaderSliderMenu
+endif
+            
+if $score >= 41
+    z87 = $snake_x41
+    w87 = $snake_y41
+    run = CustomShaderSliderMenu
+endif
+            
+if $score >= 42
+    z87 = $snake_x42
+    w87 = $snake_y42
+    run = CustomShaderSliderMenu
+endif
+            
+if $score >= 43
+    z87 = $snake_x43
+    w87 = $snake_y43
+    run = CustomShaderSliderMenu
+endif
+            
+if $score >= 44
+    z87 = $snake_x44
+    w87 = $snake_y44
+    run = CustomShaderSliderMenu
+endif
+            
+if $score >= 45
+    z87 = $snake_x45
+    w87 = $snake_y45
+    run = CustomShaderSliderMenu
+endif
+            
+if $score >= 46
+    z87 = $snake_x46
+    w87 = $snake_y46
+    run = CustomShaderSliderMenu
+endif
+            
+if $score >= 47
+    z87 = $snake_x47
+    w87 = $snake_y47
+    run = CustomShaderSliderMenu
+endif
+            
+if $score >= 48
+    z87 = $snake_x48
+    w87 = $snake_y48
+    run = CustomShaderSliderMenu
+endif
+            
+if $score >= 49
+    z87 = $snake_x49
+    w87 = $snake_y49
+    run = CustomShaderSliderMenu
+endif
+            
+if $score >= 50
+    z87 = $snake_x50
+    w87 = $snake_y50
+    run = CustomShaderSliderMenu
+endif
+            
+if $score >= 51
+    z87 = $snake_x51
+    w87 = $snake_y51
+    run = CustomShaderSliderMenu
+endif
+            
+if $score >= 52
+    z87 = $snake_x52
+    w87 = $snake_y52
+    run = CustomShaderSliderMenu
+endif
+            
+if $score >= 53
+    z87 = $snake_x53
+    w87 = $snake_y53
+    run = CustomShaderSliderMenu
+endif
+            
+if $score >= 54
+    z87 = $snake_x54
+    w87 = $snake_y54
+    run = CustomShaderSliderMenu
+endif
+            
+if $score >= 55
+    z87 = $snake_x55
+    w87 = $snake_y55
+    run = CustomShaderSliderMenu
+endif
+            
+if $score >= 56
+    z87 = $snake_x56
+    w87 = $snake_y56
+    run = CustomShaderSliderMenu
+endif
+            
+if $score >= 57
+    z87 = $snake_x57
+    w87 = $snake_y57
+    run = CustomShaderSliderMenu
+endif
+            
+if $score >= 58
+    z87 = $snake_x58
+    w87 = $snake_y58
+    run = CustomShaderSliderMenu
+endif
+            
+if $score >= 59
+    z87 = $snake_x59
+    w87 = $snake_y59
+    run = CustomShaderSliderMenu
+endif
+            
+if $score >= 60
+    z87 = $snake_x60
+    w87 = $snake_y60
+    run = CustomShaderSliderMenu
+endif
+            
+if $score >= 61
+    z87 = $snake_x61
+    w87 = $snake_y61
+    run = CustomShaderSliderMenu
+endif
+            
+if $score >= 62
+    z87 = $snake_x62
+    w87 = $snake_y62
+    run = CustomShaderSliderMenu
+endif
+            
+if $score >= 63
+    z87 = $snake_x63
+    w87 = $snake_y63
+    run = CustomShaderSliderMenu
+endif
+            
+if $score >= 64
+    z87 = $snake_x64
+    w87 = $snake_y64
+    run = CustomShaderSliderMenu
+endif
+            
+if $score >= 65
+    z87 = $snake_x65
+    w87 = $snake_y65
+    run = CustomShaderSliderMenu
+endif
+            
+if $score >= 66
+    z87 = $snake_x66
+    w87 = $snake_y66
+    run = CustomShaderSliderMenu
+endif
+            
+if $score >= 67
+    z87 = $snake_x67
+    w87 = $snake_y67
+    run = CustomShaderSliderMenu
+endif
+            
+if $score >= 68
+    z87 = $snake_x68
+    w87 = $snake_y68
+    run = CustomShaderSliderMenu
+endif
+            
+if $score >= 69
+    z87 = $snake_x69
+    w87 = $snake_y69
+    run = CustomShaderSliderMenu
+endif
+            
+if $score >= 70
+    z87 = $snake_x70
+    w87 = $snake_y70
+    run = CustomShaderSliderMenu
+endif
+            
+if $score >= 71
+    z87 = $snake_x71
+    w87 = $snake_y71
+    run = CustomShaderSliderMenu
+endif
+            
+if $score >= 72
+    z87 = $snake_x72
+    w87 = $snake_y72
+    run = CustomShaderSliderMenu
+endif
+            
+if $score >= 73
+    z87 = $snake_x73
+    w87 = $snake_y73
+    run = CustomShaderSliderMenu
+endif
+            
+if $score >= 74
+    z87 = $snake_x74
+    w87 = $snake_y74
+    run = CustomShaderSliderMenu
+endif
+            
+if $score >= 75
+    z87 = $snake_x75
+    w87 = $snake_y75
+    run = CustomShaderSliderMenu
+endif
+            
+if $score >= 76
+    z87 = $snake_x76
+    w87 = $snake_y76
+    run = CustomShaderSliderMenu
+endif
+            
+if $score >= 77
+    z87 = $snake_x77
+    w87 = $snake_y77
+    run = CustomShaderSliderMenu
+endif
+            
+if $score >= 78
+    z87 = $snake_x78
+    w87 = $snake_y78
+    run = CustomShaderSliderMenu
+endif
+            
+if $score >= 79
+    z87 = $snake_x79
+    w87 = $snake_y79
+    run = CustomShaderSliderMenu
+endif
+            
+if $score >= 80
+    z87 = $snake_x80
+    w87 = $snake_y80
+    run = CustomShaderSliderMenu
+endif
+            
+if $score >= 81
+    z87 = $snake_x81
+    w87 = $snake_y81
+    run = CustomShaderSliderMenu
+endif
+            
+if $score >= 82
+    z87 = $snake_x82
+    w87 = $snake_y82
+    run = CustomShaderSliderMenu
+endif
+            
+if $score >= 83
+    z87 = $snake_x83
+    w87 = $snake_y83
+    run = CustomShaderSliderMenu
+endif
+            
+if $score >= 84
+    z87 = $snake_x84
+    w87 = $snake_y84
+    run = CustomShaderSliderMenu
+endif
+            
+if $score >= 85
+    z87 = $snake_x85
+    w87 = $snake_y85
+    run = CustomShaderSliderMenu
+endif
+            
+if $score >= 86
+    z87 = $snake_x86
+    w87 = $snake_y86
+    run = CustomShaderSliderMenu
+endif
+            
+if $score >= 87
+    z87 = $snake_x87
+    w87 = $snake_y87
+    run = CustomShaderSliderMenu
+endif
+            
+if $score >= 88
+    z87 = $snake_x88
+    w87 = $snake_y88
+    run = CustomShaderSliderMenu
+endif
+            
+if $score >= 89
+    z87 = $snake_x89
+    w87 = $snake_y89
+    run = CustomShaderSliderMenu
+endif
+            
+if $score >= 90
+    z87 = $snake_x90
+    w87 = $snake_y90
+    run = CustomShaderSliderMenu
+endif
+            
+if $score >= 91
+    z87 = $snake_x91
+    w87 = $snake_y91
+    run = CustomShaderSliderMenu
+endif
+            
+if $score >= 92
+    z87 = $snake_x92
+    w87 = $snake_y92
+    run = CustomShaderSliderMenu
+endif
+            
+if $score >= 93
+    z87 = $snake_x93
+    w87 = $snake_y93
+    run = CustomShaderSliderMenu
+endif
+            
+if $score >= 94
+    z87 = $snake_x94
+    w87 = $snake_y94
+    run = CustomShaderSliderMenu
+endif
+            
+if $score >= 95
+    z87 = $snake_x95
+    w87 = $snake_y95
+    run = CustomShaderSliderMenu
+endif
+            
+if $score >= 96
+    z87 = $snake_x96
+    w87 = $snake_y96
+    run = CustomShaderSliderMenu
+endif
+            
+if $score >= 97
+    z87 = $snake_x97
+    w87 = $snake_y97
+    run = CustomShaderSliderMenu
+endif
+            
+if $score >= 98
+    z87 = $snake_x98
+    w87 = $snake_y98
+    run = CustomShaderSliderMenu
+endif
+            
+if $score >= 99
+    z87 = $snake_x99
+    w87 = $snake_y99
+    run = CustomShaderSliderMenu
+endif
+
+
+[CommandListGenerateScore]
+$\NuraThings\Print\Numbers\Number = $score
+$\NuraThings\Print\Numbers\widthScale = 4.625
+$\NuraThings\Print\Numbers\heightScale = 1.5
+run = CommandList\NuraThings\Print\Numbers\run
+
+if $show_hs
+    $\NuraThings\Print\Numbers\Number = $best_score_easy_mode
+    $\NuraThings\Print\Numbers\widthScale = 4.625
+    $\NuraThings\Print\Numbers\heightScale = 2.5
+    run = CommandList\NuraThings\Print\Numbers\run
+endif
+
+
+[CommandListRenderApple]
+x87 = 0.005
+y87 = 0.01
+z87 = $apple_x
+w87 = $apple_y
+ps-t100 = ResourceApple
+run = CustomShaderSliderMenu
+
+[CommandListRun]
+run = CommandListBackdrop
+
+if $apple_ate == 1
+    run = CommandListGenerateApple
+endif
+
+if $apple_ate == 0
+    run = CommandListRenderApple
+endif
+
+if $show_hs
+    $score = $best_score
+endif
+
+run = CommandListGenerateScore
+
+if $show_mode
+    $\NuraThings\Print\Letters\offset_x = 0.497
+    $\NuraThings\Print\Letters\offset_y = 0.19
+    if $easy_mode
+        $\NuraThings\Print\Letters\String10 = 14
+    else
+        $\NuraThings\Print\Letters\String10 = 23
+    endif
+    pre run = CommandList\NuraThings\Print\Letters\Run
+    run = CommandList\NuraThings\Print\Letters\Reset
+endif
+
+[CommandListGenerateApple]
+$\math\rand\min = 1
+$\math\rand\max = 99
+run = commandlist\math\rand\run
+$apple_x = $\math\rand\out/100
+
+$\math\rand\min = 1
+$\math\rand\max = 99
+run = commandlist\math\rand\run
+$apple_y = $\math\rand\out/100
+
+if $apple_x >= 0.01 && $apple_y >= 0.01 && $apple_x <= 0.99 && $apple_y <= 0.99
+    $apple_ate = 0
+endif
+
+
+[ResourceInstruction]
+type = Buffer
+format = R8_UINT
+filename = Resources\Instruction.txt
+
+[ResourceTextInstructionParams]
+type = StructuredBuffer
+array = 1
+data = R32_FLOAT  -0.75 +0.185 +0.75 -0.1   0.00 1.00 0.00 1.00   0.00 0.00 0.00 0.00   0.02  0.05   2 1   1   1.0

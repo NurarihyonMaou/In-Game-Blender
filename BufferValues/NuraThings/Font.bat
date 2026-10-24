@@ -1,0 +1,1 @@
+msdf-atlas-gen.exe -font ".\Metropolis-SemiBold.ttf" -type msdf -format png -imageout ".\NuraThingsFont_MSDF.png" -json ".\NuraThingsFont_MSDF.json" -size 48 -pxrange 4 -yorigin top

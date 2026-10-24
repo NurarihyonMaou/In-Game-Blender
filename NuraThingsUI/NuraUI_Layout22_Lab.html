@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NuraUI Layout Lab — MSDF-aware</title>
+<style>
+:root{color-scheme:dark;--bg:#0b1018;--panel:#121b27;--panel2:#172332;--line:#2c3b4d;--text:#e8eef5;--muted:#9aacbf;--cyan:#00cfff;--orange:#ffbb55;--green:#7ee0aa}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:14px/1.45 Segoe UI,Arial,sans-serif}header{padding:18px 22px 14px;border-bottom:1px solid var(--line);background:#0e1621;position:sticky;top:0;z-index:4}h1{font-size:22px;margin:0 0 4px}header p{margin:0;color:var(--muted)}main{display:grid;grid-template-columns:310px minmax(450px,1fr) 310px;gap:12px;padding:12px;align-items:start}.panel{background:var(--panel);border:1px solid var(--line);border-radius:10px;overflow:hidden}.panel h2{font-size:14px;text-transform:uppercase;letter-spacing:.08em;color:#b8d8eb;margin:0;padding:12px 14px;border-bottom:1px solid var(--line)}.body{padding:12px;display:grid;gap:10px}.field{display:grid;gap:4px}.field label{font-size:12px;color:var(--muted)}input,select,button{font:inherit;color:var(--text);background:#0b131d;border:1px solid #3a4d62;border-radius:6px;padding:8px;min-width:0}input[type=file]{font-size:12px;padding:7px;width:100%}input[type=checkbox]{width:auto;accent-color:var(--cyan)}button{cursor:pointer;background:#1b2a3a}button:hover{border-color:var(--cyan)}button.primary{background:#093747;border-color:#087b98}button:disabled{opacity:.45;cursor:default}.small{font-size:12px;color:var(--muted)}.row{display:flex;gap:7px;align-items:center}.row>*{flex:1}.toolbar{display:flex;gap:8px;flex-wrap:wrap}.toolbar label{display:flex;align-items:center;gap:5px;font-size:12px;color:var(--muted)}#previewWrap{padding:12px}#stage{width:100%;aspect-ratio:16/9;background:#0a111b;border:1px solid #384d62;border-radius:7px;display:block;touch-action:none;cursor:crosshair}#stageMeta{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;padding-top:8px;color:var(--muted);font-size:12px}#items{max-height:55vh;overflow:auto;display:grid;gap:4px}button.item{display:grid;grid-template-columns:1fr auto;text-align:left;padding:7px 8px;gap:2px;background:#0d1621}button.item .nm{font-size:12px;overflow-wrap:anywhere}button.item .xy{font-size:10px;color:var(--muted)}button.item.active{border-color:var(--cyan);background:#103044}.status{min-height:17px;color:var(--green);font-size:12px}.coords{display:grid;grid-template-columns:1fr 1fr;gap:8px}.coords input{width:100%}.separator{height:1px;background:var(--line);margin:2px 0}.legend{display:flex;gap:12px;flex-wrap:wrap;font-size:11px;color:var(--muted)}.dot{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:4px}.warning{color:#ffc978;background:#332918;border:1px solid #674c24;padding:9px;border-radius:7px;font-size:12px}.help{color:var(--muted);font-size:12px}.help code{color:#c3e5f5}.footer{padding:0 22px 20px;color:var(--muted);font-size:12px}@media(max-width:1120px){main{grid-template-columns:280px minmax(380px,1fr)}main>.right{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr}.right h2{grid-column:1/-1}}@media(max-width:780px){main{grid-template-columns:1fr}.right{grid-column:auto!important;display:block!important}main>.right h2{grid-column:auto}#items{max-height:260px}}
+</style>
+</head>
+<body>
+<header><h1>NuraUI Layout Lab — MSDF-aware</h1><p>Layout editor which models TextPrinterMSDF anchor, alignment, auto-resize, line advance and DPI scaling. For best placement accuracy, load the exact FontMSDFMetrics.buf used by the game.</p></header>
+<main>
+<section class="panel"><h2>1 · Source & elements</h2><div class="body">
+ <div class="field"><label for="iniFile">NuraThingsUI.ini</label><input id="iniFile" type="file" accept=".ini,.txt"></div>
+ <div class="field"><label for="hlslFile">NuraThingsUIInput.hlsl (optional hitboxes)</label><input id="hlslFile" type="file" accept=".hlsl,.txt"></div>
+ <div class="field"><label for="metricsFile">FontMSDFMetrics.buf (recommended)</label><input id="metricsFile" type="file" accept=".buf,.bin,.dat"></div>
+ <div class="small">Metrics file is read locally as raw float4 records. It supplies the real glyph advances, bounds and ascender used by TextPrinterMSDF.</div>
+ <div class="field"><label for="filter">Filter by section / label</label><input id="filter" value="ResourceNuraThingsUIJiggle" placeholder="e.g. ResourceNuraThingsUI"></div>
+ <div class="row"><button id="showAll">Show all text boxes</button><button id="clearFilter">Clear filter</button></div>
+ <div class="small" id="itemCount">Load an INI to begin.</div><div id="items"></div>
+ <div class="separator"></div><div class="toolbar"><label><input id="showLabels" type="checkbox" checked> Render text</label><label><input id="showBoxes" type="checkbox" checked> Anchor rect</label><label><input id="showGlyphBounds" type="checkbox"> Glyph bounds</label><label><input id="showHitboxes" type="checkbox" checked> Hitboxes</label><label><input id="showGrid" type="checkbox" checked> Grid</label></div>
+ </div></section>
+<section class="panel"><h2>2 · Layout preview — 16:9</h2><div id="previewWrap" class="body">
+ <canvas id="stage" width="1200" height="675" aria-label="UI layout preview"></canvas>
+ <div class="legend"><span><i class="dot" style="background:#00cfff"></i>Anchor rect (INI)</span><span><i class="dot" style="background:#8feaff"></i>Rendered text footprint</span><span><i class="dot" style="background:#ffbb55"></i>Clickable hitbox</span></div>
+ <div id="stageMeta"><span>Drag a box to move it. Drag the lower-right handle to resize.</span><span id="dirtyCount">0 modified</span></div>
+ <div class="toolbar"><button id="downloadIni" class="primary" disabled>Download edited INI</button><button id="downloadDiff" disabled>Download position report</button><button id="resetAll" disabled>Undo all edits</button></div>
+ <div class="status" id="status"></div>
+ <div class="warning">TextPrinterMSDF does not render inside the raw INI rectangle: by default it auto-resizes that rectangle using textpos, then applies h_anchor / v_anchor / h_align. Load the exact FontMSDFMetrics.buf and set game resolution + effective_dpi to match the game. Canvas glyph shapes are still approximations; positions, advances and bounding-box placement use the MSDF metrics.</div>
+ </div></section>
+<section class="panel right"><h2>3 · Selected text</h2><div class="body">
+ <div class="field"><label>INI section</label><input id="selectedName" readonly placeholder="Select a text box"></div>
+ <div class="field"><label for="selectedLabel">Preview text (does not change INI string)</label><input id="selectedLabel" placeholder="Text used for preview"></div>
+ <div class="coords">
+  <div class="field"><label>x1 (clip)</label><input id="x1" type="number" step="0.005"></div><div class="field"><label>y1 (clip)</label><input id="y1" type="number" step="0.005"></div>
+  <div class="field"><label>x2 (clip)</label><input id="x2" type="number" step="0.005"></div><div class="field"><label>y2 (clip)</label><input id="y2" type="number" step="0.005"></div>
+ </div>
+ <div class="row"><button id="applyCoords">Apply coordinates</button><button id="resetSelected">Reset selected</button></div>
+ <div class="separator"></div>
+ <h3 style="margin:0;font-size:13px;color:#b8d8eb">Render calibration</h3>
+ <div class="coords"><div class="field"><label for="gameWidth">Game width (px)</label><input id="gameWidth" type="number" min="320" max="16384" step="1" value="1920"></div><div class="field"><label for="gameHeight">Game height (px)</label><input id="gameHeight" type="number" min="240" max="16384" step="1" value="1080"></div></div>
+ <div class="field"><label for="effectiveDpi">IniParams[0].w / effective_dpi</label><input id="effectiveDpi" type="number" min="48" max="384" step="1" value="120"></div>
+ <label class="toolbar"><input id="autoResize" type="checkbox" checked> Model AutoReSize = 1 (TextPrinterMSDF default)</label>
+ <div class="help">Shader ScreenScaling = effective_dpi / 120 only when effective_dpi &gt; 120; otherwise it is 1. Match the actual backbuffer size, not your monitor model. Auto-resize follows TextPrinterMSDF defaults.</div>
+ <div class="field"><label for="hitboxSelect">Center this anchor on hitbox</label><select id="hitboxSelect"><option value="">Load HLSL to find hitboxes</option></select></div>
+ <button id="alignHitbox">Center on selected hitbox</button>
+ <div class="field"><label for="snapStep">Snap spacing (clip coordinates)</label><input id="snapStep" type="number" min="0.001" max="0.2" step="0.001" value="0.01"></div>
+ <div class="row"><button id="snapSelected">Snap selected box</button><button id="copyCoords">Copy data coordinates</button></div>
+ <div class="help">The first four floats are the INI anchor rectangle, not necessarily the final text bounds. Drag the anchor rectangle to move its anchor. Arrow keys nudge it; Shift uses a larger step. Positive clip Y goes upward.</div>
+ </div></section>
+</main>
+<div class="footer">Local-only tool: files are read in this browser tab. Nothing is uploaded or sent to a server. Keep a backup before replacing your live INI.</div>
+<script>
+(()=>{
+'use strict';
+const $=id=>document.getElementById(id), canvas=$('stage'), ctx=canvas.getContext('2d');
+let sourceText='', sourceName='NuraThingsUI.ini', items=[], hitboxes=[], selected=null, drag=null, loaded=false, metricData=null, metricStatus='not loaded';
+const inputIds=['x1','y1','x2','y2'];
+const cssFont='Arial, Segoe UI, sans-serif';
+const fmt=n=>(n>=0?'+':'')+Number(n).toFixed(3);
+const nums=s=>s.trim().split(/[\s,]+/).map(Number);
+function sectionBlocks(text){
+ const matches=[...text.matchAll(/^\s*\[([^\]\r\n]+)\]\s*$/gm)];const arr=[];
+ for(let i=0;i<matches.length;i++){const start=matches[i].index,end=i+1<matches.length?matches[i+1].index:text.length;arr.push({name:matches[i][1].trim(),start,end,text:text.slice(start,end)});}return arr;
+}
+function parseIni(text){
+ const blocks=sectionBlocks(text), byName=new Map(blocks.map(b=>[b.name,b]));
+ const labels=new Map(), rawStrings=new Map();
+ for(const b of blocks){const m=b.text.match(/^\s*data\s*=\s*"((?:[^"\\]|\\.)*)"/mi);if(m){const val=m[1].replace(/\\n/g,'\n').replace(/\\"/g,'"').replace(/\\~/g,'~');labels.set(b.name,val);rawStrings.set(b.name,val);}}
+ const out=[];
+ for(const b of blocks){if(!/Params$/i.test(b.name))continue;
+  const m=b.text.match(/^\s*data\s*=\s*R32_FLOAT\s+((?:[+-]?(?:\d*\.)?\d+(?:[eE][+-]?\d+)?\s+){3}[+-]?(?:\d*\.)?\d+(?:[eE][+-]?\d+)?)(.*)$/mi);
+  if(!m)continue;
+  const first=nums(m[1]);if(first.length<4)continue;
+  const rest=nums(m[2]);
+  const pos=first.slice(0,4);
+  const resName=b.name.replace(/Params$/i,'');let label=labels.get(resName);
+  if(!label){label=resName.replace(/^ResourceNuraThingsUI/,'').replace(/^Resource/,'').replace(/([a-z])([A-Z])/g,'$1 $2').replace(/Params/g,'');}
+  const fullParams=[...first,...rest];
+  const src=rawStrings.get(resName);
+  // Dynamic value-string buffers have no literal text in the INI. Give them a useful, editable preview default.
+  let previewText=src===undefined?label:src;
+  if(/ValueString/i.test(resName))previewText='123.45';
+  out.push({section:b.name,resource:resName,label,previewText,textIsLiteral:src!==undefined,params:fullParams,original:[...pos],coords:[...pos],blockStart:b.start,blockEnd:b.end});
+ }
+ items=out;selected=items.find(i=>i.section.includes('JiggleTabBasicParams'))||items.find(i=>i.section.includes('Jiggle'))||items[0]||null;loaded=true;
+ $('downloadIni').disabled=!loaded;$('downloadDiff').disabled=!loaded;$('resetAll').disabled=!loaded;
+ renderList();renderFields();draw();setStatus(`Loaded ${items.length} text parameter blocks from ${sourceName}. ${metricStatus==='loaded'?'Real MSDF metrics active.':'Load FontMSDFMetrics.buf for metric-based positioning.'}`);
+}
+function parseHitboxes(text){
+ const f='([+-]?(?:\\d*\\.)?\\d+(?:[eE][+-]?\\d+)?)[fF]?';
+ const re=new RegExp('InRect\\s*\\(\\s*p\\s*,\\s*float2\\s*\\(\\s*'+f+'\\s*,\\s*'+f+'\\s*\\)\\s*,\\s*float2\\s*\\(\\s*'+f+'\\s*,\\s*'+f+'\\s*\\)\\s*\\)','g');
+ const out=[];let m;
+ while((m=re.exec(text))){const tail=text.slice(re.lastIndex,Math.min(text.length,re.lastIndex+160));const h=tail.match(/\bhover\s*=\s*(\d+)u?/);if(!h)continue;const vals=m.slice(1,5).map(Number);out.push({id:Number(h[1]),x1:vals[0],y1:vals[1],x2:vals[2],y2:vals[3],label:hitLabel(Number(h[1]))});}
+ const seen=new Set();hitboxes=out.filter(h=>{const k=[h.id,h.x1,h.y1,h.x2,h.y2].join(':');if(seen.has(k))return false;seen.add(k);return true;});
+ const sel=$('hitboxSelect'), old=sel.value;sel.replaceChildren();const o=document.createElement('option');o.value='';o.textContent=hitboxes.length?`${hitboxes.length} hitboxes loaded — choose target`:'No hitboxes found';sel.append(o);
+ for(const h of hitboxes){const op=document.createElement('option');op.value=String(hitboxes.indexOf(h));op.textContent=`${h.id} — ${h.label} (${h.x1.toFixed(3)}, ${h.y1.toFixed(3)})`;sel.append(op);}if(old)sel.value=old;draw();setStatus(`Loaded ${hitboxes.length} clickable hitboxes.`);
+}
+function hitLabel(id){if(id>=500&&id<=507)return `Jiggle group ${id-499}`;if(id===510)return 'Jiggle enabled';if(id===511)return 'Previous mask';if(id===512)return 'Next mask';if(id>=513&&id<=515)return ['Basic','Motion','Presets'][id-513]+' tab';if(id>=520&&id<=528)return ['Stiffness','Damping','Strength','Inertia','Max Offset','Gravity','Motion Response','Smoothing','Edge Falloff'][id-520]+' slider';if(id>=530&&id<=532)return 'Axis '+['X','Y','Z'][id-530];if(id>=540&&id<=545)return ['Subtle','Natural','ZZZ','Strong','Extreme','Off'][id-540]+' preset';if(id>=300&&id<=307)return `Mask slot ${id-299}`;if(id>=320&&id<=327)return `Rename mask ${id-319}`;return `Control ${id}`;}
+function visibleItems(){const f=$('filter').value.trim().toLowerCase();return items.filter(i=>!f||i.section.toLowerCase().includes(f)||i.label.toLowerCase().includes(f));}
+function renderList(){const root=$('items');root.replaceChildren();const vis=visibleItems();$('itemCount').textContent=`${vis.length} visible / ${items.length} parameter blocks`;
+ for(const i of vis){const b=document.createElement('button');b.className='item'+(i===selected?' active':'');const nm=document.createElement('span');nm.className='nm';nm.textContent=i.label;const xy=document.createElement('span');xy.className='xy';xy.textContent=i.section;const c=document.createElement('span');c.className='xy';c.textContent=i.coords.map(n=>n.toFixed(3)).join('  ');b.append(nm,c,xy);b.addEventListener('click',()=>{selected=i;renderList();renderFields();draw();});root.append(b);}
+ updateDirty();}
+function renderFields(){if(!selected){$('selectedName').value='';$('selectedLabel').value='';inputIds.forEach(id=>$(id).value='');return;}$('selectedName').value=selected.section;$('selectedLabel').value=selected.previewText??selected.label;inputIds.forEach((id,n)=>$(id).value=Number(selected.coords[n]).toFixed(3));}
+function screenRect(i){const [a,b,c,d]=i.coords;const x1=Math.min(a,c),x2=Math.max(a,c),topY=Math.max(b,d),bottomY=Math.min(b,d);return {x:(x1+1)*.5*canvas.width,y:(1-topY)*.5*canvas.height,w:(x2-x1)*.5*canvas.width,h:(topY-bottomY)*.5*canvas.height};}
+function clipRect(h){return {x:h.x1*canvas.width,y:h.y1*canvas.height,w:(h.x2-h.x1)*canvas.width,h:(h.y2-h.y1)*canvas.height};}
+function getMetric(code){if(!metricData||code<0||code>127)return null;const base=2+code*3;const a=metricData[base*4], left=metricData[base*4+1], bottom=metricData[base*4+2], right=metricData[base*4+3], top=metricData[(base+1)*4];if(![a,left,bottom,right,top].every(Number.isFinite))return null;return {advance:a,left,bottom,right,top};}
+function dpiScale(){const d=Number($('effectiveDpi').value)||120;return d>120?d/120:1;}
+function gameSize(){return {w:Math.max(1,Number($('gameWidth').value)||1920),h:Math.max(1,Number($('gameHeight').value)||1080)};}
+function glyphAdvanceClip(ch,item){const m=getMetric(ch.codePointAt(0));if(m)return m.advance*32*(Number(item.params[17])||1)*dpiScale()/gameSize().w;const scale=(Number(item.params[17])||1)*dpiScale();ctx.save();ctx.font=`${16*scale*canvas.width/gameSize().w}px ${cssFont}`;const w=ctx.measureText(ch).width;ctx.restore();return w*2/canvas.width;}
+function splitLines(item){const text=String(item.previewText??item.label).replace(/\\~/g,'~');const rectW=item.coords[2]-item.coords[0];const align=Math.round(item.params[16]||0);let lines=[],start=0,cx=0,space=-1,spaceX=0;
+ for(let p=0;p<text.length;p++){const ch=text[p];if(ch===' '){space=p;spaceX=cx;}cx+=glyphAdvanceClip(ch,item);
+  if(ch==='\n'){lines.push({text:text.slice(start,p),width:cx-glyphAdvanceClip(ch,item)});start=p+1;cx=0;space=-1;continue;}
+  if(rectW>0&&cx>=rectW){if(space!==-1){lines.push({text:text.slice(start,space),width:spaceX});start=space+1;p=space;cx=0;space=-1;}else{lines.push({text:text.slice(start,p+1),width:cx});start=p+1;cx=0;space=-1;}}
+ }
+ if(start<text.length||!lines.length||(text.length&&text[text.length-1]!=='\n'))lines.push({text:text.slice(start),width:cx});
+ const maxW=Math.max(0,...lines.map(l=>l.width));return {lines,maxW,lineHeight:16*Math.max(metricData?metricData[3]:1,1)*(Number(item.params[17])||1)*dpiScale()*canvas.height/gameSize().h};
+}
+function layoutText(i){const [x1,y1,x2,y2]=i.coords;const w0=x2-x1,h0=y2-y1,cx=(x1+x2)/2,cy=(y1+y2)/2;const ha=Math.round(i.params[14]||0),va=Math.round(i.params[15]||0),align=Math.round(i.params[16]||0);const st=splitLines(i);const textW=st.maxW;const textH=(st.lineHeight*2/canvas.height)*(st.lines.length-(String(i.previewText??i.label).endsWith('\n')?1:0));let rx=x1,rz=x2,ry=y1,rw=y2,shift=0;
+ // Mirrors TextPrinterMSDF.hlsl default AutoReSize=1 branch. IniParams[46] override is not assumed.
+ if($('autoResize').checked){if(ha===1){rx=x1;rz=x1+textW;if(align)shift=rz-x2;}else if(ha===2){rx=cx-textW/2;rz=cx+textW/2;if(align)shift=(rz-x2)*2;}else if(ha===3){rx=x2-textW;rz=x2;if(align)shift=x1-rx;}if(align===1)shift/=2;
+  if(va===1){ry=y1;rw=y1-textH;}else if(va===2){ry=cy+textH/2;rw=cy-textH/2;}else if(va===3){ry=y2+textH;rw=y2;}}
+ const emX=16*(Number(i.params[17])||1)*dpiScale()*canvas.width/gameSize().w;const emY=16*(Number(i.params[17])||1)*dpiScale()*canvas.height/gameSize().h;
+ const asc=metricData?metricData[4]:0.8; // fontMetrics[1].x, in em units
+ const shiftPx=shift*canvas.width/2;
+ const glyphs=[];let lineY=ry;
+ for(const line of st.lines){let lineShift=0;if(align===1)lineShift=(w0-line.width)/2;else if(align===2)lineShift=w0-line.width;
+  let penX=rx+lineShift+shift;const baselineClip=lineY-asc*32*(Number(i.params[17])||1)*dpiScale()/gameSize().h;
+  for(const ch of line.text){const code=ch.codePointAt(0),gm=getMetric(code);const penPx=(penX+1)*canvas.width/2;const baselinePx=(1-baselineClip)*canvas.height/2;
+   if(ch!==' '&&ch!=='\t'&&ch!=='\r'&&ch!=='\n'){
+    if(gm){glyphs.push({ch,x0:penPx+gm.left*emX,x1:penPx+gm.right*emX,y0:baselinePx-gm.top*emY,y1:baselinePx-gm.bottom*emY,penX:penPx,baseline:baselinePx,gm,emX,emY});}
+    else glyphs.push({ch,penX,baseline:baselinePx,gm:null,emX,emY});
+   }
+   penX+=glyphAdvanceClip(ch,i);
+  }
+  lineY-=2*st.lineHeight/canvas.height; // lineHeight is in preview pixels; convert to clip Y
+ }
+ return {anchor:screenRect(i),finalRect:{x:(rx+1)*canvas.width/2,y:(1-ry)*canvas.height/2,w:(rz-rx)*canvas.width/2,h:(ry-rw)*canvas.height/2},glyphs,lines:st.lines,shiftPx,params:i.params};
+}
+function drawGlyph(g,selectedGlyph,item){ctx.save();ctx.fillStyle=selectedGlyph?'#ffffff':'#8feaff';ctx.globalAlpha=0.95;
+ if(g.gm){ctx.font=`16px ${cssFont}`;const m=ctx.measureText(g.ch);const bw=Math.max(.001,m.actualBoundingBoxLeft+m.actualBoundingBoxRight);const bh=Math.max(.001,m.actualBoundingBoxAscent+m.actualBoundingBoxDescent);const tw=Math.max(.01,g.x1-g.x0),th=Math.max(.01,g.y1-g.y0);const sx=tw/bw,sy=th/bh;
+  ctx.translate(g.x0+m.actualBoundingBoxLeft*sx,g.y0+m.actualBoundingBoxAscent*sy);ctx.scale(sx,sy);ctx.textAlign='left';ctx.textBaseline='alphabetic';ctx.fillText(g.ch,0,0);
+ }else{ctx.textAlign='left';ctx.textBaseline='alphabetic';ctx.font=`${16*(Number(item.params[17])||1)*dpiScale()*canvas.width/gameSize().w}px ${cssFont}`;ctx.fillText(g.ch,g.penX,g.baseline);}
+ ctx.restore();}
+function draw(){if(!ctx)return;const W=canvas.width,H=canvas.height;ctx.clearRect(0,0,W,H);ctx.fillStyle='#080e16';ctx.fillRect(0,0,W,H);
+ if($('showGrid').checked){ctx.strokeStyle='rgba(139,169,196,.15)';ctx.lineWidth=1;for(let i=0;i<=20;i++){let x=W*i/20,y=H*i/20;ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke();ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();}ctx.strokeStyle='rgba(0,207,255,.28)';ctx.beginPath();ctx.moveTo(W/2,0);ctx.lineTo(W/2,H);ctx.moveTo(0,H/2);ctx.lineTo(W,H/2);ctx.stroke();}
+ if($('showHitboxes').checked){for(const h of hitboxes){const r=clipRect(h);ctx.save();ctx.setLineDash([5,4]);ctx.strokeStyle='rgba(255,187,85,.8)';ctx.lineWidth=1.5;ctx.strokeRect(r.x,r.y,r.w,r.h);ctx.setLineDash([]);ctx.fillStyle='rgba(255,187,85,.86)';ctx.font='11px Consolas,monospace';ctx.fillText(String(h.id),r.x+3,r.y+12);ctx.restore();}}
+ const vis=visibleItems();for(const i of vis){const lay=layoutText(i),r=lay.anchor,isSel=i===selected;
+  if($('showBoxes').checked){ctx.save();ctx.setLineDash([4,4]);ctx.strokeStyle=isSel?'#ffffff':'rgba(0,207,255,.72)';ctx.lineWidth=isSel?2:1;ctx.fillStyle='rgba(0,207,255,.025)';ctx.fillRect(r.x,r.y,r.w,r.h);ctx.strokeRect(r.x,r.y,r.w,r.h);ctx.restore();}
+  if($('showGlyphBounds').checked){ctx.save();ctx.strokeStyle=isSel?'#fff':'rgba(143,234,255,.45)';ctx.lineWidth=1;for(const g of lay.glyphs){if(g.gm)ctx.strokeRect(g.x0,g.y0,g.x1-g.x0,g.y1-g.y0);else ctx.strokeRect(g.penX,g.baseline-14,g.emX,g.emY);}ctx.restore();}
+  if($('showLabels').checked){ctx.save();const fontPx=16*(Number(i.params[17])||1)*dpiScale()*W/gameSize().w;ctx.font=`${fontPx}px ${cssFont}`;for(const g of lay.glyphs)drawGlyph(g,isSel,i);ctx.restore();}
+  if(isSel){ctx.save();ctx.strokeStyle='#ffc978';ctx.setLineDash([3,3]);ctx.strokeRect(lay.finalRect.x,lay.finalRect.y,lay.finalRect.w,lay.finalRect.h);ctx.setLineDash([]);ctx.fillStyle='#ffffff';ctx.fillRect(r.x+r.w-5,r.y+r.h-5,10,10);ctx.restore();}
+ }
+ $('stageMeta').firstElementChild.textContent=selected?`${selected.section} · drag the INI anchor rect; rendered footprint follows MSDF anchor/auto-resize`:'Load an INI to begin.';
+}
+function setStatus(s){$('status').textContent=s;}
+function updateDirty(){const n=items.filter(i=>i.coords.some((v,j)=>Math.abs(v-i.original[j])>1e-6)).length;$('dirtyCount').textContent=`${n} modified`;$('downloadIni').disabled=!loaded;$('downloadDiff').disabled=!loaded;$('resetAll').disabled=!loaded;}
+function setCoords(c){if(!selected)return;selected.coords=c.map(v=>Math.max(-1.5,Math.min(1.5,Number(v))));renderFields();renderList();draw();updateDirty();}
+function snap(v,step){return step>0?Math.round(v/step)*step:v;}
+function parseFloatFile(file,cb){const fr=new FileReader();fr.onload=()=>cb(String(fr.result||''));fr.onerror=()=>setStatus('Could not read the selected file.');fr.readAsText(file);}
+$('iniFile').addEventListener('change',e=>{const f=e.target.files[0];if(!f)return;sourceName=f.name;parseFloatFile(f,t=>{sourceText=t;parseIni(t);});});
+$('hlslFile').addEventListener('change',e=>{const f=e.target.files[0];if(!f)return;parseFloatFile(f,parseHitboxes);});
+$('metricsFile').addEventListener('change',e=>{const f=e.target.files[0];if(!f)return;const fr=new FileReader();fr.onload=()=>{try{const ab=fr.result;const arr=new Float32Array(ab);if(arr.length<386*4)throw new Error(`Only ${arr.length/4} float4 records found; expected at least 386.`);metricData=arr;metricStatus='loaded';setStatus(`Loaded ${arr.length/4} float4 MSDF metric records from ${f.name}.`);draw();}catch(err){metricData=null;metricStatus='invalid';setStatus(`Could not parse MSDF metrics: ${err.message}`);}};fr.onerror=()=>setStatus('Could not read the metrics file.');fr.readAsArrayBuffer(f);});
+$('selectedLabel').addEventListener('input',()=>{if(!selected)return;selected.previewText=$('selectedLabel').value;draw();});
+for(const id of ['gameWidth','gameHeight','effectiveDpi','autoResize'])$(id).addEventListener('input',draw);$( 'autoResize').addEventListener('change',draw);
+$('filter').addEventListener('input',()=>{renderList();draw();});
+$('showAll').addEventListener('click',()=>{$('filter').value='';renderList();draw();});$('clearFilter').addEventListener('click',()=>{$('filter').value='ResourceNuraThingsUI';renderList();draw();});
+for(const id of ['showLabels','showBoxes','showGlyphBounds','showHitboxes','showGrid'])$(id).addEventListener('change',draw);
+$('applyCoords').addEventListener('click',()=>{if(!selected)return;setCoords(inputIds.map(id=>Number($(id).value)));setStatus('Coordinates applied.');});
+$('resetSelected').addEventListener('click',()=>{if(!selected)return;setCoords(selected.original);setStatus('Selected section restored to its loaded coordinates.');});
+$('resetAll').addEventListener('click',()=>{for(const i of items)i.coords=[...i.original];renderList();renderFields();draw();updateDirty();setStatus('All positions reset.');});
+$('snapSelected').addEventListener('click',()=>{if(!selected)return;const st=Math.max(.001,Number($('snapStep').value)||.01);setCoords(selected.coords.map(v=>snap(v,st)));setStatus(`Snapped to ${st.toFixed(3)} clip-coordinate grid.`);});
+$('alignHitbox').addEventListener('click',()=>{if(!selected)return;const h=hitboxes[Number($('hitboxSelect').value)];if(!h)return;const c=selected.coords;const ww=Math.abs(c[2]-c[0]),hh=Math.abs(c[1]-c[3]),cx=(h.x1+h.x2)/2,cy=(h.y1+h.y2)/2;setCoords([2*(cx-ww/4)-1,1-2*(cy-hh/4),2*(cx+ww/4)-1,1-2*(cy+hh/4)]);setStatus(`Centered ${selected.section}'s anchor rectangle on hitbox ${h.id}; the visible text footprint depends on its h_anchor / v_anchor / h_align / font_scale.`);});
+$('copyCoords').addEventListener('click',async()=>{if(!selected)return;const s=selected.coords.map(fmt).join(' ');try{await navigator.clipboard.writeText(s);setStatus(`Copied: ${s}`);}catch{setStatus(s);}});
+function download(name,text,mime='text/plain'){const blob=new Blob([text],{type:mime});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1200);}
+function renderEditedIni(){let out=sourceText;const changed=items.filter(i=>i.coords.some((v,j)=>Math.abs(v-i.original[j])>1e-6));
+ // Process sections backwards so replacements do not invalidate earlier offsets.
+ const blocks=sectionBlocks(out);const byName=new Map(blocks.map(b=>[b.name,b]));const edits=[];
+ for(const i of changed){const b=byName.get(i.section);if(!b)continue;const re=/^(\s*data\s*=\s*R32_FLOAT\s+)([+-]?(?:\d*\.)?\d+(?:[eE][+-]?\d+)?)(\s+)([+-]?(?:\d*\.)?\d+(?:[eE][+-]?\d+)?)(\s+)([+-]?(?:\d*\.)?\d+(?:[eE][+-]?\d+)?)(\s+)([+-]?(?:\d*\.)?\d+(?:[eE][+-]?\d+)?)/mi;const m=b.text.match(re);if(!m)continue;const replacement=m[1]+fmt(i.coords[0])+m[3]+fmt(i.coords[1])+m[5]+fmt(i.coords[2])+m[7]+fmt(i.coords[3]);const index=b.start+m.index;edits.push({start:index,end:index+m[0].length,replacement});}
+ edits.sort((a,b)=>b.start-a.start);for(const e of edits)out=out.slice(0,e.start)+e.replacement+out.slice(e.end);return out;
+}
+$('downloadIni').addEventListener('click',()=>{if(!loaded)return;const n=items.filter(i=>i.coords.some((v,j)=>Math.abs(v-i.original[j])>1e-6)).length;download(sourceName.replace(/\.ini$/i,'')+'_layout-edited.ini',renderEditedIni(),'text/plain;charset=utf-8');setStatus(`Exported edited INI with ${n} changed parameter sections.`);});
+$('downloadDiff').addEventListener('click',()=>{const changed=items.filter(i=>i.coords.some((v,j)=>Math.abs(v-i.original[j])>1e-6));const lines=['NuraUI Layout Lab — changed text positions','==========================================','Source: '+sourceName,'',...changed.flatMap(i=>[ '['+i.section+']', 'label = '+i.label, 'old = '+i.original.map(fmt).join(' '), 'new = '+i.coords.map(fmt).join(' '), ''])];download('NuraUI_Layout_Position_Report.txt',lines.join('\n'));setStatus(`Exported report for ${changed.length} changed sections.`);});
+canvas.addEventListener('pointerdown',e=>{if(!selected)return;const rect=canvas.getBoundingClientRect(),px=(e.clientX-rect.left)/rect.width*canvas.width,py=(e.clientY-rect.top)/rect.height*canvas.height;
+ // Only begin a drag when the pointer is on a visible text rectangle. If boxes overlap, select the smallest one first.
+ const cand=visibleItems().filter(i=>{const a=screenRect(i);return px>=a.x&&px<=a.x+a.w&&py>=a.y&&py<=a.y+a.h;}).sort((a,b)=>{const aa=screenRect(a),bb=screenRect(b);return aa.w*aa.h-bb.w*bb.h;});if(!cand.length)return;selected=cand[0];
+ const rr=screenRect(selected),handle=Math.hypot(px-(rr.x+rr.w),py-(rr.y+rr.h))<14;drag={x:e.clientX,y:e.clientY,coords:[...selected.coords],resize:handle};canvas.setPointerCapture(e.pointerId);renderList();renderFields();draw();});
+canvas.addEventListener('pointermove',e=>{if(!drag||!selected)return;const rect=canvas.getBoundingClientRect(),dx=(e.clientX-drag.x)/rect.width*canvas.width,dy=(e.clientY-drag.y)/rect.height*canvas.height;let c=[...drag.coords];const fx=2*dx/canvas.width,fy=2*dy/canvas.height;if(drag.resize){const rightIndex=c[0]>=c[2]?0:2;const bottomIndex=c[1]<=c[3]?1:3;c[rightIndex]+=fx;c[bottomIndex]-=fy;}else{c[0]+=fx;c[2]+=fx;c[1]-=fy;c[3]-=fy;}if(e.shiftKey){const st=Math.max(.001,Number($('snapStep').value)||.01);c=c.map(v=>snap(v,st));}selected.coords=c.map(v=>Math.max(-1.5,Math.min(1.5,v)));renderFields();draw();updateDirty();});
+canvas.addEventListener('pointerup',()=>{if(drag){drag=null;renderList();updateDirty();}});canvas.addEventListener('pointercancel',()=>{drag=null;});
+document.addEventListener('keydown',e=>{if(!selected||['INPUT','SELECT','TEXTAREA'].includes(document.activeElement.tagName))return;let dx=0,dy=0;const step=e.shiftKey ? 0.02 : 0.005;if(e.key==='ArrowLeft')dx=-step;else if(e.key==='ArrowRight')dx=step;else if(e.key==='ArrowUp')dy=step;else if(e.key==='ArrowDown')dy=-step;else return;e.preventDefault();setCoords([selected.coords[0]+dx,selected.coords[1]+dy,selected.coords[2]+dx,selected.coords[3]+dy]);});
+draw();
+})();
+</script>
+</body>
+</html>

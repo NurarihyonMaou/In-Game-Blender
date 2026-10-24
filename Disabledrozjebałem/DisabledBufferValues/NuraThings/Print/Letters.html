@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>Auto Letter Chunk Encoder + Decoder</title>
+  <style>
+    body { font-family: monospace; background: #111; color: #eee; padding: 20px; }
+    textarea, input, button {
+      background: #222; color: #0f0; border: 1px solid #444;
+      padding: 10px; font-family: monospace;
+    }
+    textarea, input { width: 100%; }
+    textarea { height: 100px; margin-bottom: 10px; }
+    .section { margin-bottom: 20px; }
+    #output, #decoded {
+      white-space: pre-wrap; font-size: 16px; margin-top: 10px;
+      border-top: 1px solid #444; padding-top: 10px; color: #0f0;
+    }
+    button.copy-btn {
+      margin-top: 5px;
+      padding: 5px 10px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h2>Letter Chunk Encoder + Decoder</h2>
+  <p>Supported: A–Z, Space → 0, New Line → 1, Input `/` or `\` as newline.</p>
+
+  <div class="section">
+    <label>🔤 Input Text:</label>
+    <textarea id="input" placeholder="Type here... e.g. Hello\World"></textarea>
+    <div id="output">Output will appear here</div>
+    <button class="copy-btn" onclick="copyToClipboard(output.textContent)">📋 Copy Encoded</button>
+  </div>
+<br><br>
+  <div class="section">
+    <label>🔢 Decode from Values (comma or space separated):</label>
+    <input id="decodeInput" placeholder="e.g. 624512 123456" />
+    <div id="decoded">Decoded output will appear here</div>
+    <button class="copy-btn" onclick="copyToClipboard(decoded.textContent)">📋 Copy Decoded</button>
+  </div>
+
+  <script>
+    const input = document.getElementById("input");
+    const output = document.getElementById("output");
+    const decodeInput = document.getElementById("decodeInput");
+    const decoded = document.getElementById("decoded");
+
+    let syncing = false;
+
+    function charToCode(ch) {
+      if (ch === '\n') return 1;
+      if (ch === ' ') return 0;
+      const code = ch.charCodeAt(0);
+      return (code >= 65 && code <= 90) ? code - 65 + 10 : 10; // fallback 'A'
+    }
+
+    function codeToChar(code) {
+      if (code === 1) return '\n';
+      if (code === 0) return ' ';
+      if (code >= 10 && code <= 35) return String.fromCharCode(code - 10 + 65);
+      return '?';
+    }
+
+    function encodeText(rawInput) {
+      const raw = rawInput.toUpperCase().replace(/[\\/]/g, '\n');
+      const filtered = [];
+
+      for (let ch of raw) {
+        if (ch === '\n' || ch === ' ' || (ch >= 'A' && ch <= 'Z')) {
+          filtered.push(ch);
+        }
+      }
+
+      const chunks = [];
+      for (let i = 0; i < filtered.length; i += 4) {
+        const chunk = filtered.slice(i, i + 4);
+        // no padding here, chunk length can be 1 to 4
+        chunks.push(chunk);
+      }
+
+      const results = chunks.map((chunk) => {
+        let val = 0;
+        for (let j = 0; j < chunk.length; j++) {
+          val += charToCode(chunk[j]) * (40 ** j);
+        }
+        return `${val}`;
+      });
+
+      return results;
+    }
+
+    function decodeChunks(chunkValues) {
+      let result = '';
+      for (let part of chunkValues) {
+        const val = parseInt(part);
+        if (isNaN(val)) continue;
+
+        let n = val;
+        // Always decode 4 chars, because original encoding uses base40^4
+        for (let i = 0; i < 4; i++) {
+          const code = n % 40;
+          result += codeToChar(code);
+          n = Math.floor(n / 40);
+        }
+      }
+      return result;
+    }
+
+    function syncEncoder() {
+      if (syncing) return;
+      syncing = true;
+
+      const encoded = encodeText(input.value);
+      output.textContent = encoded.join('\n') || "Output will appear here";
+      decodeInput.value = encoded.join(' ');
+      decoded.textContent = decodeChunks(encoded) || "Decoded output will appear here";
+
+      syncing = false;
+    }
+
+    function syncDecoder() {
+      if (syncing) return;
+      syncing = true;
+
+      const parts = decodeInput.value.trim().split(/[\s,]+/);
+      const decodedText = decodeChunks(parts);
+      decoded.textContent = decodedText || "Decoded output will appear here";
+
+      // feed back to encoder
+      input.value = decodedText;
+      output.textContent = encodeText(decodedText).join('\n');
+
+      syncing = false;
+    }
+
+    input.addEventListener("input", syncEncoder);
+    decodeInput.addEventListener("input", syncDecoder);
+
+    function copyToClipboard(text) {
+      navigator.clipboard.writeText(text);
+    }
+  </script>
+</body>
+</html>

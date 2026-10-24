@@ -1,0 +1,18 @@
+[TextureOverrideArlecchinoHead]
+hash = 83096447
+this = ResourceArlecchinoHead
+
+[TextureOverrideArlecchinoFace]
+hash = a44625da
+this = ResourceArlecchinoFace
+
+[TextureOverrideArlecchinoBody]
+hash = 53cb2c4c
+this = ResourceArlecchinoBody
+
+[ResourceArlecchinoHead]
+filename = ArlecchinoHead.dds
+[ResourceArlecchinoFace]
+filename = ArlecchinoFace.dds
+[ResourceArlecchinoBody]
+filename = ArlecchinoBody.dds

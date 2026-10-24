@@ -1,0 +1,29 @@
+namespace = math\randint
+
+[Constants]
+global $min
+global $max
+global $out
+global $frame
+
+[Present]
+post $frame = $frame+1
+
+[CommandListRun]
+; build seed = time + frame
+local $seed = time + $frame
+
+; sin(seed)
+$\math\sin\in = $seed
+run = commandlist\math\sin\run
+local $s = $\math\sin\out
+
+; multiply large constant like HLSL
+local $val = $s * 43758.5453123
+
+; frac() equivalent: val - floor(val)
+local $frac = $val - $val // 1
+
+; scale into [min,max] inclusive
+local $range = $max - $min + 1
+$out = ($frac * $range) // 1 + $min

@@ -1,0 +1,1069 @@
+// Current UI input/hit-test shader. NuraThingsUIState.hlsl is the legacy
+// prototype; NuraThingsUI.ini invokes this shader, not the legacy file.
+RWBuffer<float> UIState : register(u0);
+RWBuffer<uint> MaskNames : register(u1);
+
+Texture1D<float4> IniParams : register(t120);
+
+#define UI_CURSOR IniParams[31]
+
+#define UI_INPUT IniParams[32]
+
+#define UI_CONFIG IniParams[33]
+
+#define UI_OVERLAY IniParams[36].x
+
+#define STRENGTH_SCULPT IniParams[34].x
+
+#define STRENGTH_SMOOTH IniParams[34].y
+
+#define STRENGTH_PINCH IniParams[34].z
+
+#define STRENGTH_CREASE IniParams[34].w
+
+#define STRENGTH_FLATTEN IniParams[35].x
+
+#define STRENGTH_SCALE IniParams[35].y
+
+#define STRENGTH_MASK IniParams[35].z
+
+#define TOOL_GRAB 0u
+
+#define TOOL_INFLATE 1u
+
+#define TOOL_SMOOTH 2u
+
+#define TOOL_PINCH 3u
+
+#define TOOL_CREASE 4u
+
+#define TOOL_FLATTEN 5u
+
+#define TOOL_SCALE 6u
+
+#define TOOL_MASK 7u
+
+#define UI_FALLOFF UIState[16]
+#define UI_FALLOFF_OPEN UIState[17]
+#define MASK_UI IniParams[38]
+
+#define WRITE_NAME(BASE, OFFSET) \
+    MaskNames[(OFFSET) + 0]  = (uint)max(IniParams[(BASE) + 0].x, 0.0f); \
+    MaskNames[(OFFSET) + 1]  = (uint)max(IniParams[(BASE) + 0].y, 0.0f); \
+    MaskNames[(OFFSET) + 2]  = (uint)max(IniParams[(BASE) + 0].z, 0.0f); \
+    MaskNames[(OFFSET) + 3]  = (uint)max(IniParams[(BASE) + 0].w, 0.0f); \
+    MaskNames[(OFFSET) + 4]  = (uint)max(IniParams[(BASE) + 1].x, 0.0f); \
+    MaskNames[(OFFSET) + 5]  = (uint)max(IniParams[(BASE) + 1].y, 0.0f); \
+    MaskNames[(OFFSET) + 6]  = (uint)max(IniParams[(BASE) + 1].z, 0.0f); \
+    MaskNames[(OFFSET) + 7]  = (uint)max(IniParams[(BASE) + 1].w, 0.0f); \
+    MaskNames[(OFFSET) + 8]  = (uint)max(IniParams[(BASE) + 2].x, 0.0f); \
+    MaskNames[(OFFSET) + 9]  = (uint)max(IniParams[(BASE) + 2].y, 0.0f); \
+    MaskNames[(OFFSET) + 10] = (uint)max(IniParams[(BASE) + 2].z, 0.0f); \
+    MaskNames[(OFFSET) + 11] = (uint)max(IniParams[(BASE) + 2].w, 0.0f); \
+    MaskNames[(OFFSET) + 12] = (uint)max(IniParams[(BASE) + 3].x, 0.0f); \
+    MaskNames[(OFFSET) + 13] = (uint)max(IniParams[(BASE) + 3].y, 0.0f); \
+    MaskNames[(OFFSET) + 14] = (uint)max(IniParams[(BASE) + 3].z, 0.0f); \
+    MaskNames[(OFFSET) + 15] = (uint)max(IniParams[(BASE) + 3].w, 0.0f)
+
+bool InRect(float2 p, float2 mn, float2 mx)
+
+{
+
+    return p.x >= mn.x && p.x <= mx.x &&
+
+           p.y >= mn.y && p.y <= mx.y;
+
+}
+
+float GetStrengthDefault(uint tool)
+
+{
+
+    if (tool <= 1u)
+
+        return STRENGTH_SCULPT;
+
+    else if (tool == 2u)
+
+        return STRENGTH_SMOOTH;
+
+    else if (tool == 3u)
+
+        return STRENGTH_PINCH;
+
+    else if (tool == 4u)
+
+        return STRENGTH_CREASE;
+
+    else if (tool == 5u)
+
+        return STRENGTH_FLATTEN;
+
+    else if (tool == 6u)
+
+        return STRENGTH_SCALE;
+
+    else
+
+        return STRENGTH_MASK;
+
+}
+
+float GetStrengthMin(uint tool)
+
+{
+
+    if (tool <= 1u)
+
+        return 0.0001f;
+
+    else if (tool == 2u)
+
+        return 0.010f;
+
+    else if (tool == 3u)
+
+        return 0.0001f;
+
+    else if (tool == 4u)
+
+        return 0.00001f;
+
+    else if (tool == 5u)
+
+        return 0.000005f;
+
+    else if (tool == 6u)
+
+        return 0.001f;
+
+    else
+
+        return 0.0f;
+
+}
+
+float GetStrengthMax(uint tool)
+
+{
+
+    if (tool <= 1u)
+
+        return 0.010f;
+
+    else if (tool == 2u)
+
+        return 0.70f;
+
+    else if (tool == 3u)
+
+        return 0.005f;
+
+    else if (tool == 4u)
+
+        return 0.0005f;
+
+    else if (tool == 5u)
+
+        return 0.0002f;
+
+    else if (tool == 6u)
+
+        return 0.02f;
+
+    else
+
+        return 1.0f;
+
+}
+
+float GetStrengthUI(uint tool)
+
+{
+
+    float minValue = GetStrengthMin(tool);
+
+    float maxValue = GetStrengthMax(tool);
+
+    float value = GetStrengthDefault(tool);
+
+    return saturate((value - minValue) / (maxValue - minValue));
+
+}
+
+float GetStrengthValue(uint tool, float uiValue)
+
+{
+
+    return lerp(
+
+        GetStrengthMin(tool),
+
+        GetStrengthMax(tool),
+
+        saturate(uiValue)
+
+    );
+
+}
+
+[numthreads(1, 1, 1)]
+
+void main(uint3 id : SV_DispatchThreadID)
+
+{
+
+    float2 screen = max(UI_CURSOR.zw, float2(1.0f, 1.0f));
+
+    float2 p = UI_CURSOR.xy / screen;
+
+    bool mainUI = UI_CONFIG.x > 0.5f;
+
+    bool overlay = UI_OVERLAY > 0.5f;
+
+    bool open = mainUI || overlay;
+
+    bool lmb = UI_INPUT.x > 0.5f;
+
+    bool prevLmb = UIState[2] > 0.5f;
+
+    bool click = lmb && !prevLmb;
+
+    float currentRadius = UI_CONFIG.w;
+    uint maskSlot = (uint)clamp(MASK_UI.x + 0.5f, 0.0f, 7.0f);
+    bool renameOpen = MASK_UI.y > 0.5f;
+    uint renameSlot = (uint)clamp(MASK_UI.z + 0.5f, 0.0f, 7.0f);
+
+
+    // -------------------------------------------------------------------------
+
+    // Debug
+
+    // -------------------------------------------------------------------------
+
+    UIState[11] = click ? 1.0f : 0.0f;
+
+    UIState[12] = lmb ? 1.0f : 0.0f;
+
+    UIState[13] = !prevLmb ? 1.0f : 0.0f;
+
+    UIState[14] = open ? 1.0f : 0.0f;
+
+    // -------------------------------------------------------------------------
+
+    // Initialize
+
+    // -------------------------------------------------------------------------
+
+    if (UIState[10] < 0.5f)
+
+    {
+
+        UIState[0] = 0.0f;
+
+        UIState[1] = TOOL_GRAB;
+
+        UIState[2] = 0.0f;
+
+        UIState[3] = 0.0f;
+
+        UIState[4] = 0.0f;
+
+        UIState[5] = UI_CONFIG.y;
+
+        UIState[6] = UI_CONFIG.z;
+
+        UIState[7] = 0.0f;
+
+        UIState[8] = currentRadius;
+
+        UIState[9] = GetStrengthUI(TOOL_GRAB);
+
+        UIState[15] = GetStrengthDefault(TOOL_GRAB);
+
+        UIState[10] = 1.0f;
+
+        UIState[16] = UI_FALLOFF;
+        UIState[17] = 0.0f;
+        UIState[18] = (float)maskSlot;
+        UIState[19] = renameOpen ? 1.0f : 0.0f;
+        UIState[20] = (float)renameSlot;
+        UIState[21] = (float)clamp(MASK_UI.w + 0.5f, 0.0f, 7.0f);
+        UIState[29] = 0.0f;
+
+    }
+
+    uint page = (uint)max(UIState[0] + 0.5f, 0.0f);
+
+    uint tool = (uint)max(UIState[1] + 0.5f, 0.0f);
+
+    uint activeSlider = (uint)max(UIState[7] + 0.5f, 0.0f);
+
+    uint mirrorAxis = (uint)max(UIState[6] + 0.5f, 0.0f);
+
+    float mirror = UIState[5];
+
+    float radius = UIState[8];
+
+    float strength = saturate(UIState[9]);
+
+    float actualStrength = UIState[15];
+
+    uint falloffMode = (uint)clamp(UIState[16] + 0.5f, 0.0f, 4.0f);
+    bool falloffOpen = UI_FALLOFF_OPEN > 0.5f;
+
+    // -------------------------------------------------------------------------
+    // Jiggle System state. Each group occupies two IniParams rows beginning at 39:
+    // row A = enabled, mask slot, stiffness, damping
+    // row B = strength, inertia, maximum offset, reserved
+    // -------------------------------------------------------------------------
+    uint jiggleGroup = (uint)clamp(UIState[21] + 0.5f, 0.0f, 7.0f);
+    float4 jiggleCfg = IniParams[39 + jiggleGroup * 2u];
+    float4 jiggleExtra = IniParams[40 + jiggleGroup * 2u];
+
+    float jiggleEnabled = UIState[22];
+    uint jiggleMaskSlot = (uint)clamp(UIState[23] + 0.5f, 0.0f, 7.0f);
+    float jiggleStiffness = UIState[24];
+    float jiggleDamping = UIState[25];
+    float jiggleStrength = UIState[26];
+    float jiggleInertia = UIState[27];
+    float jiggleMaxOffset = UIState[28];
+    uint jiggleTab = (uint)clamp(UIState[29] + 0.5f, 0.0f, 2.0f);
+
+    float4 jiggleAxisGravity = IniParams[56 + jiggleGroup];
+    float4 jiggleAdvanced = IniParams[64 + jiggleGroup];
+    float jiggleAxisX = UIState[30];
+    float jiggleAxisY = UIState[31];
+    float jiggleAxisZ = UIState[32];
+    float jiggleGravity = UIState[33];
+    float jiggleMotionSensitivity = UIState[34];
+    float jiggleMotionSmoothing = UIState[35];
+    float jiggleEdgeFalloff = UIState[36];
+
+    bool jiggleSliderActive = activeSlider >= 520u && activeSlider <= 528u;
+    if (!jiggleSliderActive)
+    {
+        jiggleEnabled = jiggleCfg.x;
+        jiggleMaskSlot = (uint)clamp(jiggleCfg.y + 0.5f, 0.0f, 7.0f);
+        jiggleStiffness = jiggleCfg.z;
+        jiggleDamping = jiggleCfg.w;
+        jiggleStrength = jiggleExtra.x;
+        jiggleInertia = jiggleExtra.y;
+        jiggleMaxOffset = jiggleExtra.z;
+        jiggleAxisX = jiggleAxisGravity.x;
+        jiggleAxisY = jiggleAxisGravity.y;
+        jiggleAxisZ = jiggleAxisGravity.z;
+        jiggleGravity = jiggleAxisGravity.w;
+        jiggleMotionSensitivity = jiggleAdvanced.x;
+        jiggleMotionSmoothing = jiggleAdvanced.y;
+        jiggleEdgeFalloff = jiggleAdvanced.z;
+    }
+
+    uint hover = 0u;
+
+    uint clicked = 0u;
+
+    // -------------------------------------------------------------------------
+
+    // Synchronize values which are not currently being edited
+
+    // -------------------------------------------------------------------------
+
+    if (activeSlider != 50u)
+
+        radius = currentRadius;
+
+    // -------------------------------------------------------------------------
+
+    // UI
+
+    // -------------------------------------------------------------------------
+
+    if (mainUI)
+
+    {
+
+        // ---------------------------------------------------------------------
+
+        // Sidebar gets priority over everything else.
+
+        // ---------------------------------------------------------------------
+
+        if (InRect(p, float2(0.17f, 0.23f), float2(0.32f, 0.31f)))
+
+            hover = 10u;
+
+        else if (InRect(p, float2(0.17f, 0.32f), float2(0.32f, 0.40f)))
+
+            hover = 11u;
+
+        else if (InRect(p, float2(0.17f, 0.41f), float2(0.32f, 0.49f)))
+
+            hover = 12u;
+
+        else if (InRect(p, float2(0.17f, 0.50f), float2(0.32f, 0.58f)))
+
+            hover = 13u;
+
+        else if (InRect(p, float2(0.17f, 0.59f), float2(0.32f, 0.67f)))
+
+            hover = 14u;
+
+        else if (InRect(p, float2(0.17f, 0.68f), float2(0.32f, 0.76f)))
+
+            hover = 15u;
+
+        // ---------------------------------------------------------------------
+
+        // Mesh content
+
+        // ---------------------------------------------------------------------
+
+        else if (page == 0u)
+
+        {
+
+            // -----------------------------------------------------------------
+
+            // Tools: 2 columns x 4 rows
+
+            // -----------------------------------------------------------------
+
+            if (InRect(p, float2(0.36f, 0.27f), float2(0.59f, 0.335f)))
+
+                hover = 30u;
+
+            else if (InRect(p, float2(0.60f, 0.27f), float2(0.82f, 0.335f)))
+
+                hover = 31u;
+
+            else if (InRect(p, float2(0.36f, 0.345f), float2(0.59f, 0.410f)))
+
+                hover = 32u;
+
+            else if (InRect(p, float2(0.60f, 0.345f), float2(0.82f, 0.410f)))
+
+                hover = 33u;
+
+            else if (InRect(p, float2(0.36f, 0.420f), float2(0.59f, 0.485f)))
+
+                hover = 34u;
+
+            else if (InRect(p, float2(0.60f, 0.420f), float2(0.82f, 0.485f)))
+
+                hover = 35u;
+
+            else if (InRect(p, float2(0.36f, 0.495f), float2(0.59f, 0.560f)))
+
+                hover = 36u;
+
+            else if (InRect(p, float2(0.60f, 0.495f), float2(0.82f, 0.560f)))
+
+                hover = 37u;
+
+            // -----------------------------------------------------------------
+
+            // Radius
+
+            // -----------------------------------------------------------------
+
+            else if (InRect(p, float2(0.50f, 0.660f), float2(0.80f, 0.681f)))
+
+                hover = 50u;
+
+            // -----------------------------------------------------------------
+
+            // Strength
+
+            // -----------------------------------------------------------------
+
+            else if (tool != TOOL_GRAB &&
+
+                     InRect(p, float2(0.50f, 0.715f), float2(0.80f, 0.736f)))
+
+                hover = 51u;
+
+            // -----------------------------------------------------------------
+
+            // Mirror X / Y / Z / Clear
+
+            // -----------------------------------------------------------------
+
+            else if (InRect(p, float2(0.37f, 0.775f), float2(0.48f, 0.815f)))
+
+                hover = 60u;
+
+            else if (InRect(p, float2(0.49f, 0.775f), float2(0.60f, 0.815f)))
+
+                hover = 61u;
+
+            else if (InRect(p, float2(0.61f, 0.775f), float2(0.72f, 0.815f)))
+
+                hover = 62u;
+
+            else if (InRect(p, float2(0.74f, 0.775f), float2(0.82f, 0.815f)))
+
+                hover = 70u;
+
+            // -----------------------------------------------------------------
+
+            // Click
+
+            // -----------------------------------------------------------------
+
+            if (click)
+
+            {
+
+                clicked = hover;
+
+                // Sidebar page
+
+                if (hover >= 10u && hover <= 15u)
+
+                {
+
+                    page = hover - 10u;
+
+                    activeSlider = 0u;
+
+                }
+
+                // Tools
+
+                else if (hover >= 30u && hover <= 37u)
+
+                {
+
+                    tool = hover - 30u;
+
+                    activeSlider = 0u;
+
+                    strength = GetStrengthUI(tool);
+
+                    actualStrength = GetStrengthDefault(tool);
+
+                }
+
+                // Radius
+
+                else if (hover == 50u)
+
+                {
+
+                    activeSlider = 50u;
+
+                }
+
+                // Strength
+
+                else if (hover == 51u)
+
+                {
+
+                    activeSlider = 51u;
+
+                }
+
+                // Mirror
+
+                else if (hover >= 60u && hover <= 62u)
+
+                {
+
+                    uint newAxis = hover - 60u;
+
+                    if (mirror > 0.5f && mirrorAxis == newAxis)
+
+                        mirror = 0.0f;
+
+                    else
+
+                    {
+
+                        mirror = 1.0f;
+
+                        mirrorAxis = newAxis;
+
+                    }
+
+                    activeSlider = 0u;
+
+                }
+
+                // Clear
+
+                else if (hover == 70u)
+
+                {
+
+                    activeSlider = 0u;
+
+                }
+
+            }
+
+            // -----------------------------------------------------------------
+
+            // Slider dragging
+
+            // -----------------------------------------------------------------
+
+            if (lmb && activeSlider == 50u)
+
+            {
+
+                float t = saturate((p.x - 0.50f) / 0.30f);
+
+                radius = lerp(0.010f, 1.0f, t);
+
+            }
+
+            else if (lmb && activeSlider == 51u)
+
+            {
+
+                float t = saturate((p.x - 0.50f) / 0.30f);
+
+                strength = t;
+
+                actualStrength = GetStrengthValue(tool, t);
+
+            }
+
+            if (!lmb)
+
+                activeSlider = 0u;
+
+        }
+
+        else if (page == 1u)
+        {
+            // Group selectors: 4 columns x 2 rows.
+            if (InRect(p, float2(0.36f, 0.255f), float2(0.47f, 0.300f))) hover = 500u;
+            else if (InRect(p, float2(0.48f, 0.255f), float2(0.59f, 0.300f))) hover = 501u;
+            else if (InRect(p, float2(0.60f, 0.255f), float2(0.71f, 0.300f))) hover = 502u;
+            else if (InRect(p, float2(0.72f, 0.255f), float2(0.82f, 0.300f))) hover = 503u;
+            else if (InRect(p, float2(0.36f, 0.315f), float2(0.47f, 0.360f))) hover = 504u;
+            else if (InRect(p, float2(0.48f, 0.315f), float2(0.59f, 0.360f))) hover = 505u;
+            else if (InRect(p, float2(0.60f, 0.315f), float2(0.71f, 0.360f))) hover = 506u;
+            else if (InRect(p, float2(0.72f, 0.315f), float2(0.82f, 0.360f))) hover = 507u;
+
+            // Enabled toggle and mask-slot selector.
+            else if (InRect(p, float2(0.36f, 0.400f), float2(0.49f, 0.455f))) hover = 510u;
+            else if (InRect(p, float2(0.57f, 0.400f), float2(0.61f, 0.455f))) hover = 511u;
+            else if (InRect(p, float2(0.73f, 0.400f), float2(0.77f, 0.455f))) hover = 512u;
+
+            // Jiggle subpages. Tabs sit between the mask row and the first slider.
+            else if (InRect(p, float2(0.36f, 0.458f), float2(0.50f, 0.480f))) hover = 513u;
+            else if (InRect(p, float2(0.505f, 0.458f), float2(0.655f, 0.480f))) hover = 514u;
+            else if (InRect(p, float2(0.660f, 0.458f), float2(0.82f, 0.480f))) hover = 515u;
+
+            if (jiggleTab == 0u)
+            {
+                // Basic spring settings.
+                if (InRect(p, float2(0.50f, 0.480f), float2(0.74f, 0.520f))) hover = 520u;
+                else if (InRect(p, float2(0.50f, 0.545f), float2(0.74f, 0.585f))) hover = 521u;
+                else if (InRect(p, float2(0.50f, 0.610f), float2(0.74f, 0.650f))) hover = 522u;
+                else if (InRect(p, float2(0.50f, 0.675f), float2(0.74f, 0.715f))) hover = 523u;
+                else if (InRect(p, float2(0.50f, 0.740f), float2(0.74f, 0.780f))) hover = 524u;
+            }
+            else if (jiggleTab == 1u)
+            {
+                // Motion response controls.
+                if (InRect(p, float2(0.50f, 0.480f), float2(0.74f, 0.520f))) hover = 525u;
+                else if (InRect(p, float2(0.50f, 0.545f), float2(0.74f, 0.585f))) hover = 526u;
+                else if (InRect(p, float2(0.50f, 0.610f), float2(0.74f, 0.650f))) hover = 527u;
+                else if (InRect(p, float2(0.50f, 0.690f), float2(0.575f, 0.735f))) hover = 530u;
+                else if (InRect(p, float2(0.585f, 0.690f), float2(0.660f, 0.735f))) hover = 531u;
+                else if (InRect(p, float2(0.670f, 0.690f), float2(0.745f, 0.735f))) hover = 532u;
+            }
+            else
+            {
+                // Mask falloff and presets.
+                if (InRect(p, float2(0.50f, 0.480f), float2(0.74f, 0.520f))) hover = 528u;
+                else if (InRect(p, float2(0.365f, 0.565f), float2(0.505f, 0.615f))) hover = 540u;
+                else if (InRect(p, float2(0.515f, 0.565f), float2(0.655f, 0.615f))) hover = 541u;
+                else if (InRect(p, float2(0.665f, 0.565f), float2(0.815f, 0.615f))) hover = 542u;
+                else if (InRect(p, float2(0.365f, 0.635f), float2(0.505f, 0.685f))) hover = 543u;
+                else if (InRect(p, float2(0.515f, 0.635f), float2(0.655f, 0.685f))) hover = 544u;
+                else if (InRect(p, float2(0.665f, 0.635f), float2(0.815f, 0.685f))) hover = 545u;
+            }
+
+            if (click)
+            {
+                clicked = hover;
+
+                if (hover >= 500u && hover <= 507u)
+                {
+                    jiggleGroup = hover - 500u;
+                    jiggleCfg = IniParams[39 + jiggleGroup * 2u];
+                    jiggleExtra = IniParams[40 + jiggleGroup * 2u];
+
+                    jiggleEnabled = jiggleCfg.x;
+                    jiggleMaskSlot = (uint)clamp(jiggleCfg.y + 0.5f, 0.0f, 7.0f);
+                    jiggleStiffness = jiggleCfg.z;
+                    jiggleDamping = jiggleCfg.w;
+                    jiggleStrength = jiggleExtra.x;
+                    jiggleInertia = jiggleExtra.y;
+                    jiggleMaxOffset = jiggleExtra.z;
+                    jiggleAxisGravity = IniParams[56 + jiggleGroup];
+                    jiggleAdvanced = IniParams[64 + jiggleGroup];
+                    jiggleAxisX = jiggleAxisGravity.x;
+                    jiggleAxisY = jiggleAxisGravity.y;
+                    jiggleAxisZ = jiggleAxisGravity.z;
+                    jiggleGravity = jiggleAxisGravity.w;
+                    jiggleMotionSensitivity = jiggleAdvanced.x;
+                    jiggleMotionSmoothing = jiggleAdvanced.y;
+                    jiggleEdgeFalloff = jiggleAdvanced.z;
+                    activeSlider = 0u;
+                }
+                else if (hover == 510u)
+                {
+                    jiggleEnabled = jiggleEnabled > 0.5f ? 0.0f : 1.0f;
+                    activeSlider = 0u;
+                }
+                else if (hover == 511u)
+                {
+                    jiggleMaskSlot = (jiggleMaskSlot + 7u) % 8u;
+                    activeSlider = 0u;
+                }
+                else if (hover == 512u)
+                {
+                    jiggleMaskSlot = (jiggleMaskSlot + 1u) % 8u;
+                    activeSlider = 0u;
+                }
+                else if (hover >= 513u && hover <= 515u)
+                {
+                    jiggleTab = hover - 513u;
+                    activeSlider = 0u;
+                }
+                else if (hover >= 530u && hover <= 532u)
+                {
+                    if (hover == 530u) jiggleAxisX = jiggleAxisX > 0.5f ? 0.0f : 1.0f;
+                    else if (hover == 531u) jiggleAxisY = jiggleAxisY > 0.5f ? 0.0f : 1.0f;
+                    else jiggleAxisZ = jiggleAxisZ > 0.5f ? 0.0f : 1.0f;
+                    activeSlider = 0u;
+                }
+                else if (hover == 545u)
+                {
+                    jiggleEnabled = 0.0f;
+                    activeSlider = 0u;
+                }
+                else if (hover >= 540u && hover <= 544u)
+                {
+                    // Presets are applied to the currently selected group, then persisted by the INI bridge.
+                    jiggleEnabled = 1.0f;
+                    jiggleTab = 0u;
+                    activeSlider = 0u;
+                    if (hover == 540u) // SUBTLE
+                    {
+                        jiggleStiffness = 140.0f; jiggleDamping = 24.0f; jiggleStrength = 0.40f;
+                        jiggleInertia = 0.30f; jiggleMaxOffset = 0.010f;
+                        jiggleAxisX = 1.0f; jiggleAxisY = 1.0f; jiggleAxisZ = 0.0f; jiggleGravity = 0.0f;
+                        jiggleMotionSensitivity = 0.55f; jiggleMotionSmoothing = 0.35f; jiggleEdgeFalloff = 1.40f;
+                    }
+                    else if (hover == 541u) // NATURAL
+                    {
+                        jiggleStiffness = 85.0f; jiggleDamping = 10.0f; jiggleStrength = 1.00f;
+                        jiggleInertia = 0.80f; jiggleMaxOffset = 0.018f;
+                        jiggleAxisX = 1.0f; jiggleAxisY = 1.0f; jiggleAxisZ = 0.0f; jiggleGravity = 0.0f;
+                        jiggleMotionSensitivity = 1.00f; jiggleMotionSmoothing = 0.65f; jiggleEdgeFalloff = 1.00f;
+                    }
+                    else if (hover == 542u) // ZZZ-like: more elastic, more inertia, wider travel
+                    {
+                        jiggleStiffness = 58.0f; jiggleDamping = 6.0f; jiggleStrength = 1.25f;
+                        jiggleInertia = 1.20f; jiggleMaxOffset = 0.045f;
+                        jiggleAxisX = 1.0f; jiggleAxisY = 1.0f; jiggleAxisZ = 0.0f; jiggleGravity = 0.0f;
+                        jiggleMotionSensitivity = 1.25f; jiggleMotionSmoothing = 0.80f; jiggleEdgeFalloff = 0.85f;
+                    }
+                    else if (hover == 543u) // STRONG
+                    {
+                        jiggleStiffness = 42.0f; jiggleDamping = 4.0f; jiggleStrength = 1.55f;
+                        jiggleInertia = 1.40f; jiggleMaxOffset = 0.075f;
+                        jiggleAxisX = 1.0f; jiggleAxisY = 1.0f; jiggleAxisZ = 1.0f; jiggleGravity = 0.03f;
+                        jiggleMotionSensitivity = 1.50f; jiggleMotionSmoothing = 0.85f; jiggleEdgeFalloff = 0.80f;
+                    }
+                    else // EXTREME
+                    {
+                        jiggleStiffness = 28.0f; jiggleDamping = 2.5f; jiggleStrength = 2.10f;
+                        jiggleInertia = 1.80f; jiggleMaxOffset = 0.130f;
+                        jiggleAxisX = 1.0f; jiggleAxisY = 1.0f; jiggleAxisZ = 1.0f; jiggleGravity = 0.07f;
+                        jiggleMotionSensitivity = 1.70f; jiggleMotionSmoothing = 0.90f; jiggleEdgeFalloff = 0.70f;
+                    }
+                }
+                else if (hover >= 520u && hover <= 528u)
+                {
+                    activeSlider = hover;
+                }
+            }
+
+            if (lmb && activeSlider >= 520u && activeSlider <= 528u)
+            {
+                float t = saturate((p.x - 0.51f) / 0.22f);
+
+                if (activeSlider == 520u)
+                    jiggleStiffness = lerp(0.0f, 200.0f, t);
+                else if (activeSlider == 521u)
+                    jiggleDamping = lerp(0.0f, 40.0f, t);
+                else if (activeSlider == 522u)
+                    jiggleStrength = lerp(0.0f, 3.0f, t);
+                else if (activeSlider == 523u)
+                    jiggleInertia = lerp(0.0f, 2.0f, t);
+                else if (activeSlider == 524u)
+                    jiggleMaxOffset = lerp(0.005f, 0.25f, t);
+                else if (activeSlider == 525u)
+                    jiggleGravity = lerp(-1.0f, 1.0f, t);
+                else if (activeSlider == 526u)
+                    jiggleMotionSensitivity = lerp(0.0f, 2.0f, t);
+                else if (activeSlider == 527u)
+                    jiggleMotionSmoothing = lerp(0.05f, 1.0f, t);
+                else if (activeSlider == 528u)
+                    jiggleEdgeFalloff = lerp(0.25f, 2.5f, t);
+            }
+
+            if (!lmb)
+                activeSlider = 0u;
+        }
+        else
+        {
+            activeSlider = 0u;
+        }
+
+    }
+
+    else if (overlay)
+    {
+        // Rename modal captures clicks until Save or Cancel.
+        if (renameOpen)
+        {
+            if (InRect(p, float2(0.36f, 0.58f), float2(0.49f, 0.625f)))
+                hover = 340u;
+            else if (InRect(p, float2(0.51f, 0.58f), float2(0.64f, 0.625f)))
+                hover = 341u;
+        }
+        else
+        {
+            if (falloffOpen && InRect(p, float2(+0.5600f, +0.0764f), float2(+0.6600f, +0.1104f))) hover = 231u;
+            else if (falloffOpen && InRect(p, float2(+0.5600f, +0.1106f), float2(+0.6600f, +0.1446f))) hover = 232u;
+            else if (falloffOpen && InRect(p, float2(+0.5600f, +0.1460f), float2(+0.6600f, +0.1800f))) hover = 233u;
+            else if (falloffOpen && InRect(p, float2(+0.5600f, +0.1850f), float2(+0.6600f, +0.2190f))) hover = 234u;
+            else if (falloffOpen && InRect(p, float2(+0.5600f, +0.2222f), float2(+0.6600f, +0.2562f))) hover = 235u;
+
+            // Row 1
+            else if (InRect(p, float2(0.760f, 0.140f), float2(0.783f, 0.183f))) hover = 330u;
+            else if (InRect(p, float2(0.787f, 0.140f), float2(0.874f, 0.183f))) hover = 300u;
+            else if (InRect(p, float2(0.880f, 0.140f), float2(0.960f, 0.183f))) hover = 320u;
+
+            // Row 2
+            else if (InRect(p, float2(0.760f, 0.187f), float2(0.783f, 0.230f))) hover = 331u;
+            else if (InRect(p, float2(0.787f, 0.187f), float2(0.874f, 0.230f))) hover = 301u;
+            else if (InRect(p, float2(0.880f, 0.187f), float2(0.960f, 0.230f))) hover = 321u;
+
+            // Row 3
+            else if (InRect(p, float2(0.760f, 0.234f), float2(0.783f, 0.277f))) hover = 332u;
+            else if (InRect(p, float2(0.787f, 0.234f), float2(0.874f, 0.277f))) hover = 302u;
+            else if (InRect(p, float2(0.880f, 0.234f), float2(0.960f, 0.277f))) hover = 322u;
+
+            // Row 4
+            else if (InRect(p, float2(0.760f, 0.281f), float2(0.783f, 0.324f))) hover = 333u;
+            else if (InRect(p, float2(0.787f, 0.281f), float2(0.874f, 0.324f))) hover = 303u;
+            else if (InRect(p, float2(0.880f, 0.281f), float2(0.960f, 0.324f))) hover = 323u;
+
+            // Row 5
+            else if (InRect(p, float2(0.760f, 0.328f), float2(0.783f, 0.371f))) hover = 334u;
+            else if (InRect(p, float2(0.787f, 0.328f), float2(0.874f, 0.371f))) hover = 304u;
+            else if (InRect(p, float2(0.880f, 0.328f), float2(0.960f, 0.371f))) hover = 324u;
+
+            // Row 6
+            else if (InRect(p, float2(0.760f, 0.375f), float2(0.783f, 0.418f))) hover = 335u;
+            else if (InRect(p, float2(0.787f, 0.375f), float2(0.874f, 0.418f))) hover = 305u;
+            else if (InRect(p, float2(0.880f, 0.375f), float2(0.960f, 0.418f))) hover = 325u;
+
+            // Row 7
+            else if (InRect(p, float2(0.760f, 0.422f), float2(0.783f, 0.465f))) hover = 336u;
+            else if (InRect(p, float2(0.787f, 0.422f), float2(0.874f, 0.465f))) hover = 306u;
+            else if (InRect(p, float2(0.880f, 0.422f), float2(0.960f, 0.465f))) hover = 326u;
+
+            // Row 8
+            else if (InRect(p, float2(0.760f, 0.469f), float2(0.783f, 0.512f))) hover = 337u;
+            else if (InRect(p, float2(0.787f, 0.469f), float2(0.874f, 0.512f))) hover = 307u;
+            else if (InRect(p, float2(0.880f, 0.469f), float2(0.960f, 0.512f))) hover = 327u;
+            // Mask operations — IDs 350..356 are handled by NuraThingsUIFrame.
+            else if (InRect(p, float2(0.760f, 0.555f), float2(0.805f, 0.593f))) hover = 350u; // CLEAR
+            else if (InRect(p, float2(0.810f, 0.555f), float2(0.855f, 0.593f))) hover = 351u; // FILL
+            else if (InRect(p, float2(0.860f, 0.555f), float2(0.905f, 0.593f))) hover = 352u; // INVERT
+            else if (InRect(p, float2(0.910f, 0.555f), float2(0.960f, 0.593f))) hover = 353u; // THRESHOLD
+            else if (InRect(p, float2(0.768f, 0.600f), float2(0.828f, 0.638f))) hover = 354u; // CONTRAST
+            else if (InRect(p, float2(0.833f, 0.600f), float2(0.893f, 0.638f))) hover = 355u; // SMOOTH
+            else if (InRect(p, float2(0.898f, 0.600f), float2(0.960f, 0.638f))) hover = 356u; // SHARPEN
+
+
+            else if (InRect(p, float2(0.012f, 0.140f), float2(0.100f, 0.205f))) hover = 100u;
+            else if (InRect(p, float2(0.012f, 0.213f), float2(0.100f, 0.278f))) hover = 101u;
+            else if (InRect(p, float2(0.012f, 0.286f), float2(0.100f, 0.351f))) hover = 102u;
+            else if (InRect(p, float2(0.012f, 0.359f), float2(0.100f, 0.424f))) hover = 103u;
+            else if (InRect(p, float2(0.012f, 0.432f), float2(0.100f, 0.497f))) hover = 104u;
+            else if (InRect(p, float2(0.012f, 0.505f), float2(0.100f, 0.570f))) hover = 105u;
+            else if (InRect(p, float2(0.012f, 0.578f), float2(0.100f, 0.643f))) hover = 106u;
+            else if (InRect(p, float2(0.012f, 0.651f), float2(0.100f, 0.716f))) hover = 107u;
+            else if (InRect(p, float2(0.16f, 0.039f), float2(0.245f, 0.069f))) hover = 200u;
+            else if (InRect(p, float2(+0.3629f, +0.0405f), float2(+0.4379f, +0.0705f))) hover = 201u;
+            else if (InRect(p, float2(+0.5600f, +0.0414f), float2(+0.6600f, +0.0714f))) hover = 230u;
+
+            else if (InRect(p, float2(0.70f, 0.060f), float2(0.74f, 0.082f))) hover = 210u;
+            else if (InRect(p, float2(0.75f, 0.060f), float2(0.79f, 0.082f))) hover = 211u;
+            else if (InRect(p, float2(0.80f, 0.060f), float2(0.84f, 0.082f))) hover = 212u;
+            else if (InRect(p, float2(0.86f, 0.060f), float2(0.97f, 0.082f))) hover = 220u;
+
+            
+            else if (InRect(p, float2(0.780f, 0.516f), float2(0.860f, 0.548f)))
+                hover = 361u; // ALL / NONE
+
+            else if (InRect(p, float2(0.885f, 0.516f), float2(0.960f, 0.548f)))
+                hover = 362u; // Preview mode
+        }
+
+        if (click)
+        {
+            clicked = hover;
+            if (renameOpen)
+            {
+                if (hover == 340u || hover == 341u)
+                {
+                    renameOpen = false;
+                    activeSlider = 0u;
+                }
+            }
+            else if (hover >= 300u && hover <= 307u)
+            {
+                maskSlot = hover - 300u;
+                activeSlider = 0u;
+            }
+            else if (hover >= 320u && hover <= 327u)
+            {
+                renameSlot = hover - 320u;
+                renameOpen = true;
+                activeSlider = 0u;
+                falloffOpen = false;
+            }
+            else if (falloffOpen)
+            {
+                if (hover >= 231u && hover <= 235u)
+                    falloffMode = hover - 231u;
+                falloffOpen = false;
+                activeSlider = 0u;
+            }
+            else if (hover >= 100u && hover <= 107u)
+            {
+                tool = hover - 100u;
+                activeSlider = 0u;
+                strength = GetStrengthUI(tool);
+                actualStrength = GetStrengthDefault(tool);
+            }
+            else if (hover == 200u) activeSlider = 50u;
+            else if (hover == 201u) activeSlider = 51u;
+            else if (hover >= 210u && hover <= 212u)
+            {
+                uint newAxis = hover - 210u;
+                if (mirror > 0.5f && mirrorAxis == newAxis) mirror = 0.0f;
+                else { mirror = 1.0f; mirrorAxis = newAxis; }
+                activeSlider = 0u;
+            }
+            else if (hover == 220u) activeSlider = 0u;
+            else if (hover == 230u) { falloffOpen = true; activeSlider = 0u; }
+        }
+
+        if (lmb && activeSlider == 50u)
+        {
+            float t = saturate((p.x - 0.16f) / 0.085f);
+            radius = lerp(0.010f, 1.0f, t);
+        }
+        else if (lmb && activeSlider == 51u)
+        {
+            float t = saturate((p.x - 0.3660f) / 0.075f);
+            strength = t;
+            actualStrength = GetStrengthValue(tool, t);
+        }
+        if (!lmb) activeSlider = 0u;
+    }
+
+    else
+
+    {
+
+        activeSlider = 0u;
+
+    }
+
+    // Sidebar hit-tests take priority over page contents, so handle page navigation
+    // once here, outside the content-page branches.
+    if (mainUI && click && hover >= 10u && hover <= 15u)
+    {
+        clicked = hover;
+        page = hover - 10u;
+        activeSlider = 0u;
+    }
+
+    // -------------------------------------------------------------------------
+
+    // Store State
+
+    // -------------------------------------------------------------------------
+
+    UIState[0] = (float)page;
+
+    UIState[1] = (float)tool;
+
+    UIState[2] = lmb ? 1.0f : 0.0f;
+
+    UIState[3] = (float)hover;
+
+    UIState[4] = (float)clicked;
+
+    UIState[5] = mirror;
+
+    UIState[6] = (float)mirrorAxis;
+
+    UIState[7] = (float)activeSlider;
+
+    UIState[8] = radius;
+
+    UIState[9] = saturate(strength);
+
+    UIState[15] = actualStrength;
+
+    UIState[16] = (float)falloffMode;
+    UIState[17] = falloffOpen ? 1.0f : 0.0f;
+    UIState[18] = (float)maskSlot;
+    UIState[19] = renameOpen ? 1.0f : 0.0f;
+    UIState[20] = (float)renameSlot;
+
+    UIState[21] = (float)jiggleGroup;
+    UIState[22] = jiggleEnabled;
+    UIState[23] = (float)jiggleMaskSlot;
+    UIState[24] = jiggleStiffness;
+    UIState[25] = jiggleDamping;
+    UIState[26] = jiggleStrength;
+    UIState[27] = jiggleInertia;
+    UIState[28] = jiggleMaxOffset;
+    UIState[29] = (float)jiggleTab;
+    UIState[30] = jiggleAxisX;
+    UIState[31] = jiggleAxisY;
+    UIState[32] = jiggleAxisZ;
+    UIState[33] = jiggleGravity;
+    UIState[34] = jiggleMotionSensitivity;
+    UIState[35] = jiggleMotionSmoothing;
+    UIState[36] = jiggleEdgeFalloff;
+
+    WRITE_NAME(80, 0);
+    WRITE_NAME(84, 16);
+    WRITE_NAME(88, 32);
+    WRITE_NAME(92, 48);
+    WRITE_NAME(96, 64);
+    WRITE_NAME(100, 80);
+    WRITE_NAME(104, 96);
+    WRITE_NAME(108, 112);
+    WRITE_NAME(112, 128);
+
+}

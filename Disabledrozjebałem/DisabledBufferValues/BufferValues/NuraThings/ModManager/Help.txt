@@ -1,0 +1,59 @@
+KeyBinds:
+
+    CTRL + Arrow-Up to Enable the Menu
+
+        While the Menu is Up:
+
+            ? to Open this Menu
+
+            CTRL + Arrow-Left/Right to change the Active Mod or Check Alternative at the Bottom
+
+            CTRL + Arrow-Down to Reset Mod IDs
+
+            CTRL + . to Change Random Type
+
+            CTRL + / to Select Random Mod
+
+            CTRL + 0 to Disable Active Mod of Selected Type
+
+            [ and ] to change Selected Type (out of currently Detected ones)
+
+            = to Show all the Mods sorted by Type (Some Type Names can show up a few Times, as Namespaced Mods are separated for Compatibility)
+            ' to Open List of Bound Mods (Click on a Pair to remove the Bind)
+
+
+            8 to Toggle Custom Color
+                N - Open Color Selector
+                    Press < or > while the Color Selector is Open to Change the Type of the Selector (There are 3, each has it's own Saved Color)
+
+            ` to Toggle Debug Mode (not exactly useful for Users)
+
+            - to Toggle Top Stats
+
+            ; to Toggle Full Stats
+
+
+Menu Toggles:
+    Hold Alt to Interact:
+        On-Hover:
+            Mod Count - Will Show the List of Mods of Selected Type
+            Mod Type - Will Show the List of Detected Types
+            
+        On-Click:
+            Mod Count - Will allow You to Click the Mod on the List to Select it
+            Mod Type - Will allow You to Click the Type on the List to Select it
+            RMode - will Cycle between 3 Random Mod States:
+                - Off
+                - Change Mod on each Character Swap/whenever Character dissapears from the Screen for more than 10 Frames
+                - Change Mod on the First Load
+
+            All-Mods Side Menu have Top and Bottom Part Interactive (it works as Back/Reset)
+
+        On-Hold: 
+            Scroll - Used to Scroll (obviously):
+                - Toggles
+                - Description (if Exists)
+                - All Types
+                - Bound Mods
+                - Detected Types 
+                - Detected Mods for Selected Type

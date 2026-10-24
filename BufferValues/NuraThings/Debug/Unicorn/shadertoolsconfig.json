@@ -1,0 +1,5 @@
+{
+  "hlsl.preprocessorDefinitions": {
+    "SHADER_TOOLS": 1
+  }
+}

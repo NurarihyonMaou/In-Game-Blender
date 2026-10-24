@@ -1,0 +1,84 @@
+namespace = NuraThings\Text
+
+[Constants]
+global $print
+
+[Present]
+if $\NuraThings\KeyDetector\detect_keys
+
+    ;Resource\Debugger\DebugRW = ref ResourceDebugRW
+
+    if $\NuraThings\KeyDetector\key_code != 0
+
+        if $\NuraThings\KeyDetector\key_code == 55
+            $print = 0
+            $\NuraThings\KeyDetector\detect_keys = 0
+        else
+            $print = 1
+            run = CustomShaderHandleInput
+        endif
+
+        $\NuraThings\KeyDetector\key_code = 0
+    endif
+endif
+
+if $print
+    run = CommandListOutput
+endif
+
+[CommandListForceWrite]
+if $\NuraThings\KeyDetector\key_code != 0
+
+    if $\NuraThings\KeyDetector\key_code == 55
+        $print = 0
+        $\NuraThings\KeyDetector\detect_keys = 0
+    else
+        $print = 1
+        run = CustomShaderHandleInput
+    endif
+    $\NuraThings\KeyDetector\last_key_code = $\NuraThings\KeyDetector\key_code
+    $\NuraThings\KeyDetector\key_code = 0
+endif
+
+[CommandListOutput]
+Resource\NuraThings\Print\Custom\Text = ref ResourceString
+Resource\NuraThings\Print\Custom\TextParams = ref ResourceStringParams
+run = CommandList\NuraThings\Print\Custom\PrintText
+
+
+[CustomShaderHandleInput]
+cs = ..\Shaders\Input.hlsl
+
+cs-u0 = ResourceString
+cs-u1 = ResourceStringCount
+cs-u2 = ResourceDebugRW
+
+local $x26 = x26
+x26 = $\NuraThings\KeyDetector\key_code
+
+dispatch = 1,1,1
+
+x26 = $x26
+cs-u0 = null
+cs-u1 = null
+cs-u2 = null
+
+[ResourceDebugRW]
+type = RWBuffer
+format = R32G32B32A32_FLOAT
+array = 128
+
+[ResourceString]
+type = RWBuffer
+format = R32_UINT
+array = 9999
+
+[ResourceStringCount]
+type = RWBuffer
+format = R8_UINT
+array = 1
+
+[ResourceStringParams]
+type = StructuredBuffer
+array = 1
+data = R32_FLOAT   -0.5 0.35 0.5 -0.35  0.15 1.0 0.15 1   0.01 0.00549 0.0177647 1.0   0.02  0.05   2 1   1   2

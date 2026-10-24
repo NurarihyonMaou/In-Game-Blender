@@ -1,0 +1,318 @@
+; Citlali
+
+; Constants -------------------------
+
+[Constants]
+global $active = 0
+global $creditinfo = 0
+
+global persist $up = 0
+global persist $down = 0
+global persist $six = 0
+global persist $six1 = 0
+global persist $six2 = 0
+global persist $seven = 0
+global persist $seven1 = 0
+global persist $seven2 = 0
+global persist $eight = 0
+global persist $eight1 = 0
+global persist $eight2 = 0
+global persist $nine = 0
+global persist $nine1 = 0
+global persist $nine2 = 0
+global persist $help = 0
+global persist $naked = 0
+
+[KeyNine1]
+condition = $active == 1
+key = no_ctrl no_Shift alt 9
+type = cycle
+$nine1 = 0,1
+
+[KeyNine2]
+condition = $active == 1
+key = ctrl no_Shift No_alt 9
+type = cycle
+$nine2 = 0,1
+
+[KeyEight2]
+condition = $active == 1
+key = no_ctrl no_Shift alt 8
+type = cycle
+$eight1 = 0,1
+
+[KeyEight]
+condition = $active == 1
+key = no_ctrl no_Shift No_alt 8
+type = cycle
+$eight = 0,1
+
+[KeyEight1]
+condition = $active == 1
+key = ctrl no_Shift No_alt 8
+type = cycle
+$eight2 = 0,1
+
+[KeyNine]
+condition = $active == 1
+key = no_ctrl no_Shift No_alt 9
+type = cycle
+$nine = 0,1
+
+[KeySix1]
+condition = $active == 1
+key = ctrl no_Shift No_alt 6
+type = cycle
+$six1 = 0,1
+
+[KeySix2]
+condition = $active == 1
+key = no_ctrl no_Shift alt 6
+type = cycle
+$six2 = 0,1
+
+[KeySix]
+condition = $active == 1
+key = no_ctrl no_Shift No_alt 6
+type = cycle
+$six = 0,1
+
+[KeySeven1]
+condition = $active == 1
+key = ctrl no_Shift No_alt 7
+type = cycle
+$seven1 = 0,1
+
+[KeySeven2]
+condition = $active == 1
+key = no_ctrl no_Shift alt 7
+type = cycle
+$seven2 = 0,1
+
+[KeySeven]
+condition = $active == 1
+key = no_ctrl no_Shift No_alt 7
+type = cycle
+$seven = 0,1,2
+
+[KeyDown]
+condition = $active == 1
+key = VK_DOWN
+type = cycle
+$down = 0,1
+
+[KeyUp]
+condition = $active == 1
+key = VK_UP
+type = cycle
+$up = 0,1
+
+[KeyNaked]
+condition = $active == 1
+key = alt no_ctrl h
+type = cycle
+$naked = 0,1
+
+[KeyHelp]
+condition = $active == 1
+key = no_ctrl no_Shift No_alt k
+type = cycle
+$help = 0,1
+
+[Present]
+post $active = 0
+run = CommandListCreditInfo
+if $help == 1 && $active == 1
+ps-t100 = ResourceImageToRender
+run = CustomShaderDraw
+endif
+
+; Overrides -------------------------
+
+[ResourceImageToRender]
+filename = Toggles.dds
+
+[CustomShaderDraw]
+;run = BuiltInCommandListUnfbindAllRenderTargets
+hs = null
+ds = null
+gs = null
+cs = null
+vs = Draw_2D.hlsl
+ps = Draw_2D.hlsl
+
+x87 = 712/res_width
+y87 = 720/res_height 
+z87 = 0.05
+w87 = 0.25
+
+blend = ADD SRC_ALPHA INV_SRC_ALPHA
+cull = none
+topology = triangle_strip
+o0 = set_viewport bb
+
+Draw = 4,0
+
+clear = ps-t100
+
+; //////////////////
+
+
+[TextureOverrideCitlaliBodyPosition]
+hash = 362dc30c
+vb0 = ResourceCitlaliBodyPosition
+$active = 1
+
+[TextureOverrideCitlaliBodyBlend]
+hash = 3e939d2e
+vb1 = ResourceCitlaliBodyBlend
+handling = skip
+draw = 158971,0 
+
+[TextureOverrideCitlaliBodyTexcoord]
+hash = 3421fed9
+vb1 = ResourceCitlaliBodyTexcoord
+
+[TextureOverrideCitlaliBodyVertexLimitRaise]
+hash = eec92f64
+; override_vertex_count = 158971
+; override_byte_stride = 92
+
+[TextureOverrideCitlaliBodyIB]
+hash = f81f893c
+handling = skip
+
+[ResourceNatlanFX]
+filename = NatlanFX.dds
+
+[ResourceFaceBlush]
+filename = FaceBlush.dds
+
+[ResourceDiffuseBlush]
+filename = DiffuseBlush.dds
+
+[TextureOverrideCitlaliBodyA]
+hash = f81f893c
+match_first_index = 0
+ib = ResourceCitlaliBodyAIB
+ps-t0 = ResourceCitlaliBodyANormalMap
+ps-t1 = ResourceCitlaliBodyADiffuse
+ps-t2 = ResourceCitlaliBodyALightMap
+run = CommandList\global\ORFix\ORFix
+;ps-t6 = ResourceNatlanFX
+; CitlaliBodyA (6612)
+drawindexed = 23439, 0, 0
+
+[TextureOverrideCitlaliBodyB]
+hash = f81f893c
+match_first_index = 27393
+ib = ResourceCitlaliBodyBIB
+ps-t0 = ResourceCitlaliBodyBNormalMap
+if $six == 0
+ps-t1 = ResourceCitlaliBodyBDiffuse
+else
+ps-t1 = ResourceDiffuseBlush
+endif
+ps-t2 = ResourceCitlaliBodyBLightMap
+run = CommandList\global\ORFix\ORFix
+ps-t8 = ResourceNatlanFX
+; CitlaliBodyB (1023)
+drawindexed = 2832, 0, 0
+; CitlaliBodyB
+	; Citlali  (55769)
+	drawindexed = 224784, 2832, 0
+	; Sleeves (8333)
+	drawindexed = 32172, 227616, 0
+	; Socks (13507)
+	drawindexed = 48936, 259788, 0
+	; VD Accs (28432)
+	drawindexed = 109122, 366948, 0
+if $naked == 0
+if $six1 == 0
+if $six2 == 0
+	; Top Straps (15432)
+	drawindexed = 58224, 308724, 0
+endif
+	; VD Top (19515)
+	drawindexed = 73296, 514362, 0
+endif
+if $seven2 == 0
+	; VD Thong (9105)
+	drawindexed = 38292, 476070, 0
+endif
+endif
+	; Vision (1243)
+	drawindexed = 3660, 587658, 0
+
+[TextureOverrideCitlaliFaceADiffuse]
+hash = 9fb78572
+if $six == 0
+this = ResourceCitlaliFaceADiffuse
+else
+this = ResourceFaceBlush
+endif
+
+; CommandList -----------------------
+
+[CommandListCreditInfo]
+if $creditinfo == 0 && $active == 1
+    pre Resource\ShaderFixes\help.ini\Notification = ResourceCreditInfo
+    pre run = CustomShader\ShaderFixes\help.ini\FormatText
+    pre $\ShaderFixes\help.ini\notification_timeout = time + 5.0
+    $creditinfo = 1
+endif
+
+; Resources -------------------------
+
+[ResourceCitlaliBodyPosition]
+type = Buffer
+stride = 40
+filename = CitlaliBodyPosition.buf
+
+[ResourceCitlaliBodyBlend]
+type = Buffer
+stride = 32
+filename = CitlaliBodyBlend.buf
+
+[ResourceCitlaliBodyTexcoord]
+type = Buffer
+stride = 20
+filename = CitlaliBodyTexcoord.buf
+
+[ResourceCitlaliBodyAIB]
+type = Buffer
+format = DXGI_FORMAT_R32_UINT
+filename = CitlaliBodyA.ib
+
+[ResourceCitlaliBodyBIB]
+type = Buffer
+format = DXGI_FORMAT_R32_UINT
+filename = CitlaliBodyB.ib
+
+[ResourceCitlaliBodyANormalMap]
+filename = CitlaliBodyANormalMap.dds
+
+[ResourceCitlaliBodyADiffuse]
+filename = CitlaliBodyADiffuse.dds
+
+[ResourceCitlaliBodyALightMap]
+filename = CitlaliBodyALightMap.dds
+
+[ResourceCitlaliBodyBNormalMap]
+filename = CitlaliBodyBNormalMap.dds
+
+[ResourceCitlaliBodyBDiffuse]
+filename = CitlaliBodyBDiffuse.dds
+
+[ResourceCitlaliBodyBLightMap]
+filename = CitlaliBodyBLightMap.dds
+
+[ResourceCitlaliFaceADiffuse]
+filename = CitlaliFaceADiffuse.dds
+
+[ResourceCreditInfo]
+type = Buffer
+data = "Created by Levi, more stuff at Patreon.com/LeviMods"
+
+; .ini generated by XXMI (XX-Model-Importer)
+; If you have any issues or find any bugs, please open a ticket at https://github.com/leotorrez/XXMI-Tools/issues

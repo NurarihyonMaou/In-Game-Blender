@@ -1,0 +1,22 @@
+Unicornshell's UI Scale & Padding Library [v2.0]
+------------------------------------------------
+
+x--x--x--x--x--x--x--x--CHANGELOG--x--x--x--x--x--x--x--x
+[null -> v1.0]
+ - Initial Release
+
+[v1.0 -> v1.1]
+ - Stopped CommandListRecalibrate from wiping old data
+ - Added notification indicator while awaiting recalibration
+   > Indicator will not show up if runtime is less than 15s
+ - Changed timings to fix a bug when opening menus during reload
+
+[v1.1 -> v1.2]
+ - Uh idk changed notification look
+ - Small code cleanup
+
+[v1.2 -> v2.0]
+ - Autocalibration!
+   > Hooked everything up to be able to detect animation state in the shader, so now we get instant updates
+ - $calibrated is no longer representative of calibration state, but it works with the same timings as before.
+ - added $SHOW_NOTIFICATION setting so you can remove it if you'd like. Set to 0 in the ini

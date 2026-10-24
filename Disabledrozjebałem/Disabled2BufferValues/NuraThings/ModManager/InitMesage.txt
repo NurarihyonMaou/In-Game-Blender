@@ -1,0 +1,10 @@
+Hello!
+    Thanks for Checking out my Tool!
+
+I've put an insane Amount of Work into this Project, so if You Enjoy it - I'd Really Appreciate any kind of Support (even a simple Like on the Tool's Page is Motivating)
+
+Initially I've put a Prompt in which You had to Type my GameBanana UserName to Unlock the Tool, but I've received complaints about it, so now You have 2 Options:
+ - Score at least 15 Points in Flappy Bird
+ - Enter my UserName as previously (Case Matters)
+
+To choose the Method - Press 0

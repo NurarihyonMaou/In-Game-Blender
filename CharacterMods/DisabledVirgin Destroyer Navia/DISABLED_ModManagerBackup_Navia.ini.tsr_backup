@@ -1,0 +1,1275 @@
+; Navia
+
+; Constants -------------------------
+
+[Constants]
+global $active = 0
+global $creditinfo = 0
+
+global persist $variable0 = 1
+global persist $variable1 = 1
+global persist $variable2 = 1
+
+global persist $wheel_x = -1
+global persist $wheel_y = -1
+
+global persist $wheel_x1 = -1
+global persist $wheel_y1 = -1
+
+global persist $wheel_x2 = -1
+global persist $wheel_y2 = -1
+
+global $UpdateAll = 1
+
+global $RGB_Toggle = 0
+
+[KeySwap1]
+condition = $active == 1
+key = 8
+type = cycle
+$variable1 = 0,1
+
+[KeySwap2]
+condition = $active == 1
+key = 9
+type = cycle
+$variable2 = 0,1
+
+[KeyRGBToggle]
+condition = $\Virgin_Destroyer_Navia_Texture_Edit_Menu\m == 1
+key = 7
+type = cycle
+$RGB_Toggle = 0,1,2
+
+[KeyRGBTypeToggle]
+condition = $\Virgin_Destroyer_Navia_Texture_Edit_Menu\m == 1
+key = 6
+type = cycle
+$RGB_Slider_Type = 0,1,2
+run = CommandListUpdateAll
+
+
+[Present]
+post $active = 0
+run = CommandListCreditInfo
+
+if $active
+    if $UpdateAll
+        run = CommandListTextureShader
+    endif
+ 
+    if $\Virgin_Destroyer_Navia_Texture_Edit_Menu\m
+        run = CommandListTextureShader
+
+        $\NuraThings\Print\Letters\offset_x = 0
+        $\NuraThings\Print\Letters\offset_y = $off_y-0.06
+
+        if $RGB_Toggle == 0
+            $\NuraThings\Print\Letters\String9 = 293024
+            $\NuraThings\Print\Letters\String10 = 291815
+        else if $RGB_Toggle == 1
+            $\NuraThings\Print\Letters\offset_x = 0.0365
+            $\NuraThings\Print\Letters\String9 = 17
+            $\NuraThings\Print\Letters\String10 = 271810
+        else if $RGB_Toggle == 2
+            $\NuraThings\Print\Letters\offset_x = 0.0365
+            $\NuraThings\Print\Letters\String9 = 14
+            $\NuraThings\Print\Letters\String10 = 281434
+        endif
+
+        pre run = CommandList\NuraThings\Print\Letters\Run
+        run = CommandList\NuraThings\Print\Letters\Reset
+    endif
+endif   
+
+; Overrides -------------------------
+
+[TextureOverrideNaviaPosition]
+hash = f4e09bd7
+vb0 = ResourceNaviaPosition
+$activeForMenu = 1
+$active = 1
+
+[TextureOverrideNaviaBlend]
+hash = bc0e2536
+vb1 = ResourceNaviaBlend
+handling = skip
+draw = 28799, 0
+
+[TextureOverrideNaviaTexcoord]
+hash = 8a666020
+vb1 = ResourceNaviaTexcoord
+
+[TextureOverrideNaviaVertexLimitRaise]
+hash = 6b4e87d7
+
+[TextureOverrideNaviaIB]
+hash = 7321d0b1
+handling = skip
+
+
+[TextureOverrideNaviaHead]
+hash = 7321d0b1
+match_first_index = 0
+ib = ResourceNaviaHeadIB
+ps-t0 = ResourceNaviaHeadNormalMap
+ps-t1 = ResourceLocalVirtualHead
+ps-t2 = ResourceNaviaHeadLightMap
+ps-t3 = ResourceNaviaHeadMetalMap
+run = CommandList\global\ORFix\ORFix
+
+if $variable0 == 1
+    drawindexed = 24840, 0, 0
+endif
+if $variable1 == 1
+    drawindexed = 0, 24840, 0
+endif
+if $variable2 == 1
+    drawindexed = 0, 24840, 0
+endif
+
+
+
+[TextureOverrideNaviaBody]
+hash = 7321d0b1
+match_first_index = 54342
+ib = ResourceNaviaBodyIB
+ps-t0 = ResourceNaviaBodyNormalMap
+ps-t1 = ResourceLocalVirtualDress
+ps-t2 = ResourceNaviaBodyLightMap
+ps-t3 = ResourceNaviaBodyMetalMap
+run = CommandList\global\ORFix\ORFix
+
+if $variable0 == 1
+    drawindexed = 73452, 0, 0
+endif
+if $variable1 == 1
+    drawindexed = 0, 73452, 0
+endif
+if $variable2 == 1
+    drawindexed = 0, 73452, 0
+endif
+
+
+
+[TextureOverrideNaviaDress]
+hash = 7321d0b1
+match_first_index = 74844
+ib = ResourceNaviaDressIB
+ps-t0 = ResourceNaviaDressNormalMap
+ps-t1 = ResourceLocalVirtualDress
+ps-t2 = ResourceNaviaDressLightMap
+ps-t3 = ResourceNaviaDressMetalMap
+run = CommandList\global\ORFix\ORFix
+
+if $variable0 == 1
+  drawindexed = 24756, 0, 0
+endif
+if $variable1 == 1
+  drawindexed = 2592, 24756, 0
+endif
+if $variable2 == 1
+  drawindexed = 9018, 27348, 0
+endif
+
+
+[TextureOverrideNaviaFaceHeadDiffuse]
+hash = 5fbb9b27
+ps-t0 = ResourceNaviaFaceHeadDiffuse
+
+
+; CommandList -----------------------
+
+[CommandListUpdateAll]
+$UpdateAll = 1
+
+[CommandListCreditInfo]
+if $creditinfo == 0 && $active == 1
+pre Resource\ShaderFixes\help.ini\Notification = ResourceCreditInfo
+pre run = CustomShader\ShaderFixes\help.ini\FormatText
+pre $\ShaderFixes\help.ini\notification_timeout = time + 5.0
+$creditinfo = 1
+endif
+
+[CommandListTextureShader]
+local $x99 = x99
+local $y99 = y99
+local $x101 = x101
+local $y101 = y101
+
+local $z101 = z101
+local $w101 = w101
+
+local $x102 = x102
+local $y102 = y102
+
+if $\Virgin_Destroyer_Navia_Texture_Edit_Menu\rgb_bar_x != (($off_x-$icon_size/2)*$icon_size) - (($off_x-$icon_size*2.4)/2)*(($icon_size*3.5)/2) - (256/res_width)/4
+    $RGB_X_Offset = (($off_x-$icon_size/2)*$icon_size) - (($off_x-$icon_size*2.4)/2)*(($icon_size*3.5)/2) - (256/res_width)/4
+    $\Virgin_Destroyer_Navia_Texture_Edit_Menu\rgb_bar_x = $RGB_X_Offset
+endif
+
+y99 = $RGB_Slider_Type
+
+x101 = $wheel_x
+y101 = $wheel_y
+
+z101 = $wheel_x1
+w101 = $wheel_y1
+
+x102 = $wheel_x2
+y102 = $wheel_y2
+
+if $UpdateAll
+
+
+        ResourceLocalVirtualDress = ResourceNaviaDressDiffuse
+        ResourceLocalVirtualHead = ResourceNaviaHeadDiffuse
+
+        x99 = 0
+
+        cs-t50 = copy ResourceNaviaDressDiffuse
+
+        $\Virgin_Destroyer_Navia_Texture_Edit_Menu\_1 = 2048
+        $\Virgin_Destroyer_Navia_Texture_Edit_Menu\_2 = 1024
+        $\Virgin_Destroyer_Navia_Texture_Edit_Menu\update_color = 1
+        
+        run = CommandList\Virgin_Destroyer_Navia_Texture_Edit_Menu\Draw
+        run = CustomShader\Virgin_Destroyer_Navia_Texture_Edit_Menu\RunShader
+        ResourceLocalVirtualDress = copy Resource\Virgin_Destroyer_Navia_Texture_Edit_Menu\Virtual3
+
+        x99 = 1
+
+        cs-t50 = copy ResourceNaviaHeadDiffuse
+        cs-t51 = copy ResourceNaviaHairMask
+        $\Virgin_Destroyer_Navia_Texture_Edit_Menu\_1 = 2048
+        $\Virgin_Destroyer_Navia_Texture_Edit_Menu\_2 = 1024
+	    $\Virgin_Destroyer_Navia_Texture_Edit_Menu\update_color = 1
+
+        run = CommandList\Virgin_Destroyer_Navia_Texture_Edit_Menu\Draw
+        run = CustomShader\Virgin_Destroyer_Navia_Texture_Edit_Menu\RunShader
+        ResourceLocalVirtualHead = copy Resource\Virgin_Destroyer_Navia_Texture_Edit_Menu\Virtual2
+
+        $UpdateAll = 0
+else
+
+        x99 = $RGB_Toggle
+
+        run = CommandList\Virgin_Destroyer_Navia_Texture_Edit_Menu\Draw
+
+        if $RGB_Toggle == 0
+            cs-t50 = copy ResourceNaviaDressDiffuse
+
+            $\Virgin_Destroyer_Navia_Texture_Edit_Menu\_1 = 2048
+            $\Virgin_Destroyer_Navia_Texture_Edit_Menu\_2 = 1024
+
+            run = CustomShader\Virgin_Destroyer_Navia_Texture_Edit_Menu\RunShader
+
+            if $\Virgin_Destroyer_Navia_Texture_Edit_Menu\updated == 1 
+                ResourceLocalVirtualDress = copy Resource\Virgin_Destroyer_Navia_Texture_Edit_Menu\Virtual3
+            endif
+
+        else
+            cs-t50 = copy ResourceNaviaHeadDiffuse
+            cs-t51 = copy ResourceNaviaHairMask
+
+            $\Virgin_Destroyer_Navia_Texture_Edit_Menu\_1 = 2048
+            $\Virgin_Destroyer_Navia_Texture_Edit_Menu\_2 = 1024
+
+            run = CustomShader\Virgin_Destroyer_Navia_Texture_Edit_Menu\RunShader
+
+            if $\Virgin_Destroyer_Navia_Texture_Edit_Menu\updated == 1 
+                ResourceLocalVirtualHead = copy Resource\Virgin_Destroyer_Navia_Texture_Edit_Menu\Virtual2
+            endif
+
+        endif
+
+endif
+
+x99 = $x99
+y99 = $y99 
+
+x101 = $x101
+y101 = $y101
+
+z101 = $z101
+w101 = $w101
+
+x102 = $x102
+y102 = $y102
+
+; Resources -------------------------
+
+[ResourceLocalVirtualDress]
+
+[ResourceLocalVirtualHead]
+
+[ResourceNaviaHairMask]
+filename = NaviaHairMask.dds
+
+[ResourceNaviaBlend]
+type = Buffer
+stride = 32
+filename = NaviaBlend.buf
+
+[ResourceNaviaTexcoord]
+type = Buffer
+stride = 20
+filename = NaviaTexcoord.buf
+
+[ResourceNaviaHeadIB]
+type = Buffer
+format = DXGI_FORMAT_R32_UINT
+filename = NaviaHead.ib
+
+[ResourceNaviaBodyIB]
+type = Buffer
+format = DXGI_FORMAT_R32_UINT
+filename = NaviaBody.ib
+
+[ResourceNaviaDressIB]
+type = Buffer
+format = DXGI_FORMAT_R32_UINT
+filename = NaviaDress.ib
+
+[ResourceNaviaHeadNormalMap]
+filename = NaviaHeadNormalMap.dds
+
+[ResourceNaviaHeadDiffuse]
+filename = NaviaHeadDiffuse.dds
+
+[ResourceNaviaHeadLightMap]
+filename = NaviaHeadLightMap.dds
+
+[ResourceNaviaHeadMetalMap]
+filename = NaviaHeadMetalMap.dds
+
+[ResourceNaviaBodyNormalMap]
+filename = NaviaBodyNormalMap.dds
+
+[ResourceNaviaBodyDiffuse]
+filename = NaviaBodyDiffuse.dds
+
+[ResourceNaviaBodyLightMap]
+filename = NaviaBodyLightMap.dds
+
+[ResourceNaviaBodyMetalMap]
+filename = NaviaBodyMetalMap.dds
+
+[ResourceNaviaDressNormalMap]
+filename = NaviaDressNormalMap.dds
+
+[ResourceNaviaDressDiffuse]
+filename = NaviaDressDiffuse.dds
+
+[ResourceNaviaDressLightMap]
+filename = NaviaDressLightMap.dds
+
+[ResourceNaviaDressMetalMap]
+filename = NaviaDressMetalMap.dds
+
+[ResourceNaviaFaceHeadDiffuse]
+filename = NaviaFaceHeadDiffuse.dds
+
+[ResourceCreditInfo]
+type = Buffer
+data = "Created by Nurarihyon | Outfit Model and Textures made by [Insert Name Here] | Base Body by ZeroRuka"
+
+
+; .ini generated by GIMI (Genshin-Impact-Model-Importer)
+; If you have any issues or find any bugs, please open a ticket at https://github.com/SilentNightSound/GI-Model-Importer/issues or contact SilentNightSound#7430 on discord
+; #GENERATED SLIDERIMPACT
+
+[Constants]
+global $activeForMenu = 1
+global $menu = 0
+
+global $scale = 1
+
+global $hover = 0
+global $click = 0
+global $toggleClick = 0
+
+global $size_x = 0.15
+global $size_y = 0.75
+global persist $off_x = 0.2
+global persist $off_y = 0.15
+
+global $bar = 0.025
+
+global $icon_size = 0.2
+global $text_y = 0.0235
+global $text_x = 0.15
+
+;0.035
+
+global persist $RGB_Slider_Type
+
+global persist $RGB_X_Offset
+global persist $RGB_Y_Offset = 0.19
+
+$RGB_X_Offset = (($off_x-$icon_size/2)*$icon_size) - (($off_x-$icon_size*2.4)/2)*(($icon_size*3.5)/2) - (256/res_width)/4
+$\Virgin_Destroyer_Navia_Texture_Edit_Menu\rgb_bar_x = $RGB_X_Offset
+
+global $selector = 0
+global $keysteps = 0
+global $slider_id = 0
+
+global $sliders = 8
+
+global persist $Key1 = 0
+global $bar1_yo
+$bar1_yo = 1/$sliders+0.02
+;-0.02
+global persist $Key2 = 0
+global $bar2_yo
+$bar2_yo = 2/$sliders+0.02
+
+global persist $Key3 = 0
+global $bar3_yo
+$bar3_yo = 3/$sliders+0.02
+
+global persist $Key4 = 0
+global $bar4_yo
+$bar4_yo = 4/$sliders+0.02
+
+global persist $Key5 = 0
+global $bar5_yo
+$bar5_yo = 5/$sliders+0.02
+
+global persist $Key6 = 0
+global $bar6_yo
+$bar6_yo = 6/$sliders+0.02
+
+global persist $Key7 = 0
+global $bar7_yo
+$bar7_yo = 7/$sliders+0.02
+
+ResourceNaviaPosition = copy ResourceNaviaPositionBase
+post run = CommandListComputeShapeKeys
+
+[Present]
+post $activeForMenu = 0
+
+if $activeForMenu == 1
+    if $menu
+        run = CommandListMenu
+    endif
+    run = CommandListComputeShapeKeys
+endif
+
+
+; MARK: Custom Shaders
+
+[CustomShaderSliderMenu]
+hs = null
+ds = null
+gs = null
+cs = null
+run = BuiltInCommandListUnbindAllRenderTargets
+
+vs = resources/UIElement.hlsl
+ps = resources/UIElement.hlsl
+blend = ADD SRC_ALPHA INV_SRC_ALPHA
+cull = none
+topology = triangle_strip
+o0 = set_viewport bb
+Draw = 4,0
+
+clear = ps-t100
+
+[CustomShaderKeys]
+;**** SHAPE KEY SHADER ****
+;Contributors: Cybertron, SinsOfSeven, DiXiao
+
+cs = resources/ShapeKey.hlsl
+dispatch =  28799, 1, 1
+
+
+; MARK: ShapeKeys CommandLists
+
+
+[CommandListComputeShapeKeys]
+cs-u5 = copy ResourceNaviaPositionBase
+
+run = CommandListKey1
+run = CommandListKey2
+run = CommandListKey3
+run = CommandListKey4
+run = CommandListKey5
+run = CommandListKey6
+run = CommandListKey7
+
+ResourceNaviaPosition = copy cs-u5
+
+; clean up
+
+x88 = 0
+
+cs-u5 = null
+cs-t50 = null
+cs-t51 = null
+
+[CommandListKey1]
+cs-t50 = copy ResourceNaviaPositionBase
+cs-t51 = copy ResourceNaviaPositionBooba
+
+x88 = $Key1*$scale
+run = CustomShaderKeys
+
+[CommandListKey2]
+cs-t50 = copy ResourceNaviaPositionBase
+cs-t51 = copy ResourceNaviaPositionAss
+
+x88 = $Key3*$scale
+run = CustomShaderKeys
+
+[CommandListKey3]
+cs-t50 = copy ResourceNaviaPositionBase
+cs-t51 = copy ResourceNaviaPositionAss2
+
+x88 = $Key4*$scale
+run = CustomShaderKeys
+
+[CommandListKey4]
+cs-t50 = copy ResourceNaviaPositionBase
+cs-t51 = copy ResourceNaviaPositionHips
+
+x88 = $Key6*$scale
+run = CustomShaderKeys
+
+[CommandListKey5]
+cs-t50 = copy ResourceNaviaPositionBase
+cs-t51 = copy ResourceNaviaPositionThighs
+
+x88 = $Key7*$scale
+run = CustomShaderKeys
+
+[CommandListKey6]
+cs-t50 = copy ResourceNaviaPositionBase
+cs-t51 = copy ResourceNaviaPositionAss3
+
+x88 = $Key5*$scale
+run = CustomShaderKeys
+
+[CommandListKey7]
+cs-t50 = copy ResourceNaviaPositionBase
+cs-t51 = copy ResourceNaviaPositionBooba2
+
+x88 = $Key2*$scale
+run = CustomShaderKeys
+
+
+; MARK: RESOURCES
+
+[ResourceNaviaPosition]
+
+[ResourceNaviaPositionBase]
+type = Buffer
+stride = 40
+filename = NaviaPosition.buf
+
+[ResourceNaviaPositionBooba]
+type = Buffer
+stride = 40
+filename = NaviaPositionBooba.buf
+
+[ResourceNaviaPositionBooba2]
+type = Buffer
+stride = 40
+filename = NaviaPositionBooba2.buf
+
+[ResourceNaviaPositionAss]
+type = Buffer
+stride = 40
+filename = NaviaPositionAss.buf
+
+[ResourceNaviaPositionAss2]
+type = Buffer
+stride = 40
+filename = NaviaPositionAss2.buf
+
+[ResourceNaviaPositionAss3]
+type = Buffer
+stride = 40
+filename = NaviaPositionAss3.buf
+
+[ResourceNaviaPositionHips]
+type = Buffer
+stride = 40
+filename = NaviaPositionHips.buf
+
+[ResourceNaviaPositionThighs]
+type = Buffer
+stride = 40
+filename = NaviaPositionThighs.buf
+
+; UI
+
+[ResourceBarsUI]
+filename = resources/slider_bar.dds
+[ResourceSliderUI]
+filename = resources/slider.dds
+[ResourceSliderUIOn]
+filename = resources/slideron.dds
+[ResourceBackgroundUI]
+filename = resources/background.dds
+[ResourceBackgroundUIDefault]
+filename = resources/backgroundDefault.dds
+[ResourceBorderUI]
+filename = resources/border.dds
+[ResourceLogo]
+filename = resources/Logo.dds
+
+[ResourceSliderText1]
+filename = resources/textResource1.dds
+[ResourceSliderText2]
+filename = resources/textResource8.dds
+[ResourceSliderText4]
+filename = resources/textResource3.dds
+[ResourceSliderText3]
+filename = resources/textResource2.dds
+[ResourceSliderText5]
+filename = resources/textResource4.dds
+[ResourceSliderText6]
+filename = resources/textResource7.dds
+[ResourceSliderText7]
+filename = resources/textResource5.dds
+
+[ResourceSliderText9]
+filename = resources/MenuImpact.dds
+[ResourceSliderText10]
+filename = resources/byNura.dds
+
+[ResourcePantsu]
+filename = resources/Pantsu.dds
+[ResourcePantsu2]
+filename = resources/Pantsu2.dds
+
+[ResourceRGBToggle]
+filename = resources/RGBToggle.dds
+
+; MARK: Key Toggles
+
+[KeyToggleMenu]
+condition = $activeForMenu
+key = >
+type = toggle
+$menu = 1
+$\Virgin_Destroyer_Navia_Texture_Edit_Menu\m = 1
+
+[KeyToggleClick]
+condition = $menu
+key = VK_LBUTTON
+type = hold
+$toggleClick = 1
+
+[KeyClick]
+condition = $menu
+key = VK_RBUTTON
+type = hold
+$click = 1
+$\Virgin_Destroyer_Navia_Texture_Edit_Menu\use_sliders = 1
+$\Virgin_Destroyer_Navia_Texture_Edit_Menu\move_menu = 1
+
+[KeyReset0]
+condition = $menu && $RGB_Toggle == 0
+key = 0
+type = toggle
+Resource\Virgin_Destroyer_Navia_Texture_Edit_Menu\Color = copy BackupColor
+$wheel_x = -1
+$wheel_y = -1
+$\Virgin_Destroyer_Navia_Texture_Edit_Menu\h0 = -1
+$\Virgin_Destroyer_Navia_Texture_Edit_Menu\r0 = 1
+$\Virgin_Destroyer_Navia_Texture_Edit_Menu\g0 = 1
+$\Virgin_Destroyer_Navia_Texture_Edit_Menu\b0 = 1
+$\Virgin_Destroyer_Navia_Texture_Edit_Menu\update_color = 1
+
+[KeyReset1]
+condition = $menu && $RGB_Toggle == 1
+key = 0
+type = toggle
+Resource\Virgin_Destroyer_Navia_Texture_Edit_Menu\ColorHair = copy BackupColorHair
+$wheel_x1 = -1
+$wheel_y1 = -1
+$\Virgin_Destroyer_Navia_Texture_Edit_Menu\h1 = -1
+$\Virgin_Destroyer_Navia_Texture_Edit_Menu\r1 = 1
+$\Virgin_Destroyer_Navia_Texture_Edit_Menu\g1 = 1
+$\Virgin_Destroyer_Navia_Texture_Edit_Menu\b1 = 1
+$\Virgin_Destroyer_Navia_Texture_Edit_Menu\update_color = 1
+
+[KeyReset2]
+condition = $menu && $RGB_Toggle == 2
+key = 0
+type = toggle
+Resource\Virgin_Destroyer_Navia_Texture_Edit_Menu\ColorEyes = copy BackupColorHair
+$wheel_x2 = -1
+$wheel_y2 = -1
+$\Virgin_Destroyer_Navia_Texture_Edit_Menu\h2 = -1
+$\Virgin_Destroyer_Navia_Texture_Edit_Menu\r2 = 1
+$\Virgin_Destroyer_Navia_Texture_Edit_Menu\g2 = 1
+$\Virgin_Destroyer_Navia_Texture_Edit_Menu\b2 = 1
+$\Virgin_Destroyer_Navia_Texture_Edit_Menu\update_color = 1
+
+[KeyResetBody]
+condition = $menu
+key = <
+type = toggle
+$Key1 = 0
+$Key2 = 0
+$Key3 = 0
+$Key4 = 0
+$Key5 = 0
+$Key6 = 0
+$Key7 = 0
+
+[KeyStepsIncrease]
+key = VK_RIGHT NO_CTRL
+condition = $menu && !$keysteps
+type = hold
+transition = 2000
+transition_type = cosine
+wrap = true
+$keysteps=0.05
+
+[KeyStepsDecrease]
+key = VK_LEFT NO_CTRL
+condition = $menu && !$keysteps
+type = hold
+transition = 2000
+transition_type = cosine
+$keysteps=-0.05
+
+[KeyStepsSelector]
+condition = $menu && !$keysteps
+key = VK_DOWN NO_CTRL
+back = VK_UP
+type = cycle
+$selector = 0,1,2,3,4,5,6,7
+
+[KeyHoldHover]
+condition = $menu
+key = VK_ALT VK_CTRL
+type = hold
+$hover = 1
+$\Virgin_Destroyer_Navia_Texture_Edit_Menu\use_sliders = 1
+
+
+
+; MARK: Menu/UI Generation
+
+[CommandListBackdrop]
+x87 = $size_x
+y87 = $size_y
+z87 = $off_x
+w87 = $off_y
+
+ps-t100 = ResourceBackgroundUIDefault
+run = CustomShaderSliderMenu
+
+
+x87 = 128/res_width
+y87 = 128/res_height
+z87 = -0.0075
+w87 = 0.8025
+
+ps-t100 = ResourceLogo
+run = CustomShaderSliderMenu
+
+x87 = 128/res_width
+y87 = 128/res_height
+z87 = $RGB_X_Offset/2-0.0125
+w87 = 0.55
+
+ps-t100 = ResourcePantsu
+run = CustomShaderSliderMenu
+
+x87 = 128/res_width
+y87 = 128/res_height
+z87 = $RGB_X_Offset+0.1
+w87 = 0.55
+
+ps-t100 = ResourcePantsu2
+run = CustomShaderSliderMenu
+
+
+x87 = 0.001
+y87 = $size_y
+z87 = $off_x
+w87 = $off_y
+
+ps-t100 = ResourceBorderUI
+run = CustomShaderSliderMenu
+
+x87 = 0.001
+y87 = $size_y
+z87 = $off_x+$size_x
+w87 = $off_y
+
+ps-t100 = ResourceBorderUI
+run = CustomShaderSliderMenu
+
+x87 = $size_x
+y87 = 0.002
+z87 = $off_x
+w87 = $off_y
+
+ps-t100 = ResourceBorderUI
+run = CustomShaderSliderMenu
+
+x87 = $size_x
+y87 = 0.002
+z87 = $off_x
+w87 = $off_y+$size_y
+
+ps-t100 = ResourceBorderUI
+run = CustomShaderSliderMenu
+
+x87 = $icon_size
+y87 = $size_y
+z87 = $off_x-$icon_size
+w87 = $off_y
+
+ps-t100 = ResourceBackgroundUIDefault
+run = CustomShaderSliderMenu
+
+x87 = $icon_size
+y87 = 0.002
+z87 = $off_x-$icon_size
+w87 = $off_y
+
+ps-t100 = ResourceBorderUI
+run = CustomShaderSliderMenu
+
+x87 = $icon_size
+y87 = 0.002
+z87 = $off_x-$icon_size
+w87 = $off_y+$size_y
+
+ps-t100 = ResourceBorderUI
+run = CustomShaderSliderMenu
+
+x87 = 0.001
+y87 = $size_y
+z87 = $off_x-$icon_size
+w87 = $off_y
+
+ps-t100 = ResourceBorderUI
+run = CustomShaderSliderMenu
+
+[CommandListBars]
+x87 = $size_x
+y87 = $bar
+z87 = $off_x
+
+ps-t100 = ResourceBarsUI
+run = CustomShaderSliderMenu
+
+[CommandListSlider1]
+local $v = $Key1
+
+;DRAW CURSOR
+w87 = $bar1_yo * $size_y + $off_y
+z87 = $v*$size_x+$off_x-($bar*res_height/res_width)/2
+
+if $slider_id == 1
+    ps-t100 = ResourceSliderUIOn
+else
+    ps-t100 = ResourceSliderUI
+endif
+
+run = CustomShaderSliderMenu
+
+;DRAW Navia
+x87 = $icon_size*3.5
+y87 = $icon_size*1.75*res_width/res_height
+z87 = $off_x-$icon_size*2.4
+w87 = $bar7_yo * $size_y + $off_y - ($icon_size*6/1.9)
+ps-t100 = ResourceBackgroundUI
+run = CustomShaderSliderMenu
+
+; DRAW RGB Toggle
+x87 = 200/res_width
+y87 = 128/res_height
+z87 = $off_x-(200/res_width)
+w87 = $bar7_yo * $size_y + $off_y-0.0325
+ps-t100 = ResourceRGBToggle
+run = CustomShaderSliderMenu
+
+[CommandListSlider2]
+local $v = $Key2
+
+w87 = $bar2_yo * $size_y + $off_y
+z87 = $v*$size_x+$off_x-($bar*res_height/res_width)/2
+
+if $slider_id == 2
+    ps-t100 = ResourceSliderUIOn
+else
+    ps-t100 = ResourceSliderUI
+endif
+
+run = CustomShaderSliderMenu
+
+
+[CommandListSlider3]
+local $v = $Key3
+
+w87 = $bar3_yo * $size_y + $off_y
+z87 = $v*$size_x+$off_x-($bar*res_height/res_width)/2
+
+if $slider_id == 3
+    ps-t100 = ResourceSliderUIOn
+else
+    ps-t100 = ResourceSliderUI
+endif
+
+run = CustomShaderSliderMenu
+
+[CommandListSlider4]
+local $v = $Key4
+
+w87 = $bar4_yo * $size_y + $off_y
+z87 = $v*$size_x+$off_x-($bar*res_height/res_width)/2
+
+if $slider_id == 4
+    ps-t100 = ResourceSliderUIOn
+else
+    ps-t100 = ResourceSliderUI
+endif
+
+run = CustomShaderSliderMenu
+
+[CommandListSlider5]
+local $v = $Key5
+
+w87 = $bar5_yo * $size_y + $off_y
+z87 = $v*$size_x+$off_x-($bar*res_height/res_width)/2
+
+if $slider_id == 5
+    ps-t100 = ResourceSliderUIOn
+else
+    ps-t100 = ResourceSliderUI
+endif
+
+run = CustomShaderSliderMenu
+
+[CommandListSlider6]
+local $v = $Key6
+
+x87 = $bar*res_height/res_width
+y87 = $bar
+w87 = $bar6_yo * $size_y + $off_y
+z87 = $v*$size_x+$off_x-($bar*res_height/res_width)/2
+
+if $slider_id == 6
+    ps-t100 = ResourceSliderUIOn
+else
+    ps-t100 = ResourceSliderUI
+endif
+
+run = CustomShaderSliderMenu
+
+[CommandListSlider7]
+local $v = $Key7
+
+w87 = $bar7_yo * $size_y + $off_y
+z87 = $v*$size_x+$off_x-($bar*res_height/res_width)/2
+
+if $slider_id == 7
+    ps-t100 = ResourceSliderUIOn
+else
+    ps-t100 = ResourceSliderUI
+endif
+
+run = CustomShaderSliderMenu
+
+
+[CommandListDrawCursors]
+x87 = $bar*res_height/res_width
+y87 = $bar
+
+run = CommandListSlider2
+run = CommandListSlider3
+run = CommandListSlider4
+run = CommandListSlider5
+run = CommandListSlider6
+run = CommandListSlider7
+run = CommandListSlider1
+
+[CommandListDrawBars]
+z87=$off_x+($size_x/2)-($text_x/2)
+x87=$text_x
+y87=$text_y
+
+
+w87 = $bar1_yo * $size_y + $off_y
+run = CommandListBars
+
+w87=w87+$bar*0.75
+ps-t100 = ResourceSliderText1
+run = CustomShaderSliderMenu   
+
+
+w87 = $bar2_yo * $size_y + $off_y
+run = CommandListBars
+
+w87=w87+$bar*0.75
+ps-t100 = ResourceSliderText2
+run = CustomShaderSliderMenu  
+
+
+w87 = $bar3_yo * $size_y + $off_y
+run = CommandListBars
+
+w87=w87+$bar*0.75
+ps-t100 = ResourceSliderText3
+run = CustomShaderSliderMenu
+
+
+w87 = $bar4_yo * $size_y + $off_y
+run = CommandListBars
+
+w87=w87+$bar*0.75
+ps-t100 = ResourceSliderText4
+run = CustomShaderSliderMenu
+
+
+w87 = $bar5_yo * $size_y + $off_y
+run = CommandListBars
+
+w87=w87+$bar*0.75
+ps-t100 = ResourceSliderText6
+run = CustomShaderSliderMenu
+
+
+w87 = $bar6_yo * $size_y + $off_y
+run = CommandListBars
+
+w87=w87+$bar*0.75
+ps-t100 = ResourceSliderText5
+run = CustomShaderSliderMenu
+
+
+w87 = $bar7_yo * $size_y + $off_y
+run = CommandListBars
+
+w87=w87+$bar*0.75
+ps-t100 = ResourceSliderText7
+run = CustomShaderSliderMenu
+
+
+[CommandListDrawText]
+w87=0.1625
+z87=$off_x+($size_x/2)-($text_x/2)-0.00275
+x87=$text_x+0.0125
+y87=$text_y+0.0175
+
+ps-t100 = ResourceSliderText9
+run = CustomShaderSliderMenu
+
+
+w87=0.2035
+z87=$off_x+($size_x/2)-($text_x/2)+0.00175
+x87=$text_x+0.00525
+y87=$text_y+0.015
+
+ps-t100 = ResourceSliderText10
+run = CustomShaderSliderMenu
+
+
+[CommandListMenu]
+local $v = 0
+
+if $menu == 1
+
+    run = CommandListBackdrop
+    run = CommandListDrawBars
+    run = CommandListDrawText
+
+    ; MARK: Sliders Logic
+
+
+    if cursor_y >= 0.55 && cursor_y <= 0.55+(128/res_height)
+
+        if cursor_x >= $RGB_X_Offset/2-0.0125 && cursor_x <= $RGB_X_Offset/2-0.0125+(128/res_width) && $toggleClick
+            if $variable1 == 1
+                $variable1 = 0
+            else
+                $variable1 = 1
+            endif
+            $toggleClick = 0
+        endif
+
+        if cursor_x >= $RGB_X_Offset+0.1 && cursor_x <= $RGB_X_Offset+0.1+(128/res_width) && $toggleClick
+            if $variable2 == 1
+                $variable2 = 0
+            else
+                $variable2 = 1
+            endif
+            $toggleClick = 0
+        endif
+
+     endif
+     
+
+if (cursor_x >= $off_x-$icon_size*2.4 && cursor_x <= $off_x-$icon_size*2.4+($icon_size*3.5)) && (cursor_y >= $bar7_yo * $size_y + $off_y - ($icon_size*6/1.9) && cursor_y <= $bar7_yo * $size_y + $off_y - ($icon_size*6/1.9)+($icon_size*1.75*res_width/res_height)) && $toggleClick
+    $RGB_Toggle = $RGB_Toggle+1
+    if $RGB_Toggle == 3
+        $RGB_Toggle = 0
+    endif
+    $toggleClick = 0
+endif
+
+
+
+if (cursor_x >= $off_x-(200/res_width) && cursor_x <= $off_x-(200/res_width)+(200/res_width)) && (cursor_y >= $bar7_yo * $size_y + $off_y-0.0325 && cursor_y <= $bar7_yo * $size_y + $off_y-0.0325+(128/res_height)) && $toggleClick
+    $RGB_Slider_Type = $RGB_Slider_Type+1
+    if $RGB_Slider_Type == 3
+        $RGB_Slider_Type = 0
+    endif
+    $toggleClick = 0
+endif
+
+;&& cursor_x >= $\Virgin_Destroyer_Navia_Texture_Edit_Menu\rgb_bar_x+0.0065 && cursor_x <= $\Virgin_Destroyer_Navia_Texture_Edit_Menu\rgb_bar_x+(256/res_width)-0.012 && cursor_y >= 0.2075 && cursor_y <= 0.19+(256/res_height)-0.02
+    if $RGB_Slider_Type == 2 && ($hover || $click)
+
+        $\NuraThings\KeepWithinCircle\start_x = $\Virgin_Destroyer_Navia_Texture_Edit_Menu\rgb_bar_x
+        $\NuraThings\KeepWithinCircle\start_y = 0.19
+        $\NuraThings\KeepWithinCircle\circle_size = 256
+
+        run = CommandList\NuraThings\KeepWithinCircle\Run
+
+        local $isCursorWithinCircle = $\NuraThings\KeepWithinCircle\Result
+
+        if $isCursorWithinCircle
+
+            if $RGB_Toggle == 0
+                $wheel_x = ((cursor_x-$\Virgin_Destroyer_Navia_Texture_Edit_Menu\rgb_bar_x)*res_width)//1
+                $wheel_y = ((cursor_y-0.19)*res_height)//1
+
+            else if $RGB_Toggle == 1
+                $wheel_x1 = ((cursor_x-$\Virgin_Destroyer_Navia_Texture_Edit_Menu\rgb_bar_x)*res_width)//1
+                $wheel_y1 = ((cursor_y-0.19)*res_height)//1
+                
+            else
+                $wheel_x2 = (((cursor_x-$\Virgin_Destroyer_Navia_Texture_Edit_Menu\rgb_bar_x)*res_width))//1
+                $wheel_y2 = ((cursor_y-0.19)*res_height)//1
+
+            endif
+
+        endif
+    endif
+
+    ;if $click && cursor_x > $off_x && cursor_x < $off_x + $size_x && cursor_y > $off_y-$size_y/20 && cursor_y < $off_y+$size_y/10
+    ;    $off_x = cursor_x-$size_x/2
+    ;    $off_y = cursor_y-$size_y/40
+    ;    $RGB_X_Offset = cursor_x-$size_x
+    ;    $\Virgin_Destroyer_Navia_Texture_Edit_Menu\rgb_bar_x = $RGB_X_Offset
+    ;endif
+
+    if $\Virgin_Destroyer_Navia_Texture_Edit_Menu\move_menu && cursor_x > $\Virgin_Destroyer_Navia_Texture_Edit_Menu\box_x + 0.1 && cursor_x < $\Virgin_Destroyer_Navia_Texture_Edit_Menu\box_x + 0.13 && cursor_y > $\Virgin_Destroyer_Navia_Texture_Edit_Menu\box_y && cursor_y < $\Virgin_Destroyer_Navia_Texture_Edit_Menu\box_y+0.3
+        $\Virgin_Destroyer_Navia_Texture_Edit_Menu\box_x = cursor_x-(0.13/2)-0.05
+        $\Virgin_Destroyer_Navia_Texture_Edit_Menu\box_y = cursor_y-(0.3/2)
+        $\Virgin_Destroyer_Navia_Texture_Edit_Menu\bar_x = cursor_x-(0.125)
+        $\Virgin_Destroyer_Navia_Texture_Edit_Menu\bar_y = cursor_y-((0.3 * 0.95)/2)
+    endif
+    
+
+    if $selector || cursor_x > $off_x && cursor_x < $off_x + $size_x
+
+        if $selector == 1 || cursor_y > $bar1_yo * $size_y + $off_y && cursor_y < $bar1_yo * $size_y + $bar + $off_y
+
+            $slider_id = 1
+            $Key1 = $Key1 + $keysteps
+
+            if $hover || $click
+                $v = (cursor_x-$off_x)/$size_x
+                $Key1 = $v
+            endif
+
+            $Key1 = $Key1 * ($Key1 >= 0.005 && $Key1 <= 0.995) + ($Key1 > 0.995)
+        endif
+
+        if $selector == 2 || cursor_y > $bar2_yo * $size_y + $off_y && cursor_y < $bar2_yo * $size_y + $bar + $off_y
+
+            $slider_id = 2
+            $Key2 = $Key2 + $keysteps
+
+            if $hover || $click
+                $v = (cursor_x-$off_x)/$size_x
+                $Key2 = $v
+            endif
+
+            $Key2 = $Key2 * ($Key2 >= 0.005 && $Key2 <= 0.995) + ($Key2 > 0.995)
+        endif
+
+        if $selector == 3 || cursor_y > $bar3_yo * $size_y + $off_y && cursor_y < $bar3_yo * $size_y + $bar + $off_y
+
+            $slider_id = 3
+            $Key3 = $Key3 + $keysteps
+
+            if $hover || $click
+                $v = (cursor_x-$off_x)/$size_x
+                $Key3 = $v
+            endif
+
+            $Key3 = $Key3 * ($Key3 >= 0.005 && $Key3 <= 0.995) + ($Key3 > 0.995)
+        endif
+
+        if $selector == 4 || cursor_y > $bar4_yo * $size_y + $off_y && cursor_y < $bar4_yo * $size_y + $bar + $off_y
+
+            $slider_id = 4
+            $Key4 = $Key4 + $keysteps
+
+            if $hover || $click
+                $v = (cursor_x-$off_x)/$size_x
+                $Key4 = $v
+            endif
+
+            $Key4 = $Key4 * ($Key4 >= 0.005 && $Key4 <= 0.995) + ($Key4 > 0.995)
+        endif
+
+        if $selector == 5 || cursor_y > $bar5_yo * $size_y + $off_y && cursor_y < $bar5_yo * $size_y + $bar + $off_y
+
+            $slider_id = 5
+            $Key5 = $Key5 + $keysteps
+
+            if $hover || $click
+                $v = (cursor_x-$off_x)/$size_x
+                $Key5 = $v
+            endif
+
+            $Key5 = $Key5 * ($Key5 >= 0.005 && $Key5 <= 0.995) + ($Key5 > 0.995)
+        endif
+
+        if $selector == 6 || cursor_y > $bar6_yo * $size_y + $off_y && cursor_y < $bar6_yo * $size_y + $bar + $off_y
+
+            $slider_id = 6
+            $Key6 = $Key6 + $keysteps
+
+            if $hover || $click
+                $v = (cursor_x-$off_x)/$size_x
+                $Key6 = $v
+            endif
+
+            $Key6 = $Key6 * ($Key6 >= 0.005 && $Key6 <= 0.995) + ($Key6 > 0.995)
+        endif
+
+        if $selector == 7 || cursor_y > $bar7_yo * $size_y + $off_y && cursor_y < $bar7_yo * $size_y + $bar + $off_y
+
+            $slider_id = 7
+            $Key7 = $Key7 + $keysteps
+
+            if $hover || $click
+                $v = (cursor_x-$off_x)/$size_x
+                $Key7 = $v
+            endif
+
+            $Key7 = $Key7 * ($Key7 >= 0.005 && $Key7 <= 0.995) + ($Key7 > 0.995)
+        endif
+    endif
+
+    run = CommandListDrawCursors
+    
+    $slider_id = 0
+endif
+;###MENU CODE END

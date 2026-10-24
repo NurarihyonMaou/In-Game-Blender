@@ -1,0 +1,5 @@
+   Action       Type       Keys      Amt
+-------------  ------  ------------  ---
+Menu           toggle  VK_OEM_COMMA   1 
+Mouse_clicked  Cycle    VK_LBUTTON    1 
+Mouse_held      hold    VK_LBUTTON    1 

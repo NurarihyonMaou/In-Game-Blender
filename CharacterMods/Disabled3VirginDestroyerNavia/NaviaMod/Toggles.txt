@@ -1,0 +1,22 @@
+Toggle (Amount): Key(s) and Back(s)
+
+Catears/Cat_ears (2): L
+Boots (3): K
+Thong (2): P
+Top (2): O
+Accs (2): I
+Sweater (2): U
+Body (2): H
+Togglemenu/Menu (2): >
+Reset (2): ]
+Precise (3): RIGHT and LEFT
+Tintstrength/Tint_strength (22): VK_RIGHT and VK_LEFT
+Huecenter/Hue_center (19): ] and [
+Huerange/Hue_range (37): / and ,
+
+
+Hold: Key(s)
+
+Click: VK_RBUTTON
+Toggleclick: VK_RBUTTON
+Holdhover/Hover: VK_ALT VK_CTRL

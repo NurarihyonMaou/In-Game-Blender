@@ -1,0 +1,1868 @@
+; Zibai
+
+; Constants -------------------------
+
+[Constants]
+global persist $lock = 0
+global persist $thighL = 0
+global persist $thighR = 0
+global persist $garterbelt = 0
+global persist $bodytex = 0
+global persist $eyes = 1
+global persist $makeup = 0
+global persist $hair = 1
+global persist $hairA = 1
+global persist $colorhair = 0
+global persist $ears = 0
+global persist $neck = 1
+global persist $body = 1
+global persist $dress = 1
+global persist $dresstop = 1
+global persist $dressbottom = 1
+global persist $dressA = 1
+global persist $corset = 0
+global persist $bra = 1
+global persist $panties = 1
+global persist $vagina = 2
+global persist $tattooback = 0
+global persist $shoes = 1
+global persist $shoesA = 1
+global persist $anklets = 0
+global persist $legtexL = 0
+global persist $legtexR = 0
+global persist $nails1 = 0
+global persist $nails = 2
+global persist $tail = 0
+global persist $bracelets = 1
+global persist $coat = 1
+global persist $coatA = 1
+global persist $armlets = 0
+global persist $armstex = 0
+global persist $piercingB = 0
+global persist $earrings = 1
+global persist $frame = 0
+global persist $glass = 0
+global $active
+global $lockinfo = 0
+
+[Present]
+post $active = 0
+run = CommandListLockInfo
+
+; Overrides -------------------------
+
+[Key Lock Toggles]
+condition = $active == 1
+key = alt .
+type = cycle
+$lock = 0,1
+$lockinfo = 1
+
+
+[Key Garterbelt]
+key = no_ctrl no_alt p
+back = ctrl no_alt p
+condition = $active == 1 && $lock == 0
+type = cycle
+$thighL =     0,0,0,1,1,0,0,1,1
+$thighR =     0,1,1,1,1,1,1,1,1
+$garterbelt = 0,0,0,0,0,1,1,1,1
+$bodytex =    0,0,1,0,1,0,1,0,1
+
+
+[Key Stockings]
+key = no_ctrl no_alt 5
+back = ctrl no_alt 5
+condition = $active == 1 && $lock == 0
+type = cycle
+$legtexL = 0,0,1,0,2,0,3
+$legtexR = 0,1,1,2,2,3,3
+
+
+[Key Eyes & Makeup]
+key = no_ctrl alt 5
+back = ctrl alt 5
+condition = $active == 1 && $lock == 0
+type = cycle
+$eyes =   1,2,3,4,1,2,3,4,1,2,3,4,1,2,3,4,1,2,3,4,1,2,3,4
+$makeup = 0,0,0,0,1,1,1,1,4,4,4,4,2,2,2,2,3,3,3,3,5,5,5,5
+
+
+[Key Hair]
+key = no_ctrl no_alt 6
+back = ctrl no_alt 6
+condition = $active == 1 && $lock == 0
+type = cycle
+$hair =      1,1,2,2,1,1,2,2,1,1,2,2,1,1,2,2
+$hairA =     1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0
+$colorhair = 0,0,0,0,1,1,1,1,2,2,2,2,3,3,3,3
+
+
+[Key Ears & Neck]
+key = no_ctrl alt 6
+back = ctrl alt 6
+condition = $active == 1 && $lock == 0
+type = cycle
+$ears = 0,1,3,2,0,1,3,2,0,1,3,2
+$neck = 1,1,1,1,2,2,2,2,0,0,0,0
+
+
+[Key Dress & Corset]
+key = no_ctrl no_alt y
+back = ctrl no_alt y
+condition = $active == 1 && $lock == 0
+type = cycle
+$body =        1,1,1,1,1,1,2,2,2,2,2,2,1,2,2
+$dress =       1,1,1,1,1,1,1,1,1,1,1,1,1,1,0
+$dresstop =    1,1,1,1,1,1,0,0,0,0,0,0,0,0,0
+$dressbottom = 1,1,2,2,3,3,1,1,2,2,3,3,0,0,0
+$dressA =      1,0,1,0,1,0,1,0,1,0,1,0,0,0,0
+$corset =      0,0,0,0,0,0,0,0,0,0,0,0,1,2,0
+
+
+[Key Bra]
+key = no_ctrl alt y
+back = ctrl alt y
+condition = $active == 1 && $lock == 0
+type = cycle
+$bra = 1,2,4,5
+
+
+[Key Panties]
+key = no_ctrl no_alt h
+back = ctrl no_alt h
+condition = $active == 1 && $lock == 0
+type = cycle
+$panties =     1,2,3,5
+
+
+[Key Back Tattoo]
+key = no_ctrl alt h
+back = ctrl alt h
+condition = $active == 1 && $lock == 0
+type = cycle
+$tattooback = 0,1
+
+
+[Key Shoes & Feet]
+key = no_ctrl no_alt n
+back = ctrl no_alt n
+condition = $active == 1 && $lock == 0
+type = cycle
+$shoes =   1,1,2,2,3,3,4,4,4,4,5,5,6,6,6,6,7,9,8,8,8,8
+$shoesA =  1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+$anklets = 0,0,0,0,0,1,0,0,1,1,0,1,0,0,1,1,0,0,0,0,1,1
+$nails1 =  0,0,0,0,0,0,2,1,2,1,0,0,2,1,2,1,0,0,2,1,2,1
+
+
+[Key Tail]
+key = no_ctrl alt n
+back = ctrl alt n
+condition = $active == 1 && $lock == 0
+type = cycle
+$tail = 0,1,2,4,5,3
+
+
+[Key Hands & Gloves]
+key = no_ctrl no_alt 7
+back = ctrl no_alt 7
+condition = $active == 1 && $lock == 0
+type = cycle
+$bracelets = 1,1,0,0,1,1,0,0,1,1,0,0
+$nails =     2,1,2,1,2,1,2,1,2,1,2,1
+$armstex =   0,0,0,0,1,1,1,1,2,2,2,2
+
+
+[Key Coat & Armlets]
+key = no_ctrl alt 7
+back = ctrl alt 7
+condition = $active == 1 && $lock == 0
+type = cycle
+$coat =    1,1,2,2,3,3,0,0
+$coatA =   1,0,1,0,1,0,0,0
+$armlets = 0,0,0,0,0,0,1,0
+
+
+[Key Body Piercing]
+key = no_ctrl no_alt 8
+back = ctrl no_alt 8
+condition = $active == 1 && $lock == 0
+type = cycle
+$piercingB = 0,1,2
+
+
+[Key Earrings & Glasses]
+key = no_ctrl alt 8
+back = ctrl alt 8
+condition = $active == 1 && $lock == 0
+type = cycle
+$earrings = 1,2,0,1,2,0,1,2,0,1,2,0,1,2,0
+$frame =    0,0,0,1,1,1,1,1,1,1,1,1,2,2,2
+$glass =    0,0,0,0,0,0,1,1,1,2,2,2,3,3,3
+
+
+
+
+[TextureOverrideZibaiMainPosition]
+hash = 01e37562
+vb0 = ResourceZibaiMainPosition
+$active = 1
+
+
+[TextureOverrideZibaiMainBlend]
+hash = cc1315e7
+vb1 = ResourceZibaiMainBlend
+handling = skip
+draw = 153706,0 
+
+
+[TextureOverrideZibaiMainTexcoord]
+hash = 8e67410a
+vb1 = ResourceZibaiMainTexcoord
+
+
+[TextureOverrideZibaiMainVertexLimitRaise]
+hash = c9189b30
+; override_vertex_count = 153706
+; override_byte_stride = 92
+
+
+[TextureOverrideZibaiBangsPosition]
+hash = 4a9f2849
+vb0 = ResourceZibaiBangsPosition
+$Active = 1
+
+
+[TextureOverrideZibaiBangsBlend]
+hash = 8bf96d39
+vb1 = ResourceZibaiBangsBlend
+handling = skip
+draw = 3099,0 
+
+
+[TextureOverrideZibaiBangsTexcoord]
+hash = 8b0db168
+vb1 = ResourceZibaiBangsTexcoord
+
+
+[TextureOverrideZibaiBangsVertexLimitRaise]
+hash = 5252b00f
+; override_vertex_count = 3099
+; override_byte_stride = 84
+
+
+[TextureOverrideZibaiEyesPosition]
+hash = d1fe9c39
+vb0 = ResourceZibaiEyesPosition
+$Active = 1
+
+
+[TextureOverrideZibaiEyesBlend]
+hash = c4c1392e
+vb1 = ResourceZibaiEyesBlend
+handling = skip
+draw = 404,0 
+
+
+[TextureOverrideZibaiEyesTexcoord]
+hash = 3c813cff
+vb1 = ResourceZibaiEyesTexcoord
+
+
+[TextureOverrideZibaiEyesVertexLimitRaise]
+hash = feb0e532
+; override_vertex_count = 404
+; override_byte_stride = 92
+
+
+[TextureOverrideZibaiExtraPosition]
+hash = 63946b40
+vb0 = ResourceZibaiExtraPosition
+$Active = 1
+
+
+[TextureOverrideZibaiExtraBlend]
+hash = 4a0aae36
+vb1 = ResourceZibaiExtraBlend
+handling = skip
+draw = 196,0 
+
+
+[TextureOverrideZibaiExtraTexcoord]
+hash = a3250ba2
+vb1 = ResourceZibaiExtraTexcoord
+
+
+[TextureOverrideZibaiExtraVertexLimitRaise]
+hash = 49e38f6f
+; override_vertex_count = 196
+; override_byte_stride = 92
+
+
+[TextureOverrideZibaiTailPosition]
+hash = 80c3351a
+vb0 = ResourceZibaiTailPosition
+$Active = 1
+
+
+[TextureOverrideZibaiTailBlend]
+hash = 527fab51
+vb1 = ResourceZibaiTailBlend
+handling = skip
+draw = 51,0 
+
+
+[TextureOverrideZibaiTailTexcoord]
+hash = 94f65169
+vb1 = ResourceZibaiTailTexcoord
+
+
+[TextureOverrideZibaiTailVertexLimitRaise]
+hash = c94c87fa
+; override_vertex_count = 51
+; override_byte_stride = 92
+
+
+[TextureOverrideZibaiMainIB]
+hash = 111627bf
+handling = skip
+
+
+[TextureOverrideZibaiMainHead]
+hash = 111627bf
+match_first_index = 0
+ib = ResourceZibaiMainHeadIB
+ps-t0 = ResourceZibaiMainHeadNormalMap
+ps-t1 = ResourceZibaiMainHeadDiffuse
+ps-t2 = ResourceZibaiMainHeadLightMap
+run = CommandListZibaiHead
+run = CommandList\global\ORFix\ORFix
+	; HEAD H
+		; bangs.001 (1208)
+		if $earrings == 1
+		drawindexed = 4104, 0, 0
+		endif
+		; ears cat 1 (990)
+		if $ears == 1
+		drawindexed = 4056, 4104, 0
+		endif
+ps-t0 = ResourceZibaiMainHeadNormalMap
+ps-t1 = ResourceZibaiMainHeadDiffuse4
+ps-t2 = ResourceZibaiMainHeadLightMap
+run = CommandList\global\ORFix\ORFix
+		; ears cat 1 (990)
+		if $ears == 3
+		drawindexed = 4056, 4104, 0
+		endif
+ps-t0 = ResourceZibaiMainHeadNormalMap
+ps-t1 = ResourceZibaiMainHeadDiffuse
+ps-t2 = ResourceZibaiMainHeadLightMap
+run = CommandListZibaiHead
+run = CommandList\global\ORFix\ORFix
+		; ears horse (732)
+		if $ears == 2
+		drawindexed = 3840, 8160, 0
+		endif
+		; hair (777)
+		if $hair > 0
+		drawindexed = 3309, 12000, 0
+		endif
+		; hair 1 (3779)
+		if $hair == 1
+		drawindexed = 14550, 15309, 0
+		endif
+		; hair 2 (820)
+		if $hair == 2
+		drawindexed = 3309, 29859, 0
+		endif
+	; BODY H
+		; vision (926)
+		if $coat > 0
+		drawindexed = 2652, 33168, 0
+		endif
+	; LOWER BODY H
+		; garterbelt.001 (48)
+		if $garterbelt == 1 && $panties == 0 && $corset == 0 && $dressbottom == 0 || $garterbelt == 1 && $panties > 2 && $corset == 0 && $dressbottom == 0
+		drawindexed = 48, 35820, 0
+		endif
+		; tail Lynette (863)
+		if $tail > 0 && $tail < 3
+		drawindexed = 4860, 35868, 0
+		endif
+ps-t0 = ResourceZibaiMainHeadNormalMap
+ps-t1 = ResourceZibaiMainHeadDiffuse4
+ps-t2 = ResourceZibaiMainHeadLightMap
+run = CommandList\global\ORFix\ORFix
+		; tail Lynette (863)
+		if $tail > 3
+		drawindexed = 4860, 35868, 0
+		endif
+ps-t0 = ResourceZibaiMainHeadNormalMap
+ps-t1 = ResourceZibaiMainHeadDiffuse
+ps-t2 = ResourceZibaiMainHeadLightMap
+run = CommandListZibaiHead
+run = CommandList\global\ORFix\ORFix
+		; tail horse (1125)
+		if $tail == 3
+		drawindexed = 4452, 40728, 0
+		endif
+		; thigh belts L (738)
+		if $thighL == 1 && $shoes != 1
+		drawindexed = 1098, 45180, 0
+		endif
+		; thigh belts R (738)
+		if $thighR == 1 && $shoes != 1
+		drawindexed = 1098, 46278, 0
+		endif
+		; thigh beltsA L (56)
+		if $thighL == 1 && $bodytex > 0 && $shoes != 1
+		drawindexed = 72, 47376, 0
+		endif
+		; thigh beltsA R (56)
+		if $thighR == 1 && $bodytex > 0 && $shoes != 1
+		drawindexed = 72, 47448, 0
+		endif
+	; LEGS H
+		; shoes 1 bottom (1584)
+		if $shoes > 0 && $shoes < 3
+		drawindexed = 6450, 47520, 0
+		endif
+		; shoes 1 bottomA (84)
+		if $shoes == 2
+		drawindexed = 240, 53970, 0
+		endif
+		; shoes 1 top (2898)
+		if $shoes == 1
+		drawindexed = 12354, 54210, 0
+		endif
+	; HANDS H
+		; bracelets (628)
+		if $bracelets == 1
+		drawindexed = 2460, 66564, 0
+		endif
+	; PIERCING H
+		; earrings (592)
+		if $earrings == 2
+		drawindexed = 1776, 69024, 0
+		endif
+
+
+[TextureOverrideZibaiMainBody]
+hash = 111627bf
+match_first_index = 50673
+ib = ResourceZibaiMainBodyIB
+ps-t0 = ResourceZibaiMainBodyNormalMap
+ps-t1 = ResourceZibaiMainBodyDiffuse1
+ps-t2 = ResourceZibaiMainBodyLightMap
+run = CommandList\global\ORFix\ORFix
+	; HEAD B
+		; choker 1 (757)
+		if $neck == 1
+		drawindexed = 2622, 0, 0
+		endif
+		; glasses 1 frame eyes (864)
+		if $frame == 1
+		drawindexed = 3702, 2622, 0
+		endif
+		; glasses 1 frame head (864)
+		if $frame == 2
+		drawindexed = 3702, 6324, 0
+		endif
+		; hair 1A.001 (426)
+		if $hair == 1
+		drawindexed = 1653, 10026, 0
+		endif
+	; BODY B
+		; armpits (1326)
+		if $coat == 0
+		drawindexed = 6624, 11679, 0
+		endif
+		; body 1 (6569)
+		if $body == 1 || $body == 2 && $bra == 1 && $dress == 0
+		drawindexed = 35838, 18303, 0
+		endif
+ps-t0 = ResourceZibaiMainBodyNormalMap
+$texture_id = 0
+
+    if $use_og || $update_texture
+        ps-t1 = ResourceZibaiMainBodyDiffuse
+        if $update_texture
+            run = CommandListModifyTexture
+            $use_og = 0
+            $update_texture = 0
+            ps-t1 = ResourceVirtualBody
+        endif
+    else
+        ps-t1 = ResourceVirtualBody
+    endif
+
+ps-t2 = ResourceZibaiMainBodyLightMap
+run = CommandList\global\ORFix\ORFix
+		; body 1 N1 middle (672)
+		if $body == 1 || $body == 2 && $bra == 1 && $dress == 0
+		drawindexed = 3456, 57693, 0
+		endif
+		; body 1 N1 outer (480)
+		if $body == 1 || $body == 2 && $bra == 1 && $dress == 0
+		drawindexed = 2304, 61149, 0
+		endif
+		; body 2 (6423)
+		if $body == 2 && $dress > 0 || $body == 2 && $dress == 0 && $bra != 1
+		drawindexed = 35838, 72765, 0
+		endif
+		; body 2 N1 middle (672)
+		if $body == 2 && $dress > 0 || $body == 2 && $dress == 0 && $bra != 1
+		drawindexed = 3456, 112155, 0
+		endif
+		; body 2 N1 outer (480)
+		if $body == 2 && $dress > 0 || $body == 2 && $dress == 0 && $bra != 1
+		drawindexed = 2304, 115611, 0
+		endif
+
+		; coat (7045)
+		if $coat > 0
+		drawindexed = 12228, 127227, 0
+		endif
+		; coat sleeves 1 (3298)
+		if $coat == 1
+		drawindexed = 12534, 139455, 0
+		endif
+		; coat sleeves 2 (2312)
+		if $coat == 2
+		drawindexed = 8202, 151989, 0
+		endif
+		; coat.002 (316)
+		if $coatA == 1
+		drawindexed = 720, 160191, 0
+		endif
+		; dress bottom 1 2 (88)
+		if $dressbottom > 0 && $dressbottom < 3 && $dressA == 1
+		drawindexed = 144, 160911, 0
+		endif
+		; dress bottom 3.001 (88)
+		if $dressbottom == 3 && $dressA == 1
+		drawindexed = 144, 161055, 0
+		endif
+		; thing (731)
+		if $dressA == 1
+		drawindexed = 3012, 161199, 0
+		endif
+	; LOWER BODY B
+ps-t0 = ResourceZibaiMainBodyNormalMap
+$texture_id = 0
+
+    if $use_og || $update_texture
+        ps-t1 = ResourceZibaiMainBodyDiffuse
+        if $update_texture
+            run = CommandListModifyTexture
+            $use_og = 0
+            $update_texture = 0
+            ps-t1 = ResourceVirtualBody
+        endif
+    else
+        ps-t1 = ResourceVirtualBody
+    endif
+
+ps-t2 = ResourceZibaiMainBodyLightMap
+run = CommandList\global\ORFix\ORFix
+		; panties 1 (1614)
+		if $panties == 1
+		drawindexed = 7806, 164211, 0
+		endif
+ps-t0 = ResourceZibaiMainBodyNormalMap
+ps-t1 = ResourceZibaiMainBodyDiffuse1
+ps-t2 = ResourceZibaiMainBodyLightMap1
+run = CommandList\global\ORFix\ORFix
+		; panties 1A (164)
+		if $panties == 2
+		drawindexed = 468, 172017, 0
+		endif
+		if $panties == 2
+		drawindexed = 7806, 164211, 0
+		endif
+
+		; thighs
+
+		; vagina 2 (3114)
+		if $vagina == 2
+		drawindexed = 17412, 205641, 0
+		endif
+		; vagina 2.001 (997)
+		if $vagina == 2 && $panties == 0 || $vagina == 2 && $panties > 2
+		drawindexed = 4980, 223053, 0
+		endif
+	; LEGS B
+run = CommandListZibaiLegsL
+run = CommandList\global\ORFix\ORFix
+		; anklets (1200)
+		if $anklets == 1
+		drawindexed = 3624, 236751, 0
+		endif
+		; feet 1 bottom L (4339)
+		if $shoes == 8
+		drawindexed = 24030, 240375, 0
+		endif
+		; feet 1 nails 1 L (235)
+		if $shoes == 8 && $nails1 == 1
+		drawindexed = 978, 288411, 0
+		endif
+		; feet 1 nails 2 L (235)
+		if $shoes == 8 && $nails1 == 2
+		drawindexed = 978, 290367, 0
+		endif
+		; feet 2 L bottom (2705)
+		if $shoes > 2 && $shoes < 7
+		drawindexed = 15126, 292323, 0
+		endif
+		; feet 2 nails 1 L (235)
+		if $shoes == 4 && $nails1 == 1 || $shoes == 6 && $nails1 == 1 
+		drawindexed = 978, 322575, 0
+		endif
+		; feet 2 nails 2 L (235)
+		if $shoes == 4 && $nails1 == 2 || $shoes == 6 && $nails1 == 2 
+		drawindexed = 978, 324531, 0
+		endif
+		; feet 2 toes L (1765)
+		if $shoes == 4 || $shoes == 6
+		drawindexed = 8904, 326487, 0
+		endif
+		; feet top L (584)
+		if $shoes > 2
+		drawindexed = 2904, 344271, 0
+		endif
+		; knees L (3108)
+		if $shoes != 1
+		drawindexed = 8838, 350079, 0
+		endif
+		; shoes 1 feet L (878)
+		if $shoes == 2
+		drawindexed = 4533, 369777, 0
+		endif
+		; thighs L (1023)
+		if $body > 0
+		drawindexed = 5376, 172485, 0
+		endif
+run = CommandListZibaiLegsR
+run = CommandList\global\ORFix\ORFix
+		; feet 1 bottom R (4329)
+		if $shoes == 8
+		drawindexed = 24006, 264405, 0
+		endif
+		; feet 1 nails 1 R (235)
+		if $shoes == 8 && $nails1 == 1
+		drawindexed = 978, 289389, 0
+		endif
+		; feet 1 nails 2 R (235)
+		if $shoes == 8 && $nails1 == 2
+		drawindexed = 978, 291345, 0
+		endif
+		; feet 2 R bottom (2705)
+		if $shoes > 2 && $shoes < 7
+		drawindexed = 15126, 307449, 0
+		endif
+		; feet 2 nails 1 R (235)
+		if $shoes == 4 && $nails1 == 1 || $shoes == 6 && $nails1 == 1 
+		drawindexed = 978, 323553, 0
+		endif
+		; feet 2 nails 2 R (235)
+		if $shoes == 4 && $nails1 == 2 || $shoes == 6 && $nails1 == 2 
+		drawindexed = 978, 325509, 0
+		endif
+		; feet 2 toes R (1755)
+		if $shoes == 4 || $shoes == 6
+		drawindexed = 8880, 335391, 0
+		endif
+		; feet top R (584)
+		if $shoes > 2
+		drawindexed = 2904, 347175, 0
+		endif
+		; knees R (3108)
+		if $shoes != 1
+		drawindexed = 8820, 358917, 0
+		endif
+		; shoes 1 ball (420)
+		if $shoesA == 1
+		drawindexed = 2040, 367737, 0
+		endif
+		; shoes 1 feet R (878)
+		if $shoes == 2
+		drawindexed = 4533, 374310, 0
+		endif
+		; thighs R (1023)
+		if $body > 0
+		drawindexed = 5376, 177861, 0
+		endif
+
+		; shoes 2 front (160)
+		if $shoes == 3 || $shoes == 5
+		drawindexed = 780, 378843, 0
+		endif
+		; shoes 2 main (1310)
+		if $shoes > 2 && $shoes < 7
+		drawindexed = 5514, 379623, 0
+		endif
+		; shoes 2 main edge back (84)
+		if $shoes > 4 && $shoes < 7
+		drawindexed = 240, 385137, 0
+		endif
+		; shoes 2 main edge front (52)
+		if $shoes == 4 || $shoes == 6
+		drawindexed = 144, 385377, 0
+		endif
+		; shoes 2 main edge middle (60)
+		if $shoes > 4 && $shoes < 7
+		drawindexed = 168, 385521, 0
+		endif
+		; shoes 2 middle (376)
+		if $shoes > 2 && $shoes < 5
+		drawindexed = 1752, 385689, 0
+		endif
+		; shoes 2 middle edge top (156)
+		if $shoes > 2 && $shoes < 5
+		drawindexed = 456, 387441, 0
+		endif
+ps-t0 = ResourceZibaiMainBodyNormalMap
+$texture_id = 0
+
+    if $use_og || $update_texture
+        ps-t1 = ResourceZibaiMainBodyDiffuse
+        if $update_texture
+            run = CommandListModifyTexture
+            $use_og = 0
+            $update_texture = 0
+            ps-t1 = ResourceVirtualBody
+        endif
+    else
+        ps-t1 = ResourceVirtualBody
+    endif
+
+ps-t2 = ResourceZibaiMainBodyLightMap
+run = CommandList\global\ORFix\ORFix
+		; shoes 3 (6793)
+		if $shoes == 7
+		drawindexed = 27303, 387897, 0
+		endif
+ps-t0 = ResourceZibaiMainBodyNormalMap
+ps-t1 = ResourceZibaiMainBodyDiffuse1
+ps-t2 = ResourceZibaiMainBodyLightMap
+run = CommandList\global\ORFix\ORFix
+		; shoes 3 (6793)
+		if $shoes == 9
+		drawindexed = 27303, 387897, 0
+		endif
+	; HANDS B
+run = CommandListZibaiArms
+run = CommandList\global\ORFix\ORFix
+		; armlets (1200)
+		if $armlets == 1 && $coat == 0
+		drawindexed = 3624, 415200, 0
+		endif
+		; elbows (3422)
+		if $coat == 0 || $coat == 3
+		drawindexed = 19104, 418824, 0
+		endif
+		; hands (12782)
+		if $body > 0
+		drawindexed = 70368, 437928, 0
+		endif
+ps-t0 = ResourceZibaiMainBodyNormalMap
+$texture_id = 0
+
+    if $use_og || $update_texture
+        ps-t1 = ResourceZibaiMainBodyDiffuse
+        if $update_texture
+            run = CommandListModifyTexture
+            $use_og = 0
+            $update_texture = 0
+            ps-t1 = ResourceVirtualBody
+        endif
+    else
+        ps-t1 = ResourceVirtualBody
+    endif
+
+ps-t2 = ResourceZibaiMainBodyLightMap
+run = CommandList\global\ORFix\ORFix
+		; nails 1 (644)
+		if $nails == 1
+		drawindexed = 2718, 508296, 0
+		endif
+		; nails 2 (682)
+		if $nails == 2
+		drawindexed = 2286, 511014, 0
+		endif
+	; PIERCING B
+		; piercingB 1 (208)
+		if $piercingB > 0
+		drawindexed = 1020, 513300, 0
+		endif
+		; piercingB 2 (10)
+		if $piercingB == 2
+		drawindexed = 24, 516360, 0
+		endif
+	; TATTOO B
+		; tattoo back (347)
+		if $tattooback == 1
+		drawindexed = 1668, 546048, 0
+		endif
+		; 1.0 BODY B
+			; coat short (757)
+			if $coat == 3
+			drawindexed = 2922, 573618, 0
+			endif
+		; 1.0 LEGS B
+run = CommandListZibaiLegsL
+run = CommandList\global\ORFix\ORFix
+			; stockings toes L (1047)
+			if $shoes == 8 && $legtexL > 0 && $nails1 == 1
+			drawindexed = 5652, 576540, 0
+			endif
+run = CommandListZibaiLegsR
+run = CommandList\global\ORFix\ORFix
+			; stockings toes R (1047)
+			if $shoes == 8 && $legtexR > 0 && $nails1 == 1
+			drawindexed = 5652, 582192, 0
+			endif
+
+
+[TextureOverrideZibaiMainDress]
+hash = 111627bf
+match_first_index = 94566
+ib = ResourceZibaiMainDressIB
+ps-t0 = ResourceZibaiMainHeadNormalMap
+ps-t1 = ResourceZibaiMainHeadDiffuse
+ps-t2 = ResourceZibaiMainHeadLightMap
+run = CommandListZibaiDress
+run = CommandList\global\ORFix\ORFix
+run = CommandList\TexFx\T
+	; HEAD D
+		; choker 2 (180)
+		if $neck == 2
+		drawindexed = 816, 0, 0
+		endif
+		; glasses 1 glass eyes (64)
+		if $glass == 1
+		drawindexed = 180, 816, 0
+		endif
+		; glasses 1 glass eyes dark (64)
+		if $glass == 2
+		drawindexed = 180, 996, 0
+		endif
+		; glasses 1 glass head (64)
+		if $glass == 3
+		drawindexed = 180, 1176, 0
+		endif
+ps-t0 = ResourceZibaiMainBodyNormalMap
+ps-t1 = ResourceZibaiMainBodyDiffuse1
+ps-t2 = ResourceZibaiMainBodyLightMap1
+run = CommandList\global\ORFix\ORFix
+	; BODY D
+		; bra 1 (672)
+		if $bra == 1 && $dress == 0
+		drawindexed = 2898, 1356, 0
+		endif
+		; bra 2 nsfw (2402)
+		if $bra > 1 && $bra < 4 && $body == 2
+		drawindexed = 6192, 4254, 0
+		endif
+		; bra 2 sfw (158)
+		if $bra == 2 && $body == 2
+		drawindexed = 792, 10446, 0
+		endif
+ps-t0 = ResourceZibaiMainBodyNormalMap
+$texture_id = 0
+
+    if $use_og || $update_texture
+        ps-t1 = ResourceZibaiMainBodyDiffuse
+        if $update_texture
+            run = CommandListModifyTexture
+            $use_og = 0
+            $update_texture = 0
+            ps-t1 = ResourceVirtualBody
+        endif
+    else
+        ps-t1 = ResourceVirtualBody
+    endif
+
+ps-t2 = ResourceZibaiMainBodyLightMap
+run = CommandList\global\ORFix\ORFix
+		; dress bottom 1 (665)
+		if $dressbottom == 1
+		drawindexed = 3018, 11238, 0
+		endif
+ps-t0 = ResourceZibaiMainBodyNormalMap1
+ps-t1 = ResourceZibaiMainBodyDiffuse1
+ps-t2 = ResourceZibaiMainBodyLightMap1
+run = CommandList\global\ORFix\ORFix
+		; dress bottom 2 (704)
+		if $dressbottom == 2
+		drawindexed = 3054, 14256, 0
+		endif
+		; dress bottom 3 (738)
+		if $dressbottom == 3
+		drawindexed = 2868, 17310, 0
+		endif
+		; dress corset bottom (534)
+		if $corset > 0
+		drawindexed = 1686, 20178, 0
+		endif
+		; dress corset nsfw (128)
+		if $corset == 2
+		drawindexed = 288, 21864, 0
+		endif
+		; dress corset top (701)
+		if $corset == 1
+		drawindexed = 2916, 22152, 0
+		endif
+		; dress nsfw (70)
+		if $dresstop == 0 && $dressbottom > 0
+		drawindexed = 180, 25068, 0
+		endif
+		; dress nsfw 1 (24)
+		if $dresstop == 0 && $dressbottom > 0
+		drawindexed = 48, 25248, 0
+		endif
+		; dress nsfw 2 (48)
+		if $dresstop == 0 && $dressbottom > 1
+		drawindexed = 96, 25296, 0
+		endif
+		; dress top sfw 1 (566)
+		if $dresstop == 1 && $dressbottom == 1
+		drawindexed = 2433, 25392, 0
+		endif
+		; dress top sfw 2 (610)
+		if $dresstop == 1 && $dressbottom > 1
+		drawindexed = 2490, 27825, 0
+		endif
+		; garterbelt (105)
+		if $garterbelt == 1 && $panties == 0 && $corset == 0 || $garterbelt == 1 && $panties > 2 && $corset == 0
+		drawindexed = 408, 30315, 0
+		endif
+		; garterbelt belts L (75)
+		if $thighL == 1 && $garterbelt == 1 && $panties == 0 || $thighL == 1 && $garterbelt == 1 && $panties > 2 
+		drawindexed = 276, 30723, 0
+		endif
+		; garterbelt belts R (75)
+		if $thighR == 1 && $garterbelt == 1 && $panties == 0 || $thighR == 1 && $garterbelt == 1 && $panties > 2 
+		drawindexed = 276, 30999, 0
+		endif
+		; garterbelt belts corset L (27)
+		if $thighL == 1 && $garterbelt == 1 && $panties == 0 && $corset > 0 || $thighL == 1 && $garterbelt == 1 && $panties > 2 && $corset > 0 
+		drawindexed = 84, 31275, 0
+		endif
+		; garterbelt belts corset R (27)
+		if $thighR == 1 && $garterbelt == 1 && $panties == 0 && $corset > 0 || $thighR == 1 && $garterbelt == 1 && $panties > 2 && $corset > 0 
+		drawindexed = 84, 31359, 0
+		endif
+		; garterbelt belts panties L (39)
+		if $thighL == 1 && $garterbelt == 1 && $panties > 0 && $panties < 3
+		drawindexed = 132, 31443, 0
+		endif
+		; garterbelt belts panties R (39)
+		if $thighR == 1 && $garterbelt == 1 && $panties > 0 && $panties < 3
+		drawindexed = 132, 31575, 0
+		endif
+ps-t0 = ResourceZibaiMainHeadNormalMap
+ps-t1 = ResourceZibaiMainHeadDiffuse
+ps-t2 = ResourceZibaiMainHeadLightMap
+run = CommandList\global\ORFix\ORFix
+		; pastiesN1 (134)
+		if $bra == 4 && $body == 2 || $bra == 1 && $dress > 0 && $dresstop == 0 && $corset != 1
+		drawindexed = 660, 31707, 0
+		endif
+		; pastiesN2 (66)
+		if $bra == 5 && $body == 2
+		drawindexed = 264, 32367, 0
+		endif
+ps-t0 = ResourceZibaiMainBodyNormalMap
+$texture_id = 0
+
+    if $use_og || $update_texture
+        ps-t1 = ResourceZibaiMainBodyDiffuse
+        if $update_texture
+            run = CommandListModifyTexture
+            $use_og = 0
+            $update_texture = 0
+            ps-t1 = ResourceVirtualBody
+        endif
+    else
+        ps-t1 = ResourceVirtualBody
+    endif
+
+ps-t2 = ResourceZibaiMainBodyLightMap
+run = CommandList\global\ORFix\ORFix
+	; LOWER BODY D
+		; panties 2 (1774)
+		if $panties == 3
+		drawindexed = 3948, 36579, 0
+		endif
+ps-t0 = ResourceZibaiMainHeadNormalMap
+ps-t1 = ResourceZibaiMainHeadDiffuse
+ps-t2 = ResourceZibaiMainHeadLightMap
+run = CommandList\global\ORFix\ORFix
+		; pastiesV (266)
+		if $panties == 5
+		drawindexed = 1308, 40527, 0
+		endif
+		; tail LynetteA (244)
+		if $tail == 2 || $tail == 5
+		drawindexed = 615, 41835, 0
+		endif
+ps-t0 = ResourceZibaiMainBodyNormalMap
+$texture_id = 0
+
+    if $use_og || $update_texture
+        ps-t1 = ResourceZibaiMainBodyDiffuse
+        if $update_texture
+            run = CommandListModifyTexture
+            $use_og = 0
+            $update_texture = 0
+            ps-t1 = ResourceVirtualBody
+        endif
+    else
+        ps-t1 = ResourceVirtualBody
+    endif
+
+ps-t2 = ResourceZibaiMainBodyLightMap
+run = CommandList\global\ORFix\ORFix
+	; HANDS D
+		; sleeves (183)
+		if $coat > 0 && $coat < 3
+		drawindexed = 660, 42450, 0
+		endif
+ps-t0 = ResourceZibaiMainHeadNormalMap
+ps-t1 = ResourceZibaiMainHeadDiffuse
+ps-t2 = ResourceZibaiMainHeadLightMap
+run = CommandList\global\ORFix\ORFix
+
+
+[TextureOverrideZibaiMainExtra]
+hash = 111627bf
+match_first_index = 97299
+ib = ResourceZibaiMainExtraIB
+ps-t0 = ResourceZibaiMainBodyNormalMap
+$texture_id = 0
+
+    if $use_og || $update_texture
+        ps-t1 = ResourceZibaiMainBodyDiffuse
+        if $update_texture
+            run = CommandListModifyTexture
+            $use_og = 0
+            $update_texture = 0
+            ps-t1 = ResourceVirtualBody
+        endif
+    else
+        ps-t1 = ResourceVirtualBody
+    endif
+
+ps-t2 = ResourceZibaiMainBodyLightMap
+run = CommandList\global\ORFix\ORFix
+	; HEAD E
+		; hair 1A (168)
+		if $hairA == 1
+		drawindexed = 468, 0, 0
+		endif
+		; hair 1A.002 (164)
+		if $hair == 1
+		drawindexed = 432, 468, 0
+		endif
+	; BODY E
+		; coat.001 (376)
+		if $coat == 1
+		drawindexed = 1008, 900, 0
+		endif
+		; thing.001 (173)
+		if $dressA == 1
+		drawindexed = 450, 1908, 0
+		endif
+	; LOWER BODY E
+		; shoes 1.002 (436)
+		if $shoes == 1
+		drawindexed = 1176, 2358, 0
+		endif
+
+
+[TextureOverrideZibaiBangsIB]
+hash = 58e7c1e4
+handling = skip
+
+
+[TextureOverrideZibaiBangsHead]
+hash = 58e7c1e4
+match_first_index = 0
+ib = ResourceZibaiBangsHeadIB
+ps-t0 = ResourceZibaiMainHeadNormalMap
+ps-t1 = ResourceZibaiMainHeadDiffuse
+ps-t2 = ResourceZibaiMainHeadLightMap
+run = CommandListZibaiHead
+run = CommandList\global\ORFix\ORFix
+; ZibaiBangsHead
+	; bangs (3099)
+if $hair > 0
+    ; bangs (3099)
+    drawindexed = 11538, 0, 0
+endif
+
+
+[TextureOverrideZibaiEyesIB]
+hash = 6a0c8973
+handling = skip
+
+
+[TextureOverrideZibaiEyesHead]
+hash = 6a0c8973
+match_first_index = 0
+ib = ResourceZibaiEyesHeadIB
+ps-t0 = ResourceZibaiMainHeadDiffuse
+ps-t1 = ResourceZibaiMainHeadLightMap
+run = CommandList\global\ORFix\NNFix
+; ZibaiEyesHead
+	; eyes 1 (202)
+	if $eyes == 1
+	drawindexed = 768, 0, 0
+	endif
+	; eyes 2 (202)
+	if $eyes == 2
+	drawindexed = 768, 768, 0
+	endif
+ps-t0 = ResourceZibaiMainHeadDiffuse3
+ps-t1 = ResourceZibaiMainHeadLightMap
+run = CommandList\global\ORFix\NNFix
+	; eyes 1 (202)
+	if $eyes == 3
+	drawindexed = 768, 0, 0
+	endif
+	; eyes 2 (202)
+	if $eyes == 4
+	drawindexed = 768, 768, 0
+	endif
+
+
+[TextureOverrideZibaiExtraIB]
+hash = e3d9940f
+handling = skip
+
+
+[TextureOverrideZibaiExtraHead]
+hash = e3d9940f
+match_first_index = 0
+ib = ResourceZibaiExtraHeadIB
+$texture_id = 0
+
+    if $use_og || $update_texture
+        ps-t1 = ResourceZibaiMainBodyDiffuse
+        if $update_texture
+            run = CommandListModifyTexture
+            $use_og = 0
+            $update_texture = 0
+            ps-t1 = ResourceVirtualBody
+        endif
+    else
+        ps-t1 = ResourceVirtualBody
+    endif
+
+ps-t1 = ResourceZibaiMainBodyLightMap
+run = CommandList\global\ORFix\NNFix
+; ZibaiExtraHead
+	; bodysuit (196)
+	if $dressA == 1 && $neck == 1 && $coat > 0 && $dresstop > 0 || $dressA == 1 && $neck == 1 && $coat > 0 && $corset == 1
+	drawindexed = 888, 0, 0
+	endif
+
+
+[TextureOverrideZibaiTailIB]
+hash = 8dbee173
+handling = skip
+
+
+[TextureOverrideZibaiTailHead]
+hash = 8dbee173
+match_first_index = 0
+ib = ResourceZibaiTailHeadIB
+$texture_id = 0
+
+    if $use_og || $update_texture
+        ps-t1 = ResourceZibaiMainBodyDiffuse
+        if $update_texture
+            run = CommandListModifyTexture
+            $use_og = 0
+            $update_texture = 0
+            ps-t1 = ResourceVirtualBody
+        endif
+    else
+        ps-t1 = ResourceVirtualBody
+    endif
+
+ps-t1 = ResourceZibaiMainBodyLightMap
+run = CommandList\global\ORFix\NNFix
+; ZibaiTailHead
+	; coat tail (51)
+	if $coatA == 1 && $tail == 0
+	drawindexed = 192, 0, 0
+	endif
+
+
+[TextureOverrideJahodaFaceHead]
+hash = b517cf47
+run = CommandListZibaiFace
+
+; CommandList -----------------------
+
+
+
+
+[CommandListZibaiHead]
+if $colorhair == 1
+	ps-t0 = ResourceZibaiMainHeadNormalMap
+	ps-t1 = ResourceZibaiMainHeadDiffuse1
+	ps-t2 = ResourceZibaiMainHeadLightMap
+else if $colorhair == 2
+	ps-t0 = ResourceZibaiMainHeadNormalMap
+	ps-t1 = ResourceZibaiMainHeadDiffuse2
+	ps-t2 = ResourceZibaiMainHeadLightMap1
+else if $colorhair == 3
+	ps-t0 = ResourceZibaiMainHeadNormalMap
+	ps-t1 = ResourceZibaiMainHeadDiffuse3
+	ps-t2 = ResourceZibaiMainHeadLightMap
+endif
+
+
+[CommandListZibaiArms]
+if $armstex == 0
+	ps-t0 = ResourceZibaiMainBodyNormalMap1
+	ps-t1 = ResourceZibaiMainBodyDiffuse1
+	ps-t2 = ResourceZibaiMainBodyLightMap1
+else if $armstex == 1
+	ps-t0 = ResourceZibaiMainBodyNormalMap
+	$texture_id = 0
+
+    if $use_og || $update_texture
+        ps-t1 = ResourceZibaiMainBodyDiffuse
+        if $update_texture
+            run = CommandListModifyTexture
+            $use_og = 0
+            $update_texture = 0
+            ps-t1 = ResourceVirtualBody
+        endif
+    else
+        ps-t1 = ResourceVirtualBody
+    endif
+
+	ps-t2 = ResourceZibaiMainBodyLightMap
+else if $armstex == 2
+	ps-t0 = ResourceZibaiMainBodyNormalMap
+	ps-t1 = ResourceZibaiMainBodyDiffuse2
+	ps-t2 = ResourceZibaiMainBodyLightMap
+endif
+
+
+[CommandListZibaiLegsL]
+if $legtexL == 0
+	ps-t0 = ResourceZibaiMainBodyNormalMap1
+	ps-t1 = ResourceZibaiMainBodyDiffuse1
+	ps-t2 = ResourceZibaiMainBodyLightMap1
+else if $legtexL == 1
+	ps-t0 = ResourceZibaiMainBodyNormalMap
+	$texture_id = 0
+
+    if $use_og || $update_texture
+        ps-t1 = ResourceZibaiMainBodyDiffuse
+        if $update_texture
+            run = CommandListModifyTexture
+            $use_og = 0
+            $update_texture = 0
+            ps-t1 = ResourceVirtualBody
+        endif
+    else
+        ps-t1 = ResourceVirtualBody
+    endif
+
+	ps-t2 = ResourceZibaiMainBodyLightMap
+else if $legtexL == 2
+	ps-t0 = ResourceZibaiMainBodyNormalMap
+	ps-t1 = ResourceZibaiMainBodyDiffuse2
+	ps-t2 = ResourceZibaiMainBodyLightMap
+else if $legtexL == 3
+	ps-t0 = ResourceZibaiMainBodyNormalMap2
+	ps-t1 = ResourceZibaiMainBodyDiffuse3
+	ps-t2 = ResourceZibaiMainBodyLightMap2
+endif
+
+
+[CommandListZibaiLegsR]
+if $legtexR == 0
+	ps-t0 = ResourceZibaiMainBodyNormalMap1
+	ps-t1 = ResourceZibaiMainBodyDiffuse1
+	ps-t2 = ResourceZibaiMainBodyLightMap1
+else if $legtexR == 1
+	ps-t0 = ResourceZibaiMainBodyNormalMap
+	$texture_id = 0
+
+    if $use_og || $update_texture
+        ps-t1 = ResourceZibaiMainBodyDiffuse
+        if $update_texture
+            run = CommandListModifyTexture
+            $use_og = 0
+            $update_texture = 0
+            ps-t1 = ResourceVirtualBody
+        endif
+    else
+        ps-t1 = ResourceVirtualBody
+    endif
+
+	ps-t2 = ResourceZibaiMainBodyLightMap
+else if $legtexR == 2
+	ps-t0 = ResourceZibaiMainBodyNormalMap
+	ps-t1 = ResourceZibaiMainBodyDiffuse2
+	ps-t2 = ResourceZibaiMainBodyLightMap
+else if $legtexR == 3
+	ps-t0 = ResourceZibaiMainBodyNormalMap2
+	ps-t1 = ResourceZibaiMainBodyDiffuse3
+	ps-t2 = ResourceZibaiMainBodyLightMap2
+endif
+
+
+[CommandListZibaiDress]
+if $glass == 1
+	ps-t69 = ResourceZibaiMainHeadTransparency
+else if $glass == 2
+	ps-t69 = ResourceZibaiMainHeadTransparency1
+else if $glass == 3
+	ps-t69 = ResourceZibaiMainHeadTransparency2
+endif
+
+
+[CommandListZibaiFace]
+if $makeup == 0 && $colorhair != 3
+	this = ResourceZibaiFaceHeadDiffuse
+else if $makeup == 1 && $colorhair != 3
+	this = ResourceZibaiFaceHeadDiffuse1
+else if $makeup == 2 && $colorhair != 3
+	this = ResourceZibaiFaceHeadDiffuse2
+else if $makeup == 3 && $colorhair != 3
+	this = ResourceZibaiFaceHeadDiffuse3
+else if $makeup == 4 && $colorhair != 3
+	this = ResourceZibaiFaceHeadDiffuse4
+else if $makeup == 5 && $colorhair != 3
+	this = ResourceZibaiFaceHeadDiffuse5
+else if $makeup == 0 && $colorhair == 3
+	this = ResourceZibaiFaceHeadDiffuseBlack
+else if $makeup == 1 && $colorhair == 3
+	this = ResourceZibaiFaceHeadDiffuse1Black
+else if $makeup == 2 && $colorhair == 3
+	this = ResourceZibaiFaceHeadDiffuse2Black
+else if $makeup == 3 && $colorhair == 3
+	this = ResourceZibaiFaceHeadDiffuse3Black
+else if $makeup == 4 && $colorhair == 3
+	this = ResourceZibaiFaceHeadDiffuse4Black
+else if $makeup == 5 && $colorhair == 3
+	this = ResourceZibaiFaceHeadDiffuse5Black
+endif
+
+
+[CommandListLockInfo]
+if $lock == 0 && $lockinfo == 1 && $active == 1
+	pre Resource\ShaderFixes\help.ini\Notification = ResourceLockInfoON
+	pre run = CustomShader\ShaderFixes\help.ini\FormatText
+	pre $\ShaderFixes\help.ini\notification_timeout = time + 5.0
+	$lockinfo = 0
+else if $lock == 1 && $lockinfo == 1 && $active == 1
+	pre Resource\ShaderFixes\help.ini\Notification = ResourceLockInfoOFF
+	pre run = CustomShader\ShaderFixes\help.ini\FormatText
+	pre $\ShaderFixes\help.ini\notification_timeout = time + 5.0
+	$lockinfo = 0
+endif
+
+; Resources -------------------------
+
+
+
+
+[ResourceLockInfoOFF]
+type = Buffer
+data = "weebovz's Zibai - Toggles OFF"
+
+
+[ResourceLockInfoON]
+type = Buffer
+data = "weebovz's Zibai - Toggles ON"
+
+
+[ResourceZibaiMainPosition]
+type = Buffer
+stride = 40
+filename = ZibaiMainPosition.buf
+
+
+[ResourceZibaiMainBlend]
+type = Buffer
+stride = 32
+filename = ZibaiMainBlend.buf
+
+
+[ResourceZibaiMainTexcoord]
+type = Buffer
+stride = 20
+filename = ZibaiMainTexcoord.buf
+
+
+[ResourceZibaiBangsPosition]
+type = Buffer
+stride = 40
+filename = ZibaiBangsPosition.buf
+
+
+[ResourceZibaiBangsBlend]
+type = Buffer
+stride = 32
+filename = ZibaiBangsBlend.buf
+
+
+[ResourceZibaiBangsTexcoord]
+type = Buffer
+stride = 12
+filename = ZibaiBangsTexcoord.buf
+
+
+[ResourceZibaiEyesPosition]
+type = Buffer
+stride = 40
+filename = ZibaiEyesPosition.buf
+
+
+[ResourceZibaiEyesBlend]
+type = Buffer
+stride = 32
+filename = ZibaiEyesBlend.buf
+
+
+[ResourceZibaiEyesTexcoord]
+type = Buffer
+stride = 20
+filename = ZibaiEyesTexcoord.buf
+
+
+[ResourceZibaiExtraPosition]
+type = Buffer
+stride = 40
+filename = ZibaiExtraPosition.buf
+
+
+[ResourceZibaiExtraBlend]
+type = Buffer
+stride = 32
+filename = ZibaiExtraBlend.buf
+
+
+[ResourceZibaiExtraTexcoord]
+type = Buffer
+stride = 20
+filename = ZibaiExtraTexcoord.buf
+
+
+[ResourceZibaiTailPosition]
+type = Buffer
+stride = 40
+filename = ZibaiTailPosition.buf
+
+
+[ResourceZibaiTailBlend]
+type = Buffer
+stride = 32
+filename = ZibaiTailBlend.buf
+
+
+[ResourceZibaiTailTexcoord]
+type = Buffer
+stride = 20
+filename = ZibaiTailTexcoord.buf
+
+
+[ResourceZibaiMainHeadIB]
+type = Buffer
+format = DXGI_FORMAT_R32_UINT
+filename = ZibaiMainHead.ib
+
+
+[ResourceZibaiMainBodyIB]
+type = Buffer
+format = DXGI_FORMAT_R32_UINT
+filename = ZibaiMainBody.ib
+
+
+[ResourceZibaiMainDressIB]
+type = Buffer
+format = DXGI_FORMAT_R32_UINT
+filename = ZibaiMainDress.ib
+
+
+[ResourceZibaiMainExtraIB]
+type = Buffer
+format = DXGI_FORMAT_R32_UINT
+filename = ZibaiMainExtra.ib
+
+
+[ResourceZibaiBangsHeadIB]
+type = Buffer
+format = DXGI_FORMAT_R32_UINT
+filename = ZibaiBangsHead.ib
+
+
+[ResourceZibaiEyesHeadIB]
+type = Buffer
+format = DXGI_FORMAT_R32_UINT
+filename = ZibaiEyesHead.ib
+
+
+[ResourceZibaiExtraHeadIB]
+type = Buffer
+format = DXGI_FORMAT_R32_UINT
+filename = ZibaiExtraHead.ib
+
+
+[ResourceZibaiTailHeadIB]
+type = Buffer
+format = DXGI_FORMAT_R32_UINT
+filename = ZibaiTailHead.ib
+
+
+[ResourceZibaiMainHeadLightMap]
+filename = ZibaiMainHeadLightMap.dds
+
+
+[ResourceZibaiMainHeadLightMap1]
+filename = ZibaiMainHeadLightMap1.dds
+
+
+[ResourceZibaiMainHeadNormalMap]
+filename = ZibaiMainHeadNormalMap.dds
+
+
+[ResourceZibaiMainHeadDiffuse]
+filename = ZibaiMainHeadDiffuse.dds
+
+
+[ResourceZibaiMainHeadDiffuse1]
+filename = ZibaiMainHeadDiffuse1.dds
+
+
+[ResourceZibaiMainHeadDiffuse2]
+filename = ZibaiMainHeadDiffuse2.dds
+
+
+[ResourceZibaiMainHeadDiffuse3]
+filename = ZibaiMainHeadDiffuse3.dds
+
+
+[ResourceZibaiMainHeadDiffuse4]
+filename = ZibaiMainHeadDiffuse4.dds
+
+
+[ResourceZibaiMainBodyLightMap]
+filename = ZibaiMainBodyLightMap.dds
+
+
+[ResourceZibaiMainBodyLightMap1]
+filename = ZibaiMainBodyLightMap1.dds
+
+
+[ResourceZibaiMainBodyLightMap2]
+filename = ZibaiMainBodyLightMap2.dds
+
+
+[ResourceZibaiMainBodyNormalMap]
+filename = ZibaiMainBodyNormalMap.dds
+
+
+[ResourceZibaiMainBodyNormalMap1]
+filename = ZibaiMainBodyNormalMap1.dds
+
+
+[ResourceZibaiMainBodyNormalMap2]
+filename = ZibaiMainBodyNormalMap2.dds
+
+
+[ResourceZibaiMainBodyDiffuse]
+filename = ZibaiMainBodyDiffuse.dds
+
+
+[ResourceZibaiMainBodyDiffuse1]
+filename = ZibaiMainBodyDiffuse1.dds
+
+
+[ResourceZibaiMainBodyDiffuse2]
+filename = ZibaiMainBodyDiffuse2.dds
+
+
+[ResourceZibaiMainBodyDiffuse3]
+filename = ZibaiMainBodyDiffuse3.dds
+
+
+[ResourceZibaiMainHeadTransparency]
+filename = ZibaiMainHeadTransparency.dds
+
+
+[ResourceZibaiMainHeadTransparency1]
+filename = ZibaiMainHeadTransparency1.dds
+
+
+[ResourceZibaiMainHeadTransparency2]
+filename = ZibaiMainHeadTransparency2.dds
+
+
+[ResourceZibaiFaceHeadDiffuse]
+filename = ZibaiFaceHeadDiffuse.dds
+
+
+[ResourceZibaiFaceHeadDiffuse1]
+filename = ZibaiFaceHeadDiffuse1.dds
+
+
+[ResourceZibaiFaceHeadDiffuse2]
+filename = ZibaiFaceHeadDiffuse2.dds
+
+
+[ResourceZibaiFaceHeadDiffuse3]
+filename = ZibaiFaceHeadDiffuse3.dds
+
+
+[ResourceZibaiFaceHeadDiffuse4]
+filename = ZibaiFaceHeadDiffuse4.dds
+
+
+[ResourceZibaiFaceHeadDiffuse5]
+filename = ZibaiFaceHeadDiffuse5.dds
+
+
+[ResourceZibaiFaceHeadDiffuseBlack]
+filename = ZibaiFaceHeadDiffuseBlack.dds
+
+
+[ResourceZibaiFaceHeadDiffuse1Black]
+filename = ZibaiFaceHeadDiffuse1Black.dds
+
+
+[ResourceZibaiFaceHeadDiffuse2Black]
+filename = ZibaiFaceHeadDiffuse2Black.dds
+
+
+[ResourceZibaiFaceHeadDiffuse3Black]
+filename = ZibaiFaceHeadDiffuse3Black.dds
+
+
+[ResourceZibaiFaceHeadDiffuse4Black]
+filename = ZibaiFaceHeadDiffuse4Black.dds
+
+
+[ResourceZibaiFaceHeadDiffuse5Black]
+filename = ZibaiFaceHeadDiffuse5Black.dds
+
+
+; .ini generated by XXMI (XX-Model-Importer)
+; If you have any issues or find any bugs, please open a ticket at https://github.com/leotorrez/XXMI-Tools/issues
+
+
+; GENERATED by MCreatorV4.0B - by Nurarihyon
+
+[Constants]
+global $texture_id
+global $use_og = 1
+
+global persist $packedHSV
+global persist $packedRGB
+global persist $packedHSL
+
+global persist $tint_strength = 0.5
+
+global $update_texture = 0
+
+global persist $hue_center
+global persist $hue_range
+
+global $color_pickers_init = 1
+
+global $hue
+global $saturation
+global $value
+
+[Present]
+if $active 
+
+
+    if $\NuraThings\ColorPicker\selector_type_changed == 1
+        $update_texture = 1
+
+
+        if ($\NuraThings\ColorPicker\selector_type == 0 && $packedHSV != 0)
+            $\NuraThings\ColorPicker\packedHSV = $packedHSV
+            $\NuraThings\ColorPicker\use_packed = 1
+        endif
+
+
+        if ($\NuraThings\ColorPicker\selector_type == 1 && $packedRGB != 0)
+            $\NuraThings\ColorPicker\packedRGB = $packedRGB
+
+
+        if ($\NuraThings\ColorPicker\selector_type == 2 && $packedHSL != 0)
+            $\NuraThings\ColorPicker\packedHSL = $packedHSL
+
+
+        run = CommandListGetHSV
+    endif
+
+
+    
+    if $\NuraThings\ColorPicker\menu || $color_pickers_init
+
+
+        if $color_pickers_init && (($\NuraThings\ColorPicker\selector_type == 0 && $packedHSV != 0) || ($\NuraThings\ColorPicker\selector_type == 1 && $packedRGB != 0) || ($\NuraThings\ColorPicker\selector_type == 2 && $packedHSL != 0))
+
+
+            if ($\NuraThings\ColorPicker\selector_type == 0 && $packedHSV != 0)
+                $\NuraThings\ColorPicker\packedHSV = $packedHSV
+            endif
+
+
+            if ($\NuraThings\ColorPicker\selector_type == 1 && $packedRGB != 0)
+                $\NuraThings\ColorPicker\packedRGB = $packedRGB
+
+
+            if ($\NuraThings\ColorPicker\selector_type == 2 && $packedHSL != 0)
+                $\NuraThings\ColorPicker\packedHSL = $packedHSL
+
+
+
+
+            run = CustomShader\NuraThings\ColorPicker\DrawColorPickers
+
+
+            run = CommandListGetHSV
+
+
+
+        if $\NuraThings\ColorPicker\check_color
+            run = CommandList\NuraThings\ColorPicker\IsWithinMenuRange
+
+
+            if $\NuraThings\ColorPicker\InRange
+                $update_texture = 1
+            else
+                $update_texture = 0
+        else
+            if $\NuraThings\ColorPicker\wait_frame != 0
+                if time - $\NuraThings\ColorPicker\wait_frame >= 5
+
+
+                    run = CommandList\NuraThings\ColorPicker\StorePackedColors
+
+
+                    if $\NuraThings\ColorPicker\selector_type == 0
+                        $packedHSV = $\NuraThings\ColorPicker\packedHSV
+                    elif $\NuraThings\ColorPicker\selector_type == 1
+                        $packedRGB = $\NuraThings\ColorPicker\packedRGB
+                    elif $\NuraThings\ColorPicker\selector_type == 2
+                        $packedHSL = $\NuraThings\ColorPicker\packedHSL
+                    endif
+
+
+                    run = CommandListGetHSV
+                    $\NuraThings\ColorPicker\wait_frame = 0
+                endif
+
+
+            $update_texture = 0
+
+
+        x100 = $packedHSV
+        y100 = $packedHSL
+        z100 = $packedRGB
+
+
+        if $color_pickers_init
+            $update_texture = 1
+            $color_pickers_init = 0
+endif
+
+
+[KeyTintStrength]
+key = VK_RIGHT
+back = VK_LEFT
+type = cycle
+$tint_strength = 0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0
+$update_texture = 1
+
+
+[KeyHueCenter]
+key = ]
+back = [
+type = cycle
+$hue_center = 0, 20, 40, 60, 80, 100, 120, 140, 160, 180, 200, 220, 240, 260, 280, 300, 320, 340, 360
+$update_texture = 1
+
+
+[KeyHueRange]
+key = .
+back = ,
+type = cycle
+$hue_range = 0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100, 105, 110, 115, 120, 125, 130, 135, 140, 145, 150, 155, 160, 165, 170, 175, 180
+$update_texture = 1
+
+
+[KeyUseOG]
+key = :
+type = toggle
+$use_og = 1
+
+
+
+
+[CommandListGetHSV]
+run = CommandList\NuraThings\ColorPicker\StoreHSV
+
+$hue = $\NuraThings\ColorPicker\hue * 360
+$saturation = $\NuraThings\ColorPicker\saturation
+$value = $\NuraThings\ColorPicker\value
+
+
+[CommandListModifyTexture]
+$\NuraThings\TextureManipulator\hue_center = $hue_center
+$\NuraThings\TextureManipulator\hue_range = $hue_range
+$\NuraThings\TextureManipulator\tint_strength = $tint_strength
+
+run = CustomShader\NuraThings\TextureManipulator\ModifyTexture
+
+if $texture_id == 0
+	ResourceVirtualBody = copy Resource\NuraThings\TextureManipulator\VirtualTexture
+endif
+
+
+clear = cs-t0
+clear = cs-u0
+
+cs-t0 = null
+cs-u0 = null
+
+clear = Resource\NuraThings\TextureManipulator\VirtualTexture
+
+{post: global.replace("/ps-t\d+\s*=\s*ResourceZibaiMainBodyDiffuse(?!\s*if \$update_texture)$/m","$texture_id = 0
+
+    if $use_og || $update_texture
+        ps-t1 = ResourceZibaiMainBodyDiffuse
+        if $update_texture
+            run = CommandListModifyTexture
+            $use_og = 0
+            $update_texture = 0
+            ps-t1 = ResourceVirtualBody
+        endif
+    else
+        ps-t1 = ResourceVirtualBody
+    endif
+")}
+
+
+
+
+[ResourceVirtualBody]
+
+
+
+; GENERATED by MCreatorV4.0B - by Nurarihyon

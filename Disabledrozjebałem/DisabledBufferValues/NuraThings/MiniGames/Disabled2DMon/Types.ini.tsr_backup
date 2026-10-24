@@ -1,0 +1,49 @@
+namespace = NuraThings\MiniGames\2DMon\Types
+
+[Constants]
+global $id = -1
+
+global $name_string1
+global $name_string2
+global $name_string3
+
+global $weakness
+global $immunity
+global $resistance
+
+global $requster = -1
+
+[Present]
+if $id >= 0
+    if $id == 0
+        run = CommandListFire
+    endif
+endif
+
+[CommandListCalculate]
+if $\NuraThings\MiniGames\2DMon\turn > -1 && $\NuraThings\MiniGames\2DMon\used_attack > -1
+    $weakness = 0
+    $immunity = 0
+    $resistance = 0
+
+    $\NuraThings\MiniGames\2DMon\Attacks\id = $\NuraThings\MiniGames\2DMon\used_attack
+    ;run = CommandListRetrieveAttackInfo
+
+    if $\NuraThings\MiniGames\2DMon\turn == 0
+        if $id == 1 && $\NuraThings\MiniGames\2DMon\enemy_type == 1 || $\NuraThings\MiniGames\2DMon\enemy_stype == 1
+            $immunity = 1
+        endif
+    endif
+endif
+
+[CommandListFire]
+;ID == 1
+$name_string1 = 123456
+$name_string2 = 123456
+$name_string3 = 123456
+
+[CommandListFlying]
+;ID == 2
+$name_string1 = 123456
+$name_string2 = 123456
+$name_string3 = 123456

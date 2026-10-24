@@ -1,0 +1,2058 @@
+{
+  "41760901": {
+    "Character": "Mika",
+    "Part": "",
+    "t0": {
+      "type": "NormalMap",
+      "hash": "0e2f5874"
+    },
+    "t1": {
+      "type": "NormalMap",
+      "hash": "0e2f5874"
+    },
+    "t2": {
+      "type": "Diffuse",
+      "hash": "fb182f38"
+    }
+  },
+  "11bba20d": {
+    "Character": "Aino",
+    "Part": "Bangs",
+    "t0": {
+      "type": "LightMap",
+      "hash": "b7c522d2"
+    }
+  },
+  "41ed9030": {
+    "Character": "Aino",
+    "Part": "Eyes",
+    "t0": {
+      "type": "LightMap",
+      "hash": "b7c522d2"
+    }
+  },
+  "3738cbb7": {
+    "Character": "Aino",
+    "Part": "Body",
+    "t0": {
+      "type": "LightMap",
+      "hash": "b7c522d2"
+    },
+    "t1": {
+      "type": "LightMap",
+      "hash": "75a265f6"
+    }
+  },
+  "ed6830cc": {
+    "Character": "Aino",
+    "Part": "Tail",
+    "t0": {
+      "type": "LightMap",
+      "hash": "b7c522d2"
+    },
+    "t1": {
+      "type": "LightMap",
+      "hash": "75a265f6"
+    }
+  },
+  "0d7dc936": {
+    "Character": "Albedo",
+    "Part": "",
+    "t0": {
+      "type": "Diffuse",
+      "hash": "9bd05da3"
+    },
+    "t1": {
+      "type": "Diffuse",
+      "hash": "541275e1"
+    },
+    "t2": {
+      "type": "Diffuse",
+      "hash": "541275e1"
+    }
+  },
+  "639d1fb8": {
+    "Character": "Alhaitham",
+    "Part": "",
+    "t0": {
+      "type": "NormalMap",
+      "hash": "9ab8b2fc"
+    },
+    "t1": {
+      "type": "NormalMap",
+      "hash": "d106c084"
+    },
+    "t2": {
+      "type": "NormalMap",
+      "hash": "d106c084"
+    }
+  },
+  "5d1da717": {
+    "Character": "Aloy",
+    "Part": "",
+    "t0": {
+      "type": "Diffuse",
+      "hash": "b545856c"
+    },
+    "t1": {
+      "type": "Diffuse",
+      "hash": "37c5c42f"
+    },
+    "t2": {
+      "type": "Diffuse",
+      "hash": "37c5c42f"
+    }
+  },
+  "b03c7e30": {
+    "Character": "Amber",
+    "Part": "",
+    "t0": {
+      "type": "Diffuse",
+      "hash": "ae27902d"
+    },
+    "t1": {
+      "type": "Diffuse",
+      "hash": "bc86882f"
+    }
+  },
+  "b41d4d94": {
+    "Character": "AmberCN",
+    "Part": "",
+    "t0": {
+      "type": "Diffuse",
+      "hash": "ae27902d"
+    },
+    "t1": {
+      "type": "Diffuse",
+      "hash": "f683bcac"
+    }
+  },
+  "be597118": {
+    "Character": "AratakiItto",
+    "Part": "",
+    "t0": {
+      "type": "Diffuse",
+      "hash": "abc03996"
+    },
+    "t1": {
+      "type": "Diffuse",
+      "hash": "69f2abab"
+    }
+  },
+  "e811d2a1": {
+    "Character": "Arlecchino",
+    "Part": "",
+    "t0": {
+      "type": "NormalMap",
+      "hash": "05f2366f"
+    },
+    "t1": {
+      "type": "NormalMap",
+      "hash": "05f2366f"
+    },
+    "t2": {
+      "type": "Diffuse",
+      "hash": "83096447"
+    }
+  },
+  "bb6ced0e": {
+    "Character": "AyakaSpringbloom",
+    "Part": "",
+    "t0": {
+      "type": "NormalMap",
+      "hash": "8e3588db"
+    },
+    "t1": {
+      "type": "NormalMap",
+      "hash": "8e3588db"
+    },
+    "t2": {
+      "type": "Diffuse",
+      "hash": "b3fc0184"
+    }
+  },
+  "be0be707": {
+    "Character": "Baizhu",
+    "Part": "",
+    "t0": {
+      "type": "NormalMap",
+      "hash": "e9d00306"
+    },
+    "t1": {
+      "type": "NormalMap",
+      "hash": "945b5781"
+    },
+    "t2": {
+      "type": "NormalMap",
+      "hash": "e9d00306"
+    }
+  },
+  "1bc3490d": {
+    "Character": "Barbara",
+    "Part": "",
+    "t0": {
+      "type": "Diffuse",
+      "hash": "d9d24fbf"
+    },
+    "t1": {
+      "type": "Diffuse",
+      "hash": "d5fd9da6"
+    },
+    "t2": {
+      "type": "Diffuse",
+      "hash": "d5fd9da6"
+    }
+  },
+  "9cc5a563": {
+    "Character": "BarbaraSummertime",
+    "Part": "",
+    "t0": {
+      "type": "Diffuse",
+      "hash": "fa94dcc6"
+    },
+    "t1": {
+      "type": "Diffuse",
+      "hash": "fa78e66c"
+    },
+    "t2": {
+      "type": "Diffuse",
+      "hash": "fa78e66c"
+    }
+  },
+  "fed42bef": {
+    "Character": "Beidou",
+    "Part": "",
+    "t0": {
+      "type": "Diffuse",
+      "hash": "1322e9e6"
+    },
+    "t1": {
+      "type": "Diffuse",
+      "hash": "f2a89351"
+    },
+    "t2": {
+      "type": "Diffuse",
+      "hash": "f2a89351"
+    }
+  },
+  "cdc66323": {
+    "Character": "Bennett",
+    "Part": "",
+    "t0": {
+      "type": "Diffuse",
+      "hash": "49d07d1f"
+    },
+    "t1": {
+      "type": "Diffuse",
+      "hash": "156dc5d5"
+    }
+  },
+  "a84cc930": {
+    "Character": "Candace",
+    "Part": "",
+    "t0": {
+      "type": "NormalMap",
+      "hash": "67e6aba6"
+    },
+    "t1": {
+      "type": "NormalMap",
+      "hash": "2a34c008"
+    },
+    "t2": {
+      "type": "NormalMap",
+      "hash": "2a34c008"
+    }
+  },
+  "ff554aca": {
+    "Character": "Charlotte",
+    "Part": "",
+    "t0": {
+      "type": "NormalMap",
+      "hash": "263df356"
+    },
+    "t1": {
+      "type": "NormalMap",
+      "hash": "32554d73"
+    }
+  },
+  "980cee65": {
+    "Character": "Chasca",
+    "Part": "",
+    "t0": {
+      "type": "NormalMap",
+      "hash": "d4d5f80a"
+    },
+    "t1": {
+      "type": "NormalMap",
+      "hash": "1d456693"
+    },
+    "t2": {
+      "type": "NormalMap",
+      "hash": "1d456693"
+    }
+  },
+  "77208d51": {
+    "Character": "Chevreuse",
+    "Part": "",
+    "t0": {
+      "type": "NormalMap",
+      "hash": "ba7535a6"
+    },
+    "t1": {
+      "type": "NormalMap",
+      "hash": "874bdb52"
+    }
+  },
+  "65d5b68c": {
+    "Character": "Chiori",
+    "Part": "",
+    "t0": {
+      "type": "Diffuse",
+      "hash": "1b211a10"
+    },
+    "t1": {
+      "type": "Diffuse",
+      "hash": "3819a281"
+    },
+    "t2": {
+      "type": "Diffuse",
+      "hash": "1b211a10"
+    },
+    "t3": {
+      "type": "Diffuse",
+      "hash": "3819a281"
+    }
+  },
+  "0c6dd2d6": {
+    "Character": "Chongyun",
+    "Part": "",
+    "t0": {
+      "type": "Diffuse",
+      "hash": "330014a8"
+    },
+    "t1": {
+      "type": "Diffuse",
+      "hash": "87b0117a"
+    }
+  },
+  "f81f893c": {
+    "Character": "Citlali",
+    "Part": "",
+    "t0": {
+      "type": "NormalMap",
+      "hash": "d63936b6"
+    },
+    "t1": {
+      "type": "NormalMap",
+      "hash": "6982aefe"
+    }
+  },
+  "d6371da1": {
+    "Character": "Clorinde",
+    "Part": "",
+    "t0": {
+      "type": "NormalMap",
+      "hash": "e0e63853"
+    },
+    "t1": {
+      "type": "NormalMap",
+      "hash": "021c62c4"
+    },
+    "t2": {
+      "type": "NormalMap",
+      "hash": "021c62c4"
+    }
+  },
+  "3da6f8c7": {
+    "Character": "Collei",
+    "Part": "",
+    "t0": {
+      "type": "NormalMap",
+      "hash": "2f08071a"
+    },
+    "t1": {
+      "type": "NormalMap",
+      "hash": "2f08071a"
+    },
+    "t2": {
+      "type": "NormalMap",
+      "hash": "2f08071a"
+    }
+  },
+  "af184471": {
+    "Character": "Cyno",
+    "Part": "",
+    "t0": {
+      "type": "NormalMap",
+      "hash": "d33101f0"
+    },
+    "t1": {
+      "type": "NormalMap",
+      "hash": "d33101f0"
+    },
+    "t2": {
+      "type": "NormalMap",
+      "hash": "d33101f0"
+    }
+  },
+  "d604e27e": {
+    "Character": "Dahlia",
+    "Part": "FrontHair",
+    "t0": {
+      "type": "NormalMap",
+      "hash": "2b741204"
+    }
+  },
+  "3844d706": {
+    "Character": "Dahlia",
+    "Part": "Body",
+    "t0": {
+      "type": "NormalMap",
+      "hash": "2b741204"
+    },
+    "t1": {
+      "type": "NormalMap",
+      "hash": "d901ebf5"
+    }
+  },
+  "5292979f": {
+    "Character": "Dahlia",
+    "Part": "Eyes",
+    "t0": {
+      "type": "Diffuse",
+      "hash": "dc11d77d"
+    }
+  },
+  "63e3e58e": {
+    "Character": "Dehya",
+    "Part": "",
+    "t0": {
+      "type": "NormalMap",
+      "hash": "07cb8101"
+    },
+    "t1": {
+      "type": "NormalMap",
+      "hash": "07cb8101"
+    }
+  },
+  "e16fa548": {
+    "Character": "Diluc",
+    "Part": "",
+    "t0": {
+      "type": "Diffuse",
+      "hash": "575af152"
+    },
+    "t1": {
+      "type": "Diffuse",
+      "hash": "6e2d28e9"
+    }
+  },
+  "a5323853": {
+    "Character": "DilucFlamme",
+    "Part": "",
+    "t0": {
+      "type": "Diffuse",
+      "hash": "a8af7297"
+    },
+    "t1": {
+      "type": "Diffuse",
+      "hash": "d8f0b883"
+    },
+    "t2": {
+      "type": "Diffuse",
+      "hash": "d8f0b883"
+    }
+  },
+  "740a72e3": {
+    "Character": "Diona",
+    "Part": "",
+    "t0": {
+      "type": "Diffuse",
+      "hash": "c7c26ab6"
+    },
+    "t1": {
+      "type": "Diffuse",
+      "hash": "02e65fcd"
+    }
+  },
+  "04929496": {
+    "Character": "Dori",
+    "Part": "",
+    "t0": {
+      "type": "NormalMap",
+      "hash": "0da6497d"
+    },
+    "t1": {
+      "type": "NormalMap",
+      "hash": "0da6497d"
+    }
+  },
+  "ad5364a7": {
+    "Character": "Emilie",
+    "Part": "",
+    "t0": {
+      "type": "NormalMap",
+      "hash": "48a838b0"
+    },
+    "t1": {
+      "type": "NormalMap",
+      "hash": "81838090"
+    },
+    "t2": {
+      "type": "NormalMap",
+      "hash": "81838090"
+    },
+    "t3": {
+      "type": "NormalMap",
+      "hash": "48a838b0"
+    }
+  },
+  "04faa347": {
+    "Character": "Escoffier",
+    "Part": "Hat",
+    "t0": {
+      "type": "NormalMap",
+      "hash": "2ebe89dd"
+    },
+    "t1": {
+      "type": "NormalMap",
+      "hash": "e421abe5"
+    }
+  },
+  "7ad7e69e": {
+    "Character": "Escoffier",
+    "Part": "",
+    "t0": {
+      "type": "NormalMap",
+      "hash": "2ebe89dd"
+    },
+    "t1": {
+      "type": "NormalMap",
+      "hash": "e421abe5"
+    },
+    "t2": {
+      "type": "NormalMap",
+      "hash": "e421abe5"
+    },
+    "t3": {
+      "type": "NormalMap",
+      "hash": "2ebe89dd"
+    }
+  },
+  "660399d1": {
+    "Character": "Eula",
+    "Part": "",
+    "t0": {
+      "type": "Diffuse",
+      "hash": "2a93d37a"
+    },
+    "t1": {
+      "type": "Diffuse",
+      "hash": "e00a7852"
+    },
+    "t2": {
+      "type": "Diffuse",
+      "hash": "e00a7852"
+    }
+  },
+  "faad3720": {
+    "Character": "Faruzan",
+    "Part": "",
+    "t0": {
+      "type": "NormalMap",
+      "hash": "190a9c45"
+    },
+    "t1": {
+      "type": "NormalMap",
+      "hash": "190a9c45"
+    },
+    "t2": {
+      "type": "Diffuse",
+      "hash": "fb94ba69"
+    }
+  },
+  "6428104d": {
+    "Character": "Fischl",
+    "Part": "",
+    "t0": {
+      "type": "Diffuse",
+      "hash": "8b7f4637"
+    },
+    "t1": {
+      "type": "Diffuse",
+      "hash": "9f758879"
+    },
+    "t2": {
+      "type": "Diffuse",
+      "hash": "9f758879"
+    }
+  },
+  "ad6be7a1": {
+    "Character": "FischlHighness",
+    "Part": "",
+    "t0": {
+      "type": "Diffuse",
+      "hash": "de37696a"
+    },
+    "t1": {
+      "type": "Diffuse",
+      "hash": "a132243b"
+    }
+  },
+  "36713af5": {
+    "Character": "Flins",
+    "Part": "Bangs",
+    "t0": {
+      "type": "LightMap",
+      "hash": "31e37054"
+    }
+  },
+  "e7085600": {
+    "Character": "Flins",
+    "Part": "Eyes",
+    "t0": {
+      "type": "LightMap",
+      "hash": "31e37054"
+    }
+  },
+  "cdb045fc": {
+    "Character": "Flins",
+    "Part": "Body",
+    "t0": {
+      "type": "LightMap",
+      "hash": "31e37054"
+    },
+    "t1": {
+      "type": "LightMap",
+      "hash": "64e53456"
+    },
+    "t2": {
+      "type": "NormalMap",
+      "hash": "531785bc"
+    }
+  },
+  "cf410a0d": {
+    "Character": "Flins",
+    "Part": "Lantern",
+    "t0": {
+      "type": "Diffuse",
+      "hash": "bbee7f17"
+    }
+  },
+  "6d40de64": {
+    "Character": "Freminet",
+    "Part": "",
+    "t0": {
+      "type": "NormalMap",
+      "hash": "c1e444f8"
+    },
+    "t1": {
+      "type": "NormalMap",
+      "hash": "c1e444f8"
+    }
+  },
+  "045e580b": {
+    "Character": "Furina",
+    "Part": "",
+    "t0": {
+      "type": "NormalMap",
+      "hash": "e7b5e588"
+    },
+    "t1": {
+      "type": "NormalMap",
+      "hash": "e7b5e588"
+    },
+    "t2": {
+      "type": "Diffuse",
+      "hash": "39ff38df"
+    }
+  },
+  "5e4f8d68": {
+    "Character": "Furina",
+    "Part": "Ponytail",
+    "t0": {
+      "type": "Diffuse",
+      "hash": "6e612626"
+    }
+  },
+  "b5eb19b6": {
+    "Character": "GaMing",
+    "Part": "",
+    "t0": {
+      "type": "NormalMap",
+      "hash": "2dde5a69"
+    },
+    "t1": {
+      "type": "NormalMap",
+      "hash": "2dde5a69"
+    }
+  },
+  "6cb43453": {
+    "Character": "GaMing",
+    "Part": "Hood",
+    "t0": {
+      "type": "NormalMap",
+      "hash": "2dde5a69"
+    }
+  },
+  "1575ec63": {
+    "Character": "Ganyu",
+    "Part": "",
+    "t0": {
+      "type": "Diffuse",
+      "hash": "6d78ac96"
+    },
+    "t1": {
+      "type": "Diffuse",
+      "hash": "8a151913"
+    },
+    "t2": {
+      "type": "Diffuse",
+      "hash": "8a151913"
+    }
+  },
+  "cb283c86": {
+    "Character": "GanyuTwilight",
+    "Part": "",
+    "t0": {
+      "type": "NormalMap",
+      "hash": "f8aa8a9d"
+    },
+    "t1": {
+      "type": "NormalMap",
+      "hash": "e304bdcf"
+    },
+    "t2": {
+      "type": "NormalMap",
+      "hash": "e304bdcf"
+    }
+  },
+  "b2e57c84": {
+    "Character": "Gorou",
+    "Part": "",
+    "t0": {
+      "type": "Diffuse",
+      "hash": "da0de263"
+    },
+    "t1": {
+      "type": "Diffuse",
+      "hash": "815ab246"
+    }
+  },
+  "d4c9bab4": {
+    "Character": "Heizou",
+    "Part": "",
+    "t0": {
+      "type": "Diffuse",
+      "hash": "05423a57"
+    },
+    "t1": {
+      "type": "Diffuse",
+      "hash": "5afa8889"
+    }
+  },
+  "3de1efe2": {
+    "Character": "HuTao",
+    "Part": "",
+    "t0": {
+      "type": "Diffuse",
+      "hash": "565beee6"
+    },
+    "t1": {
+      "type": "Diffuse",
+      "hash": "e72dc049"
+    }
+  },
+  "b5263389": {
+    "Character": "Iansan",
+    "Part": "",
+    "t0": {
+      "type": "NormalMap",
+      "hash": "4b84d392"
+    },
+    "t1": {
+      "type": "NormalMap",
+      "hash": "41c93955"
+    },
+    "t2": {
+      "type": "NormalMap",
+      "hash": "41c93955"
+    }
+  },
+  "d561fadc": {
+    "Character": "Ifa",
+    "Part": "Body",
+    "t0": {
+      "type": "NormalMap",
+      "hash": "8b6a25cf"
+    },
+    "t1": {
+      "type": "NormalMap",
+      "hash": "423bb8fd"
+    },
+    "t2": {
+      "type": "NormalMap",
+      "hash": "423bb8fd"
+    }
+  },
+  "6f8c4af6": {
+    "Character": "Ineffa",
+    "Part": "Eyes",
+    "t0": {
+      "type": "Diffuse",
+      "hash": "23c48877"
+    }
+  },
+  "79353adc": {
+    "Character": "Ineffa",
+    "Part": "Bangs",
+    "t0": {
+      "type": "NormalMap",
+      "hash": "59a6251b"
+    }
+  },
+  "8a61684d": {
+    "Character": "Ineffa",
+    "Part": "Body",
+    "t0": {
+      "type": "NormalMap",
+      "hash": "59a6251b"
+    },
+    "t1": {
+      "type": "NormalMap",
+      "hash": "9446f895"
+    }
+  },
+  "115737ff": {
+    "Character": "Jean",
+    "Part": "",
+    "t0": {
+      "type": "Diffuse",
+      "hash": "dba2791d"
+    },
+    "t1": {
+      "type": "Diffuse",
+      "hash": "d1ae8efe"
+    }
+  },
+  "8f29c0bb": {
+    "Character": "Kachina",
+    "Part": "",
+    "t0": {
+      "type": "NormalMap",
+      "hash": "7e9d7da2"
+    },
+    "t1": {
+      "type": "NormalMap",
+      "hash": "ccd3ad03"
+    }
+  },
+  "356cdbde": {
+    "Character": "KaedeharaKazuha",
+    "Part": "",
+    "t0": {
+      "type": "Diffuse",
+      "hash": "df022de9"
+    },
+    "t1": {
+      "type": "Diffuse",
+      "hash": "f297375f"
+    },
+    "t2": {
+      "type": "Diffuse",
+      "hash": "f297375f"
+    }
+  },
+  "2b3f575a": {
+    "Character": "Kaeya",
+    "Part": "",
+    "t0": {
+      "type": "Diffuse",
+      "hash": "0fbefdbe"
+    },
+    "t1": {
+      "type": "Diffuse",
+      "hash": "80a44a1a"
+    },
+    "t2": {
+      "type": "Diffuse",
+      "hash": "80a44a1a"
+    }
+  },
+  "59f2a0f2": {
+    "Character": "KaeyaSailwind",
+    "Part": "",
+    "t0": {
+      "type": "Diffuse",
+      "hash": "8bdd311f"
+    },
+    "t1": {
+      "type": "Diffuse",
+      "hash": "1077694d"
+    },
+    "t2": {
+      "type": "Diffuse",
+      "hash": "8bdd311f"
+    }
+  },
+  "0cafd227": {
+    "Character": "KamisatoAyaka",
+    "Part": "",
+    "t0": {
+      "type": "Diffuse",
+      "hash": "b017ea8d"
+    },
+    "t1": {
+      "type": "Diffuse",
+      "hash": "2991152b"
+    },
+    "t2": {
+      "type": "Diffuse",
+      "hash": "2991152b"
+    }
+  },
+  "e59b09d6": {
+    "Character": "KamisatoAyato",
+    "Part": "",
+    "t0": {
+      "type": "Diffuse",
+      "hash": "6bb97054"
+    },
+    "t1": {
+      "type": "Diffuse",
+      "hash": "d7595676"
+    },
+    "t2": {
+      "type": "Diffuse",
+      "hash": "d7595676"
+    }
+  },
+  "5966a63f": {
+    "Character": "Kaveh",
+    "Part": "",
+    "t0": {
+      "type": "NormalMap",
+      "hash": "8efeba9c"
+    },
+    "t1": {
+      "type": "NormalMap",
+      "hash": "97e294fa"
+    }
+  },
+  "cbf1894b": {
+    "Character": "Keqing",
+    "Part": "",
+    "t0": {
+      "type": "Diffuse",
+      "hash": "58de714b"
+    },
+    "t1": {
+      "type": "Diffuse",
+      "hash": "874b8c0b"
+    },
+    "t2": {
+      "type": "Diffuse",
+      "hash": "874b8c0b"
+    }
+  },
+  "7c6fc8c3": {
+    "Character": "KeqingOpulent",
+    "Part": "",
+    "t0": {
+      "type": "Diffuse",
+      "hash": "e2d7ae66"
+    },
+    "t1": {
+      "type": "Diffuse",
+      "hash": "2af5bf71"
+    }
+  },
+  "bceefe19": {
+    "Character": "Kinich",
+    "Part": "",
+    "t0": {
+      "type": "NormalMap",
+      "hash": "582a90e8"
+    },
+    "t1": {
+      "type": "NormalMap",
+      "hash": "01ee7fd1"
+    }
+  },
+  "947f62b1": {
+    "Character": "Kinich",
+    "Part": "Face",
+    "t0": {
+      "type": "Diffuse",
+      "hash": "849c6d75"
+    }
+  },
+  "f6e9af7d": {
+    "Character": "Kirara",
+    "Part": "",
+    "t0": {
+      "type": "NormalMap",
+      "hash": "6006d89d"
+    },
+    "t1": {
+      "type": "NormalMap",
+      "hash": "7c16312c"
+    },
+    "t2": {
+      "type": "NormalMap",
+      "hash": "7c16312c"
+    }
+  },
+  "073c71f5": {
+    "Character": "Klee",
+    "Part": "",
+    "t0": {
+      "type": "Diffuse",
+      "hash": "76672fcd"
+    },
+    "t1": {
+      "type": "Diffuse",
+      "hash": "20530946"
+    }
+  },
+  "4cf8240a": {
+    "Character": "KleeBlossomingStarlight",
+    "Part": "",
+    "t0": {
+      "type": "Diffuse",
+      "hash": "b0929218"
+    },
+    "t1": {
+      "type": "Diffuse",
+      "hash": "27a8989a"
+    },
+    "t2": {
+      "type": "Diffuse",
+      "hash": "b0929218"
+    }
+  },
+  "109b3f6c": {
+    "Character": "KujouSara",
+    "Part": "",
+    "t0": {
+      "type": "Diffuse",
+      "hash": "f0f9f3b5"
+    },
+    "t1": {
+      "type": "Diffuse",
+      "hash": "6ffc34d3"
+    },
+    "t2": {
+      "type": "Diffuse",
+      "hash": "6ffc34d3"
+    }
+  },
+  "ff16c309": {
+    "Character": "KukiShinobu",
+    "Part": "",
+    "t0": {
+      "type": "Diffuse",
+      "hash": "daaf9199"
+    },
+    "t1": {
+      "type": "Diffuse",
+      "hash": "b484a81d"
+    }
+  },
+  "3f71a2db": {
+    "Character": "KukiShinobu",
+    "Part": "Mask",
+    "t0": {
+      "type": "Diffuse",
+      "hash": "daaf9199"
+    }
+  },
+  "5a1345c9": {
+    "Character": "Lauma",
+    "Part": "Bangs",
+    "t0": {
+      "type": "LightMap",
+      "hash": "fb0e0e9d"
+    }
+  },
+  "c3e809a5": {
+    "Character": "Lauma",
+    "Part": "Eyes",
+    "t0": {
+      "type": "LightMap",
+      "hash": "bbd20a54"
+    }
+  },
+  "ce158bd6": {
+    "Character": "Lauma",
+    "Part": "Body",
+    "t0": {
+      "type": "LightMap",
+      "hash": "fb0e0e9d"
+    },
+    "t1": {
+      "type": "LightMap",
+      "hash": "bbd20a54"
+    },
+    "t2": {
+      "type": "LightMap",
+      "hash": "fb0e0e9d"
+    }
+  },
+  "7306ff89": {
+    "Character": "Lauma",
+    "Part": "Horns",
+    "t0": {
+      "type": "LightMap",
+      "hash": "bbd20a54"
+    }
+  },
+  "8ec3c0d8": {
+    "Character": "Layla",
+    "Part": "",
+    "t0": {
+      "type": "NormalMap",
+      "hash": "29c41279"
+    },
+    "t1": {
+      "type": "NormalMap",
+      "hash": "29c41279"
+    },
+    "t2": {
+      "type": "NormalMap",
+      "hash": "29c41279"
+    }
+  },
+  "518a6840": {
+    "Character": "Lisa",
+    "Part": "",
+    "t0": {
+      "type": "Diffuse",
+      "hash": "b8ed7d4b"
+    },
+    "t1": {
+      "type": "Diffuse",
+      "hash": "2014031e"
+    },
+    "t2": {
+      "type": "Diffuse",
+      "hash": "2014031e"
+    }
+  },
+  "f30eece6": {
+    "Character": "LisaStudent",
+    "Part": "",
+    "t0": {
+      "type": "NormalMap",
+      "hash": "a64a57de"
+    },
+    "t1": {
+      "type": "NormalMap",
+      "hash": "a64a57de"
+    }
+  },
+  "39d89255": {
+    "Character": "Lynette",
+    "Part": "",
+    "t0": {
+      "type": "Diffuse",
+      "hash": "b758feec"
+    },
+    "t1": {
+      "type": "NormalMap",
+      "hash": "6ae9b75e"
+    },
+    "t2": {
+      "type": "Diffuse",
+      "hash": "b758feec"
+    },
+    "t3": {
+      "type": "NormalMap",
+      "hash": "6ae9b75e"
+    }
+  },
+  "09bcb0fd": {
+    "Character": "Lyney",
+    "Part": "",
+    "t0": {
+      "type": "NormalMap",
+      "hash": "2403b975"
+    },
+    "t1": {
+      "type": "NormalMap",
+      "hash": "2403b975"
+    },
+    "t2": {
+      "type": "Diffuse",
+      "hash": "b90fee30"
+    }
+  },
+  "f6c93dd3": {
+    "Character": "Mavuika",
+    "Part": "Hair",
+    "t0": {
+      "type": "NormalMap",
+      "hash": "60f282a6"
+    }
+  },
+  "43f8af29": {
+    "Character": "Mavuika",
+    "Part": "Body",
+    "t0": {
+      "type": "NormalMap",
+      "hash": "60f282a6"
+    },
+    "t1": {
+      "type": "NormalMap",
+      "hash": "60f282a6"
+    },
+    "t2": {
+      "type": "NormalMap",
+      "hash": "60f282a6"
+    }
+  },
+  "ec1ed3c9": {
+    "Character": "Mizuki",
+    "Part": "",
+    "t0": {
+      "type": "NormalMap",
+      "hash": "ac820f2c"
+    },
+    "t1": {
+      "type": "NormalMap",
+      "hash": "b1600928"
+    },
+    "t2": {
+      "type": "NormalMap",
+      "hash": "b1600928"
+    }
+  },
+  "d75308d8": {
+    "Character": "Mona",
+    "Part": "",
+    "t0": {
+      "type": "Diffuse",
+      "hash": "b518c5a5"
+    },
+    "t1": {
+      "type": "Diffuse",
+      "hash": "5f873d89"
+    }
+  },
+  "d5ad8084": {
+    "Character": "MonaCN",
+    "Part": "",
+    "t0": {
+      "type": "Diffuse",
+      "hash": "0320a4d2"
+    },
+    "t1": {
+      "type": "Diffuse",
+      "hash": "c043f913"
+    }
+  },
+  "c511e979": {
+    "Character": "Mualani",
+    "Part": "",
+    "t0": {
+      "type": "NormalMap",
+      "hash": "90d13a84"
+    },
+    "t1": {
+      "type": "NormalMap",
+      "hash": "b4d8c782"
+    },
+    "t2": {
+      "type": "NormalMap",
+      "hash": "90d13a84"
+    }
+  },
+  "9b13c166": {
+    "Character": "Nahida",
+    "Part": "",
+    "t0": {
+      "type": "NormalMap",
+      "hash": "23feab66"
+    },
+    "t1": {
+      "type": "NormalMap",
+      "hash": "624ae227"
+    },
+    "t2": {
+      "type": "NormalMap",
+      "hash": "624ae227"
+    },
+    "t3": {
+      "type": "NormalMap",
+      "hash": "23feab66"
+    }
+  },
+  "7321d0b1": {
+    "Character": "Navia",
+    "Part": "",
+    "t0": {
+      "type": "NormalMap",
+      "hash": "52915514"
+    },
+    "t1": {
+      "type": "NormalMap",
+      "hash": "52915514"
+    },
+    "t2": {
+      "type": "NormalMap",
+      "hash": "52915514"
+    }
+  },
+  "5a665e02": {
+    "Character": "Nefer",
+    "Part": "Bangs",
+    "t0": {
+      "type": "LightMap",
+      "hash": "ba71406c"
+    }
+  },
+  "606a6e40": {
+    "Character": "Nefer",
+    "Part": "Body",
+    "t0": {
+      "type": "LightMap",
+      "hash": "ba71406c"
+    },
+    "t1": {
+      "type": "LightMap",
+      "hash": "f255d7e3"
+    },
+    "t2": {
+      "type": "LightMap",
+      "hash": "f255d7e3"
+    }
+  },
+  "345cb65a": {
+    "Character": "Nefer",
+    "Part": "CapeSide",
+    "t0": {
+      "type": "LightMap",
+      "hash": "f255d7e3"
+    }
+  },
+  "e46f6e57": {
+    "Character": "Nefer",
+    "Part": "CapeMiddle",
+    "t0": {
+      "type": "LightMap",
+      "hash": "ba71406c"
+    }
+  },
+  "cd690a66": {
+    "Character": "Nefer",
+    "Part": "CapeGlow",
+    "t0": {
+      "type": "LightMap",
+      "hash": "ba71406c"
+    }
+  },
+  "6a090a16": {
+    "Character": "Nefer",
+    "Part": "Eyes",
+    "t0": {
+      "type": "LightMap",
+      "hash": "ba71406c"
+    }
+  },
+  "f055eadd": {
+    "Character": "Neuvillette",
+    "Part": "",
+    "t0": {
+      "type": "Diffuse",
+      "hash": "359d45a8"
+    },
+    "t1": {
+      "type": "NormalMap",
+      "hash": "29bdadcf"
+    },
+    "t2": {
+      "type": "Diffuse",
+      "hash": "48c325bb"
+    }
+  },
+  "1e8a5e3c": {
+    "Character": "Nilou",
+    "Part": "",
+    "t0": {
+      "type": "NormalMap",
+      "hash": "1648a076"
+    },
+    "t1": {
+      "type": "NormalMap",
+      "hash": "1648a076"
+    },
+    "t2": {
+      "type": "NormalMap",
+      "hash": "1648a076"
+    }
+  },
+  "ad75352c": {
+    "Character": "Ningguang",
+    "Part": "",
+    "t0": {
+      "type": "Diffuse",
+      "hash": "e0789f0d"
+    },
+    "t1": {
+      "type": "Diffuse",
+      "hash": "5ffe95c2"
+    },
+    "t2": {
+      "type": "Diffuse",
+      "hash": "5ffe95c2"
+    }
+  },
+  "c904f198": {
+    "Character": "NingguangOrchid",
+    "Part": "",
+    "t0": {
+      "type": "Diffuse",
+      "hash": "b68d7488"
+    },
+    "t1": {
+      "type": "Diffuse",
+      "hash": "a4597b85"
+    },
+    "t2": {
+      "type": "Diffuse",
+      "hash": "a4597b85"
+    }
+  },
+  "9cf0789e": {
+    "Character": "Noelle",
+    "Part": "",
+    "t0": {
+      "type": "Diffuse",
+      "hash": "6b77451a"
+    },
+    "t1": {
+      "type": "Diffuse",
+      "hash": "bc170f56"
+    },
+    "t2": {
+      "type": "Diffuse",
+      "hash": "bc170f56"
+    }
+  },
+  "503c0cb0": {
+    "Character": "Ororon",
+    "Part": "",
+    "t0": {
+      "type": "NormalMap",
+      "hash": "121972b2"
+    },
+    "t1": {
+      "type": "NormalMap",
+      "hash": "ec90deb9"
+    },
+    "t2": {
+      "type": "NormalMap",
+      "hash": "ec90deb9"
+    }
+  },
+  "9ee59da3": {
+    "Character": "Ororon",
+    "Part": "Face",
+    "t0": {
+      "type": "Diffuse",
+      "hash": "8af54a5e"
+    }
+  },
+  "56057a2c": {
+    "Character": "Qiqi",
+    "Part": "Body",
+    "t0": {
+      "type": "LightMap",
+      "hash": "6963463d"
+    },
+    "t1": {
+      "type": "LightMap",
+      "hash": "5ce07325"
+    }
+  },
+  "7a583c12": {
+    "Character": "RaidenShogun",
+    "Part": "",
+    "t0": {
+      "type": "Diffuse",
+      "hash": "877ea73c"
+    },
+    "t1": {
+      "type": "Diffuse",
+      "hash": "9b5d87e0"
+    },
+    "t2": {
+      "type": "Diffuse",
+      "hash": "9b5d87e0"
+    }
+  },
+  "1b36c8c9": {
+    "Character": "Razor",
+    "Part": "",
+    "t0": {
+      "type": "Diffuse",
+      "hash": "8bbb29dc"
+    },
+    "t1": {
+      "type": "Diffuse",
+      "hash": "6ff86f89"
+    }
+  },
+  "65ccd309": {
+    "Character": "Rosaria",
+    "Part": "",
+    "t0": {
+      "type": "Diffuse",
+      "hash": "81b2d0ca"
+    },
+    "t1": {
+      "type": "Diffuse",
+      "hash": "9abde85f"
+    },
+    "t2": {
+      "type": "Diffuse",
+      "hash": "81b2d0ca"
+    },
+    "t3": {
+      "type": "Diffuse",
+      "hash": "9abde85f"
+    }
+  },
+  "bdca273e": {
+    "Character": "RosariaCN",
+    "Part": "",
+    "t0": {
+      "type": "Diffuse",
+      "hash": "55280cb0"
+    },
+    "t1": {
+      "type": "Diffuse",
+      "hash": "bd6fcf34"
+    },
+    "t2": {
+      "type": "Diffuse",
+      "hash": "55280cb0"
+    },
+    "t3": {
+      "type": "Diffuse",
+      "hash": "bd6fcf34"
+    }
+  },
+  "74900c81": {
+    "Character": "SangonomiyaKokomi",
+    "Part": "",
+    "t0": {
+      "type": "Diffuse",
+      "hash": "0459724d"
+    },
+    "t1": {
+      "type": "Diffuse",
+      "hash": "d27352bb"
+    },
+    "t2": {
+      "type": "Diffuse",
+      "hash": "d27352bb"
+    }
+  },
+  "d26fddb8": {
+    "Character": "Sayu",
+    "Part": "",
+    "t0": {
+      "type": "Diffuse",
+      "hash": "54d24a90"
+    },
+    "t1": {
+      "type": "Diffuse",
+      "hash": "91825dcd"
+    }
+  },
+  "2aaacf16": {
+    "Character": "Sayu",
+    "Part": "Hood",
+    "t0": {
+      "type": "Diffuse",
+      "hash": "91825dcd"
+    }
+  },
+  "2faea4e4": {
+    "Character": "Sethos",
+    "Part": "",
+    "t0": {
+      "type": "NormalMap",
+      "hash": "19058fc4"
+    },
+    "t1": {
+      "type": "NormalMap",
+      "hash": "19058fc4"
+    }
+  },
+  "33a92492": {
+    "Character": "Shenhe",
+    "Part": "",
+    "t0": {
+      "type": "Diffuse",
+      "hash": "7da9c07b"
+    },
+    "t1": {
+      "type": "Diffuse",
+      "hash": "cba1d6ec"
+    },
+    "t2": {
+      "type": "Diffuse",
+      "hash": "cba1d6ec"
+    }
+  },
+  "83a9116d": {
+    "Character": "ShenheFrostFlower",
+    "Part": "",
+    "t0": {
+      "type": "NormalMap",
+      "hash": "4e5d638d"
+    },
+    "t1": {
+      "type": "NormalMap",
+      "hash": "625d0bb4"
+    },
+    "t2": {
+      "type": "NormalMap",
+      "hash": "4e5d638d"
+    },
+    "t3": {
+      "type": "NormalMap",
+      "hash": "625d0bb4"
+    }
+  },
+  "072fe941": {
+    "Character": "Sigewinne",
+    "Part": "",
+    "t0": {
+      "type": "NormalMap",
+      "hash": "82510df7"
+    },
+    "t1": {
+      "type": "NormalMap",
+      "hash": "a6cafd62"
+    }
+  },
+  "74811ddf": {
+    "Character": "Skirk",
+    "Part": "FrontHair",
+    "t0": {
+      "type": "NormalMap",
+      "hash": "ac3432d8"
+    }
+  },
+  "1fbe8217": {
+    "Character": "Skirk",
+    "Part": "Body",
+    "t0": {
+      "type": "Diffuse",
+      "hash": "34bb6c12"
+    }
+  },
+  "a831e5b5": {
+    "Character": "Skirk",
+    "Part": "Eyes",
+    "t0": {
+      "type": "Diffuse",
+      "hash": "34bb6c12"
+    }
+  },
+  "056da8f3": {
+    "Character": "Skirk",
+    "Part": "Skirt",
+    "t0": {
+      "type": "Diffuse",
+      "hash": "8b54c71c"
+    }
+  },
+  "dafe18b6": {
+    "Character": "Skirk",
+    "Part": "BackHair",
+    "t0": {
+      "type": "NormalMap",
+      "hash": "ac3432d8"
+    },
+    "t1": {
+      "type": "Diffuse",
+      "hash": "5ef59f08"
+    }
+  },
+  "06e86a68": {
+    "Character": "Sucrose",
+    "Part": "",
+    "t0": {
+      "type": "Diffuse",
+      "hash": "4569674c"
+    },
+    "t1": {
+      "type": "Diffuse",
+      "hash": "a604f37b"
+    }
+  },
+  "531d9358": {
+    "Character": "Tartaglia",
+    "Part": "",
+    "t0": {
+      "type": "Diffuse",
+      "hash": "88fa3ae0"
+    },
+    "t1": {
+      "type": "Diffuse",
+      "hash": "05446bec"
+    }
+  },
+  "d7dd3b5f": {
+    "Character": "Tartaglia",
+    "Part": "Scarf",
+    "t0": {
+      "type": "Diffuse",
+      "hash": "05446bec"
+    },
+    "t1": {
+      "type": "Diffuse",
+      "hash": "05446bec"
+    }
+  },
+  "b2155854": {
+    "Character": "Thoma",
+    "Part": "",
+    "t0": {
+      "type": "Diffuse",
+      "hash": "93bd4687"
+    },
+    "t1": {
+      "type": "Diffuse",
+      "hash": "1d3acd2a"
+    },
+    "t2": {
+      "type": "Diffuse",
+      "hash": "1d3acd2a"
+    }
+  },
+  "69a807fc": {
+    "Character": "Tighnari",
+    "Part": "",
+    "t0": {
+      "type": "NormalMap",
+      "hash": "95d66b44"
+    },
+    "t1": {
+      "type": "NormalMap",
+      "hash": "95d66b44"
+    },
+    "t2": {
+      "type": "NormalMap",
+      "hash": "95d66b44"
+    }
+  },
+  "8ed7c5f0": {
+    "Character": "TravelerBoy",
+    "Part": "",
+    "t0": {
+      "type": "Diffuse",
+      "hash": "cab5aa1f"
+    },
+    "t1": {
+      "type": "Diffuse",
+      "hash": "1f7b5c39"
+    }
+  },
+  "e7612ed8": {
+    "Character": "TravelerGirl",
+    "Part": "",
+    "t0": {
+      "type": "Diffuse",
+      "hash": "dae4b580"
+    },
+    "t1": {
+      "type": "Diffuse",
+      "hash": "c4c881a9"
+    },
+    "t2": {
+      "type": "Diffuse",
+      "hash": "c4c881a9"
+    }
+  },
+  "488fceb4": {
+    "Character": "Varesa",
+    "Part": "",
+    "t0": {
+      "type": "NormalMap",
+      "hash": "fbd156ce"
+    },
+    "t1": {
+      "type": "NormalMap",
+      "hash": "aba51821"
+    }
+  },
+  "1afcf31d": {
+    "Character": "Venti",
+    "Part": "",
+    "t0": {
+      "type": "Diffuse",
+      "hash": "a31b9333"
+    },
+    "t1": {
+      "type": "Diffuse",
+      "hash": "00655283"
+    }
+  },
+  "6bba515c": {
+    "Character": "Wanderer",
+    "Part": "",
+    "t0": {
+      "type": "NormalMap",
+      "hash": "247fa771"
+    },
+    "t1": {
+      "type": "NormalMap",
+      "hash": "247fa771"
+    }
+  },
+  "a16aff98": {
+    "Character": "Wanderer",
+    "Part": "Hat",
+    "t0": {
+      "type": "NormalMap",
+      "hash": "247fa771"
+    }
+  },
+  "9e62b4e7": {
+    "Character": "Wriothesley",
+    "Part": "",
+    "t0": {
+      "type": "NormalMap",
+      "hash": "2bd326b3"
+    },
+    "t1": {
+      "type": "NormalMap",
+      "hash": "2bd326b3"
+    }
+  },
+  "71be07bd": {
+    "Character": "Wriothesley",
+    "Part": "Jacket",
+    "t0": {
+      "type": "NormalMap",
+      "hash": "2bd326b3"
+    },
+    "t1": {
+      "type": "NormalMap",
+      "hash": "2bd326b3"
+    }
+  },
+  "6bb79582": {
+    "Character": "Xiangling",
+    "Part": "",
+    "t0": {
+      "type": "Diffuse",
+      "hash": "499e89bf"
+    },
+    "t1": {
+      "type": "Diffuse",
+      "hash": "abd3a28e"
+    },
+    "t2": {
+      "type": "Diffuse",
+      "hash": "abd3a28e"
+    }
+  },
+  "7f79ea6e": {
+    "Character": "Xianyun",
+    "Part": "",
+    "t0": {
+      "type": "NormalMap",
+      "hash": "b5269ec9"
+    },
+    "t1": {
+      "type": "NormalMap",
+      "hash": "b5269ec9"
+    },
+    "t2": {
+      "type": "NormalMap",
+      "hash": "b5269ec9"
+    }
+  },
+  "4212b7da": {
+    "Character": "Xianyun",
+    "Part": "Glasses",
+    "t0": {
+      "type": "NormalMap",
+      "hash": "b5269ec9"
+    }
+  },
+  "ced409c1": {
+    "Character": "Xiao",
+    "Part": "",
+    "t0": {
+      "type": "Diffuse",
+      "hash": "375cdf6e"
+    },
+    "t1": {
+      "type": "Diffuse",
+      "hash": "f434d08f"
+    },
+    "t2": {
+      "type": "Diffuse",
+      "hash": "f434d08f"
+    },
+    "t3": {
+      "type": "Diffuse",
+      "hash": "f434d08f"
+    }
+  },
+  "4c2fa96d": {
+    "Character": "Xilonen",
+    "Part": "",
+    "t0": {
+      "type": "NormalMap",
+      "hash": "cbed2a4d"
+    },
+    "t1": {
+      "type": "NormalMap",
+      "hash": "3196ebcf"
+    }
+  },
+  "76df4025": {
+    "Character": "Xingqiu",
+    "Part": "",
+    "t0": {
+      "type": "Diffuse",
+      "hash": "520d5504"
+    },
+    "t1": {
+      "type": "Diffuse",
+      "hash": "fe820a09"
+    },
+    "t2": {
+      "type": "Diffuse",
+      "hash": "fe820a09"
+    }
+  },
+  "97f78c9b": {
+    "Character": "Xinyan",
+    "Part": "",
+    "t0": {
+      "type": "Diffuse",
+      "hash": "a9eb6cd7"
+    },
+    "t1": {
+      "type": "Diffuse",
+      "hash": "7e258799"
+    }
+  },
+  "5d09aa00": {
+    "Character": "YaeMiko",
+    "Part": "",
+    "t0": {
+      "type": "Diffuse",
+      "hash": "8457036e"
+    },
+    "t1": {
+      "type": "Diffuse",
+      "hash": "28dba6c4"
+    },
+    "t2": {
+      "type": "Diffuse",
+      "hash": "28dba6c4"
+    }
+  },
+  "776c5330": {
+    "Character": "Yanfei",
+    "Part": "",
+    "t0": {
+      "type": "Diffuse",
+      "hash": "43a3186a"
+    },
+    "t1": {
+      "type": "Diffuse",
+      "hash": "4db4ab34"
+    }
+  },
+  "6c14db37": {
+    "Character": "YaoYao",
+    "Part": "",
+    "t0": {
+      "type": "NormalMap",
+      "hash": "0fa35364"
+    },
+    "t1": {
+      "type": "NormalMap",
+      "hash": "0fa35364"
+    }
+  },
+  "82e14ea2": {
+    "Character": "Yelan",
+    "Part": "",
+    "t0": {
+      "type": "Diffuse",
+      "hash": "3f3fd885"
+    },
+    "t1": {
+      "type": "Diffuse",
+      "hash": "df127976"
+    },
+    "t2": {
+      "type": "Diffuse",
+      "hash": "df127976"
+    },
+    "t3": {
+      "type": "Diffuse",
+      "hash": "3f3fd885"
+    }
+  },
+  "85777bb6": {
+    "Character": "Yoimiya",
+    "Part": "",
+    "t0": {
+      "type": "Diffuse",
+      "hash": "084d191d"
+    },
+    "t1": {
+      "type": "Diffuse",
+      "hash": "4bd574e8"
+    },
+    "t2": {
+      "type": "Diffuse",
+      "hash": "4bd574e8"
+    }
+  },
+  "c632b8df": {
+    "Character": "YunJin",
+    "Part": "",
+    "t0": {
+      "type": "Diffuse",
+      "hash": "0d84aa43"
+    },
+    "t1": {
+      "type": "Diffuse",
+      "hash": "03537f05"
+    },
+    "t2": {
+      "type": "Diffuse",
+      "hash": "03537f05"
+    }
+  },
+  "4c8480f5": {
+    "Character": "Zhongli",
+    "Part": "",
+    "t0": {
+      "type": "Diffuse",
+      "hash": "f38db478"
+    },
+    "t1": {
+      "type": "Diffuse",
+      "hash": "e851157d"
+    },
+    "t2": {
+      "type": "Diffuse",
+      "hash": "e851157d"
+    }
+  }
+}

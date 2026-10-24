@@ -1,0 +1,1192 @@
+; Shironen
+
+; Constants -------------------------
+
+[Constants]
+global $active = 0
+global $creditinfo = 0
+
+global $part = 0
+
+global persist $top = 0
+global persist $necklace = 0
+global persist $belt = 0
+global persist $tail = 0
+global persist $fur = 0
+global persist $colour = 0
+
+; Keybinds --------------------------
+
+[KeyTop]
+condition = $active == 1 && $Mod_Enabled
+key = no_modifiers h
+type = cycle
+$top = 0,1
+
+[KeyNecklace]
+condition = $active == 1 && $Mod_Enabled
+key = no_modifiers n
+type = cycle
+$necklace = 0,1
+
+[KeyBelt]
+condition = $active == 1 && $Mod_Enabled
+key = no_modifiers b
+type = cycle
+$belt = 1
+
+[KeyTail]
+condition = $active == 1 && $Mod_Enabled
+key = no_modifiers t
+type = cycle
+$tail = 0,1,2
+
+[KeyFur]
+condition = $active == 1 && $Mod_Enabled
+key = no_modifiers 6
+type = cycle
+$fur = 0,1
+
+[KeyColour]
+condition = $active == 1 && $Mod_Enabled
+key = no_modifiers y
+type = cycle
+$colour = 0,1
+
+[Present]
+post $active = 0
+run = CommandListCreditInfo
+
+; Body Overrides---------------------
+
+[TextureOverrideShironenPosition]
+hash = a4571ede
+match_priority = 0
+if $Mod_Enabled
+    run = CommandListBodyPosition
+    $active = 1
+endif
+
+[TextureOverrideShironenBlend]
+hash = d2562637
+match_priority = 0
+if $Mod_Enabled
+    run = CommandListBodyBlend
+    handling = skip
+    draw = 30000,0
+endif 
+
+[TextureOverrideShironenTexcoord]
+hash = 5401abf4
+match_priority = 0
+if $Mod_Enabled
+    run = CommandListBodyTexcoord
+endif
+
+[TextureOverrideShironenVertexLimitRaise]
+hash = 5d75c166
+match_priority = 0
+
+; override_vertex_count = 25547
+; override_byte_stride = 84
+
+[TextureOverrideShironenIB]
+hash = 4c2fa96d
+match_priority = 0
+if $Mod_Enabled
+    handling = skip
+    
+    run = CommandListTextureOverrideShironenIB
+endif
+
+
+[TextureOverrideShironenHead]
+hash = 4c2fa96d
+match_first_index = 0
+if $Mod_Enabled
+    ib = null
+    run = CommandListUpdateNataFX
+endif
+
+[TextureOverrideShironenBody]
+hash = 4c2fa96d
+match_first_index = 28959
+if $Mod_Enabled
+    run = CommandListBodyLoadModel
+    run = CommandListUpdateNataFX
+endif
+
+; Coat Overrides --------------------
+
+[TextureOverrideShironenCoatPosition]
+hash = 696ed18b
+match_priority = 0
+if $Mod_Enabled
+    $part = 0
+    run = CommandListCoatPosition
+    $active = 1
+endif
+
+[TextureOverrideShironenCoatBlend]
+hash = 2135ad79
+match_priority = 0
+if $Mod_Enabled
+    $part = 0
+    run = CommandListCoatBlend
+    handling = skip
+    draw = 5000,0
+endif 
+
+[TextureOverrideShironenCoatTexcoord]
+hash = 5c84dba7
+match_priority = 0
+if $Mod_Enabled
+    $part = 0
+    run = CommandListCoatTexcoord
+endif
+
+[TextureOverrideShironenCoatVertexLimitRaise]
+hash = 83f0f082
+match_priority = 0
+
+; override_vertex_count = 336
+; override_byte_stride = 84
+
+[TextureOverrideShironenCoatIB]
+hash = 24afd7b2
+match_priority = 0
+if $Mod_Enabled
+    handling = skip
+    
+    run = CommandListTextureOverrideShironenCoatIB
+endif
+
+
+[TextureOverrideShironenCoatHead]
+hash = 24afd7b2
+match_first_index = 0
+if $Mod_Enabled
+    $part = 0
+    run = CommandListCoatLoadModel
+    run = CommandListUpdateNataFX
+endif
+
+[TextureOverrideShironenCoatBody]
+hash = 24afd7b2
+match_first_index = 8697
+if $Mod_Enabled
+    $part = 1
+    run = CommandListCoatLoadModel
+    run = CommandListUpdateNataFX
+endif
+
+; Coat Toss Overrides ---------------
+
+[TextureOverrideShironenCoatTossPosition]
+hash = 862cfa52
+match_priority = 0
+if $Mod_Enabled
+    $part = 1
+    run = CommandListCoatPosition
+    $active = 1
+endif
+
+[TextureOverrideShironenCoatTossBlend]
+hash = f090a687
+match_priority = 0
+if $Mod_Enabled
+    $part = 1
+    run = CommandListCoatBlend
+    handling = skip
+    draw = 5000,0
+endif 
+
+[TextureOverrideShironenCoatTossTexcoord]
+hash = 37605f22
+match_priority = 0
+if $Mod_Enabled
+    $part = 1
+    run = CommandListCoatTexcoord
+endif
+
+[TextureOverrideShironenCoatTossVertexLimitRaise]
+hash = d980f8ca
+match_priority = 0
+
+; override_vertex_count = 328
+; override_byte_stride = 68
+
+[TextureOverrideShironenCoatTossIB]
+hash = 133e9940
+match_priority = 0
+if $Mod_Enabled
+    handling = skip
+    
+    run = CommandListTextureOverrideShironenCoatTossIB
+endif
+
+
+[TextureOverrideShironenCoatTossHead]
+hash = 133e9940
+match_first_index = 0
+if $Mod_Enabled
+    $part = 2
+    run = CommandListCoatLoadModel
+    run = CommandListUpdateNataFX
+endif
+
+[TextureOverrideShironenCoatTossBody]
+hash = 133e9940
+match_first_index = 8697
+if $Mod_Enabled
+    $part = 3
+    run = CommandListCoatLoadModel
+    run = CommandListUpdateNataFX
+endif
+
+; Face
+
+[TextureOverrideFace]
+hash = 2091cdbd
+match_first_index = 0
+if $Mod_Enabled
+    run = CommandListUpdateNataFX
+endif
+
+; CommandList -----------------------
+
+[CommandListBodyPosition]
+if $belt == 0
+	if $necklace == 1
+		if $top == 1
+			vb0 = ResourceShironenPosition.NoBelt.NoNecklace.NoTop
+		else
+			vb0 = ResourceShironenPosition.NoBelt.NoNecklace.Top
+		endif
+	else
+		if $top == 1
+			vb0 = ResourceShironenPosition.NoBelt.Necklace.NoTop
+		else
+			vb0 = ResourceShironenPosition.NoBelt.Necklace.Top
+		endif
+	endif
+else
+	if $necklace == 1
+		if $top == 1
+			vb0 = ResourceShironenPosition.Belt.NoNecklace.NoTop
+		else
+			vb0 = ResourceShironenPosition.Belt.NoNecklace.Top
+		endif
+	else
+		if $top == 1
+			vb0 = ResourceShironenPosition.Belt.Necklace.NoTop
+		else
+			vb0 = ResourceShironenPosition.Belt.Necklace.Top
+		endif
+	endif
+endif
+
+[CommandListBodyBlend]
+if $belt == 1
+	if $necklace == 1
+		if $top == 1
+			vb1 = ResourceShironenBlend.NoBelt.NoNecklace.NoTop
+		else
+			vb1 = ResourceShironenBlend.NoBelt.NoNecklace.Top
+		endif
+	else
+		if $top == 1
+			vb1 = ResourceShironenBlend.NoBelt.Necklace.NoTop
+		else
+			vb1 = ResourceShironenBlend.NoBelt.Necklace.Top
+		endif
+	endif
+else
+	if $necklace == 1
+		if $top == 1
+			vb1 = ResourceShironenBlend.Belt.NoNecklace.NoTop
+		else
+			vb1 = ResourceShironenBlend.Belt.NoNecklace.Top
+		endif
+	else
+		if $top == 1
+			vb1 = ResourceShironenBlend.Belt.Necklace.NoTop
+		else
+			vb1 = ResourceShironenBlend.Belt.Necklace.Top
+		endif
+	endif
+endif
+
+[CommandListBodyTexcoord]
+if $belt == 1
+	if $necklace == 1
+		if $top == 1
+			vb1 = ResourceShironenTexcoord.NoBelt.NoNecklace.NoTop
+		else
+			vb1 = ResourceShironenTexcoord.NoBelt.NoNecklace.Top
+		endif
+	else
+		if $top == 1
+			vb1 = ResourceShironenTexcoord.NoBelt.Necklace.NoTop
+		else
+			vb1 = ResourceShironenTexcoord.NoBelt.Necklace.Top
+		endif
+	endif
+else
+	if $necklace == 1
+		if $top == 1
+			vb1 = ResourceShironenTexcoord.Belt.NoNecklace.NoTop
+		else
+			vb1 = ResourceShironenTexcoord.Belt.NoNecklace.Top
+		endif
+	else
+		if $top == 1
+			vb1 = ResourceShironenTexcoord.Belt.Necklace.NoTop
+		else
+			vb1 = ResourceShironenTexcoord.Belt.Necklace.Top
+		endif
+	endif
+endif
+
+[CommandListBodyLoadModel]
+if $belt == 1
+	if $necklace == 1
+		if $top == 1
+			ib = ResourceShironenBodyIB.NoBelt.NoNecklace.NoTop
+		else
+			ib = ResourceShironenBodyIB.NoBelt.NoNecklace.Top
+		endif
+	else
+		if $top == 1
+			ib = ResourceShironenBodyIB.NoBelt.Necklace.NoTop
+		else
+			ib = ResourceShironenBodyIB.NoBelt.Necklace.Top
+		endif
+	endif
+else
+	if $necklace == 1
+		if $top == 1
+			ib = ResourceShironenBodyIB.Belt.NoNecklace.NoTop
+		else
+			ib = ResourceShironenBodyIB.Belt.NoNecklace.Top
+		endif
+	else
+		if $top == 1
+			ib = ResourceShironenBodyIB.Belt.Necklace.NoTop
+		else
+			ib = ResourceShironenBodyIB.Belt.Necklace.Top
+		endif
+	endif
+endif
+
+[CommandListCoatPosition]
+if $part == 0
+	if $fur == 1
+		if $tail == 1
+			vb0 = ResourceShironenCoatPosition.NoFur.NoTail
+		else
+			vb0 = ResourceShironenCoatPosition.NoFur.Tail
+		endif
+	else
+		if $tail == 1
+			vb0 = ResourceShironenCoatPosition.Fur.NoTail
+		else
+			vb0 = ResourceShironenCoatPosition.Fur.Tail
+		endif
+	endif
+else
+	if $fur == 1
+		if $tail == 1
+			vb0 = ResourceShironenCoatTossPosition.NoFur.NoTail
+		else
+			vb0 = ResourceShironenCoatTossPosition.NoFur.Tail
+		endif
+	else
+		if $tail == 1
+			vb0 = ResourceShironenCoatTossPosition.Fur.NoTail
+		else
+			vb0 = ResourceShironenCoatTossPosition.Fur.Tail
+		endif
+	endif
+endif
+
+[CommandListCoatBlend]
+if $part == 0
+	if $fur == 1
+		if $tail == 1
+			vb1 = ResourceShironenCoatBlend.NoFur.NoTail
+		else
+			vb1 = ResourceShironenCoatBlend.NoFur.Tail
+		endif
+	else
+		if $tail == 1
+			vb1 = ResourceShironenCoatBlend.Fur.NoTail
+		else
+			vb1 = ResourceShironenCoatBlend.Fur.Tail
+		endif
+	endif
+else
+	if $fur == 1
+		if $tail == 1
+			vb1 = ResourceShironenCoatTossBlend.NoFur.NoTail
+		else
+			vb1 = ResourceShironenCoatTossBlend.NoFur.Tail
+		endif
+	else
+		if $tail == 1
+			vb1 = ResourceShironenCoatTossBlend.Fur.NoTail
+		else
+			vb1 = ResourceShironenCoatTossBlend.Fur.Tail
+		endif
+	endif
+endif
+
+[CommandListCoatTexcoord]
+if $part == 0
+	if $fur == 1
+		if $tail == 1
+			vb1 = ResourceShironenCoatTexcoord.NoFur.NoTail
+		else
+			vb1 = ResourceShironenCoatTexcoord.NoFur.Tail
+		endif
+	else
+		if $tail == 1
+			vb1 = ResourceShironenCoatTexcoord.Fur.NoTail
+		else
+			vb1 = ResourceShironenCoatTexcoord.Fur.Tail
+		endif
+	endif
+else
+	if $fur == 1
+		if $tail == 1
+			vb1 = ResourceShironenCoatTossTexcoord.NoFur.NoTail
+		else
+			vb1 = ResourceShironenCoatTossTexcoord.NoFur.Tail
+		endif
+	else
+		if $tail == 1
+			vb1 = ResourceShironenCoatTossTexcoord.Fur.NoTail
+		else
+			vb1 = ResourceShironenCoatTossTexcoord.Fur.Tail
+		endif
+	endif
+endif
+
+[CommandListCoatLoadModel]
+if $part == 0
+	if $fur == 1
+		if $tail == 1
+			ib = ResourceShironenCoatHeadIB.NoFur.NoTail
+		else if $tail == 0
+			ib = ResourceShironenCoatHeadIB.NoFur.Tail
+		else
+			ib = null
+		endif
+	else
+		if $tail == 1
+			ib = ResourceShironenCoatHeadIB.Fur.NoTail
+		else if $tail == 0
+			ib = ResourceShironenCoatHeadIB.Fur.Tail
+		else
+			ib = null
+		endif
+	endif
+else if $part == 1
+	if $fur == 1
+		if $tail == 1
+			ib = ResourceShironenCoatBodyIB.NoFur.NoTail
+		else if $tail == 0
+			ib = ResourceShironenCoatBodyIB.NoFur.Tail
+		else
+			ib = null
+		endif
+	else
+		if $tail == 1
+			ib = ResourceShironenCoatBodyIB.Fur.NoTail
+		else if $tail == 0
+			ib = ResourceShironenCoatBodyIB.Fur.Tail
+		else
+			ib = null
+		endif
+	endif
+else if $part == 2
+	if $fur == 1
+		if $tail == 1
+			ib = ResourceShironenCoatTossHeadIB.NoFur.NoTail
+		else if $tail == 0
+			ib = ResourceShironenCoatTossHeadIB.NoFur.Tail
+		else
+			ib = null
+		endif
+	else
+		if $tail == 1
+			ib = ResourceShironenCoatTossHeadIB.Fur.NoTail
+		else if $tail == 0
+			ib = ResourceShironenCoatTossHeadIB.Fur.Tail
+		else
+			ib = null
+		endif
+	endif
+else
+	if $fur == 1
+		if $tail == 1
+			ib = ResourceShironenCoatTossBodyIB.NoFur.NoTail
+		else if $tail == 0
+			ib = ResourceShironenCoatTossBodyIB.NoFur.Tail
+		else
+			ib = null
+		endif
+	else
+		if $tail == 1
+			ib = ResourceShironenCoatTossBodyIB.Fur.NoTail
+		else if $tail == 0
+			ib = ResourceShironenCoatTossBodyIB.Fur.Tail
+		else
+			ib = null
+		endif
+	endif
+endif
+
+[CommandListUpdateNataFX]
+checktextureoverride = ps-t5
+checktextureoverride = ps-t6
+checktextureoverride = ps-t8
+
+[CommandListCreditInfo]
+if $creditinfo == 0 && $active == 1
+    pre Resource\ShaderFixes\help.ini\Notification = ResourceCreditInfo
+    pre run = CustomShader\ShaderFixes\help.ini\FormatText
+    pre $\ShaderFixes\help.ini\notification_timeout = time + 5.0
+    $creditinfo = 1
+endif
+
+; Resources Body --------------------
+
+[ResourceShironenPosition.NoBelt.NoNecklace.NoTop]
+type = Buffer
+stride = 40
+filename = ./MOD/Body/NoBelt/NoNecklace/NoTop/ShironenPosition.buf
+
+[ResourceShironenBlend.NoBelt.NoNecklace.NoTop]
+type = Buffer
+stride = 32
+filename = ./MOD/Body/NoBelt/NoNecklace/NoTop/ShironenBlend.buf
+
+[ResourceShironenTexcoord.NoBelt.NoNecklace.NoTop]
+type = Buffer
+stride = 12
+filename = ./MOD/Body/NoBelt/NoNecklace/NoTop/ShironenTexcoord.buf
+
+[ResourceShironenHeadIB.NoBelt.NoNecklace.NoTop]
+type = Buffer
+format = DXGI_FORMAT_R32_UINT
+filename = ./MOD/Body/NoBelt/NoNecklace/NoTop/ShironenHead.ib
+
+[ResourceShironenBodyIB.NoBelt.NoNecklace.NoTop]
+type = Buffer
+format = DXGI_FORMAT_R32_UINT
+filename = ./MOD/Body/NoBelt/NoNecklace/NoTop/ShironenBody.ib
+
+
+[ResourceShironenPosition.NoBelt.NoNecklace.Top]
+type = Buffer
+stride = 40
+filename = ./MOD/Body/NoBelt/NoNecklace/Top/ShironenPosition.buf
+
+[ResourceShironenBlend.NoBelt.NoNecklace.Top]
+type = Buffer
+stride = 32
+filename = ./MOD/Body/NoBelt/NoNecklace/Top/ShironenBlend.buf
+
+[ResourceShironenTexcoord.NoBelt.NoNecklace.Top]
+type = Buffer
+stride = 12
+filename = ./MOD/Body/NoBelt/NoNecklace/Top/ShironenTexcoord.buf
+
+[ResourceShironenHeadIB.NoBelt.NoNecklace.Top]
+type = Buffer
+format = DXGI_FORMAT_R32_UINT
+filename = ./MOD/Body/NoBelt/NoNecklace/Top/ShironenHead.ib
+
+[ResourceShironenBodyIB.NoBelt.NoNecklace.Top]
+type = Buffer
+format = DXGI_FORMAT_R32_UINT
+filename = ./MOD/Body/NoBelt/NoNecklace/Top/ShironenBody.ib
+
+
+[ResourceShironenPosition.NoBelt.Necklace.NoTop]
+type = Buffer
+stride = 40
+filename = ./MOD/Body/NoBelt/Necklace/NoTop/ShironenPosition.buf
+
+[ResourceShironenBlend.NoBelt.Necklace.NoTop]
+type = Buffer
+stride = 32
+filename = ./MOD/Body/NoBelt/Necklace/NoTop/ShironenBlend.buf
+
+[ResourceShironenTexcoord.NoBelt.Necklace.NoTop]
+type = Buffer
+stride = 12
+filename = ./MOD/Body/NoBelt/Necklace/NoTop/ShironenTexcoord.buf
+
+[ResourceShironenHeadIB.NoBelt.Necklace.NoTop]
+type = Buffer
+format = DXGI_FORMAT_R32_UINT
+filename = ./MOD/Body/NoBelt/Necklace/NoTop/ShironenHead.ib
+
+[ResourceShironenBodyIB.NoBelt.Necklace.NoTop]
+type = Buffer
+format = DXGI_FORMAT_R32_UINT
+filename = ./MOD/Body/NoBelt/Necklace/NoTop/ShironenBody.ib
+
+
+[ResourceShironenPosition.NoBelt.Necklace.Top]
+type = Buffer
+stride = 40
+filename = ./MOD/Body/NoBelt/Necklace/Top/ShironenPosition.buf
+
+[ResourceShironenBlend.NoBelt.Necklace.Top]
+type = Buffer
+stride = 32
+filename = ./MOD/Body/NoBelt/Necklace/Top/ShironenBlend.buf
+
+[ResourceShironenTexcoord.NoBelt.Necklace.Top]
+type = Buffer
+stride = 12
+filename = ./MOD/Body/NoBelt/Necklace/Top/ShironenTexcoord.buf
+
+[ResourceShironenHeadIB.NoBelt.Necklace.Top]
+type = Buffer
+format = DXGI_FORMAT_R32_UINT
+filename = ./MOD/Body/NoBelt/Necklace/Top/ShironenHead.ib
+
+[ResourceShironenBodyIB.NoBelt.Necklace.Top]
+type = Buffer
+format = DXGI_FORMAT_R32_UINT
+filename = ./MOD/Body/NoBelt/Necklace/Top/ShironenBody.ib
+
+
+[ResourceShironenPosition.Belt.NoNecklace.NoTop]
+type = Buffer
+stride = 40
+filename = ./MOD/Body/Belt/NoNecklace/NoTop/ShironenPosition.buf
+
+[ResourceShironenBlend.Belt.NoNecklace.NoTop]
+type = Buffer
+stride = 32
+filename = ./MOD/Body/Belt/NoNecklace/NoTop/ShironenBlend.buf
+
+[ResourceShironenTexcoord.Belt.NoNecklace.NoTop]
+type = Buffer
+stride = 12
+filename = ./MOD/Body/Belt/NoNecklace/NoTop/ShironenTexcoord.buf
+
+[ResourceShironenHeadIB.Belt.NoNecklace.NoTop]
+type = Buffer
+format = DXGI_FORMAT_R32_UINT
+filename = ./MOD/Body/Belt/NoNecklace/NoTop/ShironenHead.ib
+
+[ResourceShironenBodyIB.Belt.NoNecklace.NoTop]
+type = Buffer
+format = DXGI_FORMAT_R32_UINT
+filename = ./MOD/Body/Belt/NoNecklace/NoTop/ShironenBody.ib
+
+
+[ResourceShironenPosition.Belt.NoNecklace.Top]
+type = Buffer
+stride = 40
+filename = ./MOD/Body/Belt/NoNecklace/Top/ShironenPosition.buf
+
+[ResourceShironenBlend.Belt.NoNecklace.Top]
+type = Buffer
+stride = 32
+filename = ./MOD/Body/Belt/NoNecklace/Top/ShironenBlend.buf
+
+[ResourceShironenTexcoord.Belt.NoNecklace.Top]
+type = Buffer
+stride = 12
+filename = ./MOD/Body/Belt/NoNecklace/Top/ShironenTexcoord.buf
+
+[ResourceShironenHeadIB.Belt.NoNecklace.Top]
+type = Buffer
+format = DXGI_FORMAT_R32_UINT
+filename = ./MOD/Body/Belt/NoNecklace/Top/ShironenHead.ib
+
+[ResourceShironenBodyIB.Belt.NoNecklace.Top]
+type = Buffer
+format = DXGI_FORMAT_R32_UINT
+filename = ./MOD/Body/Belt/NoNecklace/Top/ShironenBody.ib
+
+
+[ResourceShironenPosition.Belt.Necklace.NoTop]
+type = Buffer
+stride = 40
+filename = ./MOD/Body/Belt/Necklace/NoTop/ShironenPosition.buf
+
+[ResourceShironenBlend.Belt.Necklace.NoTop]
+type = Buffer
+stride = 32
+filename = ./MOD/Body/Belt/Necklace/NoTop/ShironenBlend.buf
+
+[ResourceShironenTexcoord.Belt.Necklace.NoTop]
+type = Buffer
+stride = 12
+filename = ./MOD/Body/Belt/Necklace/NoTop/ShironenTexcoord.buf
+
+[ResourceShironenHeadIB.Belt.Necklace.NoTop]
+type = Buffer
+format = DXGI_FORMAT_R32_UINT
+filename = ./MOD/Body/Belt/Necklace/NoTop/ShironenHead.ib
+
+[ResourceShironenBodyIB.Belt.Necklace.NoTop]
+type = Buffer
+format = DXGI_FORMAT_R32_UINT
+filename = ./MOD/Body/Belt/Necklace/NoTop/ShironenBody.ib
+
+
+[ResourceShironenPosition.Belt.Necklace.Top]
+type = Buffer
+stride = 40
+filename = ./MOD/Body/Belt/Necklace/Top/ShironenPosition.buf
+
+[ResourceShironenBlend.Belt.Necklace.Top]
+type = Buffer
+stride = 32
+filename = ./MOD/Body/Belt/Necklace/Top/ShironenBlend.buf
+
+[ResourceShironenTexcoord.Belt.Necklace.Top]
+type = Buffer
+stride = 12
+filename = ./MOD/Body/Belt/Necklace/Top/ShironenTexcoord.buf
+
+[ResourceShironenHeadIB.Belt.Necklace.Top]
+type = Buffer
+format = DXGI_FORMAT_R32_UINT
+filename = ./MOD/Body/Belt/Necklace/Top/ShironenHead.ib
+
+[ResourceShironenBodyIB.Belt.Necklace.Top]
+type = Buffer
+format = DXGI_FORMAT_R32_UINT
+filename = ./MOD/Body/Belt/Necklace/Top/ShironenBody.ib
+
+; Resources Coat --------------------
+
+[ResourceShironenCoatPosition.NoFur.NoTail]
+type = Buffer
+stride = 40
+filename = ./MOD/Coat/NoFur/NoTail/ShironenCoatPosition.buf
+
+[ResourceShironenCoatBlend.NoFur.NoTail]
+type = Buffer
+stride = 32
+filename = ./MOD/Coat/NoFur/NoTail/ShironenCoatBlend.buf
+
+[ResourceShironenCoatTexcoord.NoFur.NoTail]
+type = Buffer
+stride = 12
+filename = ./MOD/Coat/NoFur/NoTail/ShironenCoatTexcoord.buf
+
+[ResourceShironenCoatHeadIB.NoFur.NoTail]
+type = Buffer
+format = DXGI_FORMAT_R32_UINT
+filename = ./MOD/Coat/NoFur/NoTail/ShironenCoatHead.ib
+
+[ResourceShironenCoatBodyIB.NoFur.NoTail]
+type = Buffer
+format = DXGI_FORMAT_R32_UINT
+filename = ./MOD/Coat/NoFur/NoTail/ShironenCoatBody.ib
+
+
+[ResourceShironenCoatPosition.NoFur.Tail]
+type = Buffer
+stride = 40
+filename = ./MOD/Coat/NoFur/Tail/ShironenCoatPosition.buf
+
+[ResourceShironenCoatBlend.NoFur.Tail]
+type = Buffer
+stride = 32
+filename = ./MOD/Coat/NoFur/Tail/ShironenCoatBlend.buf
+
+[ResourceShironenCoatTexcoord.NoFur.Tail]
+type = Buffer
+stride = 12
+filename = ./MOD/Coat/NoFur/Tail/ShironenCoatTexcoord.buf
+
+[ResourceShironenCoatHeadIB.NoFur.Tail]
+type = Buffer
+format = DXGI_FORMAT_R32_UINT
+filename = ./MOD/Coat/NoFur/Tail/ShironenCoatHead.ib
+
+[ResourceShironenCoatBodyIB.NoFur.Tail]
+type = Buffer
+format = DXGI_FORMAT_R32_UINT
+filename = ./MOD/Coat/NoFur/Tail/ShironenCoatBody.ib
+
+
+[ResourceShironenCoatPosition.Fur.NoTail]
+type = Buffer
+stride = 40
+filename = ./MOD/Coat/Fur/NoTail/ShironenCoatPosition.buf
+
+[ResourceShironenCoatBlend.Fur.NoTail]
+type = Buffer
+stride = 32
+filename = ./MOD/Coat/Fur/NoTail/ShironenCoatBlend.buf
+
+[ResourceShironenCoatTexcoord.Fur.NoTail]
+type = Buffer
+stride = 12
+filename = ./MOD/Coat/Fur/NoTail/ShironenCoatTexcoord.buf
+
+[ResourceShironenCoatHeadIB.Fur.NoTail]
+type = Buffer
+format = DXGI_FORMAT_R32_UINT
+filename = ./MOD/Coat/Fur/NoTail/ShironenCoatHead.ib
+
+[ResourceShironenCoatBodyIB.Fur.NoTail]
+type = Buffer
+format = DXGI_FORMAT_R32_UINT
+filename = ./MOD/Coat/Fur/NoTail/ShironenCoatBody.ib
+
+
+[ResourceShironenCoatPosition.Fur.Tail]
+type = Buffer
+stride = 40
+filename = ./MOD/Coat/Fur/Tail/ShironenCoatPosition.buf
+
+[ResourceShironenCoatBlend.Fur.Tail]
+type = Buffer
+stride = 32
+filename = ./MOD/Coat/Fur/Tail/ShironenCoatBlend.buf
+
+[ResourceShironenCoatTexcoord.Fur.Tail]
+type = Buffer
+stride = 12
+filename = ./MOD/Coat/Fur/Tail/ShironenCoatTexcoord.buf
+
+[ResourceShironenCoatHeadIB.Fur.Tail]
+type = Buffer
+format = DXGI_FORMAT_R32_UINT
+filename = ./MOD/Coat/Fur/Tail/ShironenCoatHead.ib
+
+[ResourceShironenCoatBodyIB.Fur.Tail]
+type = Buffer
+format = DXGI_FORMAT_R32_UINT
+filename = ./MOD/Coat/Fur/Tail/ShironenCoatBody.ib
+
+; Resource Coat Toss ----------------
+
+[ResourceShironenCoatTossPosition.NoFur.NoTail]
+type = Buffer
+stride = 24
+filename = ./MOD/Coat/NoFur/NoTail/ShironenCoatTossPosition.buf
+
+[ResourceShironenCoatTossBlend.NoFur.NoTail]
+type = Buffer
+stride = 32
+filename = ./MOD/Coat/NoFur/NoTail/ShironenCoatTossBlend.buf
+
+[ResourceShironenCoatTossTexcoord.NoFur.NoTail]
+type = Buffer
+stride = 12
+filename = ./MOD/Coat/NoFur/NoTail/ShironenCoatTossTexcoord.buf
+
+[ResourceShironenCoatTossHeadIB.NoFur.NoTail]
+type = Buffer
+format = DXGI_FORMAT_R32_UINT
+filename = ./MOD/Coat/NoFur/NoTail/ShironenCoatTossHead.ib
+
+[ResourceShironenCoatTossBodyIB.NoFur.NoTail]
+type = Buffer
+format = DXGI_FORMAT_R32_UINT
+filename = ./MOD/Coat/NoFur/NoTail/ShironenCoatTossBody.ib
+
+[ResourceShironenCoatTossHeadDiffuse.NoFur.NoTail]
+filename = ./MOD/Coat/NoFur/NoTail/ShironenCoatTossHeadDiffuse.dds
+
+[ResourceShironenCoatTossBodyDiffuse.NoFur.NoTail]
+filename = ./MOD/Coat/NoFur/NoTail/ShironenCoatTossBodyDiffuse.dds
+
+
+[ResourceShironenCoatTossPosition.NoFur.Tail]
+type = Buffer
+stride = 24
+filename = ./MOD/Coat/NoFur/Tail/ShironenCoatTossPosition.buf
+
+[ResourceShironenCoatTossBlend.NoFur.Tail]
+type = Buffer
+stride = 32
+filename = ./MOD/Coat/NoFur/Tail/ShironenCoatTossBlend.buf
+
+[ResourceShironenCoatTossTexcoord.NoFur.Tail]
+type = Buffer
+stride = 12
+filename = ./MOD/Coat/NoFur/Tail/ShironenCoatTossTexcoord.buf
+
+[ResourceShironenCoatTossHeadIB.NoFur.Tail]
+type = Buffer
+format = DXGI_FORMAT_R32_UINT
+filename = ./MOD/Coat/NoFur/Tail/ShironenCoatTossHead.ib
+
+[ResourceShironenCoatTossBodyIB.NoFur.Tail]
+type = Buffer
+format = DXGI_FORMAT_R32_UINT
+filename = ./MOD/Coat/NoFur/Tail/ShironenCoatTossBody.ib
+
+[ResourceShironenCoatTossHeadDiffuse.NoFur.Tail]
+filename = ./MOD/Coat/NoFur/Tail/ShironenCoatTossHeadDiffuse.dds
+
+[ResourceShironenCoatTossBodyDiffuse.NoFur.Tail]
+filename = ./MOD/Coat/NoFur/Tail/ShironenCoatTossBodyDiffuse.dds
+
+
+[ResourceShironenCoatTossPosition.Fur.NoTail]
+type = Buffer
+stride = 24
+filename = ./MOD/Coat/Fur/NoTail/ShironenCoatTossPosition.buf
+
+[ResourceShironenCoatTossBlend.Fur.NoTail]
+type = Buffer
+stride = 32
+filename = ./MOD/Coat/Fur/NoTail/ShironenCoatTossBlend.buf
+
+[ResourceShironenCoatTossTexcoord.Fur.NoTail]
+type = Buffer
+stride = 12
+filename = ./MOD/Coat/Fur/NoTail/ShironenCoatTossTexcoord.buf
+
+[ResourceShironenCoatTossHeadIB.Fur.NoTail]
+type = Buffer
+format = DXGI_FORMAT_R32_UINT
+filename = ./MOD/Coat/Fur/NoTail/ShironenCoatTossHead.ib
+
+[ResourceShironenCoatTossBodyIB.Fur.NoTail]
+type = Buffer
+format = DXGI_FORMAT_R32_UINT
+filename = ./MOD/Coat/Fur/NoTail/ShironenCoatTossBody.ib
+
+[ResourceShironenCoatTossHeadDiffuse.Fur.NoTail]
+filename = ./MOD/Coat/Fur/NoTail/ShironenCoatTossHeadDiffuse.dds
+
+[ResourceShironenCoatTossBodyDiffuse.Fur.NoTail]
+filename = ./MOD/Coat/Fur/NoTail/ShironenCoatTossBodyDiffuse.dds
+
+
+[ResourceShironenCoatTossPosition.Fur.Tail]
+type = Buffer
+stride = 24
+filename = ./MOD/Coat/Fur/Tail/ShironenCoatTossPosition.buf
+
+[ResourceShironenCoatTossBlend.Fur.Tail]
+type = Buffer
+stride = 32
+filename = ./MOD/Coat/Fur/Tail/ShironenCoatTossBlend.buf
+
+[ResourceShironenCoatTossTexcoord.Fur.Tail]
+type = Buffer
+stride = 12
+filename = ./MOD/Coat/Fur/Tail/ShironenCoatTossTexcoord.buf
+
+[ResourceShironenCoatTossHeadIB.Fur.Tail]
+type = Buffer
+format = DXGI_FORMAT_R32_UINT
+filename = ./MOD/Coat/Fur/Tail/ShironenCoatTossHead.ib
+
+[ResourceShironenCoatTossBodyIB.Fur.Tail]
+type = Buffer
+format = DXGI_FORMAT_R32_UINT
+filename = ./MOD/Coat/Fur/Tail/ShironenCoatTossBody.ib
+
+[ResourceShironenCoatTossHeadDiffuse.Fur.Tail]
+filename = ./MOD/Coat/Fur/Tail/ShironenCoatTossHeadDiffuse.dds
+
+[ResourceShironenCoatTossBodyDiffuse.Fur.Tail]
+filename = ./MOD/Coat/Fur/Tail/ShironenCoatTossBodyDiffuse.dds
+
+[ResourceCreditInfo]
+type = Buffer
+data = "Created by Caverabbit"
+
+; .ini generated by XXMI (XX-Model-Importer)
+; If you have any issues or find any bugs, please open a ticket at https://github.com/leotorrez/XXMI-Tools/issues
+[CommandListTextureOverrideShironenIB]
+drawindexed = auto
+drawindexed = auto
+drawindexed = auto
+drawindexed = auto
+drawindexed = auto
+
+
+[CommandListTextureOverrideShironenCoatIB]
+drawindexed = auto
+drawindexed = auto
+drawindexed = auto
+drawindexed = auto
+drawindexed = auto
+
+
+[CommandListTextureOverrideShironenCoatTossIB]
+drawindexed = auto
+drawindexed = auto
+drawindexed = auto
+drawindexed = auto
+drawindexed = auto
+
+
+[Constants]
+; Mod Manager
+global $Mod_Enabled = 0
+global $ModID = 6
+global $CharacterID = 97
+
+global $IncludedInMaxCount = 0
+global $ModManager_First_Run = 1
+
+global $Resources_Set = 0
+
+[Present]
+; Mod Manager
+if $\NuraThings\ModManager\CharacterModData\Active_Xilonen == 1
+    if $ModManager_First_Run == 1
+        pre $\NuraThings\ModManager\first_run = 1
+        $ModManager_First_Run = 0
+    endif
+
+    if $\NuraThings\ModManager\config_mode == 1
+        if $\NuraThings\ModManager\charSwap == 1
+            $IncludedInMaxCount = 0
+            $Resources_Set = 0
+        endif
+
+        if $IncludedInMaxCount == 0
+            if $\NuraThings\ModManager\currentCharMaxID < $ModID
+                $\NuraThings\ModManager\currentCharMaxID = $ModID
+            endif
+            $IncludedInMaxCount = 1
+        endif
+        
+        if $\NuraThings\ModManager\leftID == $ModID || $\NuraThings\ModManager\middleID == $ModID || $\NuraThings\ModManager\rightID == $ModID
+            if $\NuraThings\ModManager\leftID == $ModID
+                x79 = -0.875
+                z79 = 2.5
+            endif
+
+            if $\NuraThings\ModManager\middleID == $ModID
+                x79 = 0.0
+                z79 = 2.25
+            endif
+
+            if $\NuraThings\ModManager\rightID == $ModID
+                x79 = 0.875
+                z79 = 2.5
+            endif
+            
+            if $\NuraThings\ModManager\gallery_mode
+                clear = ps-u3
+                clear = vs-t0
+                clear = vs-t1
+                clear = ib
+                clear = ps-t12
+                run = CustomShaderDrawModel
+            endif
+        endif
+    endif
+
+else if $IncludedInMaxCount == 1
+    $IncludedInMaxCount = 0
+    post $Resources_Set = 0
+endif
+
+if $\NuraThings\ModManager\CharacterModData\Xilonen == $ModID
+    post $Mod_Enabled = 1
+
+    if $Resources_Set == 0
+        post run = CommandListSetResources
+    endif
+
+else
+    post $Mod_Enabled = 0
+    post $Resources_Set = 0
+endif
+
+
+
+
+[ResourceModName]
+type = Buffer
+data = "AlleywayShironen"
+
+[ResourceModAuthor]
+type = Buffer
+data = "Created by Caverabbit"
+
+[ResourceModDesc]
+;type = Buffer
+;data = ""
+
+[ResourceModLink]
+;type = Buffer
+;data = ""
+
+[ResourceModLogo]
+;filename = 
+
+[ResourceModToggles]
+type = buffer
+format = R8_UINT
+filename = Toggles.txt
+
+[CommandListSetResources]
+Resource\NuraThings\ModManager\ModPath = ref ResourceModPath unless_null
+Resource\NuraThings\ModManager\ModName = ref ResourceModName unless_null
+Resource\NuraThings\ModManager\ModAuthor = ref ResourceModAuthor unless_null
+Resource\NuraThings\ModManager\ModDescription = ref ResourceModDesc unless_null
+Resource\NuraThings\ModManager\ModLink = ref ResourceModLink unless_null
+Resource\NuraThings\ModManager\ModLogo = ref ResourceModLogo unless_null
+
+Resource\NuraThings\ModManager\ModToggles = ref ResourceModToggles unless_null
+
+$Resources_Set = 1
+
+
+[ResourceDMap]
+type = RWTexture2D
+format = R32_FLOAT
+width = 1920
+height = 1080
+array = 1
+msaa = 1
+
+[CustomShaderDrawModel]
+run = BuiltInCommandListUnbindAllRenderTargets
+
+cs = Mods/BufferValues/NuraThings/Shaders/DrawMesh.hlsl
+hs = null
+ds = null
+gs = null
+vs = Mods/BufferValues/NuraThings/Shaders/DrawMesh.hlsl
+ps = Mods/BufferValues/NuraThings/Shaders/DrawMesh.hlsl
+
+o0 = set_viewport bb
+
+if $\NuraThings\ModManager\gallery_draw_count < 3
+    clear = ResourceDMap
+    $\NuraThings\ModManager\gallery_draw_count = $\NuraThings\ModManager\gallery_draw_count+1
+endif
+
+ps-u3 = ResourceDMap
+
+blend = ADD SRC_ALPHA INV_SRC_ALPHA
+topology = triangle_list
+
+fill = Solid
+cull = Back
+front = Clockwise
+
+
+
+
+[ResourceModPath]
+type= Buffer
+format = R8_UINT
+filename = ModPath.txt

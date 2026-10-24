@@ -1,0 +1,910 @@
+; Varesa
+
+; Constants -------------------------
+
+[Constants]
+global $active = 0
+global $creditinfo = 0
+global persist $skin
+global persist $face
+global persist $abs
+global persist $color
+global persist $recolor
+
+
+[KeySwapAbs]
+condition = $active == 1
+key = no_ctrl no_shift alt N
+type = cycle
+$abs = 0,1
+
+[KeySwapSkin]
+key = no_ctrl no_shift alt H
+condition = $active == 1
+type = cycle
+$color = 0,2,4
+$face= 0,1,2
+
+[KeySwapColor]
+key = no_ctrl no_shift alt Y
+condition = $active == 1
+type = cycle
+$recolor = 0, 6, 12, 18
+
+[Present]
+post $active = 0
+run = CommandListCreditInfo
+post $skin = $recolor + $color + $abs
+
+
+; Overrides -------------------------
+
+[TextureOverrideVaresaPosition]
+hash = 9784dbe3
+vb0 = ResourceVaresaPosition
+$activeForMenu = 1
+$active = 1
+
+[TextureOverrideVaresaBlend]
+hash = ef26783e
+vb1 = ResourceVaresaBlend
+handling = skip
+draw = 29342,0 
+
+[TextureOverrideVaresaTexcoord]
+hash = 0fa7f23f
+vb1 = ResourceVaresaTexcoord
+
+[TextureOverrideVaresaVertexLimitRaise]
+hash = 8872531c
+; override_vertex_count = 29342
+; override_byte_stride = 84
+
+[TextureOverrideVaresaIB]
+hash = 488fceb4
+handling = skip
+drawindexed = auto
+
+[TextureOverrideVaresaHead]
+hash = 488fceb4
+match_first_index = 0
+ib = ResourceVaresaHeadIB
+ps-t0 = ResourceVaresaHeadNormalMap
+run = CommandListVaresaRecolor
+ps-t2 = ResourceVaresaHeadLightMap
+run = CommandList\global\ORFix\ORFix
+
+[TextureOverrideVaresaBody]
+hash = 488fceb4
+match_first_index = 40554
+ib = ResourceVaresaBodyIB
+ps-t0 = ResourceVaresaBodyNormalMap
+run = CommandListVaresaSkin
+ps-t2 = ResourceVaresaBodyLightMap
+run = CommandList\global\ORFix\ORFix
+
+[TextureOverrideVaresaFaceHeadDiffuse]
+hash = 9a534567
+if $face == 0 
+	ps-t0 = ResourceVaresaFaceHeadDiffuse
+else if $face == 1
+	ps-t0 = ResourceVaresaFaceHeadDiffuseDark
+else if $face == 2
+	ps-t0 = ResourceVaresaFaceHeadDiffuseDark2
+endif
+
+[TextureOverrideVaresaNatlanFXHeadShadow]
+hash = 47590010
+this = ResourceVaresaNatlanFXHeadShadow
+
+
+
+; CommandList -----------------------
+
+[CommandListCreditInfo]
+if $creditinfo == 0 && $active == 1
+    pre Resource\ShaderFixes\help.ini\Notification = ResourceCreditInfo
+    pre run = CustomShader\ShaderFixes\help.ini\FormatText
+    pre $\ShaderFixes\help.ini\notification_timeout = time + 5.0
+    $creditinfo = 1
+endif
+
+[CommandListVaresaSkin]
+if $skin == 0
+	ps-t1 = ResourceVaresaBodyDiffuse
+else if $skin == 1
+	ps-t1 = ResourceVaresaBodyDiffuseAbs
+else if $skin == 2
+	ps-t1 = ResourceVaresaBodyDiffuseDark
+else if $skin == 3
+	ps-t1 = ResourceVaresaBodyDiffuseDarkAbs
+else if $skin == 4
+	ps-t1 = ResourceVaresaBodyDiffuseDark2
+else if $skin == 5
+	ps-t1 = ResourceVaresaBodyDiffuseDark2Abs
+else if $skin == 6
+	ps-t1 = ResourceVaresaBodyDiffuseRecolor
+else if $skin == 7
+	ps-t1 = ResourceVaresaBodyDiffuseRecolorAbs
+else if $skin == 8
+	ps-t1 = ResourceVaresaBodyDiffuseDarkRecolor
+else if $skin == 9
+	ps-t1 = ResourceVaresaBodyDiffuseDarkRecolorAbs
+else if $skin == 10
+	ps-t1 = ResourceVaresaBodyDiffuseDark2Recolor
+else if $skin == 11
+	ps-t1 = ResourceVaresaBodyDiffuseDark2RecolorAbs
+else if $skin == 12
+	ps-t1 = ResourceVaresaBodyDiffuseRecolor2
+else if $skin == 13
+	ps-t1 = ResourceVaresaBodyDiffuseRecolor2Abs
+else if $skin == 14
+	ps-t1 = ResourceVaresaBodyDiffuseDarkRecolor2
+else if $skin == 15
+	ps-t1 = ResourceVaresaBodyDiffuseDarkRecolor2Abs
+else if $skin == 16
+	ps-t1 = ResourceVaresaBodyDiffuseDark2Recolor2
+else if $skin == 17
+	ps-t1 = ResourceVaresaBodyDiffuseDark2Recolor2Abs
+else if $skin == 18
+	ps-t1 = ResourceVaresaBodyDiffuseRecolor3
+else if $skin == 19
+	ps-t1 = ResourceVaresaBodyDiffuseRecolor3Abs
+else if $skin == 20
+	ps-t1 = ResourceVaresaBodyDiffuseDarkRecolor3
+else if $skin == 21
+	ps-t1 = ResourceVaresaBodyDiffuseDarkRecolor3Abs
+else if $skin == 22
+	ps-t1 = ResourceVaresaBodyDiffuseDark2Recolor3
+else if $skin == 23
+	ps-t1 = ResourceVaresaBodyDiffuseDark2Recolor3Abs
+endif
+
+[CommandListVaresaRecolor]
+if $recolor == 0
+	ps-t1 = ResourceVaresaHeadDiffuse
+else if $recolor == 6
+	ps-t1 = ResourceVaresaHeadDiffuseRecolor
+else if $recolor == 12
+	ps-t1 = ResourceVaresaHeadDiffuseRecolor2
+else if $recolor == 18
+	ps-t1 = ResourceVaresaHeadDiffuseRecolor3
+endif
+
+[CommandListVaresaBarBase]
+if $recolor == 0
+	this = ResourceVaresaBarbase
+else if $recolor == 6
+	this = ResourceVaresaBarbase1
+else if $recolor == 12
+	this = ResourceVaresaBarbase2
+else if $recolor == 18
+	this = ResourceVaresaBarbase3
+endif
+
+[CommandListVaresaBarFull]
+if $recolor == 0
+	this = ResourceVaresaBarfull
+else if $recolor == 6
+	this = ResourceVaresaBarfull1
+else if $recolor == 12
+	this = ResourceVaresaBarfull2
+else if $recolor == 18
+	this = ResourceVaresaBarfull3
+endif
+
+[CommandListVaresaBarFullBurst]
+if $recolor == 0
+	this = ResourceVaresaBarfullBurst
+else if $recolor == 6
+	this = ResourceVaresaBarfullBurst1
+else if $recolor == 12
+	this = ResourceVaresaBarfullBurst2
+else if $recolor == 18
+	this = ResourceVaresaBarfullBurst3
+endif
+
+[CommandListVaresaBarBlur]
+if $recolor == 0
+	this = ResourceVaresaBarblur
+else if $recolor == 6
+	this = ResourceVaresaBarblur1
+else if $recolor == 12
+	this = ResourceVaresaBarblur2
+else if $recolor == 18
+	this = ResourceVaresaBarblur3
+endif
+
+[CommandListVaresaBarBaseBurst]
+if $recolor == 0
+	this = ResourceVaresaBarBaseBurst
+else if $recolor == 6
+	this = ResourceVaresaBarBaseBurst1
+else if $recolor == 12
+	this = ResourceVaresaBarBaseBurst2
+else if $recolor == 18
+	this = ResourceVaresaBarBaseBurst3
+endif
+
+; UI, etc.. -------------------------
+
+[TextureOverrideVaresaBarBase]
+hash = 34fd5f13
+run = CommandListVaresaBarBase
+
+[TextureOverrideVaresaBarBaseBurst]
+hash = 460db131
+run = CommandListVaresaBarBaseBurst
+
+[TextureOverrideVaresaBarFull]
+hash = cf9df060
+run = CommandListVaresaBarFull
+
+[TextureOverrideVaresaBarFullBurst]
+hash = fb4771a0
+run = CommandListVaresaBarFullBurst
+
+[TextureOverrideVaresaBarBlur]
+hash = 8b58f672
+run = CommandListVaresaBarBlur
+
+; Resources -------------------------
+
+[ResourceVaresaBarbase]
+filename = BarBase.dds
+
+[ResourceVaresaBarfull]
+filename = Barfull.dds
+
+[ResourceVaresaBarblur]
+filename = BarBlur.dds
+
+[ResourceVaresaBarbase1]
+filename = BarBase1.dds
+
+[ResourceVaresaBarfull1]
+filename = Barfull1.dds
+
+[ResourceVaresaBarblur1]
+filename = BarBlur1.dds
+
+[ResourceVaresaBarbase2]
+filename = BarBase2.dds
+
+[ResourceVaresaBarfull2]
+filename = Barfull2.dds
+
+[ResourceVaresaBarblur2]
+filename = BarBlur2.dds
+
+[ResourceVaresaBarbase3]
+filename = BarBase3.dds
+
+[ResourceVaresaBarfull3]
+filename = Barfull3.dds
+
+[ResourceVaresaBarblur3]
+filename = BarBlur3.dds
+
+[ResourceVaresaBarFullBurst]
+filename = BarFullBurst.dds
+
+[ResourceVaresaBarFullBurst1]
+filename = BarFullBurst1.dds
+
+[ResourceVaresaBarFullBurst2]
+filename = BarFullBurst2.dds
+
+[ResourceVaresaBarFullBurst3]
+filename = BarFullBurst3.dds
+
+[ResourceVaresaBarBaseBurst]
+filename = BarBaseBurst.dds
+
+[ResourceVaresaBarBaseBurst1]
+filename = BarBaseBurst1.dds
+
+[ResourceVaresaBarBaseBurst2]
+filename = BarBaseBurst2.dds
+
+[ResourceVaresaBarBaseBurst3]
+filename = BarBaseBurst3.dds
+
+[ResourceVaresaBlend]
+type = Buffer
+stride = 32
+filename = VaresaBlend.buf
+
+[ResourceVaresaTexcoord]
+type = Buffer
+stride = 12
+filename = VaresaTexcoord.buf
+
+[ResourceVaresaHeadIB]
+type = Buffer
+format = DXGI_FORMAT_R32_UINT
+filename = VaresaHead.ib
+
+[ResourceVaresaBodyIB]
+type = Buffer
+format = DXGI_FORMAT_R32_UINT
+filename = VaresaBody.ib
+
+[ResourceVaresaHeadNormalMap]
+filename = VaresaHeadNormalMap.dds
+
+[ResourceVaresaHeadDiffuse]
+filename = VaresaHeadDiffuse.dds
+
+[ResourceVaresaHeadDiffuseRecolor]
+filename = VaresaHeadDiffuseRecolor.dds
+
+[ResourceVaresaHeadDiffuseRecolor2]
+filename = VaresaHeadDiffuseRecolor2.dds
+
+[ResourceVaresaHeadDiffuseRecolor3]
+filename = VaresaHeadDiffuseRecolor3.dds
+
+[ResourceVaresaHeadLightMap]
+filename = VaresaHeadLightMap.dds
+
+[ResourceVaresaBodyNormalMap]
+filename = VaresaBodyNormalMap.dds
+
+[ResourceVaresaBodyDiffuse]
+filename = VaresaBodyDiffuse.dds
+
+[ResourceVaresaBodyDiffuseAbs]
+filename = VaresaBodyDiffuseABS.dds
+
+[ResourceVaresaBodyDiffuseDark]
+filename = VaresaBodyDiffuseDark.dds
+
+[ResourceVaresaBodyDiffuseDarkAbs]
+filename = VaresaBodyDiffuseDarkABS.dds
+
+[ResourceVaresaBodyDiffuseDark2]
+filename = VaresaBodyDiffuseDark2.dds
+
+[ResourceVaresaBodyDiffuseDark2Abs]
+filename = VaresaBodyDiffuseDark2ABS.dds
+
+[ResourceVaresaBodyDiffuseRecolor]
+filename = VaresaBodyDiffuseRecolor.dds
+
+[ResourceVaresaBodyDiffuseRecolorAbs]
+filename = VaresaBodyDiffuseRecolorABS.dds
+
+[ResourceVaresaBodyDiffuseDarkRecolor]
+filename = VaresaBodyDiffuseDarkRecolor.dds
+
+[ResourceVaresaBodyDiffuseDarkRecolorAbs]
+filename = VaresaBodyDiffuseDarkRecolorABS.dds
+
+[ResourceVaresaBodyDiffuseDark2Recolor]
+filename = VaresaBodyDiffuseDark2Recolor.dds
+
+[ResourceVaresaBodyDiffuseDark2RecolorAbs]
+filename = VaresaBodyDiffuseDark2RecolorABS.dds
+
+[ResourceVaresaBodyDiffuseRecolor2]
+filename = VaresaBodyDiffuseRecolor2.dds
+
+[ResourceVaresaBodyDiffuseRecolor2Abs]
+filename = VaresaBodyDiffuseRecolor2ABS.dds
+
+[ResourceVaresaBodyDiffuseDarkRecolor2]
+filename = VaresaBodyDiffuseDarkRecolor2.dds
+
+[ResourceVaresaBodyDiffuseDarkRecolor2Abs]
+filename = VaresaBodyDiffuseDarkRecolor2ABS.dds
+
+[ResourceVaresaBodyDiffuseDark2Recolor2]
+filename = VaresaBodyDiffuseDark2Recolor2.dds
+
+[ResourceVaresaBodyDiffuseDark2Recolor2Abs]
+filename = VaresaBodyDiffuseDark2Recolor2ABS.dds
+
+[ResourceVaresaBodyDiffuseRecolor3]
+filename = VaresaBodyDiffuseRecolor3.dds
+
+[ResourceVaresaBodyDiffuseRecolor3Abs]
+filename = VaresaBodyDiffuseRecolor3ABS.dds
+
+[ResourceVaresaBodyDiffuseDarkRecolor3]
+filename = VaresaBodyDiffuseDarkRecolor3.dds
+
+[ResourceVaresaBodyDiffuseDarkRecolor3Abs]
+filename = VaresaBodyDiffuseDarkRecolor3ABS.dds
+
+[ResourceVaresaBodyDiffuseDark2Recolor3]
+filename = VaresaBodyDiffuseDark2Recolor3.dds
+
+[ResourceVaresaBodyDiffuseDark2Recolor3Abs]
+filename = VaresaBodyDiffuseDark2Recolor3ABS.dds
+
+[ResourceVaresaFaceHeadDiffuse]
+filename = VaresaFaceHeadDiffuse.dds
+
+[ResourceVaresaFaceHeadDiffuseDark]
+filename = VaresaFaceHeadDiffuseDark.dds
+
+[ResourceVaresaFaceHeadDiffuseDark2]
+filename = VaresaFaceHeadDiffuseDark2.dds
+
+[ResourceVaresaBodyLightMap]
+filename = VaresaBodyLightMap.dds
+
+[ResourceVaresaNatlanFXHeadShadow]
+filename = VaresaNatlanFXHeadShadow.dds
+
+[ResourceCreditInfo]
+type = Buffer
+data = "Created by By mimo4e, Toffee-todd, ZukuUzu"
+
+; .ini generated by XXMI (XX-Model-Importer)
+; If you have any issues or find any bugs, please open a ticket at https://github.com/leotorrez/XXMI-Tools/issues
+; #GENERATED SLIDERIMPACT
+
+[Constants]
+global $activeForMenu = 1
+global $menu = 0
+global $hover = 0
+global $click = 0
+global $size_x = 0.15
+global persist $off_x = 0.8
+global $bar = 0.04
+global $size_y = 0.5
+global persist $off_y = 0.05
+global $icon_size = 0.04
+global $text_y = 0.0165
+global $text_x = 0.055
+global $reset = 0
+global $selector = 0
+global $keysteps = 0
+global $slider_id = 0
+global $scale = 1
+global persist $Key1 = 0
+global $bar1_yo = 0.26
+global persist $Key2 = 0
+global $bar2_yo = 0.42
+global persist $Key3 = 0
+global $bar3_yo = 0.58
+global persist $Key4 = 0
+global $bar4_yo = 0.74
+
+global $aspect_ratio
+
+ResourceVaresaPosition = copy ResourceVaresaPositionBase
+
+
+post run = CommandListComputeShapeKeys
+
+[Present]
+post $activeForMenu = 0
+if $activeForMenu == 1
+    run = CommandListMenu
+    run = CommandListComputeShapeKeys
+endif
+
+[CommandListComputeShapeKeys]
+
+cs-u5 = copy ResourceVaresaPositionBase
+
+run = CommandListKey1
+run = CommandListKey2
+run = CommandListKey3
+run = CommandListKey4
+if $abs == 1
+run = CommandListKey5
+endif
+ResourceVaresaPosition = copy cs-u5
+; clean up
+x88 = 0
+cs-u5 = null
+cs-t50 = null
+cs-t51 = null
+
+
+[CommandListKey1]
+
+cs-t50 = copy ResourceVaresaPositionBase
+cs-t51 = copy ResourceVaresaPosition3
+
+
+cs-t51 = copy ResourceVaresaPosition2
+x88 = $Key1*$scale
+run = CustomShaderKeys
+
+
+[CommandListKey2]
+
+
+cs-t50 = copy ResourceVaresaPositionBase
+cs-t51 = copy ResourceVaresaPosition3
+
+x88 = $Key2*$scale
+run = CustomShaderKeys
+
+
+[CommandListKey3]
+
+cs-t50 = copy ResourceVaresaPositionBase
+cs-t51 = copy ResourceVaresaPosition4
+
+
+
+x88 = $Key3*$scale
+run = CustomShaderKeys
+
+[CommandListKey4]
+
+cs-t50 = copy ResourceVaresaPositionBase
+cs-t51 = copy ResourceVaresaPosition5
+
+
+
+x88 = $Key4*$scale
+run = CustomShaderKeys
+
+
+[CommandListKey5]
+
+cs-t50 = copy ResourceVaresaPositionBase
+cs-t51 = copy ResourceVaresaPosition6abs
+x88 = 1
+run = CustomShaderKeys
+
+
+
+[CustomShaderKeys]
+;**** SHAPE KEY SHADER ****
+;Contributors: Cybertron, SinsOfSeven, DiXiao
+vs = null
+hs = null
+ds = null
+gs = null
+ps = null
+cs = resources/ShapeKey.hlsl
+run = BuiltInCommandListUnbindAllRenderTargets
+dispatch =  41004, 1, 1
+[ResourceVaresaPosition]
+[ResourceVaresaPositionBase]
+type = Buffer
+stride = 40
+filename = VaresaPosition.buf
+[ResourceVaresaPosition2]
+type = Buffer
+stride = 40
+filename = VaresaPosition2.buf
+[ResourceVaresaPosition3]
+type = Buffer
+stride = 40
+filename = VaresaPosition3.buf
+[ResourceVaresaPosition4]
+type = Buffer
+stride = 40
+filename = VaresaPosition4.buf
+[ResourceVaresaPosition5]
+type = Buffer
+stride = 40
+filename = VaresaPosition5.buf
+
+[ResourceVaresaPosition6abs]
+type = Buffer
+stride = 40
+filename = VaresaPosition6Abs.buf
+
+
+[KeyToggleMenu]
+condition = $activeForMenu
+key = >
+type = toggle
+$menu = 1
+
+[KeyClick]
+condition = $menu
+key = VK_RBUTTON
+type = hold
+$click = 1
+
+[KeyReset]
+condition = $menu
+key = ]
+type = toggle
+$reset = 1
+
+[KeyStepsIncrease]
+key = VK_RIGHT NO_CTRL
+condition = $menu && !$keysteps
+type = hold
+transition = 2000
+transition_type = cosine
+wrap = true
+$keysteps=0.05
+
+[KeyStepsDecrease]
+key = VK_LEFT NO_CTRL
+condition = $menu && !$keysteps
+type = hold
+transition = 2000
+transition_type = cosine
+$keysteps=-0.05
+
+[KeyStepsSelector]
+condition = $menu && !$keysteps
+key = VK_DOWN NO_CTRL
+back = VK_UP
+type = cycle
+$selector = 0,1,2,3
+
+[KeyHoldHover]
+condition = $menu
+key = VK_ALT VK_CTRL
+type = hold
+$hover = 1
+
+[ResourceBarsUI]
+filename = resources/slider_bar.dds
+[ResourceSliderUI]
+filename = resources/slider.dds
+[ResourceSliderUIOn]
+filename = resources/slideron.dds
+
+
+
+[ResourceBackgroundUI]
+filename = resources/Menu.dds
+[ResourceBorderUI]
+filename = resources/border.dds
+
+[ResourceSliderIcon1]
+filename = resources/Icon1.dds
+[ResourceSliderIcon2]
+filename = resources/Icon2.dds
+[ResourceSliderIcon3]
+filename = resources/Icon3.dds
+[ResourceSliderIcon4]
+filename = resources/Icon4.dds
+
+[CustomShaderSliderMenu]
+vs = resources/UIElement.hlsl
+ps = resources/UIElement.hlsl
+blend = ADD SRC_ALPHA INV_SRC_ALPHA
+cull = none
+topology = triangle_strip
+o0 = set_viewport bb
+Draw = 4,0
+
+
+
+[CommandListBars]
+x87 = $size_x * 0.85
+y87 = $bar/2
+z87 = $off_x + $size_x*(1-0.97)
+ps-t100 = ResourceBarsUI
+run = CustomShaderSliderMenu
+
+
+
+[CommandListSlider1]
+local $v = $Key1
+;DRAW CURSOR
+x87 = $bar*res_height/res_width
+y87 = $bar
+z87 = $v*$size_x*0.7+$off_x-($bar / $aspect_ratio)/2+($size_x*0.03)
+w87 = $bar1_yo * $size_y + $off_y
+if $slider_id == 1 || $selector == 1
+    ps-t100 = ResourceSliderUIOn
+else
+    ps-t100 = ResourceSliderUI
+endif
+run = CustomShaderSliderMenu
+;DRAW ICON
+x87 = $icon_size
+y87 = $icon_size*res_width/res_height
+z87 = $off_x-$icon_size
+w87 = $bar1_yo * $size_y + $off_y - ($icon_size/2)
+ps-t100 = ResourceSliderIcon1
+run = CustomShaderSliderMenu
+
+[CommandListSlider2]
+local $v = $Key2
+;DRAW CURSOR
+x87 = $bar*res_height/res_width
+y87 = $bar
+z87 = $v*$size_x*0.7+$off_x-($bar / $aspect_ratio)/2+($size_x*0.03)
+w87 = $bar2_yo * $size_y + $off_y
+if $slider_id == 2 || $selector == 2
+    ps-t100 = ResourceSliderUIOn
+else
+    ps-t100 = ResourceSliderUI
+endif
+run = CustomShaderSliderMenu
+;DRAW ICON
+x87 = $icon_size
+y87 = $icon_size*res_width/res_height
+z87 = $off_x-$icon_size
+w87 = $bar2_yo * $size_y + $off_y - ($icon_size/2)
+ps-t100 = ResourceSliderIcon2
+run = CustomShaderSliderMenu
+
+[CommandListSlider3]
+local $v = $Key3
+;DRAW CURSOR
+x87 = $bar*res_height/res_width
+y87 = $bar
+z87 = $v*$size_x*0.7+$off_x-($bar / $aspect_ratio)/2+($size_x*0.03)
+w87 = $bar3_yo * $size_y + $off_y
+if $slider_id == 3 || $selector == 3
+    ps-t100 = ResourceSliderUIOn
+else
+    ps-t100 = ResourceSliderUI
+endif
+run = CustomShaderSliderMenu
+;DRAW ICON
+x87 = $icon_size
+y87 = $icon_size*res_width/res_height
+z87 = $off_x-$icon_size
+w87 = $bar3_yo * $size_y + $off_y - ($icon_size/2)
+ps-t100 = ResourceSliderIcon3
+run = CustomShaderSliderMenu
+
+[CommandListSlider4]
+local $v = $Key4
+;DRAW CURSOR
+x87 = $bar*res_height/res_width
+y87 = $bar
+z87 = $v*$size_x*0.7+$off_x-($bar / $aspect_ratio)/2+($size_x*0.03)
+w87 = $bar4_yo * $size_y + $off_y
+if $slider_id == 4 || $selector == 4
+    ps-t100 = ResourceSliderUIOn
+else
+    ps-t100 = ResourceSliderUI
+endif
+run = CustomShaderSliderMenu
+;DRAW ICON
+x87 = $icon_size
+y87 = $icon_size*res_width/res_height
+z87 = $off_x-$icon_size
+w87 = $bar4_yo * $size_y + $off_y - ($icon_size/2)
+ps-t100 = ResourceSliderIcon4
+run = CustomShaderSliderMenu
+
+[CommandListMenu]
+local $v = 0
+
+
+if $menu == 1
+    ; Is the menu being dragged?
+
+    local $drag
+    if $click && cursor_x > $off_x && cursor_x < $off_x + $size_x && cursor_y > $off_y-$size_y/20 && cursor_y < $off_y+$size_y/10
+        $drag = 1
+    endif
+    if !$click && $drag
+        $drag = 0
+    elif $drag
+        ;offset menu
+        $off_x = cursor_x-$size_x/2
+        $off_y = cursor_y-$size_y/40
+    endif
+    
+    w87 = $bar1_yo * $size_y + $off_y + 0.01
+    run = CommandListBars
+        
+    w87 = $bar2_yo * $size_y + $off_y + 0.01
+    run = CommandListBars
+        
+    w87 = $bar3_yo * $size_y + $off_y + 0.01
+    run = CommandListBars
+        
+    w87 = $bar4_yo * $size_y + $off_y + 0.01
+    run = CommandListBars
+
+    local $store_size_x = $size_x
+
+    $size_x = $size_x * 0.85
+
+
+
+    if $selector || cursor_x > $off_x && cursor_x < $off_x + $size_x
+    
+        if $selector == 1 || cursor_y > $bar1_yo * $size_y + $off_y && cursor_y < $bar1_yo * $size_y + $bar + $off_y
+            $slider_id = 1
+            $Key1 = $Key1 + $keysteps
+            if $hover || $click
+                $v = (cursor_x-$off_x)/$size_x
+
+                $Key1 = $v
+            endif
+            $Key1 = $Key1 * ($Key1 >= 0.005 && $Key1 <= 0.995) + ($Key1 > 0.995)
+        endif
+        if $selector == 2 || cursor_y > $bar2_yo * $size_y + $off_y && cursor_y < $bar2_yo * $size_y + $bar + $off_y
+            $slider_id = 2
+            $Key2 = $Key2 + $keysteps
+            if $hover || $click
+                $v = (cursor_x-$off_x)/$size_x
+                $Key2 = $v
+            endif
+            $Key2 = $Key2 * ($Key2 >= 0.005 && $Key2 <= 0.995) + ($Key2 > 0.995)
+        endif
+        if $selector == 3 || cursor_y > $bar3_yo * $size_y + $off_y && cursor_y < $bar3_yo * $size_y + $bar + $off_y
+            $slider_id = 3
+            $Key3 = $Key3 + $keysteps
+            if $hover || $click
+                $v = (cursor_x-$off_x)/$size_x
+                $Key3 = $v
+            endif
+            $Key3 = $Key3 * ($Key3 >= 0.005 && $Key3 <= 0.995) + ($Key3 > 0.995)
+        endif
+        if $selector == 4 || cursor_y > $bar4_yo * $size_y + $off_y && cursor_y < $bar4_yo * $size_y + $bar + $off_y
+            $slider_id = 4
+            $Key4 = $Key4 + $keysteps
+            if $hover || $click
+                $v = (cursor_x-$off_x)/$size_x
+                $Key4 = $v
+            endif
+            $Key4 = $Key4 * ($Key4 >= 0.005 && $Key4 <= 0.995) + ($Key4 > 0.995)
+        endif
+
+    endif
+    if $reset == 1
+        $Key1 = 0
+        $Key2 = 0
+        $Key3 = 0
+        $Key4 = 0
+    endif
+
+
+    run = CommandListDimensions
+
+    x87 = (360 / 1920)
+    y87 = (560 / 1080)
+    z87 = $off_x-$icon_size
+    w87 = $off_y
+
+    ps-t100 = ResourceBackgroundUI
+    run = CustomShaderSliderMenu
+
+    $reset = 0
+    
+ 
+    $size_x = $store_size_x * 1.15
+
+    run = CommandListSlider1
+    run = CommandListSlider2
+    run = CommandListSlider3
+    run = CommandListSlider4
+
+    $size_x = $store_size_x
+
+endif
+
+[CommandListDimensions]
+if window_width != 0 && window_height != 0
+  $ww = window_width
+  $wh = window_height
+elif rt_width != 0 && rt_height != 0
+  $ww = rt_width
+  $wh = rt_height
+elif res_width != 0 && rt_height != 0
+  $ww = res_width
+  $wh = res_height
+else
+  $ww = $window_width
+  $wh = $window_height
+endif
+
+$size_x = (300 / 1920)
+$bar = (30 / 1080)
+$aspect_ratio = $ww / $wh
+
+[Constants]
+global $ww = 0
+global $wh = 0
+global $window_width = 1920
+global $window_height = 1080
+
+$slider_id = 0
+;###MENU CODE END

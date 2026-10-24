@@ -1,0 +1,53 @@
+namespace = NuraThings\MiniGames\2DMon\Attacks
+
+[Constants]
+global $id = -1
+global $pp
+global $power
+global $type
+global $attack_type
+global $min_lvl
+
+;global $rounds
+global $animation_duration
+global $animation_speed
+
+global $animation_pos_x
+global $animation_pos_y
+
+global $animation_movement_x
+global $animation_movement_y
+
+global $requster = -1
+;global $selected_attack_slot = -1
+
+global $name_string0
+global $name_string1
+global $name_string2
+global $name_string3
+
+[CommandListRetrieveAttackInfo]
+if $id >= 0
+    if $id == 0
+        run = CommandListFlamethrower
+    endif
+endif
+
+[CommandListFlamethrower]
+$pp = 15
+$power = 80
+$type = 1
+$attack_type = 2
+$min_lvl = 36
+
+$name_string0 = 432367
+$name_string1 = 432367
+$name_string2 = 432367
+$name_string3 = 432367
+
+$animation_duration = 3
+$animation_speed = 0
+$animation_pos_x = 0.25
+$animation_pos_y = 0.75
+$animation_movement_x = 0
+$animation_movement_y = 0

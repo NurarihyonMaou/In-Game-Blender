@@ -1,0 +1,95 @@
+[Constants]
+global $hideUID = 1
+
+global $menu = 0
+global $paimon = 0
+
+global $time = -1
+global $currentTime = -1
+
+
+[Present]
+if $hideUID
+
+	post $menu = 0
+	post $paimon = 0
+
+	if $time != -1
+		$currentTime = time
+	endif
+
+	if $menu == 0 && $paimon == 0
+		$time = -1
+		$currentTime = -1
+	endif
+
+endif
+
+
+[KeyTglUID]
+key = ;
+type = toggle
+$hideUID = 0
+
+
+[CustomShaderDraw]
+local $x87 = x87
+local $y87 = y87
+local $z87 = z87
+local $w87 = w87
+
+x87 = 800/res_width/3.8
+y87 = 800/res_width/3.8
+z87 = 0.046
+w87 = 0.1325
+
+hs = null
+ds = null
+gs = null
+cs = null
+run = BuiltInCommandListUnbindAllRenderTargets
+
+vs = UIElement.hlsl
+ps = UIElement.hlsl
+blend = ADD SRC_ALPHA INV_SRC_ALPHA
+cull = none
+topology = triangle_strip
+o0 = set_viewport bb
+Draw = 4,0
+
+x87 = $x87
+y87 = $y87
+z87 = $z87
+w87 = $w87
+
+clear = ps-t100
+
+
+[ResourceLogo]
+filename = Logo.png
+
+
+[ShaderOverridePaimonMenu2]
+hash = 3737b661fbbbb7d2
+$menu = 1
+if $time == -1
+	$time = time
+endif
+
+
+[TextureOverrideMenu]
+hash = 89cdfbf6 
+$paimon = 1
+
+
+[ShaderOverridePaimonMenu]
+hash = fa8a0f5722f1e7ff
+if $menu && $hideUID
+	if $currentTime <= $time+0.5
+		ps-t100 = ResourceLogo
+		run = CustomShaderDraw
+	else if $paimon
+		ps-t100 = ResourceLogo
+		run = CustomShaderDraw
+	endif
+endif

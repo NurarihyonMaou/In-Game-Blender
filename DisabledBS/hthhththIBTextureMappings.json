@@ -1,0 +1,7658 @@
+{
+  "41760901": {
+    "Character": "Mika",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "0e2f5874"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "19e31e27"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "3500e91e"
+        }
+      },
+      {
+        "Indexes": [
+          21072
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "0e2f5874"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "fb182f38"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "e7f03dcc"
+        }
+      },
+      {
+        "Indexes": [
+          52122
+        ],
+        "Part": [
+          "Dress"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "fb182f38"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "e7f03dcc"
+        }
+      }
+    ]
+  },
+  "11bba20d": {
+    "Character": "Aino",
+    "Component": "Bangs",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "A"
+        ],
+        "t0": {
+          "type": "LightMap",
+          "hash": "b7c522d2"
+        },
+        "t1": {
+          "type": "NormalMap",
+          "hash": "c61de2b5"
+        },
+        "t2": {
+          "type": "Diffuse",
+          "hash": "f0028844"
+        }
+      }
+    ]
+  },
+  "41ed9030": {
+    "Character": "Aino",
+    "Component": "Eyes",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "A"
+        ],
+        "t0": {
+          "type": "LightMap",
+          "hash": "b7c522d2"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "f0028844"
+        }
+      }
+    ]
+  },
+  "3738cbb7": {
+    "Character": "Aino",
+    "Component": "Body",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "A"
+        ],
+        "t0": {
+          "type": "LightMap",
+          "hash": "b7c522d2"
+        },
+        "t1": {
+          "type": "NormalMap",
+          "hash": "c61de2b5"
+        },
+        "t2": {
+          "type": "Diffuse",
+          "hash": "f0028844"
+        }
+      },
+      {
+        "Indexes": [
+          26049
+        ],
+        "Part": [
+          "B"
+        ],
+        "t0": {
+          "type": "LightMap",
+          "hash": "75a265f6"
+        },
+        "t1": {
+          "type": "NormalMap",
+          "hash": "4a364637"
+        },
+        "t2": {
+          "type": "Diffuse",
+          "hash": "b3568b95"
+        }
+      }
+    ]
+  },
+  "ed6830cc": {
+    "Character": "Aino",
+    "Component": "Tail",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "A"
+        ],
+        "t0": {
+          "type": "LightMap",
+          "hash": "b7c522d2"
+        },
+        "t1": {
+          "type": "NormalMap",
+          "hash": "c61de2b5"
+        },
+        "t2": {
+          "type": "Diffuse",
+          "hash": "f0028844"
+        }
+      },
+      {
+        "Indexes": [
+          3036
+        ],
+        "Part": [
+          "B"
+        ],
+        "t0": {
+          "type": "LightMap",
+          "hash": "75a265f6"
+        },
+        "t1": {
+          "type": "NormalMap",
+          "hash": "4a364637"
+        },
+        "t2": {
+          "type": "Diffuse",
+          "hash": "b3568b95"
+        }
+      }
+    ]
+  },
+  "0d7dc936": {
+    "Character": "Albedo",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "9bd05da3"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "ab759603"
+        }
+      },
+      {
+        "Indexes": [
+          9933
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "541275e1"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "59446316"
+        }
+      },
+      {
+        "Indexes": [
+          44766
+        ],
+        "Part": [
+          "Dress"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "541275e1"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "59446316"
+        }
+      }
+    ]
+  },
+  "639d1fb8": {
+    "Character": "Alhaitham",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "9ab8b2fc"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "6c1d69d9"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "66ca3aee"
+        }
+      },
+      {
+        "Indexes": [
+          28278
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "d106c084"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "e39d3d43"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "dfa02c17"
+        }
+      },
+      {
+        "Indexes": [
+          71181
+        ],
+        "Part": [
+          "Dress"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "d106c084"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "e39d3d43"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "dfa02c17"
+        }
+      }
+    ]
+  },
+  "5d1da717": {
+    "Character": "Aloy",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "b545856c"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "58136c17"
+        }
+      },
+      {
+        "Indexes": [
+          15879
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "37c5c42f"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "ecc936a1"
+        }
+      },
+      {
+        "Indexes": [
+          56955
+        ],
+        "Part": [
+          "Dress"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "37c5c42f"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "ecc936a1"
+        }
+      }
+    ]
+  },
+  "b03c7e30": {
+    "Character": "Amber",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "ae27902d"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "29b001ba"
+        }
+      },
+      {
+        "Indexes": [
+          5670
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "bc86882f"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "9e1294dd"
+        }
+      }
+    ]
+  },
+  "b41d4d94": {
+    "Character": "AmberCN",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "ae27902d"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "29b001ba"
+        }
+      },
+      {
+        "Indexes": [
+          5670
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "f683bcac"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "69b6e698"
+        }
+      }
+    ]
+  },
+  "be597118": {
+    "Character": "AratakiItto",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "abc03996"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "ab77590e"
+        }
+      },
+      {
+        "Indexes": [
+          26520
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "69f2abab"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "c651f325"
+        }
+      }
+    ]
+  },
+  "e811d2a1": {
+    "Character": "Arlecchino",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "05f2366f"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "83096447"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "dc7d00e7"
+        }
+      },
+      {
+        "Indexes": [
+          40179
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "05f2366f"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "53cb2c4c"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "355466c1"
+        }
+      },
+      {
+        "Indexes": [
+          74412
+        ],
+        "Part": [
+          "Dress"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "83096447"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "dc7d00e7"
+        }
+      }
+    ]
+  },
+  "bb6ced0e": {
+    "Character": "AyakaSpringbloom",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "8e3588db"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "1df6a5a7"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "e4ce0e6b"
+        }
+      },
+      {
+        "Indexes": [
+          56223
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "8e3588db"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "b3fc0184"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "f2f67036"
+        }
+      },
+      {
+        "Indexes": [
+          69603
+        ],
+        "Part": [
+          "Dress"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "b3fc0184"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "f2f67036"
+        }
+      }
+    ]
+  },
+  "be0be707": {
+    "Character": "Baizhu",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "e9d00306"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "6aed5aa4"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "1cb85d37"
+        }
+      },
+      {
+        "Indexes": [
+          42606
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "945b5781"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "a8f62dd6"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "152b83a0"
+        }
+      },
+      {
+        "Indexes": [
+          66624
+        ],
+        "Part": [
+          "Dress"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "e9d00306"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "6aed5aa4"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "1cb85d37"
+        }
+      }
+    ]
+  },
+  "1bc3490d": {
+    "Character": "Barbara",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "d9d24fbf"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "f89f1ed6"
+        }
+      },
+      {
+        "Indexes": [
+          12015
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "d5fd9da6"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "0c0ce0ef"
+        }
+      },
+      {
+        "Indexes": [
+          46248
+        ],
+        "Part": [
+          "Dress"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "d5fd9da6"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "0c0ce0ef"
+        }
+      }
+    ]
+  },
+  "9cc5a563": {
+    "Character": "BarbaraSummertime",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "fa94dcc6"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "07b96e90"
+        },
+        "t2": {
+          "type": "MetalMap",
+          "hash": "b0e08915"
+        },
+        "t3": {
+          "type": "ShadowRamp",
+          "hash": "7eb5b84e"
+        }
+      },
+      {
+        "Indexes": [
+          11943
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "fa78e66c"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "a8eec489"
+        },
+        "t2": {
+          "type": "MetalMap",
+          "hash": "b0e08915"
+        },
+        "t3": {
+          "type": "ShadowRamp",
+          "hash": "7eb5b84e"
+        }
+      },
+      {
+        "Indexes": [
+          45333
+        ],
+        "Part": [
+          "Dress"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "fa78e66c"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "a8eec489"
+        },
+        "t2": {
+          "type": "MetalMap",
+          "hash": "b0e08915"
+        },
+        "t3": {
+          "type": "ShadowRamp",
+          "hash": "7eb5b84e"
+        }
+      }
+    ]
+  },
+  "fed42bef": {
+    "Character": "Beidou",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "1322e9e6"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "1ee1cdfc"
+        }
+      },
+      {
+        "Indexes": [
+          8253
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "f2a89351"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "ae1e86ff"
+        }
+      },
+      {
+        "Indexes": [
+          43851
+        ],
+        "Part": [
+          "Dress"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "f2a89351"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "ae1e86ff"
+        }
+      }
+    ]
+  },
+  "cdc66323": {
+    "Character": "Bennett",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "49d07d1f"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "7d266803"
+        }
+      },
+      {
+        "Indexes": [
+          9879
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "156dc5d5"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "ce3129ff"
+        }
+      }
+    ]
+  },
+  "a84cc930": {
+    "Character": "Candace",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "67e6aba6"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "dec97f7c"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "8902ff82"
+        }
+      },
+      {
+        "Indexes": [
+          32682
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "2a34c008"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "90a54940"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "e02c761f"
+        }
+      },
+      {
+        "Indexes": [
+          58719
+        ],
+        "Part": [
+          "Dress"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "2a34c008"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "90a54940"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "e02c761f"
+        }
+      }
+    ]
+  },
+  "ff554aca": {
+    "Character": "Charlotte",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "263df356"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "5579adce"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "bb72c96f"
+        }
+      },
+      {
+        "Indexes": [
+          23271
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "32554d73"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "69b8ca31"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "48fb8348"
+        }
+      }
+    ]
+  },
+  "980cee65": {
+    "Character": "Chasca",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "d4d5f80a"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "1bc982a0"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "1e022039"
+        }
+      },
+      {
+        "Indexes": [
+          32064
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "1d456693"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "2aa293e8"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "d44c5bdc"
+        }
+      },
+      {
+        "Indexes": [
+          79233
+        ],
+        "Part": [
+          "Dress"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "1d456693"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "2aa293e8"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "d44c5bdc"
+        }
+      }
+    ]
+  },
+  "77208d51": {
+    "Character": "Chevreuse",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "ba7535a6"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "72fb785f"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "baa57fcd"
+        }
+      },
+      {
+        "Indexes": [
+          45951
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "874bdb52"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "d493726e"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "cb535c8a"
+        }
+      }
+    ]
+  },
+  "65d5b68c": {
+    "Character": "Chiori",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "1b211a10"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "1a2d9213"
+        }
+      },
+      {
+        "Indexes": [
+          43611
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "3819a281"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "1511ddf5"
+        }
+      },
+      {
+        "Indexes": [
+          77631
+        ],
+        "Part": [
+          "Dress"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "1b211a10"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "1a2d9213"
+        }
+      },
+      {
+        "Indexes": [
+          77889
+        ],
+        "Part": [
+          "Extra"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "3819a281"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "1511ddf5"
+        }
+      }
+    ]
+  },
+  "0c6dd2d6": {
+    "Character": "Chongyun",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "330014a8"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "ac6bf9fc"
+        }
+      },
+      {
+        "Indexes": [
+          13656
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "87b0117a"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "5f9e0873"
+        }
+      }
+    ]
+  },
+  "f81f893c": {
+    "Character": "Citlali",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "d63936b6"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "96902217"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "b5c167bf"
+        }
+      },
+      {
+        "Indexes": [
+          27393
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "6982aefe"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "88febfce"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "fee43ce6"
+        }
+      }
+    ]
+  },
+  "d6371da1": {
+    "Character": "Clorinde",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "e0e63853"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "b4b03133"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "92476121"
+        }
+      },
+      {
+        "Indexes": [
+          41928
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "021c62c4"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "caa220dd"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "ba9c2d91"
+        }
+      },
+      {
+        "Indexes": [
+          69225
+        ],
+        "Part": [
+          "Dress"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "021c62c4"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "caa220dd"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "ba9c2d91"
+        }
+      }
+    ]
+  },
+  "3da6f8c7": {
+    "Character": "Collei",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "2f08071a"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "07117f1f"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "2d25bfac"
+        }
+      },
+      {
+        "Indexes": [
+          13077
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "2f08071a"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "48aa6e02"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "3227b0da"
+        }
+      },
+      {
+        "Indexes": [
+          60117
+        ],
+        "Part": [
+          "Dress"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "2f08071a"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "07117f1f"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "2d25bfac"
+        }
+      }
+    ]
+  },
+  "af184471": {
+    "Character": "Cyno",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "d33101f0"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "fd3917d0"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "aca8de44"
+        }
+      },
+      {
+        "Indexes": [
+          17913
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "d33101f0"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "66e7e2c5"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "0d5e9531"
+        }
+      },
+      {
+        "Indexes": [
+          54627
+        ],
+        "Part": [
+          "Dress"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "d33101f0"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "66e7e2c5"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "0d5e9531"
+        }
+      }
+    ]
+  },
+  "d604e27e": {
+    "Character": "Dahlia",
+    "Component": "FrontHair",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "A"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "2b741204"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "17d930b2"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "f08638eb"
+        }
+      }
+    ]
+  },
+  "3844d706": {
+    "Character": "Dahlia",
+    "Component": "Body",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "A"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "2b741204"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "17d930b2"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "f08638eb"
+        }
+      },
+      {
+        "Indexes": [
+          26067
+        ],
+        "Part": [
+          "B"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "d901ebf5"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "dc11d77d"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "e689679c"
+        }
+      }
+    ]
+  },
+  "5292979f": {
+    "Character": "Dahlia",
+    "Component": "Eyes",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "A"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "dc11d77d"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "e689679c"
+        }
+      }
+    ]
+  },
+  "63e3e58e": {
+    "Character": "Dehya",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "07cb8101"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "f8621767"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "189f1c66"
+        }
+      },
+      {
+        "Indexes": [
+          25566
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "07cb8101"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "37297cff"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "cfe6b082"
+        }
+      }
+    ]
+  },
+  "e16fa548": {
+    "Character": "Diluc",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "575af152"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "7112b952"
+        }
+      },
+      {
+        "Indexes": [
+          10896
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "6e2d28e9"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "deff7a87"
+        }
+      }
+    ]
+  },
+  "a5323853": {
+    "Character": "DilucFlamme",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "a8af7297"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "2e936e4a"
+        },
+        "t2": {
+          "type": "ShadowRamp",
+          "hash": "7eb5b84e"
+        }
+      },
+      {
+        "Indexes": [
+          38061
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "d8f0b883"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "05a1b11e"
+        },
+        "t2": {
+          "type": "MetalMap",
+          "hash": "b0e08915"
+        },
+        "t3": {
+          "type": "ShadowRamp",
+          "hash": "7eb5b84e"
+        }
+      },
+      {
+        "Indexes": [
+          56010
+        ],
+        "Part": [
+          "Dress"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "d8f0b883"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "05a1b11e"
+        },
+        "t2": {
+          "type": "MetalMap",
+          "hash": "b0e08915"
+        },
+        "t3": {
+          "type": "ShadowRamp",
+          "hash": "7eb5b84e"
+        }
+      }
+    ]
+  },
+  "740a72e3": {
+    "Character": "Diona",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "c7c26ab6"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "73432ffe"
+        }
+      },
+      {
+        "Indexes": [
+          11076
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "02e65fcd"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "db73c93f"
+        }
+      }
+    ]
+  },
+  "04929496": {
+    "Character": "Dori",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "0da6497d"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "5f076983"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "24463c26"
+        }
+      },
+      {
+        "Indexes": [
+          22941
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "0da6497d"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "6a120218"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "6cd41bdb"
+        }
+      }
+    ]
+  },
+  "ad5364a7": {
+    "Character": "Emilie",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "48a838b0"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "a393a4d8"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "eac0bc5d"
+        }
+      },
+      {
+        "Indexes": [
+          27675
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "81838090"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "47ac14a4"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "88cace6d"
+        }
+      },
+      {
+        "Indexes": [
+          66633
+        ],
+        "Part": [
+          "Dress"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "81838090"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "47ac14a4"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "88cace6d"
+        }
+      },
+      {
+        "Indexes": [
+          77811
+        ],
+        "Part": [
+          "Extra"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "48a838b0"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "a393a4d8"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "eac0bc5d"
+        }
+      }
+    ]
+  },
+  "04faa347": {
+    "Character": "Escoffier",
+    "Component": "Hat",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "2ebe89dd"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "10c4fa9f"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "82d0c6de"
+        }
+      },
+      {
+        "Indexes": [
+          2604
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "e421abe5"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "4437957c"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "9886ea3b"
+        }
+      }
+    ]
+  },
+  "7ad7e69e": {
+    "Character": "Escoffier",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "2ebe89dd"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "10c4fa9f"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "82d0c6de"
+        }
+      },
+      {
+        "Indexes": [
+          59307
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "e421abe5"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "4437957c"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "9886ea3b"
+        }
+      },
+      {
+        "Indexes": [
+          69753
+        ],
+        "Part": [
+          "Dress"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "e421abe5"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "4437957c"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "9886ea3b"
+        }
+      },
+      {
+        "Indexes": [
+          87798
+        ],
+        "Part": [
+          "Extra"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "2ebe89dd"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "10c4fa9f"
+        }
+      }
+    ]
+  },
+  "660399d1": {
+    "Character": "Eula",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "2a93d37a"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "52e0375d"
+        }
+      },
+      {
+        "Indexes": [
+          11349
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "e00a7852"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "644bdd5e"
+        }
+      },
+      {
+        "Indexes": [
+          51639
+        ],
+        "Part": [
+          "Dress"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "e00a7852"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "644bdd5e"
+        }
+      }
+    ]
+  },
+  "faad3720": {
+    "Character": "Faruzan",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "190a9c45"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "fb94ba69"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "68a0ed77"
+        }
+      },
+      {
+        "Indexes": [
+          33624
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "190a9c45"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "04786cd0"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "00b56d21"
+        }
+      },
+      {
+        "Indexes": [
+          66996
+        ],
+        "Part": [
+          "Dress"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "fb94ba69"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "68a0ed77"
+        }
+      }
+    ]
+  },
+  "6428104d": {
+    "Character": "Fischl",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "8b7f4637"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "3b8e30d7"
+        }
+      },
+      {
+        "Indexes": [
+          11535
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "9f758879"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "3c5e7327"
+        }
+      },
+      {
+        "Indexes": [
+          42471
+        ],
+        "Part": [
+          "Dress"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "9f758879"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "3c5e7327"
+        }
+      }
+    ]
+  },
+  "ad6be7a1": {
+    "Character": "FischlHighness",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "de37696a"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "2f2f6932"
+        },
+        "t2": {
+          "type": "MetalMap",
+          "hash": "b0e08915"
+        },
+        "t3": {
+          "type": "ShadowRamp",
+          "hash": "7eb5b84e"
+        }
+      },
+      {
+        "Indexes": [
+          23091
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "a132243b"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "61c02f66"
+        },
+        "t2": {
+          "type": "MetalMap",
+          "hash": "b0e08915"
+        },
+        "t3": {
+          "type": "ShadowRamp",
+          "hash": "7eb5b84e"
+        }
+      }
+    ]
+  },
+  "36713af5": {
+    "Character": "Flins",
+    "Component": "Bangs",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "A"
+        ],
+        "t0": {
+          "type": "LightMap",
+          "hash": "31e37054"
+        },
+        "t1": {
+          "type": "NormalMap",
+          "hash": "008204b9"
+        },
+        "t2": {
+          "type": "Diffuse",
+          "hash": "ee7596d8"
+        }
+      }
+    ]
+  },
+  "e7085600": {
+    "Character": "Flins",
+    "Component": "Eyes",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "A"
+        ],
+        "t0": {
+          "type": "LightMap",
+          "hash": "31e37054"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "ee7596d8"
+        }
+      }
+    ]
+  },
+  "cdb045fc": {
+    "Character": "Flins",
+    "Component": "Body",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "A"
+        ],
+        "t0": {
+          "type": "LightMap",
+          "hash": "31e37054"
+        },
+        "t1": {
+          "type": "NormalMap",
+          "hash": "008204b9"
+        },
+        "t2": {
+          "type": "Diffuse",
+          "hash": "ee7596d8"
+        }
+      },
+      {
+        "Indexes": [
+          28425
+        ],
+        "Part": [
+          "B"
+        ],
+        "t0": {
+          "type": "LightMap",
+          "hash": "64e53456"
+        },
+        "t1": {
+          "type": "NormalMap",
+          "hash": "531785bc"
+        },
+        "t2": {
+          "type": "Diffuse",
+          "hash": "9aa23647"
+        }
+      },
+      {
+        "Indexes": [
+          76071
+        ],
+        "Part": [
+          "C"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "531785bc"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "9aa23647"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "64e53456"
+        }
+      }
+    ]
+  },
+  "cf410a0d": {
+    "Character": "Flins",
+    "Component": "Lantern",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "A"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "bbee7f17"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "fd19bb26"
+        }
+      },
+      {
+        "Indexes": [
+          5298
+        ],
+        "Part": [
+          "B"
+        ]
+      }
+    ]
+  },
+  "6d40de64": {
+    "Character": "Freminet",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "c1e444f8"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "0747bed5"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "cd1f4845"
+        }
+      },
+      {
+        "Indexes": [
+          36975
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "c1e444f8"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "0c446af0"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "d4aaca04"
+        }
+      }
+    ]
+  },
+  "045e580b": {
+    "Character": "Furina",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "e7b5e588"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "ae654241"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "0c433dfd"
+        }
+      },
+      {
+        "Indexes": [
+          57279
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "e7b5e588"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "39ff38df"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "0968bae9"
+        }
+      },
+      {
+        "Indexes": [
+          73413
+        ],
+        "Part": [
+          "Dress"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "39ff38df"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "0968bae9"
+        }
+      }
+    ]
+  },
+  "5e4f8d68": {
+    "Character": "Furina",
+    "Component": "Ponytail",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "6e612626"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "6dfb5150"
+        }
+      }
+    ]
+  },
+  "b5eb19b6": {
+    "Character": "GaMing",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "2dde5a69"
+        },
+        "t1": {
+          "type": "MaterialMap",
+          "hash": "21d463b2"
+        },
+        "t2": {
+          "type": "Diffuse",
+          "hash": "fd768827"
+        },
+        "t3": {
+          "type": "LightMap",
+          "hash": "97cc8d53"
+        }
+      },
+      {
+        "Indexes": [
+          21129
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "2dde5a69"
+        },
+        "t1": {
+          "type": "MaterialMap",
+          "hash": "21d463b2"
+        },
+        "t2": {
+          "type": "Diffuse",
+          "hash": "948fc7de"
+        },
+        "t3": {
+          "type": "LightMap",
+          "hash": "5f958142"
+        }
+      }
+    ]
+  },
+  "6cb43453": {
+    "Character": "GaMing",
+    "Component": "Hood",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "2dde5a69"
+        },
+        "t1": {
+          "type": "MaterialMap",
+          "hash": "21d463b2"
+        },
+        "t2": {
+          "type": "Diffuse",
+          "hash": "fd768827"
+        },
+        "t3": {
+          "type": "LightMap",
+          "hash": "97cc8d53"
+        }
+      }
+    ]
+  },
+  "1575ec63": {
+    "Character": "Ganyu",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "6d78ac96"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "9b0d2126"
+        }
+      },
+      {
+        "Indexes": [
+          12822
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "8a151913"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "dbcf1d72"
+        }
+      },
+      {
+        "Indexes": [
+          47160
+        ],
+        "Part": [
+          "Dress"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "8a151913"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "dbcf1d72"
+        }
+      }
+    ]
+  },
+  "cb283c86": {
+    "Character": "GanyuTwilight",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "f8aa8a9d"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "ad1ed796"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "191ebe05"
+        },
+        "t3": {
+          "type": "MetalMap",
+          "hash": "b0e08915"
+        }
+      },
+      {
+        "Indexes": [
+          50817
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "e304bdcf"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "13fa0b53"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "b0e08915"
+        },
+        "t3": {
+          "type": "ShadowRamp",
+          "hash": "58d2635b"
+        }
+      },
+      {
+        "Indexes": [
+          74235
+        ],
+        "Part": [
+          "Dress"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "e304bdcf"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "13fa0b53"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "b0e08915"
+        },
+        "t3": {
+          "type": "ShadowRamp",
+          "hash": "58d2635b"
+        }
+      }
+    ]
+  },
+  "b2e57c84": {
+    "Character": "Gorou",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "da0de263"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "c3587b59"
+        }
+      },
+      {
+        "Indexes": [
+          8022
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "815ab246"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "4ee4dace"
+        }
+      }
+    ]
+  },
+  "d4c9bab4": {
+    "Character": "Heizou",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "05423a57"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "c8979dda"
+        }
+      },
+      {
+        "Indexes": [
+          27585
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "5afa8889"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "1c159f94"
+        }
+      }
+    ]
+  },
+  "3de1efe2": {
+    "Character": "HuTao",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "565beee6"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "245dac60"
+        }
+      },
+      {
+        "Indexes": [
+          16509
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "e72dc049"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "ddfeb6b9"
+        }
+      }
+    ]
+  },
+  "b5263389": {
+    "Character": "Iansan",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "4b84d392"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "14eb6947"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "34af79ed"
+        }
+      },
+      {
+        "Indexes": [
+          33132
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "41c93955"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "452dde40"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "32570819"
+        }
+      },
+      {
+        "Indexes": [
+          79230
+        ],
+        "Part": [
+          "Dress"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "41c93955"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "452dde40"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "32570819"
+        }
+      }
+    ]
+  },
+  "d561fadc": {
+    "Character": "Ifa",
+    "Component": "Body",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "A"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "8b6a25cf"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "4eb13f0f"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "483d5c8c"
+        }
+      },
+      {
+        "Indexes": [
+          48570
+        ],
+        "Part": [
+          "B"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "423bb8fd"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "b56e9cb7"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "7161a2bf"
+        }
+      },
+      {
+        "Indexes": [
+          73152
+        ],
+        "Part": [
+          "C"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "423bb8fd"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "b56e9cb7"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "7161a2bf"
+        }
+      }
+    ]
+  },
+  "6f8c4af6": {
+    "Character": "Ineffa",
+    "Component": "Eyes",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "A"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "23c48877"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "3d8653af"
+        }
+      }
+    ]
+  },
+  "79353adc": {
+    "Character": "Ineffa",
+    "Component": "Bangs",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "A"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "59a6251b"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "23c48877"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "3d8653af"
+        }
+      }
+    ]
+  },
+  "8a61684d": {
+    "Character": "Ineffa",
+    "Component": "Body",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "A"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "59a6251b"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "23c48877"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "3d8653af"
+        }
+      },
+      {
+        "Indexes": [
+          26166
+        ],
+        "Part": [
+          "B"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "9446f895"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "be6f0473"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "c5e9a5fa"
+        }
+      }
+    ]
+  },
+  "115737ff": {
+    "Character": "Jean",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "dba2791d"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "0bd77e81"
+        }
+      },
+      {
+        "Indexes": [
+          7779
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "d1ae8efe"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "cee17ba5"
+        }
+      },
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "dba2791d"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "0bd77e81"
+        }
+      },
+      {
+        "Indexes": [
+          7779
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "d1ae8efe"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "cee17ba5"
+        }
+      }
+    ]
+  },
+  "8f29c0bb": {
+    "Character": "Kachina",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "7e9d7da2"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "e139cfd8"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "07040d80"
+        }
+      },
+      {
+        "Indexes": [
+          47910
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "ccd3ad03"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "c5b367d7"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "0ccd64e7"
+        }
+      }
+    ]
+  },
+  "356cdbde": {
+    "Character": "KaedeharaKazuha",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "df022de9"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "4a4430d8"
+        }
+      },
+      {
+        "Indexes": [
+          7923
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "f297375f"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "73e9acc0"
+        }
+      },
+      {
+        "Indexes": [
+          47775
+        ],
+        "Part": [
+          "Dress"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "f297375f"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "73e9acc0"
+        }
+      }
+    ]
+  },
+  "2b3f575a": {
+    "Character": "Kaeya",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "0fbefdbe"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "34e0c421"
+        }
+      },
+      {
+        "Indexes": [
+          7596
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "80a44a1a"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "5d9ff9ba"
+        }
+      },
+      {
+        "Indexes": [
+          47349
+        ],
+        "Part": [
+          "Dress"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "80a44a1a"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "5d9ff9ba"
+        }
+      }
+    ]
+  },
+  "59f2a0f2": {
+    "Character": "KaeyaSailwind",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "8bdd311f"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "d0f3065c"
+        },
+        "t2": {
+          "type": "MetalMap",
+          "hash": "b0e08915"
+        },
+        "t3": {
+          "type": "ShadowRamp",
+          "hash": "58d2635b"
+        }
+      },
+      {
+        "Indexes": [
+          23109
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "1077694d"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "a48a72a3"
+        },
+        "t2": {
+          "type": "Shadow",
+          "hash": "1f8619fc"
+        },
+        "t3": {
+          "type": "MetalMap",
+          "hash": "b0e08915"
+        }
+      },
+      {
+        "Indexes": [
+          76839
+        ],
+        "Part": [
+          "Dress"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "8bdd311f"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "d0f3065c"
+        },
+        "t2": {
+          "type": "ShadowRamp",
+          "hash": "7eb5b84e"
+        },
+        "t3": {
+          "type": "MetalMap",
+          "hash": "b0e08915"
+        }
+      }
+    ]
+  },
+  "0cafd227": {
+    "Character": "KamisatoAyaka",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "b017ea8d"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "6922f755"
+        }
+      },
+      {
+        "Indexes": [
+          11565
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "2991152b"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "9e7eb1bf"
+        }
+      },
+      {
+        "Indexes": [
+          58209
+        ],
+        "Part": [
+          "Dress"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "2991152b"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "9e7eb1bf"
+        }
+      }
+    ]
+  },
+  "e59b09d6": {
+    "Character": "KamisatoAyato",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "6bb97054"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "7753622e"
+        }
+      },
+      {
+        "Indexes": [
+          29769
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "d7595676"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "42816167"
+        }
+      },
+      {
+        "Indexes": [
+          66183
+        ],
+        "Part": [
+          "Dress"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "d7595676"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "42816167"
+        }
+      }
+    ]
+  },
+  "5966a63f": {
+    "Character": "Kaveh",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "8efeba9c"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "8d5556d9"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "ffb010b1"
+        }
+      },
+      {
+        "Indexes": [
+          21831
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "97e294fa"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "3733161f"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "4e83e234"
+        }
+      }
+    ]
+  },
+  "cbf1894b": {
+    "Character": "Keqing",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "58de714b"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "da3e4a28"
+        }
+      },
+      {
+        "Indexes": [
+          10824
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "874b8c0b"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "0695efb7"
+        }
+      },
+      {
+        "Indexes": [
+          48216
+        ],
+        "Part": [
+          "Dress"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "874b8c0b"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "0695efb7"
+        }
+      }
+    ]
+  },
+  "7c6fc8c3": {
+    "Character": "KeqingOpulent",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "e2d7ae66"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "13e2b0ab"
+        },
+        "t2": {
+          "type": "MetalMap",
+          "hash": "b0e08915"
+        },
+        "t3": {
+          "type": "ShadowRamp",
+          "hash": "7eb5b84e"
+        }
+      },
+      {
+        "Indexes": [
+          19623
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "2af5bf71"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "195af53a"
+        },
+        "t2": {
+          "type": "MetalMap",
+          "hash": "b0e08915"
+        },
+        "t3": {
+          "type": "ShadowRamp",
+          "hash": "7eb5b84e"
+        }
+      }
+    ]
+  },
+  "bceefe19": {
+    "Character": "Kinich",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "582a90e8"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "a174a8b2"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "381ef75d"
+        }
+      },
+      {
+        "Indexes": [
+          51039
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "01ee7fd1"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "8031d93f"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "52fd8c32"
+        }
+      }
+    ]
+  },
+  "947f62b1": {
+    "Character": "Kinich",
+    "Component": "Face",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "849c6d75"
+        }
+      }
+    ]
+  },
+  "f6e9af7d": {
+    "Character": "Kirara",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "6006d89d"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "0998fcda"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "c90298cc"
+        }
+      },
+      {
+        "Indexes": [
+          37128
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "7c16312c"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "9feba8b9"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "2fadf527"
+        }
+      },
+      {
+        "Indexes": [
+          75234
+        ],
+        "Part": [
+          "Dress"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "7c16312c"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "9feba8b9"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "2fadf527"
+        }
+      }
+    ]
+  },
+  "073c71f5": {
+    "Character": "Klee",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "76672fcd"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "5f5c4d6e"
+        }
+      },
+      {
+        "Indexes": [
+          8436
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "20530946"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "a0d91469"
+        }
+      }
+    ]
+  },
+  "4cf8240a": {
+    "Character": "KleeBlossomingStarlight",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "b0929218"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "db315fa4"
+        },
+        "t2": {
+          "type": "MetalMap",
+          "hash": "b0e08915"
+        },
+        "t3": {
+          "type": "ShadowRamp",
+          "hash": "58d2635b"
+        }
+      },
+      {
+        "Indexes": [
+          32553
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "27a8989a"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "c085a587"
+        },
+        "t2": {
+          "type": "MetalMap",
+          "hash": "b0e08915"
+        },
+        "t3": {
+          "type": "ShadowRamp",
+          "hash": "58d2635b"
+        }
+      },
+      {
+        "Indexes": [
+          82101
+        ],
+        "Part": [
+          "Dress"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "b0929218"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "db315fa4"
+        },
+        "t2": {
+          "type": "MetalMap",
+          "hash": "b0e08915"
+        },
+        "t3": {
+          "type": "ShadowRamp",
+          "hash": "58d2635b"
+        }
+      }
+    ]
+  },
+  "109b3f6c": {
+    "Character": "KujouSara",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "f0f9f3b5"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "ce472bcc"
+        }
+      },
+      {
+        "Indexes": [
+          8877
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "6ffc34d3"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "420d2d0d"
+        }
+      },
+      {
+        "Indexes": [
+          47193
+        ],
+        "Part": [
+          "Dress"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "6ffc34d3"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "420d2d0d"
+        }
+      }
+    ]
+  },
+  "ff16c309": {
+    "Character": "KukiShinobu",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "daaf9199"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "48bab421"
+        }
+      },
+      {
+        "Indexes": [
+          22356
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "b484a81d"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "c621ad3d"
+        }
+      }
+    ]
+  },
+  "3f71a2db": {
+    "Character": "KukiShinobu",
+    "Component": "Mask",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "daaf9199"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "48bab421"
+        }
+      }
+    ]
+  },
+  "5a1345c9": {
+    "Character": "Lauma",
+    "Component": "Bangs",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "A"
+        ],
+        "t0": {
+          "type": "LightMap",
+          "hash": "fb0e0e9d"
+        },
+        "t1": {
+          "type": "NormalMap",
+          "hash": "67d747f2"
+        },
+        "t2": {
+          "type": "Diffuse",
+          "hash": "5ee611d0"
+        }
+      }
+    ]
+  },
+  "c3e809a5": {
+    "Character": "Lauma",
+    "Component": "Eyes",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "A"
+        ],
+        "t0": {
+          "type": "LightMap",
+          "hash": "bbd20a54"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "f3cbc990"
+        }
+      }
+    ]
+  },
+  "ce158bd6": {
+    "Character": "Lauma",
+    "Component": "Body",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "A"
+        ],
+        "t0": {
+          "type": "LightMap",
+          "hash": "fb0e0e9d"
+        },
+        "t1": {
+          "type": "NormalMap",
+          "hash": "67d747f2"
+        },
+        "t2": {
+          "type": "Diffuse",
+          "hash": "5ee611d0"
+        }
+      },
+      {
+        "Indexes": [
+          19074
+        ],
+        "Part": [
+          "B"
+        ],
+        "t0": {
+          "type": "LightMap",
+          "hash": "bbd20a54"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "f3cbc990"
+        }
+      },
+      {
+        "Indexes": [
+          75702
+        ],
+        "Part": [
+          "C"
+        ],
+        "t0": {
+          "type": "LightMap",
+          "hash": "fb0e0e9d"
+        },
+        "t1": {
+          "type": "NormalMap",
+          "hash": "67d747f2"
+        },
+        "t2": {
+          "type": "Diffuse",
+          "hash": "5ee611d0"
+        }
+      }
+    ]
+  },
+  "7306ff89": {
+    "Character": "Lauma",
+    "Component": "Horns",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "A"
+        ],
+        "t0": {
+          "type": "LightMap",
+          "hash": "bbd20a54"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "f3cbc990"
+        }
+      }
+    ]
+  },
+  "8ec3c0d8": {
+    "Character": "Layla",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "29c41279"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "9305d73a"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "aa504afc"
+        }
+      },
+      {
+        "Indexes": [
+          49878
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "29c41279"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "c489c9d6"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "162703d9"
+        }
+      },
+      {
+        "Indexes": [
+          66474
+        ],
+        "Part": [
+          "Dress"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "29c41279"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "c489c9d6"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "162703d9"
+        }
+      }
+    ]
+  },
+  "518a6840": {
+    "Character": "Lisa",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "b8ed7d4b"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "f69e017e"
+        }
+      },
+      {
+        "Indexes": [
+          16815
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "2014031e"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "aa3b4074"
+        }
+      },
+      {
+        "Indexes": [
+          45873
+        ],
+        "Part": [
+          "Dress"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "2014031e"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "aa3b4074"
+        }
+      }
+    ]
+  },
+  "f30eece6": {
+    "Character": "LisaStudent",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "a64a57de"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "f7a42411"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "040d3ada"
+        }
+      },
+      {
+        "Indexes": [
+          29730
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "a64a57de"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "02cb9df7"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "cbf77c41"
+        }
+      }
+    ]
+  },
+  "39d89255": {
+    "Character": "Lynette",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "b758feec"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "3fea57a6"
+        }
+      },
+      {
+        "Indexes": [
+          16257
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "6ae9b75e"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "d7d82050"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "0fcba7bd"
+        }
+      },
+      {
+        "Indexes": [
+          65223
+        ],
+        "Part": [
+          "Dress"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "b758feec"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "3fea57a6"
+        }
+      },
+      {
+        "Indexes": [
+          68358
+        ],
+        "Part": [
+          "Extra"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "6ae9b75e"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "d7d82050"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "0fcba7bd"
+        }
+      }
+    ]
+  },
+  "09bcb0fd": {
+    "Character": "Lyney",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "2403b975"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "b90fee30"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "7f5e1d20"
+        }
+      },
+      {
+        "Indexes": [
+          16599
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "2403b975"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "0046202e"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "44114a2b"
+        }
+      },
+      {
+        "Indexes": [
+          63264
+        ],
+        "Part": [
+          "Dress"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "b90fee30"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "7f5e1d20"
+        }
+      }
+    ]
+  },
+  "f6c93dd3": {
+    "Character": "Mavuika",
+    "Component": "Hair",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "60f282a6"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "b74e8ff5"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "f2cec614"
+        }
+      }
+    ]
+  },
+  "43f8af29": {
+    "Character": "Mavuika",
+    "Component": "Body",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "60f282a6"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "b74e8ff5"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "f2cec614"
+        }
+      },
+      {
+        "Indexes": [
+          16914
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "60f282a6"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "a6fa0456"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "9ca8feaf"
+        }
+      },
+      {
+        "Indexes": [
+          42618
+        ],
+        "Part": [
+          "Dress"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "60f282a6"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "a6fa0456"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "9ca8feaf"
+        }
+      }
+    ]
+  },
+  "ec1ed3c9": {
+    "Character": "Mizuki",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "ac820f2c"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "f52d17e3"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "7adb7963"
+        }
+      },
+      {
+        "Indexes": [
+          44274
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "b1600928"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "2212dfb0"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "8c8f8192"
+        }
+      },
+      {
+        "Indexes": [
+          85404
+        ],
+        "Part": [
+          "Dress"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "b1600928"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "2212dfb0"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "8c8f8192"
+        }
+      }
+    ]
+  },
+  "d75308d8": {
+    "Character": "Mona",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "b518c5a5"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "0c679d22"
+        }
+      },
+      {
+        "Indexes": [
+          17688
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "5f873d89"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "29d50a21"
+        }
+      }
+    ]
+  },
+  "d5ad8084": {
+    "Character": "MonaCN",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "0320a4d2"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "df0f8b90"
+        }
+      },
+      {
+        "Indexes": [
+          17688
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "c043f913"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "a3369d08"
+        }
+      }
+    ]
+  },
+  "c511e979": {
+    "Character": "Mualani",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "90d13a84"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "77bab184"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "7a4be5e0"
+        }
+      },
+      {
+        "Indexes": [
+          35445
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "b4d8c782"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "db64efba"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "b77faead"
+        }
+      },
+      {
+        "Indexes": [
+          81135
+        ],
+        "Part": [
+          "Dress"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "90d13a84"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "77bab184"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "7a4be5e0"
+        }
+      }
+    ]
+  },
+  "9b13c166": {
+    "Character": "Nahida",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "23feab66"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "0a1a4882"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "f9609355"
+        }
+      },
+      {
+        "Indexes": [
+          31143
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "624ae227"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "bf2d405f"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "5fcf9362"
+        }
+      },
+      {
+        "Indexes": [
+          71187
+        ],
+        "Part": [
+          "Dress"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "624ae227"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "bf2d405f"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "5fcf9362"
+        }
+      },
+      {
+        "Indexes": [
+          76875
+        ],
+        "Part": [
+          "Extra"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "23feab66"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "0a1a4882"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "f9609355"
+        }
+      }
+    ]
+  },
+  "7321d0b1": {
+    "Character": "Navia",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "52915514"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "7be23179"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "b38cc8ce"
+        }
+      },
+      {
+        "Indexes": [
+          54342
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "52915514"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "b9fe984b"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "715b077d"
+        }
+      },
+      {
+        "Indexes": [
+          74844
+        ],
+        "Part": [
+          "Dress"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "52915514"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "b9fe984b"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "715b077d"
+        }
+      }
+    ]
+  },
+  "5a665e02": {
+    "Character": "Nefer",
+    "Component": "Bangs",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "A"
+        ],
+        "t0": {
+          "type": "LightMap",
+          "hash": "ba71406c"
+        },
+        "t1": {
+          "type": "NormalMap",
+          "hash": "4a88778c"
+        },
+        "t2": {
+          "type": "Diffuse",
+          "hash": "346c7248"
+        }
+      }
+    ]
+  },
+  "606a6e40": {
+    "Character": "Nefer",
+    "Component": "Body",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "A"
+        ],
+        "t0": {
+          "type": "LightMap",
+          "hash": "ba71406c"
+        },
+        "t1": {
+          "type": "NormalMap",
+          "hash": "4a88778c"
+        },
+        "t2": {
+          "type": "Diffuse",
+          "hash": "346c7248"
+        }
+      },
+      {
+        "Indexes": [
+          31560
+        ],
+        "Part": [
+          "B"
+        ],
+        "t0": {
+          "type": "LightMap",
+          "hash": "f255d7e3"
+        },
+        "t1": {
+          "type": "NormalMap",
+          "hash": "f4991733"
+        },
+        "t2": {
+          "type": "Diffuse",
+          "hash": "70086643"
+        }
+      },
+      {
+        "Indexes": [
+          77442
+        ],
+        "Part": [
+          "C"
+        ],
+        "t0": {
+          "type": "LightMap",
+          "hash": "f255d7e3"
+        },
+        "t1": {
+          "type": "NormalMap",
+          "hash": "f4991733"
+        },
+        "t2": {
+          "type": "Diffuse",
+          "hash": "70086643"
+        }
+      }
+    ]
+  },
+  "345cb65a": {
+    "Character": "Nefer",
+    "Component": "CapeSide",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "A"
+        ],
+        "t0": {
+          "type": "LightMap",
+          "hash": "f255d7e3"
+        },
+        "t1": {
+          "type": "NormalMap",
+          "hash": "f4991733"
+        },
+        "t2": {
+          "type": "Diffuse",
+          "hash": "70086643"
+        }
+      }
+    ]
+  },
+  "e46f6e57": {
+    "Character": "Nefer",
+    "Component": "CapeMiddle",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "A"
+        ],
+        "t0": {
+          "type": "LightMap",
+          "hash": "ba71406c"
+        },
+        "t1": {
+          "type": "NormalMap",
+          "hash": "4a88778c"
+        },
+        "t2": {
+          "type": "Diffuse",
+          "hash": "346c7248"
+        }
+      }
+    ]
+  },
+  "cd690a66": {
+    "Character": "Nefer",
+    "Component": "CapeGlow",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "A"
+        ],
+        "t0": {
+          "type": "LightMap",
+          "hash": "ba71406c"
+        },
+        "t1": {
+          "type": "NormalMap",
+          "hash": "4a88778c"
+        },
+        "t2": {
+          "type": "Diffuse",
+          "hash": "346c7248"
+        }
+      }
+    ]
+  },
+  "6a090a16": {
+    "Character": "Nefer",
+    "Component": "Eyes",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "A"
+        ],
+        "t0": {
+          "type": "LightMap",
+          "hash": "ba71406c"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "346c7248"
+        }
+      }
+    ]
+  },
+  "f055eadd": {
+    "Character": "Neuvillette",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "359d45a8"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "88a634b5"
+        }
+      },
+      {
+        "Indexes": [
+          33879
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "29bdadcf"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "48c325bb"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "da40b605"
+        }
+      },
+      {
+        "Indexes": [
+          79377
+        ],
+        "Part": [
+          "Dress"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "48c325bb"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "da40b605"
+        }
+      }
+    ]
+  },
+  "1e8a5e3c": {
+    "Character": "Nilou",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "1648a076"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "9caa70ad"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "b2501b97"
+        }
+      },
+      {
+        "Indexes": [
+          44844
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "1648a076"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "91cb97a8"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "29cf0914"
+        }
+      },
+      {
+        "Indexes": [
+          64080
+        ],
+        "Part": [
+          "Dress"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "1648a076"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "91cb97a8"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "29cf0914"
+        }
+      }
+    ]
+  },
+  "ad75352c": {
+    "Character": "Ningguang",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "e0789f0d"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "5d182ae7"
+        }
+      },
+      {
+        "Indexes": [
+          12384
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "5ffe95c2"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "64e6b893"
+        }
+      },
+      {
+        "Indexes": [
+          47157
+        ],
+        "Part": [
+          "Dress"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "5ffe95c2"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "64e6b893"
+        }
+      }
+    ]
+  },
+  "c904f198": {
+    "Character": "NingguangOrchid",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "b68d7488"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "bc1034dd"
+        },
+        "t2": {
+          "type": "MetalMap",
+          "hash": "b0e08915"
+        },
+        "t3": {
+          "type": "ShadowRamp",
+          "hash": "7eb5b84e"
+        }
+      },
+      {
+        "Indexes": [
+          43539
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "a4597b85"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "0e26784e"
+        },
+        "t2": {
+          "type": "MetalMap",
+          "hash": "b0e08915"
+        },
+        "t3": {
+          "type": "ShadowRamp",
+          "hash": "7eb5b84e"
+        }
+      },
+      {
+        "Indexes": [
+          56124
+        ],
+        "Part": [
+          "Dress"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "a4597b85"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "0e26784e"
+        },
+        "t2": {
+          "type": "MetalMap",
+          "hash": "b0e08915"
+        },
+        "t3": {
+          "type": "ShadowRamp",
+          "hash": "7eb5b84e"
+        }
+      }
+    ]
+  },
+  "9cf0789e": {
+    "Character": "Noelle",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "6b77451a"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "65aae042"
+        }
+      },
+      {
+        "Indexes": [
+          12915
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "bc170f56"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "190f06f5"
+        }
+      },
+      {
+        "Indexes": [
+          47910
+        ],
+        "Part": [
+          "Dress"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "bc170f56"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "190f06f5"
+        }
+      }
+    ]
+  },
+  "503c0cb0": {
+    "Character": "Ororon",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "121972b2"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "f2b702e4"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "69ae11da"
+        }
+      },
+      {
+        "Indexes": [
+          52455
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "ec90deb9"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "21ebe8a6"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "4d7030c5"
+        }
+      },
+      {
+        "Indexes": [
+          77433
+        ],
+        "Part": [
+          "Dress"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "ec90deb9"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "21ebe8a6"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "4d7030c5"
+        }
+      }
+    ]
+  },
+  "9ee59da3": {
+    "Character": "Ororon",
+    "Component": "Face",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "8af54a5e"
+        }
+      }
+    ]
+  },
+  "56057a2c": {
+    "Character": "Qiqi",
+    "Component": "Body",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "A"
+        ],
+        "t0": {
+          "type": "LightMap",
+          "hash": "6963463d"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "f2df908b"
+        }
+      },
+      {
+        "Indexes": [
+          13488
+        ],
+        "Part": [
+          "B"
+        ],
+        "t0": {
+          "type": "LightMap",
+          "hash": "5ce07325"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "437b44eb"
+        }
+      }
+    ]
+  },
+  "7a583c12": {
+    "Character": "RaidenShogun",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "877ea73c"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "90ffd990"
+        }
+      },
+      {
+        "Indexes": [
+          17769
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "9b5d87e0"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "452e0279"
+        }
+      },
+      {
+        "Indexes": [
+          52473
+        ],
+        "Part": [
+          "Dress"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "9b5d87e0"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "452e0279"
+        }
+      }
+    ]
+  },
+  "1b36c8c9": {
+    "Character": "Razor",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "8bbb29dc"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "dbd457f4"
+        }
+      },
+      {
+        "Indexes": [
+          7071
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "6ff86f89"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "d0d41379"
+        }
+      }
+    ]
+  },
+  "65ccd309": {
+    "Character": "Rosaria",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "81b2d0ca"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "2f19c547"
+        }
+      },
+      {
+        "Indexes": [
+          11139
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "9abde85f"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "743ffc09"
+        }
+      },
+      {
+        "Indexes": [
+          44088
+        ],
+        "Part": [
+          "Dress"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "81b2d0ca"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "2f19c547"
+        }
+      },
+      {
+        "Indexes": [
+          45990
+        ],
+        "Part": [
+          "Extra"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "9abde85f"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "743ffc09"
+        }
+      }
+    ]
+  },
+  "bdca273e": {
+    "Character": "RosariaCN",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "55280cb0"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "825c32a0"
+        }
+      },
+      {
+        "Indexes": [
+          11025
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "bd6fcf34"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "cf7b6deb"
+        }
+      },
+      {
+        "Indexes": [
+          46539
+        ],
+        "Part": [
+          "Dress"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "55280cb0"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "825c32a0"
+        }
+      },
+      {
+        "Indexes": [
+          48441
+        ],
+        "Part": [
+          "Extra"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "bd6fcf34"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "cf7b6deb"
+        }
+      }
+    ]
+  },
+  "74900c81": {
+    "Character": "SangonomiyaKokomi",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "0459724d"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "1bbf9cdd"
+        }
+      },
+      {
+        "Indexes": [
+          26424
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "d27352bb"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "90d8d004"
+        }
+      },
+      {
+        "Indexes": [
+          52290
+        ],
+        "Part": [
+          "Dress"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "d27352bb"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "90d8d004"
+        }
+      }
+    ]
+  },
+  "d26fddb8": {
+    "Character": "Sayu",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "54d24a90"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "1a2b1f2b"
+        }
+      },
+      {
+        "Indexes": [
+          8340
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "91825dcd"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "a0a39297"
+        }
+      }
+    ]
+  },
+  "2aaacf16": {
+    "Character": "Sayu",
+    "Component": "Hood",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "91825dcd"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "a0a39297"
+        }
+      }
+    ]
+  },
+  "2faea4e4": {
+    "Character": "Sethos",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "19058fc4"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "8fe40a8f"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "1a0752da"
+        }
+      },
+      {
+        "Indexes": [
+          38241
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "19058fc4"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "0decd6f7"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "8f724ce7"
+        }
+      }
+    ]
+  },
+  "33a92492": {
+    "Character": "Shenhe",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "7da9c07b"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "e134c758"
+        }
+      },
+      {
+        "Indexes": [
+          14385
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "cba1d6ec"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "ce5176af"
+        }
+      },
+      {
+        "Indexes": [
+          48753
+        ],
+        "Part": [
+          "Dress"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "cba1d6ec"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "ce5176af"
+        }
+      }
+    ]
+  },
+  "83a9116d": {
+    "Character": "ShenheFrostFlower",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "4e5d638d"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "1ab2f510"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "b0e08915"
+        },
+        "t3": {
+          "type": "ShadowRamp",
+          "hash": "58d2635b"
+        }
+      },
+      {
+        "Indexes": [
+          31326
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "625d0bb4"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "51529edd"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "b0e08915"
+        },
+        "t3": {
+          "type": "ShadowRamp",
+          "hash": "58d2635b"
+        }
+      },
+      {
+        "Indexes": [
+          66588
+        ],
+        "Part": [
+          "Dress"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "4e5d638d"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "1ab2f510"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "7eb5b84e"
+        },
+        "t3": {
+          "type": "ShadowRamp",
+          "hash": "000050-ps-t3"
+        }
+      },
+      {
+        "Indexes": [
+          70068
+        ],
+        "Part": [
+          "Extra"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "625d0bb4"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "51529edd"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "7eb5b84e"
+        },
+        "t3": {
+          "type": "ShadowRamp",
+          "hash": "000049-ps-t3"
+        }
+      }
+    ]
+  },
+  "072fe941": {
+    "Character": "Sigewinne",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "82510df7"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "3ce7c345"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "ba14ce6a"
+        }
+      },
+      {
+        "Indexes": [
+          25077
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "a6cafd62"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "7eeedf6b"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "cd900175"
+        }
+      }
+    ]
+  },
+  "74811ddf": {
+    "Character": "Skirk",
+    "Component": "FrontHair",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "A"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "ac3432d8"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "56bef031"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "8918d3c5"
+        }
+      }
+    ]
+  },
+  "1fbe8217": {
+    "Character": "Skirk",
+    "Component": "Body",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "A"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "34bb6c12"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "e8e681c4"
+        }
+      }
+    ]
+  },
+  "a831e5b5": {
+    "Character": "Skirk",
+    "Component": "Eyes",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "A"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "34bb6c12"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "e8e681c4"
+        }
+      }
+    ]
+  },
+  "056da8f3": {
+    "Character": "Skirk",
+    "Component": "Skirt",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "A"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "8b54c71c"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "b4667b8a"
+        }
+      }
+    ]
+  },
+  "dafe18b6": {
+    "Character": "Skirk",
+    "Component": "BackHair",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "A"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "ac3432d8"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "56bef031"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "8918d3c5"
+        }
+      },
+      {
+        "Indexes": [
+          13650
+        ],
+        "Part": [
+          "B"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "5ef59f08"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "711f5ce4"
+        },
+        "t2": {
+          "type": "StockingMap",
+          "hash": "2af2f5da"
+        }
+      }
+    ]
+  },
+  "06e86a68": {
+    "Character": "Sucrose",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "4569674c"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "e9127fd7"
+        }
+      },
+      {
+        "Indexes": [
+          9036
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "a604f37b"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "43140822"
+        }
+      }
+    ]
+  },
+  "531d9358": {
+    "Character": "Tartaglia",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "88fa3ae0"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "2e4b001d"
+        }
+      },
+      {
+        "Indexes": [
+          9261
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "05446bec"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "abbced2f"
+        }
+      }
+    ]
+  },
+  "d7dd3b5f": {
+    "Character": "Tartaglia",
+    "Component": "Scarf",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "05446bec"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "abbced2f"
+        }
+      },
+      {
+        "Indexes": [
+          549
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "05446bec"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "abbced2f"
+        }
+      }
+    ]
+  },
+  "b2155854": {
+    "Character": "Thoma",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "93bd4687"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "aeb656e3"
+        }
+      },
+      {
+        "Indexes": [
+          10782
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "1d3acd2a"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "0aec6a26"
+        }
+      },
+      {
+        "Indexes": [
+          45258
+        ],
+        "Part": [
+          "Dress"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "1d3acd2a"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "0aec6a26"
+        }
+      }
+    ]
+  },
+  "69a807fc": {
+    "Character": "Tighnari",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "95d66b44"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "b523cde2"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "e938ad6f"
+        }
+      },
+      {
+        "Indexes": [
+          44868
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "95d66b44"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "e51c53b2"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "857f4bdb"
+        }
+      },
+      {
+        "Indexes": [
+          59496
+        ],
+        "Part": [
+          "Dress"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "95d66b44"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "e51c53b2"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "857f4bdb"
+        }
+      }
+    ]
+  },
+  "8ed7c5f0": {
+    "Character": "TravelerBoy",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "cab5aa1f"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "74453385"
+        },
+        "t2": {
+          "type": "ShadowRamp",
+          "hash": "7eb5b84e"
+        }
+      },
+      {
+        "Indexes": [
+          8874
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "1f7b5c39"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "104c1472"
+        },
+        "t2": {
+          "type": "MetalMap",
+          "hash": "b0e08915"
+        },
+        "t3": {
+          "type": "ShadowRamp",
+          "hash": "7eb5b84e"
+        }
+      }
+    ]
+  },
+  "e7612ed8": {
+    "Character": "TravelerGirl",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "dae4b580"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "390f357b"
+        },
+        "t2": {
+          "type": "ShadowRamp",
+          "hash": "7eb5b84e"
+        }
+      },
+      {
+        "Indexes": [
+          6915
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "c4c881a9"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "015fadf5"
+        },
+        "t2": {
+          "type": "MetalMap",
+          "hash": "b0e08915"
+        },
+        "t3": {
+          "type": "ShadowRamp",
+          "hash": "7eb5b84e"
+        }
+      },
+      {
+        "Indexes": [
+          40413
+        ],
+        "Part": [
+          "Dress"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "c4c881a9"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "015fadf5"
+        },
+        "t2": {
+          "type": "MetalMap",
+          "hash": "b0e08915"
+        },
+        "t3": {
+          "type": "ShadowRamp",
+          "hash": "7eb5b84e"
+        }
+      }
+    ]
+  },
+  "488fceb4": {
+    "Character": "Varesa",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "fbd156ce"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "edae63e5"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "4385281a"
+        }
+      },
+      {
+        "Indexes": [
+          40554
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "aba51821"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "4c6ace0e"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "1c051afc"
+        }
+      }
+    ]
+  },
+  "1afcf31d": {
+    "Character": "Venti",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "a31b9333"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "cb3ce8ab"
+        }
+      },
+      {
+        "Indexes": [
+          7419
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "00655283"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "74860ccc"
+        }
+      }
+    ]
+  },
+  "6bba515c": {
+    "Character": "Wanderer",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "247fa771"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "16f84d90"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "4b841481"
+        }
+      },
+      {
+        "Indexes": [
+          17379
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "247fa771"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "841c3322"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "581644b9"
+        }
+      }
+    ]
+  },
+  "a16aff98": {
+    "Character": "Wanderer",
+    "Component": "Hat",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "247fa771"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "841c3322"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "581644b9"
+        }
+      }
+    ]
+  },
+  "9e62b4e7": {
+    "Character": "Wriothesley",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "2bd326b3"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "42d5f166"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "1e526072"
+        }
+      },
+      {
+        "Indexes": [
+          11634
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "2bd326b3"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "dd762392"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "9f4702b7"
+        }
+      }
+    ]
+  },
+  "71be07bd": {
+    "Character": "Wriothesley",
+    "Component": "Jacket",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "2bd326b3"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "42d5f166"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "1e526072"
+        }
+      },
+      {
+        "Indexes": [
+          21042
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "2bd326b3"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "dd762392"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "9f4702b7"
+        }
+      }
+    ]
+  },
+  "6bb79582": {
+    "Character": "Xiangling",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "499e89bf"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "ba6a810c"
+        }
+      },
+      {
+        "Indexes": [
+          11964
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "abd3a28e"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "7e12708e"
+        }
+      },
+      {
+        "Indexes": [
+          48120
+        ],
+        "Part": [
+          "Dress"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "abd3a28e"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "7e12708e"
+        }
+      }
+    ]
+  },
+  "7f79ea6e": {
+    "Character": "Xianyun",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "b5269ec9"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "f4fe4cd2"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "11df62d7"
+        }
+      },
+      {
+        "Indexes": [
+          29841
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "b5269ec9"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "c4afced6"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "8a8e2916"
+        }
+      },
+      {
+        "Indexes": [
+          65361
+        ],
+        "Part": [
+          "Dress"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "b5269ec9"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "c4afced6"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "8a8e2916"
+        }
+      }
+    ]
+  },
+  "4212b7da": {
+    "Character": "Xianyun",
+    "Component": "Glasses",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "b5269ec9"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "f4fe4cd2"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "11df62d7"
+        }
+      }
+    ]
+  },
+  "ced409c1": {
+    "Character": "Xiao",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "375cdf6e"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "ad9e0703"
+        }
+      },
+      {
+        "Indexes": [
+          13137
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "f434d08f"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "7d9f173f"
+        }
+      },
+      {
+        "Indexes": [
+          49623
+        ],
+        "Part": [
+          "Dress"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "f434d08f"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "7d9f173f"
+        }
+      },
+      {
+        "Indexes": [
+          51717
+        ],
+        "Part": [
+          "Extra"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "f434d08f"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "7d9f173f"
+        }
+      }
+    ]
+  },
+  "4c2fa96d": {
+    "Character": "Xilonen",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "cbed2a4d"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "617dafcb"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "e3f4ee7a"
+        }
+      },
+      {
+        "Indexes": [
+          28959
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "3196ebcf"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "a99422b8"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "3bc47273"
+        }
+      }
+    ]
+  },
+  "76df4025": {
+    "Character": "Xingqiu",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "520d5504"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "045244a0"
+        }
+      },
+      {
+        "Indexes": [
+          32508
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "fe820a09"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "65bb84d8"
+        }
+      },
+      {
+        "Indexes": [
+          62103
+        ],
+        "Part": [
+          "Dress"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "fe820a09"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "65bb84d8"
+        }
+      },
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "520d5504"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "045244a0"
+        },
+        "t2": {
+          "type": "MetalMap",
+          "hash": "b0e08915"
+        },
+        "t3": {
+          "type": "ShadowRamp",
+          "hash": "58d2635b"
+        }
+      },
+      {
+        "Indexes": [
+          32508
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "fe820a09"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "65bb84d8"
+        },
+        "t2": {
+          "type": "MetalMap",
+          "hash": "b0e08915"
+        },
+        "t3": {
+          "type": "ShadowRamp",
+          "hash": "58d2635b"
+        }
+      },
+      {
+        "Indexes": [
+          62103
+        ],
+        "Part": [
+          "Dress"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "fe820a09"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "65bb84d8"
+        },
+        "t2": {
+          "type": "MetalMap",
+          "hash": "b0e08915"
+        },
+        "t3": {
+          "type": "ShadowRamp",
+          "hash": "58d2635b"
+        }
+      }
+    ]
+  },
+  "97f78c9b": {
+    "Character": "Xinyan",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "a9eb6cd7"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "cec4d545"
+        }
+      },
+      {
+        "Indexes": [
+          21852
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "7e258799"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "4c474ed6"
+        }
+      }
+    ]
+  },
+  "5d09aa00": {
+    "Character": "YaeMiko",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "8457036e"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "f1ea7f03"
+        }
+      },
+      {
+        "Indexes": [
+          19968
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "28dba6c4"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "11f9342e"
+        }
+      },
+      {
+        "Indexes": [
+          62868
+        ],
+        "Part": [
+          "Dress"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "28dba6c4"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "11f9342e"
+        }
+      }
+    ]
+  },
+  "776c5330": {
+    "Character": "Yanfei",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "43a3186a"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "693c5438"
+        }
+      },
+      {
+        "Indexes": [
+          12501
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "4db4ab34"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "62d92176"
+        }
+      }
+    ]
+  },
+  "6c14db37": {
+    "Character": "YaoYao",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "0fa35364"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "b3e065c5"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "bebfcd2b"
+        }
+      },
+      {
+        "Indexes": [
+          21678
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "NormalMap",
+          "hash": "0fa35364"
+        },
+        "t1": {
+          "type": "Diffuse",
+          "hash": "78671236"
+        },
+        "t2": {
+          "type": "LightMap",
+          "hash": "f7e1436e"
+        }
+      }
+    ]
+  },
+  "82e14ea2": {
+    "Character": "Yelan",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "3f3fd885"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "2fe63083"
+        }
+      },
+      {
+        "Indexes": [
+          20913
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "df127976"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "0f384b65"
+        }
+      },
+      {
+        "Indexes": [
+          51759
+        ],
+        "Part": [
+          "Dress"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "df127976"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "0f384b65"
+        }
+      },
+      {
+        "Indexes": [
+          54042
+        ],
+        "Part": [
+          "Extra"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "3f3fd885"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "2fe63083"
+        }
+      }
+    ]
+  },
+  "85777bb6": {
+    "Character": "Yoimiya",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "084d191d"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "692da35d"
+        }
+      },
+      {
+        "Indexes": [
+          11418
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "4bd574e8"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "1b960558"
+        }
+      },
+      {
+        "Indexes": [
+          53652
+        ],
+        "Part": [
+          "Dress"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "4bd574e8"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "1b960558"
+        }
+      }
+    ]
+  },
+  "c632b8df": {
+    "Character": "YunJin",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "0d84aa43"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "6c483d28"
+        }
+      },
+      {
+        "Indexes": [
+          11550
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "03537f05"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "ef96c86a"
+        }
+      },
+      {
+        "Indexes": [
+          56658
+        ],
+        "Part": [
+          "Dress"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "03537f05"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "ef96c86a"
+        }
+      }
+    ]
+  },
+  "4c8480f5": {
+    "Character": "Zhongli",
+    "Component": "",
+    "Objects": [
+      {
+        "Indexes": [
+          0
+        ],
+        "Part": [
+          "Head"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "f38db478"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "3d2ace37"
+        }
+      },
+      {
+        "Indexes": [
+          8976
+        ],
+        "Part": [
+          "Body"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "e851157d"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "009c2e39"
+        }
+      },
+      {
+        "Indexes": [
+          37530
+        ],
+        "Part": [
+          "Dress"
+        ],
+        "t0": {
+          "type": "Diffuse",
+          "hash": "e851157d"
+        },
+        "t1": {
+          "type": "LightMap",
+          "hash": "009c2e39"
+        }
+      }
+    ]
+  }
+}

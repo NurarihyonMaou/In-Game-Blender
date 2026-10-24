@@ -1,0 +1,1054 @@
+namespace = NuraThings\SkillCounter
+
+[Constants]
+global $holdingSkillButton = 0
+
+global $num0 = -1
+global $num1 = -1
+
+global $drag = 0
+
+global $size_x
+global $size_y
+
+global $offset_x
+global $offset_y
+
+global $connect_icons = 0
+
+global persist $icon_size_x
+global persist $icon_size_y
+
+global persist $slot_1_skill_icon_x = 0.79
+global persist $slot_1_skill_icon_y = 0.220
+
+global persist $slot_2_skill_icon_x = 0.79
+global persist $slot_2_skill_icon_y = 0.310
+
+global persist $slot_3_skill_icon_x = 0.79
+global persist $slot_3_skill_icon_y = 0.400
+
+global persist $slot_4_skill_icon_x = 0.79
+global persist $slot_4_skill_icon_y = 0.490
+
+
+global persist $slot_1_burst_icon_x = 0.96125
+global persist $slot_1_burst_icon_y = 0.220
+
+global persist $slot_2_burst_icon_x = 0.96125
+global persist $slot_2_burst_icon_y = 0.310
+
+global persist $slot_3_burst_icon_x = 0.96125
+global persist $slot_3_burst_icon_y = 0.400
+
+global persist $slot_4_burst_icon_x = 0.96125
+global persist $slot_4_burst_icon_y = 0.490
+
+
+global $SkillOrBurst = -1
+
+global $number = -1
+
+global $SkillActivationTime = 0
+global $BurstActivationTime = 0
+
+global $current_unit_id = -1
+
+global $active_unit_id = -1
+
+global $active_unit_skill_cd = 0
+global $active_unit_skill_duration = 0
+
+global $active_unit_skill_hold_cd = 0
+global $active_unit_skill_hold_duration = 0
+
+global $active_unit_burst_cd = 0
+global $active_unit_burst_duration = 0
+
+global $active_unit_skill_cd_left = 0
+global $active_unit_burst_cd_left = 0
+
+
+global $slot_1_unit_id = -1
+global $slot_1_hold = 0
+global $slot_1_skill_timestamp = 0
+global $slot_1_burst_timestamp = 0
+global $slot_1_skill_cd = -1
+global $slot_1_skill_hold_cd = -1
+global $slot_1_burst_cd = -1
+global $slot_1_skill_duration = -1
+global $slot_1_skill_hold_duration = -1
+global $slot_1_burst_duration = -1
+global $slot_1_skill_cd_left = 0
+global $slot_1_burst_cd_left = 0
+global $slot_1_skill_duration_left = 0
+global $slot_1_burst_duration_left = 0
+
+global $slot_2_unit_id = -1
+global $slot_2_hold = 0
+global $slot_2_skill_timestamp = 0
+global $slot_2_burst_timestamp = 0
+global $slot_2_skill_cd = -1
+global $slot_2_skill_hold_cd = -1
+global $slot_2_burst_cd = -1
+global $slot_2_skill_duration = -1
+global $slot_2_skill_hold_duration = -1
+global $slot_2_burst_duration = -1
+global $slot_2_skill_cd_left = 0
+global $slot_2_burst_cd_left = 0
+global $slot_2_skill_duration_left = 0
+global $slot_2_burst_duration_left = 0
+
+global $slot_3_unit_id = -1
+global $slot_3_hold = 0
+global $slot_3_skill_timestamp = 0
+global $slot_3_burst_timestamp = 0
+global $slot_3_skill_cd = -1
+global $slot_3_skill_hold_cd = -1
+global $slot_3_burst_cd = -1
+global $slot_3_skill_duration = -1
+global $slot_3_burst_duration = -1
+global $slot_3_skill_hold_duration = -1
+global $slot_3_skill_cd_left = 0
+global $slot_3_burst_cd_left = 0
+global $slot_3_skill_duration_left = 0
+global $slot_3_burst_duration_left = 0
+
+global $slot_4_unit_id = -1
+global $slot_4_hold = 0
+global $slot_4_skill_timestamp = 0
+global $slot_4_burst_timestamp = 0
+global $slot_4_skill_cd = -1
+global $slot_4_skill_hold_cd = -1
+global $slot_4_burst_cd = -1
+global $slot_4_skill_duration = -1
+global $slot_4_burst_duration = -1
+global $slot_4_skill_hold_duration = -1
+global $slot_4_skill_cd_left = 0
+global $slot_4_burst_cd_left = 0
+global $slot_4_skill_duration_left = 0
+global $slot_4_burst_duration_left = 0
+
+global $active_unit_hold = 0
+
+global $is_hold = 0
+
+global $numbers_color = 1
+
+post $icon_size_x = (128/res_width)/2
+post $icon_size_y = (128/res_height)/2
+
+[Present]
+;$\NuraThings\Print\Numbers\Number = $offset_x
+;$\NuraThings\Print\Numbers\widthScale = 4
+;run = CommandList\NuraThings\Print\Numbers\Run
+
+;$\NuraThings\Print\Numbers\Number = $offset_y
+;$\NuraThings\Print\Numbers\widthScale = 5
+;run = CommandList\NuraThings\Print\Numbers\Run
+;local $isRs = 2
+;if ps-t100 === null
+;	$isRs = 1
+;else
+;	$isRs = 0
+;endif
+
+;$\NuraThings\Print\Numbers\Number = $isRs
+;$\NuraThings\Print\Numbers\widthScale = 6
+;run = CommandList\NuraThings\Print\Numbers\Run
+
+if ($slot_1_skill_timestamp > 0 || $slot_1_burst_timestamp > 0) || ($slot_2_skill_timestamp > 0 || $slot_2_burst_timestamp > 0) || ($slot_3_skill_timestamp > 0 || $slot_3_burst_timestamp > 0) || ($slot_4_skill_timestamp > 0 || $slot_4_burst_timestamp > 0)
+    run = CommandListTimer
+endif
+
+if $connect_icons == 1
+;if $slot_1_burst_icon_x == 0 && $slot_1_burst_icon_y == 0
+        $slot_1_burst_icon_x = $slot_1_skill_icon_x+0.05
+        $slot_1_burst_icon_y = $slot_1_skill_icon_y
+;endif
+
+;if $slot_2_burst_icon_x == 0 && $slot_2_burst_icon_y == 0
+        $slot_2_burst_icon_x = $slot_2_skill_icon_x+0.05
+        $slot_2_burst_icon_y = $slot_2_skill_icon_y
+;endif
+
+;if $slot_3_burst_icon_x == 0 && $slot_3_burst_icon_y == 0
+        $slot_3_burst_icon_x = $slot_3_skill_icon_x+0.05
+        $slot_3_burst_icon_y = $slot_3_skill_icon_y
+;endif
+
+;if $slot_4_burst_icon_x == 0 && $slot_4_burst_icon_y == 0
+        $slot_4_burst_icon_x = $slot_4_skill_icon_x+0.05
+        $slot_4_burst_icon_y = $slot_4_skill_icon_y
+endif
+
+if $holdingSkillButton == 0
+    $active_unit_hold = 0
+else if $holdingSkillButton >= 0.24 && $is_hold == 1
+    $active_unit_hold = 1
+    run = CommandListSetToSlot
+    $is_hold = 0
+endif
+
+;E
+[KeySkill]
+condition = $active_unit_id >= 0 && $active_unit_skill_cd_left <= 2
+key = no_modifiers R
+key = XB_RIGHT_TRIGGER
+type = hold
+transition = 1000
+transition_type = linear
+$holdingSkillButton = 1
+run = CommandListSetSkillTime
+
+[KeySkill2]
+condition = $active_unit_id >= 0 && $is_hold == 0
+key = no_modifiers R
+key = XB_RIGHT_TRIGGER
+type = cycle
+wrap = false
+$is_hold = 0,1
+
+[KeyBurst]
+condition = $active_unit_id >= 0 && $active_unit_burst_cd_left <= 2
+key = no_modifiers Q
+key = XB_Y
+type = hold
+run = CommandListSetBurstTime
+
+[KeyDrag]
+condition = ($slot_1_skill_timestamp > 0 || $slot_1_burst_timestamp > 0) || ($slot_2_skill_timestamp > 0 || $slot_2_burst_timestamp > 0) || ($slot_3_skill_timestamp > 0 || $slot_3_burst_timestamp > 0) || ($slot_4_skill_timestamp > 0 || $slot_4_burst_timestamp > 0)
+key = VK_RBUTTON
+type = hold
+$drag = 1
+
+[KeyReset]
+condition = ($slot_1_skill_timestamp > 0 || $slot_1_burst_timestamp > 0) || ($slot_2_skill_timestamp > 0 || $slot_2_burst_timestamp > 0) || ($slot_3_skill_timestamp > 0 || $slot_3_burst_timestamp > 0) || ($slot_4_skill_timestamp > 0 || $slot_4_burst_timestamp > 0)
+key = ALT V
+type = toggle
+$slot_1_skill_icon_x = 0.79
+$slot_1_skill_icon_y = 0.220
+
+$slot_2_skill_icon_x = 0.79
+$slot_2_skill_icon_y = 0.310
+
+$slot_3_skill_icon_x = 0.79
+$slot_3_skill_icon_y = 0.400
+
+$slot_4_skill_icon_x = 0.79
+$slot_4_skill_icon_y = 0.490
+
+
+$slot_1_burst_icon_x = 0.96125
+$slot_1_burst_icon_y = 0.220
+
+$slot_2_burst_icon_x = 0.96125
+$slot_2_burst_icon_y = 0.310
+
+$slot_3_burst_icon_x = 0.96125
+$slot_3_burst_icon_y = 0.400
+
+$slot_4_burst_icon_x = 0.96125
+$slot_4_burst_icon_y = 0.490
+
+[KeyConnectIcons]
+key = ALT I
+type = toggle
+$connect_icons = 1
+
+[KeyResetPositions]
+key = ALT X
+type = hold
+run = CommandListReset
+
+; MARK: CommandLists
+
+[CommandListSetCurrentCD]
+if $active_unit_id == $slot_1_unit_id
+     $active_unit_skill_cd_left = $slot_1_skill_cd_left
+     $active_unit_burst_cd_left = $slot_1_burst_cd_left
+
+else if $active_unit_id == $slot_2_unit_id
+     $active_unit_skill_cd_left = $slot_2_skill_cd_left
+     $active_unit_burst_cd_left = $slot_2_burst_cd_left
+
+else if $active_unit_id == $slot_3_unit_id
+     $active_unit_skill_cd_left = $slot_3_skill_cd_left
+     $active_unit_burst_cd_left = $slot_3_burst_cd_left
+
+else if $active_unit_id == $slot_4_unit_id
+     $active_unit_skill_cd_left = $slot_4_skill_cd_left
+     $active_unit_burst_cd_left = $slot_4_burst_cd_left
+endif
+
+
+[CommandListCalculateNumbers]
+$number = $number//1
+$num0 = -1
+$num1 = -1
+
+if $number >= 10 && $number < 100
+    $num1 = $number%10
+    $num0 = $number//10
+    $number = $number//10
+endif
+
+if $number >= 1 && $number < 10
+    $num0 = $number//1
+endif
+
+run = CommandListPrint
+
+
+
+[CommandListPrint]
+$size_x = (64/res_width)/1.5
+$size_y = (64/res_height)/1.5
+
+$offset_x = $offset_x+0.01
+$offset_y = $offset_y+0.008
+;*$heightScale
+
+if $num1 == -1
+    $offset_x = $offset_x+0.007
+endif
+
+
+; MARK: Black Numbers
+if $numbers_color == 1
+
+    if $num0 == 0
+        ps-t100 = Resource\NuraThings\Numbers\BlackNumber0
+        run = CustomShaderSliderMenu
+    endif
+
+    if $num0 == 1
+        ps-t100 = Resource\NuraThings\Numbers\BlackNumber1
+        run = CustomShaderSliderMenu
+    endif
+
+    if $num0 == 2
+        ps-t100 = Resource\NuraThings\Numbers\BlackNumber2
+        run = CustomShaderSliderMenu
+    endif
+
+    if $num0 == 3
+        ps-t100 = Resource\NuraThings\Numbers\BlackNumber3
+        run = CustomShaderSliderMenu
+    endif
+
+    if $num0 == 4
+        ps-t100 = Resource\NuraThings\Numbers\BlackNumber4
+        run = CustomShaderSliderMenu
+    endif
+
+    if $num0 == 5
+        ps-t100 = Resource\NuraThings\Numbers\BlackNumber5
+        run = CustomShaderSliderMenu
+    endif
+
+    if $num0 == 6
+        ps-t100 = Resource\NuraThings\Numbers\BlackNumber6
+        run = CustomShaderSliderMenu
+    endif
+
+    if $num0 == 7
+        ps-t100 = Resource\NuraThings\Numbers\BlackNumber7
+        run = CustomShaderSliderMenu
+    endif
+
+    if $num0 == 8
+        ps-t100 = Resource\NuraThings\Numbers\BlackNumber8
+        run = CustomShaderSliderMenu
+    endif
+
+    if $num0 == 9
+        ps-t100 = Resource\NuraThings\Numbers\BlackNumber9
+        run = CustomShaderSliderMenu
+    endif
+
+
+    $offset_x = $offset_x+0.013
+    ;z87+$gap
+
+
+    if $num1 == 0
+        ps-t100 = Resource\NuraThings\Numbers\BlackNumber0
+        run = CustomShaderSliderMenu
+    endif
+
+    if $num1 == 1
+        ps-t100 = Resource\NuraThings\Numbers\BlackNumber1
+        run = CustomShaderSliderMenu
+    endif
+
+    if $num1 == 2
+        ps-t100 = Resource\NuraThings\Numbers\BlackNumber2
+        run = CustomShaderSliderMenu
+    endif
+
+    if $num1 == 3
+        ps-t100 = Resource\NuraThings\Numbers\BlackNumber3
+        run = CustomShaderSliderMenu
+    endif
+
+    if $num1 == 4
+        ps-t100 = Resource\NuraThings\Numbers\BlackNumber4
+        run = CustomShaderSliderMenu
+    endif
+
+    if $num1 == 5
+        ps-t100 = Resource\NuraThings\Numbers\BlackNumber5
+        run = CustomShaderSliderMenu
+    endif
+
+    if $num1 == 6
+        ps-t100 = Resource\NuraThings\Numbers\BlackNumber6
+        run = CustomShaderSliderMenu
+    endif
+
+    if $num1 == 7
+        ps-t100 = Resource\NuraThings\Numbers\BlackNumber7
+        run = CustomShaderSliderMenu
+    endif
+
+    if $num1 == 8
+        ps-t100 = Resource\NuraThings\Numbers\BlackNumber8
+        run = CustomShaderSliderMenu
+    endif
+
+    if $num1 == 9
+        ps-t100 = Resource\NuraThings\Numbers\BlackNumber9
+        run = CustomShaderSliderMenu
+    endif
+
+; MARK: White Numbers
+
+else
+
+    if $num0 == 0
+        ps-t100 = Resource\NuraThings\Numbers\Number0
+        run = CustomShaderSliderMenu
+    endif
+
+    if $num0 == 1
+        ps-t100 = Resource\NuraThings\Numbers\Number1
+        run = CustomShaderSliderMenu
+    endif
+
+    if $num0 == 2
+        ps-t100 = Resource\NuraThings\Numbers\Number2
+        run = CustomShaderSliderMenu
+    endif
+
+    if $num0 == 3
+        ps-t100 = Resource\NuraThings\Numbers\Number3
+        run = CustomShaderSliderMenu
+    endif
+
+    if $num0 == 4
+        ps-t100 = Resource\NuraThings\Numbers\Number4
+        run = CustomShaderSliderMenu
+    endif
+
+    if $num0 == 5
+        ps-t100 = Resource\NuraThings\Numbers\Number5
+        run = CustomShaderSliderMenu
+    endif
+
+    if $num0 == 6
+        ps-t100 = Resource\NuraThings\Numbers\Number6
+        run = CustomShaderSliderMenu
+    endif
+
+    if $num0 == 7
+        ps-t100 = Resource\NuraThings\Numbers\Number7
+        run = CustomShaderSliderMenu
+    endif
+
+    if $num0 == 8
+        ps-t100 = Resource\NuraThings\Numbers\Number8
+        run = CustomShaderSliderMenu
+    endif
+
+    if $num0 == 9
+        ps-t100 = Resource\NuraThings\Numbers\Number9
+        run = CustomShaderSliderMenu
+    endif
+
+
+    $offset_x = $offset_x+0.013
+    ;z87+$gap
+
+
+    if $num1 == 0
+        ps-t100 = Resource\NuraThings\Numbers\Number0
+        run = CustomShaderSliderMenu
+    endif
+
+    if $num1 == 1
+        ps-t100 = Resource\NuraThings\Numbers\Number1
+        run = CustomShaderSliderMenu
+    endif
+
+    if $num1 == 2
+        ps-t100 = Resource\NuraThings\Numbers\Number2
+        run = CustomShaderSliderMenu
+    endif
+
+    if $num1 == 3
+        ps-t100 = Resource\NuraThings\Numbers\Number3
+        run = CustomShaderSliderMenu
+    endif
+
+    if $num1 == 4
+        ps-t100 = Resource\NuraThings\Numbers\Number4
+        run = CustomShaderSliderMenu
+    endif
+
+    if $num1 == 5
+        ps-t100 = Resource\NuraThings\Numbers\Number5
+        run = CustomShaderSliderMenu
+    endif
+
+    if $num1 == 6
+        ps-t100 = Resource\NuraThings\Numbers\Number6
+        run = CustomShaderSliderMenu
+    endif
+
+    if $num1 == 7
+        ps-t100 = Resource\NuraThings\Numbers\Number7
+        run = CustomShaderSliderMenu
+    endif
+
+    if $num1 == 8
+        ps-t100 = Resource\NuraThings\Numbers\Number8
+        run = CustomShaderSliderMenu
+    endif
+
+    if $num1 == 9
+        ps-t100 = Resource\NuraThings\Numbers\Number9
+        run = CustomShaderSliderMenu
+    endif
+
+endif
+
+$size_x = $icon_size_x
+$size_y = $icon_size_y
+$numbers_color = 1
+
+[CommandListSetToSlot]
+if $SkillActivationTime > 0
+
+    if $active_unit_id == $slot_1_unit_id
+        $slot_1_skill_timestamp = $SkillActivationTime
+        $slot_1_hold = $active_unit_hold
+
+    else if $active_unit_id == $slot_2_unit_id
+        $slot_2_skill_timestamp = $SkillActivationTime
+        $slot_2_hold = $active_unit_hold
+
+    else if $active_unit_id == $slot_3_unit_id
+        $slot_3_skill_timestamp = $SkillActivationTime
+        $slot_3_hold = $active_unit_hold
+
+    else if $active_unit_id == $slot_4_unit_id
+        $slot_4_skill_timestamp = $SkillActivationTime
+        $slot_4_hold = $active_unit_hold
+    endif
+
+endif
+
+if $BurstActivationTime > 0
+
+    if $active_unit_id == $slot_1_unit_id
+        $slot_1_burst_timestamp = $BurstActivationTime
+
+    else if $active_unit_id == $slot_2_unit_id
+        $slot_2_burst_timestamp = $BurstActivationTime
+
+    else if $active_unit_id == $slot_3_unit_id
+        $slot_3_burst_timestamp = $BurstActivationTime
+
+    else if $active_unit_id == $slot_4_unit_id
+        $slot_4_burst_timestamp = $BurstActivationTime
+    endif
+    
+    $BurstActivationTime = 0
+endif
+
+[CommandListReset]
+$slot_1_unit_id = -1
+$slot_1_burst_cd = -1
+$slot_1_skill_cd = -1
+$slot_1_burst_duration = -1
+$slot_1_skill_duration = -1
+$slot_1_skill_timestamp = 0
+$slot_1_burst_timestamp = 0
+$slot_1_skill_cd_left = 0
+$slot_1_burst_cd_left = 0
+$slot_1_skill_duration_left = 0
+$slot_1_burst_duration_left = 0
+$slot_1_skill_hold_cd = -1
+$slot_1_skill_hold_duration = -1
+
+$slot_2_unit_id = -1
+$slot_2_burst_cd = -1
+$slot_2_skill_cd = -1
+$slot_2_burst_duration = -1
+$slot_2_skill_duration = -1
+$slot_2_skill_timestamp = 0
+$slot_2_burst_timestamp = 0
+$slot_2_skill_cd_left = 0
+$slot_2_burst_cd_left = 0
+$slot_2_skill_duration_left = 0
+$slot_2_burst_duration_left = 0
+$slot_2_skill_hold_cd = -1
+$slot_2_skill_hold_duration = -1
+
+$slot_3_unit_id = -1
+$slot_3_burst_cd = -1
+$slot_3_skill_cd = -1
+$slot_3_burst_duration = -1
+$slot_3_skill_duration = -1
+$slot_3_skill_timestamp = 0
+$slot_3_burst_timestamp = 0
+$slot_3_skill_cd_left = 0
+$slot_3_burst_cd_left = 0
+$slot_3_skill_duration_left = 0
+$slot_3_burst_duration_left = 0
+$slot_3_skill_hold_cd = -1
+$slot_3_skill_hold_duration = -1
+
+$slot_4_unit_id = -1
+$slot_4_burst_cd = -1
+$slot_4_skill_cd = -1
+$slot_4_burst_duration = -1
+$slot_4_skill_duration = -1
+$slot_4_skill_timestamp = 0
+$slot_4_burst_timestamp = 0
+$slot_4_skill_cd_left = 0
+$slot_4_burst_cd_left = 0
+$slot_4_skill_duration_left = 0
+$slot_4_burst_duration_left = 0
+$slot_4_skill_hold_cd = -1
+$slot_4_skill_hold_duration = -1
+
+$active_unit_skill_cd_left = 0
+$active_unit_burst_cd_left = 0
+
+run = CommandListSetInfo
+
+[CommandListSetInfo]
+if $active_unit_id != $slot_1_unit_id && $active_unit_id != $slot_2_unit_id && $active_unit_id != $slot_3_unit_id && $active_unit_id != $slot_4_unit_id
+    if $slot_1_unit_id == -1
+        $slot_1_unit_id = $active_unit_id
+        $slot_1_burst_cd = $active_unit_burst_cd
+        $slot_1_skill_hold_cd = $active_unit_skill_hold_cd
+        $slot_1_skill_cd = $active_unit_skill_cd
+        $slot_1_burst_duration = $active_unit_burst_duration
+        $slot_1_skill_duration = $active_unit_skill_duration
+        $slot_1_skill_hold_duration = $active_unit_skill_hold_duration
+
+    else if $slot_2_unit_id == -1
+        $slot_2_unit_id = $active_unit_id
+        $slot_2_burst_cd = $active_unit_burst_cd
+        $slot_2_skill_hold_cd = $active_unit_skill_hold_cd
+        $slot_2_skill_cd = $active_unit_skill_cd
+        $slot_2_burst_duration = $active_unit_burst_duration
+        $slot_2_skill_duration = $active_unit_skill_duration
+        $slot_2_skill_hold_duration = $active_unit_skill_hold_duration
+
+    else if $slot_3_unit_id == -1
+        $slot_3_unit_id = $active_unit_id
+        $slot_3_burst_cd = $active_unit_burst_cd
+        $slot_3_skill_hold_cd = $active_unit_skill_hold_cd        
+        $slot_3_skill_cd = $active_unit_skill_cd
+        $slot_3_burst_duration = $active_unit_burst_duration
+        $slot_3_skill_duration = $active_unit_skill_duration
+        $slot_3_skill_hold_duration = $active_unit_skill_hold_duration
+
+    else if $slot_4_unit_id == -1
+        $slot_4_unit_id = $active_unit_id
+        $slot_4_burst_cd = $active_unit_burst_cd
+        $slot_4_skill_hold_cd = $active_unit_skill_hold_cd
+        $slot_4_skill_cd = $active_unit_skill_cd
+        $slot_4_burst_duration = $active_unit_burst_duration
+        $slot_4_skill_duration = $active_unit_skill_duration
+        $slot_4_skill_hold_duration = $active_unit_skill_hold_duration
+    else
+        run = CommandListReset
+    endif
+endif
+
+
+[CommandListSetBurstTime]
+$BurstActivationTime = time+0.25
+run = CommandListSetToSlot
+
+[CommandListSetSkillTime]
+$SkillActivationTime = time+0.25
+run = CommandListSetToSlot
+
+
+
+[CustomShaderSliderMenu]
+local $x87 = x87
+local $y87 = y87
+local $z87 = z87
+local $w87 = w87
+
+x87 = $size_x
+y87 = $size_y
+z87 = $offset_x
+w87 = $offset_y
+
+hs = null
+ds = null
+gs = null
+cs = null
+run = BuiltInCommandListUnbindAllRenderTargets
+
+vs = ../Shaders/UIElement.hlsl
+ps = ../Shaders/UIElement.hlsl
+blend = ADD SRC_ALPHA INV_SRC_ALPHA
+cull = none
+topology = triangle_strip
+o0 = set_viewport bb
+Draw = 4,0
+
+x87 = $x87
+y87 = $y87
+z87 = $z87
+w87 = $w87
+
+
+[CommandListTimer]
+$size_x = (128/res_width)/2
+$size_y = (128/res_height)/2
+
+if $slot_1_skill_timestamp > 0
+    if $slot_1_hold == 1 && $slot_1_skill_hold_cd != -1
+        $slot_1_skill_cd_left = $slot_1_skill_hold_cd+0.1 - (time - $slot_1_skill_timestamp) // 1
+        $slot_1_skill_duration_left = $slot_1_skill_hold_duration+0.24 - (time - $slot_1_skill_timestamp) // 1  
+    else
+        $slot_1_skill_cd_left = $slot_1_skill_cd - (time - $slot_1_skill_timestamp) // 1
+        $slot_1_skill_duration_left = $slot_1_skill_duration - (time - $slot_1_skill_timestamp) // 1  
+    endif
+
+    $offset_x = $slot_1_skill_icon_x
+    $offset_y = $slot_1_skill_icon_y
+
+    $SkillOrBurst = 0 
+    $current_unit_id = $slot_1_unit_id
+
+    run = CommandList\NuraThings\SkillCounter\Resources\GibResource
+    ps-t100 = ResourceIcon
+    run = CustomShaderSliderMenu 
+
+    $offset_x = $slot_1_skill_icon_x-0.01125
+    $offset_y = $slot_1_skill_icon_y
+    $number = $slot_1_skill_duration_left
+
+    if $slot_1_skill_duration_left <= 0 && $slot_1_skill_cd_left > 0
+        $number = $slot_1_skill_cd_left
+        $numbers_color = 0
+    endif
+    
+    run = CommandListCalculateNumbers
+    run = CommandListSetCurrentCD
+
+    if $slot_1_skill_cd_left <= 0 && $slot_1_skill_duration_left <= 0
+        $slot_1_skill_timestamp = 0
+    endif
+endif
+
+
+if $slot_1_burst_timestamp > 0
+    $slot_1_burst_cd_left = $slot_1_burst_cd - (time - $slot_1_burst_timestamp) // 1  
+    $slot_1_burst_duration_left = $slot_1_burst_duration - (time - $slot_1_burst_timestamp) // 1 
+    
+
+    $offset_x = $slot_1_burst_icon_x
+    $offset_y = $slot_1_burst_icon_y
+
+    $SkillOrBurst = 1
+    $current_unit_id = $slot_1_unit_id
+
+    run = CommandList\NuraThings\SkillCounter\Resources\GibResource
+    ps-t100 = ResourceIcon
+    run = CustomShaderSliderMenu 
+    
+    $offset_x = $slot_1_burst_icon_x-0.01125
+    $offset_y = $slot_1_burst_icon_y
+    $number = $slot_1_burst_duration_left
+
+    if $slot_1_burst_duration_left <= 0 && $slot_1_burst_cd_left > 0
+        $number = $slot_1_burst_cd_left
+        $numbers_color = 0
+    endif
+
+    run = CommandListCalculateNumbers
+    run = CommandListSetCurrentCD
+
+    if $slot_1_burst_cd_left <= 0 && $slot_1_burst_duration_left <= 0
+        $slot_1_burst_timestamp = 0
+    endif
+endif
+
+
+
+if $slot_2_skill_timestamp > 0
+    if $slot_2_hold == 1 && $slot_2_skill_hold_cd != -1
+        $slot_2_skill_cd_left = $slot_2_skill_hold_cd+0.1 - (time - $slot_2_skill_timestamp) // 1
+        $slot_2_skill_duration_left = $slot_2_skill_hold_duration+0.24 - (time - $slot_2_skill_timestamp) // 1  
+    else
+        $slot_2_skill_cd_left = $slot_2_skill_cd - (time - $slot_2_skill_timestamp) // 1
+        $slot_2_skill_duration_left = $slot_2_skill_duration - (time - $slot_2_skill_timestamp) // 1  
+    endif
+
+    $offset_x = $slot_2_skill_icon_x
+    $offset_y = $slot_2_skill_icon_y
+
+    $SkillOrBurst = 0 
+    $current_unit_id = $slot_2_unit_id
+    
+    run = CommandList\NuraThings\SkillCounter\Resources\GibResource
+    ps-t100 = ResourceIcon
+    run = CustomShaderSliderMenu 
+    
+    $offset_x = $slot_2_skill_icon_x-0.01125
+    $offset_y = $slot_2_skill_icon_y
+    $number = $slot_2_skill_duration_left
+
+    if $slot_2_skill_duration_left <= 0 && $slot_2_skill_cd_left > 0
+        $number = $slot_2_skill_cd_left
+        $numbers_color = 0
+    endif
+
+    run = CommandListCalculateNumbers
+    run = CommandListSetCurrentCD
+
+    if $slot_2_skill_cd_left <= 0 && $slot_2_skill_duration_left <= 0
+        $slot_2_skill_timestamp = 0
+    endif
+endif
+
+
+if $slot_2_burst_timestamp > 0
+    $slot_2_burst_cd_left = $slot_2_burst_cd - (time - $slot_2_burst_timestamp) // 1  
+    $slot_2_burst_duration_left = $slot_2_burst_duration- (time - $slot_2_skill_timestamp) // 1 
+
+    $offset_x = $slot_2_burst_icon_x
+    $offset_y = $slot_2_burst_icon_y
+
+    $SkillOrBurst = 1 
+    $current_unit_id = $slot_2_unit_id
+    run = CommandList\NuraThings\SkillCounter\Resources\GibResource
+    ps-t100 = ResourceIcon
+    run = CustomShaderSliderMenu 
+    
+    $offset_x = $slot_2_burst_icon_x-0.01125
+    $offset_y = $slot_2_burst_icon_y
+    $number = $slot_2_burst_duration_left
+
+    if $slot_2_burst_duration_left <= 0 && $slot_2_burst_cd_left > 0
+        $number = $slot_2_burst_cd_left
+        $numbers_color = 0
+    endif
+
+    run = CommandListCalculateNumbers
+    run = CommandListSetCurrentCD
+
+    if $slot_2_burst_cd_left <= 0 && $slot_2_burst_duration_left <= 0
+        $slot_2_burst_timestamp = 0
+    endif
+endif
+
+
+
+if $slot_3_skill_timestamp > 0
+    if $slot_3_hold == 1 && $slot_3_skill_hold_cd != -1
+        $slot_3_skill_cd_left = $slot_3_skill_hold_cd+0.1 - (time - $slot_3_skill_timestamp) // 1
+        $slot_3_skill_duration_left = $slot_3_skill_hold_duration+0.24 - (time - $slot_3_skill_timestamp) // 1  
+    else
+        $slot_3_skill_cd_left = $slot_3_skill_cd - (time - $slot_3_skill_timestamp) // 1
+        $slot_3_skill_duration_left = $slot_3_skill_duration - (time - $slot_3_skill_timestamp) // 1  
+    endif 
+
+    $offset_x = $slot_3_skill_icon_x
+    $offset_y = $slot_3_skill_icon_y
+
+    $SkillOrBurst = 0 
+    $current_unit_id = $slot_3_unit_id
+
+    run = CommandList\NuraThings\SkillCounter\Resources\GibResource
+    ps-t100 = ResourceIcon
+    run = CustomShaderSliderMenu 
+
+    $offset_x = $slot_3_skill_icon_x-0.01125
+    $offset_y = $slot_3_skill_icon_y
+    $number = $slot_3_skill_duration_left
+        
+    if $slot_3_skill_duration_left <= 0 && $slot_3_skill_cd_left > 0
+        $number = $slot_3_skill_cd_left
+        $numbers_color = 0
+    endif
+
+    run = CommandListCalculateNumbers
+    run = CommandListSetCurrentCD
+
+    if $slot_3_skill_cd_left <= 0 && $slot_3_skill_duration_left <= 0
+        $slot_3_skill_timestamp = 0
+    endif
+endif
+
+
+if $slot_3_burst_timestamp > 0
+    $slot_3_burst_cd_left = $slot_3_burst_cd - (time - $slot_3_burst_timestamp) // 1  
+    $slot_3_burst_duration_left = $slot_3_burst_duration- (time - $slot_3_skill_timestamp) // 1 
+
+
+    $offset_x = $slot_3_burst_icon_x
+    $offset_y = $slot_3_burst_icon_y
+
+    $SkillOrBurst = 1
+    $current_unit_id = $slot_3_unit_id
+
+    run = CommandList\NuraThings\SkillCounter\Resources\GibResource
+    ps-t100 = ResourceIcon
+    run = CustomShaderSliderMenu 
+    
+    $offset_x = $slot_3_burst_icon_x-0.01125
+    $offset_y = $slot_3_burst_icon_y
+    $number = $slot_3_burst_duration_left
+
+    if $slot_3_burst_duration_left <= 0 && $slot_3_burst_cd_left > 0
+        $number = $slot_3_burst_cd_left
+        $numbers_color = 0
+    endif
+
+    run = CommandListCalculateNumbers
+    run = CommandListSetCurrentCD
+
+    if $slot_3_burst_cd_left <= 0 && $slot_3_burst_duration_left <= 0
+        $slot_3_burst_timestamp = 0
+    endif
+endif
+
+
+
+if $slot_4_skill_timestamp > 0
+    if $slot_4_hold == 1 && $slot_4_skill_hold_cd != -1
+        $slot_4_skill_cd_left = $slot_4_skill_hold_cd+0.1 - (time - $slot_4_skill_timestamp) // 1
+        $slot_4_skill_duration_left = $slot_4_skill_hold_duration+0.24 - (time - $slot_4_skill_timestamp) // 1  
+    else
+        $slot_4_skill_cd_left = $slot_4_skill_cd - (time - $slot_4_skill_timestamp) // 1
+        $slot_4_skill_duration_left = $slot_4_skill_duration - (time - $slot_4_skill_timestamp) // 1  
+    endif
+
+
+    $offset_x = $slot_4_skill_icon_x
+    $offset_y = $slot_4_skill_icon_y
+
+    $SkillOrBurst = 0
+    $current_unit_id = $slot_4_unit_id
+
+    run = CommandList\NuraThings\SkillCounter\Resources\GibResource
+    ps-t100 = ResourceIcon
+    run = CustomShaderSliderMenu 
+
+    $offset_x = $slot_4_skill_icon_x-0.01125
+    $offset_y = $slot_4_skill_icon_y
+    $number = $slot_4_skill_duration_left
+
+    if $slot_4_skill_duration_left <= 0 && $slot_4_skill_cd_left > 0
+        $number = $slot_4_skill_cd_left
+        $numbers_color = 0
+    endif
+
+    run = CommandListCalculateNumbers
+    run = CommandListSetCurrentCD
+
+    if $slot_4_skill_cd_left <= 0 && $slot_4_skill_duration_left <= 0
+        $slot_4_skill_timestamp = 0
+    endif
+endif
+
+
+if $slot_4_burst_timestamp > 0
+    $slot_4_burst_cd_left = $slot_4_burst_cd - (time - $slot_4_burst_timestamp) // 1  
+    $slot_4_burst_duration_left = $slot_4_burst_duration- (time - $slot_4_skill_timestamp) // 1 
+
+
+    $offset_x = $slot_4_burst_icon_x
+    $offset_y = $slot_4_burst_icon_y
+
+    $SkillOrBurst = 1
+    $current_unit_id = $slot_4_unit_id
+
+    run = CommandList\NuraThings\SkillCounter\Resources\GibResource
+    ps-t100 = ResourceIcon
+    run = CustomShaderSliderMenu 
+    
+    $offset_x = $slot_4_burst_icon_x-0.01125
+    $offset_y = $slot_4_burst_icon_y
+    $number = $slot_4_burst_duration_left
+
+    if $slot_4_burst_duration_left <= 0 && $slot_4_burst_cd_left > 0
+        $number = $slot_4_burst_cd_left
+        $numbers_color = 0
+    endif
+
+    run = CommandListCalculateNumbers
+    run = CommandListSetCurrentCD
+
+    if $slot_4_burst_cd_left <= 0 && $slot_4_burst_duration_left <= 0
+        $slot_4_burst_timestamp = 0
+    endif
+endif
+
+
+; MARK: Drag Icons
+if $drag
+    ; Skill
+    if (cursor_x >= $slot_1_skill_icon_x && cursor_x <= $slot_1_skill_icon_x+$icon_size_x) && (cursor_y >= $slot_1_skill_icon_y && cursor_y <= $slot_1_skill_icon_y+$icon_size_y)
+        $slot_1_skill_icon_x = cursor_x-($icon_size_x/2)
+        $slot_1_skill_icon_y = cursor_y-($icon_size_y/2)
+    
+    else if (cursor_x >= $slot_2_skill_icon_x && cursor_x <= $slot_2_skill_icon_x+$icon_size_x) && (cursor_y >= $slot_2_skill_icon_y && cursor_y <= $slot_2_skill_icon_y+$icon_size_y)
+        $slot_2_skill_icon_x = cursor_x-($icon_size_x/2)
+        $slot_2_skill_icon_y = cursor_y-($icon_size_y/2)
+    
+    else if (cursor_x >= $slot_3_skill_icon_x && cursor_x <= $slot_3_skill_icon_x+$icon_size_x) && (cursor_y >= $slot_3_skill_icon_y && cursor_y <= $slot_3_skill_icon_y+$icon_size_y)
+        $slot_3_skill_icon_x = cursor_x-($icon_size_x/2)
+        $slot_3_skill_icon_y = cursor_y-($icon_size_y/2)
+    
+    else if (cursor_x >= $slot_4_skill_icon_x && cursor_x <= $slot_4_skill_icon_x+$icon_size_x) && (cursor_y >= $slot_4_skill_icon_y && cursor_y <= $slot_4_skill_icon_y+$icon_size_y)
+        $slot_4_skill_icon_x = cursor_x-($icon_size_x/2)
+        $slot_4_skill_icon_y = cursor_y-($icon_size_y/2)
+
+    ; Burst
+
+    else if (cursor_x >= $slot_1_burst_icon_x && cursor_x <= $slot_1_burst_icon_x+$icon_size_x) && (cursor_y >= $slot_1_burst_icon_y && cursor_y <= $slot_1_burst_icon_y+$icon_size_y)
+        $slot_1_burst_icon_x = cursor_x-($icon_size_x/2)
+        $slot_1_burst_icon_y = cursor_y-($icon_size_y/2)
+    
+    else if (cursor_x >= $slot_2_burst_icon_x && cursor_x <= $slot_2_burst_icon_x+$icon_size_x) && (cursor_y >= $slot_2_burst_icon_y && cursor_y <= $slot_2_burst_icon_y+$icon_size_y)
+        $slot_2_burst_icon_x = cursor_x-($icon_size_x/2)
+        $slot_2_burst_icon_y = cursor_y-($icon_size_y/2)
+    
+    else if (cursor_x >= $slot_3_burst_icon_x && cursor_x <= $slot_3_burst_icon_x+$icon_size_x) && (cursor_y >= $slot_3_burst_icon_y && cursor_y <= $slot_3_burst_icon_y+$icon_size_y)
+        $slot_3_burst_icon_x = cursor_x-($icon_size_x/2)
+        $slot_3_burst_icon_y = cursor_y-($icon_size_y/2)
+    
+    else if (cursor_x >= $slot_4_burst_icon_x && cursor_x <= $slot_4_burst_icon_x+$icon_size_x) && (cursor_y >= $slot_4_burst_icon_y && cursor_y <= $slot_4_burst_icon_y+$icon_size_y)
+        $slot_4_burst_icon_x = cursor_x-($icon_size_x/2)
+        $slot_4_burst_icon_y = cursor_y-($icon_size_y/2)
+
+    endif
+endif
+
+; MARK: Resources
+
+[ResourceIcon]

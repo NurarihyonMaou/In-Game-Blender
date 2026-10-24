@@ -1,0 +1,146 @@
+<html>
+    <head>
+    </head>
+    <script type="text/javascript">
+        function ConvertText(){
+            let InputData = document.getElementById("TextToPrint").value.toUpperCase();
+            let ConvertedData;
+            for(let letter = InputData.length; letter >= 0; letter--)
+                switch(InputData[letter]){
+                    case 'A':
+                        ConvertedData+='10';
+                    break;
+
+                    case 'B':
+                        ConvertedData+='11';
+                    break;
+
+                    case 'C':
+                        ConvertedData+='12';
+                    break;
+
+                    case 'D':
+                        ConvertedData+='13';
+                    break;
+
+                    case 'E':
+                        ConvertedData+='14';
+                    break;
+
+                    case 'F':
+                        ConvertedData+='15';
+                    break;
+
+                    case 'G':
+                        ConvertedData+='16';
+                    break;
+
+                    case 'H':
+                        ConvertedData+='17';
+                    break;
+
+                    case 'I':
+                        ConvertedData+='18';
+                    break;
+
+                    case 'J':
+                        ConvertedData+='19';
+                    break;
+
+                    case 'K':
+                        ConvertedData+='20';
+                    break;
+
+                    case 'L':
+                        ConvertedData+='21';
+                    break;
+
+                    case 'M':
+                        ConvertedData+='22';
+                    break;
+
+                    case 'N':
+                        ConvertedData+='23';
+                    break;
+
+                    case 'O':
+                        ConvertedData+='24';
+                    break;
+
+                    case 'P':
+                        ConvertedData+='25';
+                    break;
+
+                    case 'Q':
+                        ConvertedData+='26';
+                    break;
+
+                    case 'R':
+                        ConvertedData+='27';
+                    break;
+
+                    case 'S':
+                        ConvertedData+='28';
+                    break;
+
+                    case 'T':
+                        ConvertedData+='29';
+                    break;
+
+                    case 'U':
+                        ConvertedData+='30';
+                    break;
+
+                    case 'V':
+                        ConvertedData+='31';
+                    break;
+
+                    case 'W':
+                        ConvertedData+='32';
+                    break;
+
+                    case 'X':
+                        ConvertedData+='33';
+                    break;
+
+                    case 'Y':
+                        ConvertedData+='34';
+                    break;
+
+                    case 'Z':
+                        ConvertedData+='35';
+                    break;
+
+                    case ' ':
+                        ConvertedData+='99';
+                    break;
+                }
+
+        ConvertedData = ConvertedData.slice(9);
+  
+        let DataToPrint ='';
+        
+        if(ConvertedData.length > 6)
+            for(let letter = 60; letter >= 6; letter-=6)
+                DataToPrint += `</br>global $string${letter == 60 ? 1 : letter == 54 ? 2 : letter == 48 ? 3 : letter == 42 ? 4 : letter == 36 ? 5 : letter == 30 ? 6 : letter == 24 ? 7 : letter == 18 ? 8 : letter == 12 ? 9 : 10} ${ConvertedData.slice(letter-6, letter) != '' ? ' = '+ConvertedData.slice(letter-6, letter) : ''}`;
+        else
+            DataToPrint = `</br>global $string1 = ${ConvertedData}</br>global $string2</br>global $string3</br>global $string4</br>global $string5</br>global $string6</br>global $string7</br>global $string8</br>global $string9</br>global $string10`;
+        document.getElementsByTagName('span')[0].innerHTML = DataToPrint;
+
+        };
+
+                
+       // if(ConvertedData.length > 8)
+       //     for(let letter = 48; letter >= 8; letter-=8)
+       //         DataToPrint += `</br>global $string${letter == 48 ? 1 : letter == 40 ? 2 : letter == 32 ? 3 : letter == 24 ? 4 : letter == 16 ? 5 : 6} ${ConvertedData.slice(letter-8, letter) != '' ? ' = '+ConvertedData.slice(letter-8, letter) : ''}`;
+       // else
+       //     DataToPrint = `</br>global $string1 = ${ConvertedData}</br>global $string2</br>global $string3</br>global $string4</br>global $string5</br>global $string6`;
+       // document.getElementsByTagName('span')[0].innerHTML = DataToPrint;
+
+    </script>
+    <body>
+        <input type='text' id="TextToPrint" maxlength="30" oninput='ConvertText();'/>
+        <span></span>
+    </body>
+</html>
+

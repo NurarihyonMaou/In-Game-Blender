@@ -1,0 +1,1214 @@
+namespace = NuraThings\ModManager
+
+[Constants]
+global $ModID
+global $ModCount
+global $ModTypeID
+
+global $LastModCount
+
+global $LastModCount2FramesAgo
+
+global $AllModsActiveCount = 0
+
+global $LastAllModsActiveCount = -1
+
+global $LastAllModsActiveCount2FramesAgo = -1
+
+global $FreeID = -1
+
+global $ActiveID = 0
+global $ActiveID1 = 0
+global $ActiveID2 = 0
+global $ActiveID3 = 0
+global $ActiveID4 = 0
+global $ActiveID5 = 0
+
+global $ChooseActiveID = 0
+
+global $ActiveTypeID = 0
+global $PreviousActiveTypeID = 0
+
+global $ModTypesCount = 0
+
+global $currentModelID = 0
+global $previousModelID = 0
+
+global $modSwap = 0
+
+global $menu_mode = 0
+
+global $first_run = 0
+
+global $show_path = 1
+global $show_toggles = 0
+
+global $model_index = 0
+
+global $reset_model_ids = 0
+global $reset_mod_ids = 0
+
+global $ReAssignedModIDs = 0
+
+
+global $leftID = -1
+global $middleID = -1
+global $rightID = -1
+
+global $hold = 0
+global $rotate = 1
+global persist $angle
+;global persist $v_angle
+
+global $gallery_mode = 1
+
+global $gallery_draw_count = 0
+
+global $TypeIndex = 0
+
+global $camera_zoom = -0.5
+
+global $ResetIDs = 0
+
+global $reset_next_frame = 0
+
+global $testVar = -1
+
+global $debug_mode = 0
+
+global $get_random_id = 0
+
+global $frame = 0
+
+global persist $random_mode
+
+global $get_random_id_next_frame
+
+global $get_random_id_next
+
+global $once_per_frame = 1
+
+global $how_many_times = 0
+
+global $PreventRandom
+
+global $NumberWidth = 0.035
+
+global $getModTypeCount = 0
+
+global $waitXFrames = 0
+
+global $setID
+
+post $angle = ((cursor_window_x/res_width) * 18)+0.4
+;post $v_angle = ((cursor_window_y/res_height) * 9)-1
+
+[Present]
+
+if $setID > 0
+    post $setID = $setID-1
+endif
+
+if $waitXFrames > 0
+    $waitXFrames = $waitXFrames-1
+endif
+
+if $waitXFrames == 1
+    if $menu_mode
+        post store = $ModTypesCount, ResourceModelID, 1
+    endif
+endif
+
+if $PreventRandom > 0
+    $PreventRandom =$PreventRandom-1
+endif
+
+if $get_random_id_next_frame
+    if $ModCount == $LastModCount
+        if !$PreventRandom
+            $get_random_id = 1
+            $get_random_id_next_frame = 0
+        else
+            $get_random_id_next_frame = 0
+        endif
+    endif
+endif
+
+
+if $ModCount == 0
+    if $LastModCount > 0
+        $ModCount = $LastModCount
+        $LastModCount = 0
+    else if $LastAllModsActiveCount2FramesAgo > 0
+        $ModCount = $LastAllModsActiveCount2FramesAgo
+        $LastAllModsActiveCount2FramesAgo = 0
+    endif
+endif
+
+
+if $LastModCount2FramesAgo != $LastModCount
+    post $LastModCount2FramesAgo = $LastModCount
+endif
+
+if $LastModCount != $ModCount
+    post $LastModCount = $ModCount
+endif
+
+if $first_run
+    $first_run = 0
+endif
+
+$frame = $frame+1
+
+if $reset_next_frame == 1
+    $reset_model_ids = 0
+
+    if $reset_mod_ids
+        $reset_next_frame = 3
+    else
+        $reset_next_frame = 0
+    endif
+
+else if $reset_next_frame == 2
+        $ResetIDs = 0
+        $reset_next_frame = 0
+        if $getModTypeCount == 1
+            $waitXFrames = 6
+            $getModTypeCount = 0
+        endif
+else if $reset_next_frame == 3
+    $reset_mod_ids = 0
+    $reset_next_frame = 0
+endif
+
+if $ResetIDs
+    $reset_next_frame = 2
+endif
+
+if $reset_model_ids
+    $reset_next_frame = 1
+    $ResetIDs = 1
+endif
+
+if $get_random_id
+    $how_many_times = $how_many_times+1
+    x99 = time
+    y99 = $frame
+    run = CustomShaderHandleModIDs
+    $get_random_id = 0
+endif
+
+if $LastAllModsActiveCount == 0
+    run = CommandListResetResources
+endif
+
+;80 = $camera_zoom
+;$\NuraThings\Print\Numbers\Number = o7 === null
+;run = CommandList\NuraThings\Print\Numbers\Run
+
+
+if $debug_mode
+    run = CommandListDebugInfo
+endif
+
+
+
+;if $rotate
+;    local $tempAngle = ((cursor_window_x/res_width) * 18)+0.4
+;
+;    if $angle != $tempAngle
+;        $angle = $tempAngle
+;        $gallery_draw_count = 0
+;    endif
+;    ;$v_angle = ((cursor_window_y/res_height) * 9)-1
+;endif
+;
+;y79 = $angle
+
+
+
+
+if $menu_mode > 0
+
+    if $menu_mode == 1
+        pre run = CommandListDrawInfo
+    endif
+
+    if $menu_mode == 2
+        run = CommandListHandlePreview
+    endif
+
+endif
+
+
+post run = CommandListCountAllIDs
+post $ModCount = 0
+
+;if $LastModCount > 0
+;    post run = CommandListNormalizeIDs
+;endif
+
+if $PreviousActiveTypeID != $ActiveTypeID
+    $PreviousActiveTypeID = $ActiveTypeID
+    $setID = 1
+    $ModCount = 0
+    $LastModCount = 0
+    $reset_mod_ids = 1
+    ;$reset_model_ids = 1
+    
+    run = CommandListResetResources
+endif
+
+
+;if $currentModelID != $ModTypeID
+;    $currentModelID = $ModTypeID
+;endif
+;
+;if $currentModelID != 0
+;    if $previousModelID != $currentModelID 
+;        $ModCount = 0
+;        $LastModCount = 0
+;        $previousModelID = $currentModelID
+;        $reset_mod_ids = 1
+;        $reset_model_ids = 1
+;        
+;        run = CommandListResetResources
+;
+;    endif
+;endif
+
+post $once_per_frame = 1
+
+[CommandListNormalizeIDs]
+if $ActiveID > $LastModCount
+    $ActiveID = 0
+endif
+
+if $ActiveID1 > $LastModCount
+    $ActiveID1 = 0
+endif
+
+;if $ActiveID2 > $LastModCount
+;    $ActiveID2 = 0
+;endif
+;
+;if $ActiveID3 > $LastModCount
+;    $ActiveID3 = 0
+;endif
+;
+;if $ActiveID4 > $LastModCount
+;    $ActiveID4 = 0
+;endif
+;
+;if $ActiveID5 > $LastModCount
+;    $ActiveID5 = 0
+;endif
+
+[CommandListCountAllIDs]
+if $LastAllModsActiveCount2FramesAgo != $LastAllModsActiveCount
+    if $LastAllModsActiveCount2FramesAgo != -1 && $LastAllModsActiveCount2FramesAgo != $AllModsActiveCount
+        $reset_model_ids = 1
+        $getModTypeCount = 1
+    endif
+    $LastAllModsActiveCount2FramesAgo = $LastAllModsActiveCount
+endif
+
+if $LastAllModsActiveCount != $AllModsActiveCount
+    $LastAllModsActiveCount = $AllModsActiveCount
+endif
+
+post $AllModsActiveCount = 0
+
+[KeyTestVarReset]
+key = VK_CONTROL F
+type = cycle
+$testVar = 0
+
+[KeyH]
+condition = $menu_mode > 0
+key = VK_CONTROL ]
+type = hold
+run = CommandListAddType
+
+[KeyJ]
+condition = $menu_mode > 0
+key = VK_CONTROL [
+type = hold
+run = CommandListMinusType
+
+[KeyRandom]
+key = VK_CONTROL /
+type = cycle
+$get_random_id = 1
+run = CommandListResetResources
+
+[KeyScroll]
+key = VK_CONTROL '
+type = hold
+run = CommandListAddCamera
+
+[KeyScrollDown]
+key = VK_CONTROL ;
+type = hold
+run = CommandListMinusCamera
+
+
+
+[KeySetToZero]
+condition = $menu_mode > 0
+key = VK_CONTROL 0
+type = toggle
+$ActiveID = 0
+$ActiveID1 = 0
+
+$ActiveID2 = 0
+$ActiveID3 = 0
+
+$ActiveID4 = 0
+$ActiveID5 = 0
+
+
+[KeyC]
+condition = $menu_mode > 0
+key = VK_CONTROL VK_RIGHT
+type = hold
+run = CommandListAdd
+
+[KeyD]
+condition = $menu_mode > 0
+key = VK_CONTROL VK_LEFT
+type = hold
+run = CommandListMinus
+
+[KeyF]
+key = VK_CONTROL VK_UP
+type = cycle
+$menu_mode = 0,1
+run = CommandListSetReset
+
+[KeyDebug]
+key = `
+type = cycle
+$debug_mode = 0,1
+
+
+[KeyChoose]
+condition = $menu_mode > 0
+key = VK_TAB
+back = VK_CONTROL VK_ALT
+type = cycle
+$ChooseActiveID = 0,1
+;,2,3,4,5
+run = CommandListResetResources
+
+[KeyRandomMode]
+condition = $menu_mode > 0
+key = VK_CONTROL .
+type = cycle
+$random_mode = 0,1,2
+
+
+[KeyResetIDs]
+condition = $menu_mode > 0
+key = VK_CONTROL VK_DOWN
+type = hold
+run = CommandListResetIDs
+
+
+
+[CommandListSetReset]
+$PreventRandom = 2
+$ResetIDs = 1
+
+[CommandListAddCamera]
+$camera_zoom = $camera_zoom+0.25
+
+
+
+[CommandListMinusCamera]
+$camera_zoom = $camera_zoom-0.25
+
+
+[CommandListResetIDs]
+$reset_mod_ids = 1
+$reset_model_ids = 1
+$ResetIDs = 2
+
+run = CommandListResetResources
+
+[CommandListAdd]
+if $ChooseActiveID == 0
+
+    $ActiveID = $ActiveID+1
+
+    if $ActiveID > $ModCount
+        $ActiveID = 0
+    endif
+    
+else if $ChooseActiveID == 1
+
+    $ActiveID1 = $ActiveID1+1
+
+    if $ActiveID1 > $ModCount
+        $ActiveID1 = 0
+    endif
+
+;else if $ChooseActiveID == 2
+;    $ActiveID2 = $ActiveID2+1
+;
+;    if $ActiveID2 > $ModCount
+;        $ActiveID2 = 0
+;    endif
+;
+;else if $ChooseActiveID == 3
+;    $ActiveID3 = $ActiveID3+1
+;
+;    if $ActiveID3 > $ModCount
+;        $ActiveID3 = 0
+;    endif
+;
+;else if $ChooseActiveID == 4
+;    $ActiveID4 = $ActiveID4+1
+;
+;    if $ActiveID4 > $ModCount
+;        $ActiveID4 = 0
+;    endif
+;
+;else if $ChooseActiveID == 5
+;    $ActiveID5 = $ActiveID5+1
+;
+;    if $ActiveID5 > $ModCount
+;        $ActiveID5 = 0
+;    endif
+endif
+
+run = CommandListResetResources
+
+[CommandListMinus]
+if $ChooseActiveID == 0
+
+    $ActiveID = $ActiveID-1
+
+    if $ActiveID < 0
+        $ActiveID = $ModCount
+    endif
+
+else if $ChooseActiveID == 1
+
+    $ActiveID1 = $ActiveID1-1
+
+    if $ActiveID1 < 0
+        $ActiveID1 = $ModCount
+    endif
+
+;else if $ChooseActiveID == 2
+;    $ActiveID2 = $ActiveID2-1
+;
+;    if $ActiveID2 < 0
+;        $ActiveID2 = $ModCount
+;    endif
+;
+;else if $ChooseActiveID == 3
+;    $ActiveID3 = $ActiveID3-1
+;
+;    if $ActiveID3 < 0
+;        $ActiveID3 = $ModCount
+;    endif
+;
+;else if $ChooseActiveID == 4
+;    $ActiveID4 = $ActiveID4-1
+;
+;    if $ActiveID4 < 0
+;        $ActiveID4 = $ModCount
+;    endif
+;
+;else if $ChooseActiveID == 5
+;    $ActiveID5 = $ActiveID5-1
+;
+;    if $ActiveID5 < 0
+;        $ActiveID5 = $ModCount
+;    endif
+endif
+
+run = CommandListResetResources
+
+
+
+[CommandListAddType]
+$TypeIndex = $TypeIndex+1
+
+if $TypeIndex > $ModTypesCount-1
+    $TypeIndex = 0
+endif
+
+$ActiveID = 0
+
+$LastModCount = 0
+
+$ResetIDs = 1
+
+;run = CustomShaderHandleModelIDs
+
+run = CommandListResetResources
+;if $ActiveID > $ModCount
+;    $ActiveID = 0
+;endif
+
+[CommandListMinusType]
+$TypeIndex = $TypeIndex-1
+
+if $TypeIndex < 0
+    $TypeIndex = $ModTypesCount-1
+endif
+
+$ActiveID = 0
+
+$LastModCount = 0
+
+$ResetIDs = 1
+
+;run = CustomShaderHandleModelIDs
+
+run = CommandListResetResources
+;if $ActiveID < 0
+;    $ActiveID = $ModCount
+;endif
+
+
+
+
+[CommandListHandlePreview]
+if $rotate
+    local $tempAngle = ((cursor_window_x/res_width) * 18)+0.4
+
+    if $angle != $tempAngle
+        $angle = $tempAngle
+        $gallery_draw_count = 0
+    endif
+;$v_angle = ((cursor_window_y/res_height) * 9)-1
+endif
+
+y79 = $angle
+;y81 = $v_angle
+
+;run = CommandListHandleGalleryIDs
+
+
+[CustomShaderHandleModelIDs]
+local $x98 = x98
+x98 = $ModTypeID
+
+local $y98 = y98
+y98 = $reset_model_ids
+
+local $z98 = z98
+z98 = $TypeIndex
+
+cs = ../Shaders/StoreIDs.hlsl
+cs-u0 = ResourceModelIDs
+cs-u1 = ResourceModelID
+
+dispatch = 1,1,1
+
+if $once_per_frame
+    ;pre $ActiveID = 0
+    post store = $ActiveTypeID, ResourceModelID, 0
+    post store = $ModTypesCount, ResourceModelID, 1
+
+
+    if $PreviousActiveTypeID != $ActiveTypeID
+        post $PreviousActiveTypeID = $ActiveTypeID
+        post $ActiveID = 0
+        post run = CommandListResetResources
+        post $setID = 1
+    endif
+
+    post $once_per_frame = 0
+endif
+
+if $reset_model_ids
+    $TypeIndex = 0
+endif
+
+x98 = $x98
+y98 = $y98
+z98 = $z98
+
+
+[CustomShaderHandleModIDs]
+local $x98 = x98
+x98 = $ModID
+
+local $y98 = y98
+y98 = $reset_mod_ids
+
+local $w98 = w98
+w98 = $get_random_id
+
+cs = ../Shaders/StoreModIDs.hlsl
+cs-u0 = ResourceModIDs
+cs-u1 = ResourceModID
+;cs-u2 = ResourceReAssignedIDs
+
+dispatch = 1,1,1
+
+if $get_random_id
+
+    $ActiveID = 0
+    $ActiveID1 = 0
+
+    $ActiveID2 = 0
+    $ActiveID3 = 0
+
+    $ActiveID4 = 0
+    $ActiveID5 = 0
+
+    store = $ActiveID, ResourceModID, 0
+    $testvar = $ActiveID
+endif
+;store = $ReAssignedModIDs, ResourceReAssignedIDs, 0
+
+x98 = $x98
+y98 = $y98
+w98 = $w98
+
+[ResourceModelIDs]
+type = Buffer
+format = R32_FLOAT
+array = 64
+
+[ResourceModelID]
+type = Buffer
+format = R32_FLOAT
+array = 2
+
+
+[ResourceModIDs]
+type = Buffer
+format = R32_FLOAT
+array = 128
+
+[ResourceModID]
+type = Buffer
+format = R32_FLOAT
+array = 1
+
+[ResourceReturnData]
+type = Buffer
+format = R32_FLOAT
+array = 1
+
+;[CommandListHandleGalleryIDs]
+;$middleID = -1
+;$leftID = -1
+;$rightID = -1
+;
+;if $currentModelID != -1 || $currentModelID != 0
+;    $middleID = $currentModID
+;endif
+;
+;if $middleID > 1
+;    $leftID = $currentModelID-1
+;endif
+;
+;if $currentCharMaxID > $ActiveID
+;    $rightID = $currentModelID+1
+;endif
+;
+;if $currentModelID == 0 && $currentModelMaxID > 1
+;    $leftID = $currentModelMaxID
+;    $rightID = 1
+;endif
+
+
+
+[CommandListPrintInfo]
+Resource\GIMIv8\Text = ref ResourceBackground
+Resource\GIMIv8\TextParams = ref ResourceTextParamsBackground
+run = CommandList\GIMIv8\PrintText
+
+Resource\GIMIv8\Text = ref ResourceModName
+Resource\GIMIv8\TextParams = ref ResourceTextParamsModName
+run = CommandList\GIMIv8\PrintText
+
+Resource\GIMIv8\Text = ref ResourceModAuthor
+Resource\GIMIv8\TextParams = ref ResourceTextParamsModAuthor
+run = CommandList\GIMIv8\PrintText
+
+;Resource\GIMIv8\Text = ref ResourceModDescription
+;Resource\GIMIv8\TextParams = ref ResourceTextParamsModDescription
+;run = CommandList\GIMIv8\PrintText
+;
+;Resource\GIMIv8\Text = ref ResourceModLink
+;Resource\GIMIv8\TextParams = ref ResourceTextParamsModLink
+;run = CommandList\GIMIv8\PrintText
+;
+;
+;
+[CommandListResetResources]
+ResourceModName = null
+ResourceModAuthor = null
+ResourceModDescription = null
+ResourceModLink = null
+ResourceModLogo = ResourceModLogoDefault
+ResourceModToggles = null
+ResourceModPath = null
+
+[CommandListPrintToggles]
+Resource\GIMIv8\Text = ref ResourceModToggles
+Resource\GIMIv8\TextParams = ref ResourceTextParamsToggles
+run = CommandList\GIMIv8\PrintText
+;
+;
+[CommandListPrintPath]
+Resource\GIMIv8\Text = ref ResourceModPath
+Resource\GIMIv8\TextParams = ref ResourceTextParamsPath
+run = CommandList\GIMIv8\PrintText
+
+[CommandListDrawInfo]
+$\NuraThings\Print\Numbers\Number = $ModCount
+$\NuraThings\Print\Numbers\widthScale = 4.45 - $NumberWidth
+$\NuraThings\Print\Numbers\heightScale = 0.85
+run = CommandList\NuraThings\Print\Numbers\Run
+
+
+$\NuraThings\Print\Numbers\Number = $ActiveID
+$\NuraThings\Print\Numbers\widthScale = 3.25 - $NumberWidth
+$\NuraThings\Print\Numbers\heightScale = 1
+;$\NuraThings\Print\Numbers\widthScale = 2.75 - $NumberWidth
+;$\NuraThings\Print\Numbers\heightScale = 1
+run = CommandList\NuraThings\Print\Numbers\Run
+
+$\NuraThings\Print\Numbers\Number = $ActiveID1
+$\NuraThings\Print\Numbers\widthScale = 5.65 - $NumberWidth
+$\NuraThings\Print\Numbers\heightScale = 1
+run = CommandList\NuraThings\Print\Numbers\Run
+
+;$\NuraThings\Print\Numbers\Number = $ActiveID2
+;$\NuraThings\Print\Numbers\widthScale = 3.75 - $NumberWidth
+;$\NuraThings\Print\Numbers\heightScale = 1
+;run = CommandList\NuraThings\Print\Numbers\Run
+;
+;
+;$\NuraThings\Print\Numbers\Number = $ActiveID3
+;$\NuraThings\Print\Numbers\widthScale = 5.15 - $NumberWidth
+;$\NuraThings\Print\Numbers\heightScale = 1
+;run = CommandList\NuraThings\Print\Numbers\Run
+;
+;$\NuraThings\Print\Numbers\Number = $ActiveID4
+;$\NuraThings\Print\Numbers\widthScale = 5.65 - $NumberWidth
+;$\NuraThings\Print\Numbers\heightScale = 1
+;run = CommandList\NuraThings\Print\Numbers\Run
+;
+;$\NuraThings\Print\Numbers\Number = $ActiveID5
+;$\NuraThings\Print\Numbers\widthScale = 6.15 - $NumberWidth
+;$\NuraThings\Print\Numbers\heightScale = 1
+;run = CommandList\NuraThings\Print\Numbers\Run
+
+run = CommandListPrintInfo
+
+if ResourceModToggles !== null
+    run = CommandListPrintToggles
+endif
+
+if $show_path && ResourceModPath !== null
+    run = CommandListPrintPath
+endif
+
+$\NuraThings\Print\Numbers\Number = $TypeIndex+1
+$\NuraThings\Print\Numbers\widthScale = 3.75 - $NumberWidth
+$\NuraThings\Print\Numbers\heightScale = 9
+run = CommandList\NuraThings\Print\Numbers\Run
+
+$\NuraThings\Print\Numbers\Number = $ModTypesCount
+$\NuraThings\Print\Numbers\widthScale = 5.15 - $NumberWidth
+$\NuraThings\Print\Numbers\heightScale = 9
+run = CommandList\NuraThings\Print\Numbers\Run
+
+$\NuraThings\Print\Numbers\Number = $random_mode
+$\NuraThings\Print\Numbers\widthScale = -0.175
+$\NuraThings\Print\Numbers\heightScale = 9.5
+run = CommandList\NuraThings\Print\Numbers\Run
+
+ps-t100 = ResourceModLogo
+run = CustomShaderDraw
+
+;x66 = $ActiveID
+;
+;Resource\GIMIv8\Text = null
+;Resource\GIMIv8\TextParams = ref ResourceTextParamsBackground
+;run = CommandList\GIMIv8\PrintText
+;
+;x66 = -1
+
+
+[CommandListDrawInfo2]
+if ResourceModLogo === null
+    ResourceModLogo = ref ResourceModLogoDefault
+endif
+
+; || $ActiveID2 > 0 || $ActiveID3 > 0
+if ($ActiveID > 0 || $ActiveID1 > 0) && (ResourceModName !== null || ResourceModAuthor !== null)
+    run = CommandListPrintInfo
+
+    $\NuraThings\Print\Numbers\Number = $ActiveID
+    $\NuraThings\Print\Numbers\widthScale = 3.075
+    $\NuraThings\Print\Numbers\heightScale = 2.15
+
+    run = CommandList\NuraThings\Print\Numbers\Run
+
+
+    ; Type ID
+    $\NuraThings\Print\Numbers\Number = $TypeIndex+1
+    $\NuraThings\Print\Numbers\widthScale = 4.075
+    $\NuraThings\Print\Numbers\heightScale = 2.15
+
+    run = CommandList\NuraThings\Print\Numbers\Run
+
+    ; Type ID
+    $\NuraThings\Print\Numbers\Number = $ModTypesCount
+    $\NuraThings\Print\Numbers\widthScale = 4.94
+    $\NuraThings\Print\Numbers\heightScale = 2.15
+
+
+    run = CommandList\NuraThings\Print\Numbers\Run
+
+    $\NuraThings\Print\Numbers\Number = $ModCount
+    $\NuraThings\Print\Numbers\widthScale = 5.94
+    $\NuraThings\Print\Numbers\heightScale = 2.15
+
+    run = CommandList\NuraThings\Print\Numbers\Run
+
+    $\NuraThings\Print\Numbers\Number = $ActiveID1
+    $\NuraThings\Print\Numbers\widthScale = 3.075
+    $\NuraThings\Print\Numbers\heightScale = 1.8
+    run = CommandList\NuraThings\Print\Numbers\Run
+
+
+    $\NuraThings\Print\Numbers\Number = $ActiveID2
+    $\NuraThings\Print\Numbers\widthScale = 3.075
+    $\NuraThings\Print\Numbers\heightScale = 1.45
+    run = CommandList\NuraThings\Print\Numbers\Run
+
+
+    $\NuraThings\Print\Numbers\Number = $ActiveID3
+    $\NuraThings\Print\Numbers\widthScale = 3.075
+    $\NuraThings\Print\Numbers\heightScale = 1.1
+    run = CommandList\NuraThings\Print\Numbers\Run
+
+     $\NuraThings\Print\Numbers\Number = $ActiveID4
+    $\NuraThings\Print\Numbers\widthScale = 3.075
+    $\NuraThings\Print\Numbers\heightScale = 0.75
+    run = CommandList\NuraThings\Print\Numbers\Run
+
+
+    $\NuraThings\Print\Numbers\Number = $ActiveID5
+    $\NuraThings\Print\Numbers\widthScale = 3.075
+    $\NuraThings\Print\Numbers\heightScale = 0.4
+    run = CommandList\NuraThings\Print\Numbers\Run
+
+
+    $\NuraThings\Print\Numbers\Number = $ChooseActiveID
+    $\NuraThings\Print\Numbers\widthScale = 5.94
+    $\NuraThings\Print\Numbers\heightScale = 1.45
+    run = CommandList\NuraThings\Print\Numbers\Run
+
+else
+    $\NuraThings\Print\Letters\offset_x = 0.275
+    $\NuraThings\Print\Letters\offset_y = 0.075
+    $\NuraThings\Print\Letters\String2 = 22
+    $\NuraThings\Print\Letters\String3 = 991324
+    $\NuraThings\Print\Letters\String4 = 231022
+    $\NuraThings\Print\Letters\String5 = 141610
+    $\NuraThings\Print\Letters\String6 = 119927
+    $\NuraThings\Print\Letters\String7 = 239934
+    $\NuraThings\Print\Letters\String8 = 102730
+    $\NuraThings\Print\Letters\String9 = 171827
+    $\NuraThings\Print\Letters\String10 = 232434
+
+    $\NuraThings\Print\Letters\Line_Break1 = 13
+    $\NuraThings\Print\Letters\Line_Break2 = 15
+    $\NuraThings\Print\Letters\Line_Break3 = 15
+
+    $\NuraThings\Print\Letters\Custom_Offset_X = 0.09
+    $\NuraThings\Print\Letters\reset_x = 1
+
+    pre run = CommandList\NuraThings\Print\Letters\Run
+    run = CommandList\NuraThings\Print\Letters\Reset
+
+    $\NuraThings\Print\Numbers\Number = $ActiveID
+
+    if $ActiveID < 10
+        $\NuraThings\Print\Numbers\widthScale = 3.1
+    else
+        $\NuraThings\Print\Numbers\widthScale = 2.835
+    endif
+
+    $\NuraThings\Print\Numbers\heightScale = 1.45
+
+    run = CommandList\NuraThings\Print\Numbers\Run
+
+    ; Type ID
+    $\NuraThings\Print\Numbers\Number = $TypeIndex+1
+    $\NuraThings\Print\Numbers\widthScale = 3.1
+    $\NuraThings\Print\Numbers\heightScale = 2.525
+
+    run = CommandList\NuraThings\Print\Numbers\Run
+
+    $\NuraThings\Print\Numbers\Number = $ModCount
+    $\NuraThings\Print\Numbers\widthScale = 4.1
+    $\NuraThings\Print\Numbers\heightScale = 1.45
+    run = CommandList\NuraThings\Print\Numbers\Run
+
+    ; Type ID
+    $\NuraThings\Print\Numbers\Number = $ModTypesCount
+    $\NuraThings\Print\Numbers\widthScale = 4.1
+    $\NuraThings\Print\Numbers\heightScale = 2.525
+    run = CommandList\NuraThings\Print\Numbers\Run
+
+endif
+
+if ResourceModToggles !== null
+    run = CommandListPrintToggles
+endif
+
+if $show_path && ResourceModPath !== null
+    run = CommandListPrintPath
+endif
+
+ps-t100 = ResourceModLogo
+run = CustomShaderDraw
+
+
+[CustomShaderDraw]
+hs = null
+ds = null
+gs = null
+cs = null
+run = BuiltInCommandListUnbindAllRenderTargets
+
+x87 = 128/res_width
+y87 = 128/res_height
+;z87 = 0.5975
+;w87 = -0.005
+
+z87 = 0.45225
+w87 = 0.1
+
+vs = ../Shaders/UIElement.hlsl
+ps = ../Shaders/UIElement.hlsl
+blend = ADD SRC_ALPHA INV_SRC_ALPHA
+cull = none
+topology = triangle_strip
+o0 = set_viewport bb
+Draw = 4,0
+
+clear = ps-t100
+
+
+
+[ResourceBackground]
+type = buffer
+format = R8_UINT
+filename = Background.txt
+
+[ResourceModName]
+
+[ResourceModAuthor]
+
+[ResourceModDescription]
+
+[ResourceModLink]
+
+[ResourceModLogo]
+
+[ResourceModLogoDefault]
+filename = Logo.dds
+
+[ResourceModToggles]
+
+[ResourceModPath]
+
+
+[ResourceTextParamsBackground]
+type = StructuredBuffer
+array = 1
+data = R32_FLOAT  -0.49 +0.5 -0.25 0  0.00 1.00 0.00 1.00   0.00 0.00 0.00 0.95   0.02  0.05   2 1   1   1.0
+
+[ResourceTextParamsModName]
+type = StructuredBuffer
+array = 1
+data = R32_FLOAT  -0.49 +0.5 -0.25 0  0.00 1.00 0.00 1.00   0.00 0.00 0.00 0.00   0.02  0.05   2 1   1   1.0
+
+[ResourceTextParamsModAuthor]
+type = StructuredBuffer
+array = 1
+data = R32_FLOAT  -0.49 +0.4 -0.25 0  0.00 1.00 0.00 1.00   0.00 0.00 0.00 0.00   0.02  0.05   2 1   1   1.0
+
+[ResourceTextParamsModDescription]
+type = StructuredBuffer
+array = 1
+data = R32_FLOAT  -0.49 +0.3 -0.25 0  0.00 1.00 0.00 1.00   0.00 0.00 0.00 0.00   0.02  0.05   2 1   1   1.0
+
+[ResourceTextParamsModLink]
+type = StructuredBuffer
+array = 1
+data = R32_FLOAT  -0.49 +0.2 -0.25 0  0.00 1.00 0.00 1.00   0.00 0.00 0.00 0.00   0.02  0.05   2 1   1   1.0
+
+;[ResourceTextParamsBackground]
+;type = StructuredBuffer
+;array = 1
+;data = R32_FLOAT  -0.75 +0.9 +0.75 -0.05   0.00 1.00 0.00 1.00   0.00 0.00 0.00 0.95   0.02  0.05   2 1   1   1.0
+;
+;[ResourceTextParamsModName]
+;type = StructuredBuffer
+;array = 1
+;data = R32_FLOAT  -0.75 +0.9 +0.75 -0.05   0.00 1.00 0.00 1.00   0.00 0.00 0.00 0.00   0.02  0.05   2 1   1   1.0
+;
+;[ResourceTextParamsModAuthor]
+;type = StructuredBuffer
+;array = 1
+;data = R32_FLOAT  -0.75 +0.8 +0.75 -0.05   0.00 1.00 0.00 1.00   0.00 0.00 0.00 0.00   0.02  0.05   2 1   1   1.0
+;
+;[ResourceTextParamsModDescription]
+;type = StructuredBuffer
+;array = 1
+;data = R32_FLOAT  -0.75 +0.7 +0.75 -0.05   0.00 1.00 0.00 1.00   0.00 0.00 0.00 0.00   0.02  0.05   2 1   1   1.0
+;
+;[ResourceTextParamsModLink]
+;type = StructuredBuffer
+;array = 1
+;data = R32_FLOAT  -0.75 +0.6 +0.75 -0.05   0.00 1.00 0.00 1.00   0.00 0.00 0.00 0.00   0.02  0.05   2 1   1   1.0
+
+[ResourceTextParamsToggles]
+type = StructuredBuffer
+array = 1
+data = R32_FLOAT   0.25  0.5  0.45  1   0 1 0 1   0 0 0 0.75   0.01 0.01   1 1   0   1.0
+
+[ResourceTextParamsToggles2]
+type = StructuredBuffer
+array = 1
+data = R32_FLOAT  -0.1 +0.25 +0.75 -0.05   0.00 1.00 0.00 1.00   0.00 0.00 0.00 0.95   0.02  0.05   2 1   1   1.0
+
+[ResourceTextParamsPath]
+type = StructuredBuffer
+array = 1
+data = R32_FLOAT  -0.25  -0.9  0.25  0.25   0.00 1.00 0.00 1.00   0 0 0 0.75   0.01 0.01   1 1   0   1.0
+
+[ResourceTextParamsPath2]
+type = StructuredBuffer
+array = 1
+data = R32_FLOAT  -0.5 +0.4 +0.75 -0.05   0.00 1.00 0.00 1.00   0.00 0.00 0.00 0.95   0.02  0.05   2 1   1   1.0
+
+
+[CommandListDebugInfo]
+$\NuraThings\Print\Numbers\Number = $\Snaccubus\Citlali\CyberKittyMenu\in_menu
+$\NuraThings\Print\Numbers\widthScale = 2
+$\NuraThings\Print\Numbers\heightScale = 8
+run = CommandList\NuraThings\Print\Numbers\Run
+
+$\NuraThings\Print\Numbers\Number = $\Snaccubus\Citlali\CyberKitty\Active
+$\NuraThings\Print\Numbers\widthScale = 1
+$\NuraThings\Print\Numbers\heightScale = 8
+run = CommandList\NuraThings\Print\Numbers\Run
+
+$\NuraThings\Print\Numbers\Number = $AllModsActiveCount
+$\NuraThings\Print\Numbers\widthScale = 4
+$\NuraThings\Print\Numbers\heightScale = 4
+run = CommandList\NuraThings\Print\Numbers\Run
+;
+$\NuraThings\Print\Numbers\Number = $LastAllModsActiveCount
+$\NuraThings\Print\Numbers\widthScale = 3
+$\NuraThings\Print\Numbers\heightScale = 4
+run = CommandList\NuraThings\Print\Numbers\Run
+;
+$\NuraThings\Print\Numbers\Number = $LastAllModsActiveCount2FramesAgo
+$\NuraThings\Print\Numbers\widthScale = 2
+$\NuraThings\Print\Numbers\heightScale = 4
+run = CommandList\NuraThings\Print\Numbers\Run
+
+$\NuraThings\Print\Numbers\Number = $ModID
+$\NuraThings\Print\Numbers\widthScale = 5
+$\NuraThings\Print\Numbers\heightScale = 4
+run = CommandList\NuraThings\Print\Numbers\Run
+
+$\NuraThings\Print\Numbers\Number = $how_many_times
+$\NuraThings\Print\Numbers\widthScale = 3
+$\NuraThings\Print\Numbers\heightScale = 8
+run = CommandList\NuraThings\Print\Numbers\Run
+
+$\NuraThings\Print\Numbers\Number = $get_random_id
+$\NuraThings\Print\Numbers\widthScale = 4
+$\NuraThings\Print\Numbers\heightScale = 8
+run = CommandList\NuraThings\Print\Numbers\Run
+;
+
+$\NuraThings\Print\Numbers\Number = $random_mode
+$\NuraThings\Print\Numbers\widthScale = 1
+$\NuraThings\Print\Numbers\heightScale = 3
+run = CommandList\NuraThings\Print\Numbers\Run
+
+$\NuraThings\Print\Numbers\Number = $PreventRandom
+$\NuraThings\Print\Numbers\widthScale = 2
+$\NuraThings\Print\Numbers\heightScale = 3
+run = CommandList\NuraThings\Print\Numbers\Run
+
+$\NuraThings\Print\Numbers\Number = $testVar
+$\NuraThings\Print\Numbers\widthScale = 6
+$\NuraThings\Print\Numbers\heightScale = 4
+run = CommandList\NuraThings\Print\Numbers\Run
+
+$\NuraThings\Print\Numbers\Number = x99
+$\NuraThings\Print\Numbers\widthScale = 7
+$\NuraThings\Print\Numbers\heightScale = 8
+run = CommandList\NuraThings\Print\Numbers\Run
+
+$\NuraThings\Print\Numbers\Number = y99
+$\NuraThings\Print\Numbers\widthScale = 8
+$\NuraThings\Print\Numbers\heightScale = 8
+run = CommandList\NuraThings\Print\Numbers\Run
+
+$\NuraThings\Print\Numbers\Number = $ChooseActiveID
+$\NuraThings\Print\Numbers\widthScale = 7
+$\NuraThings\Print\Numbers\heightScale = 4
+run = CommandList\NuraThings\Print\Numbers\Run
+
+
+$\NuraThings\Print\Numbers\Number = $ActiveID2
+$\NuraThings\Print\Numbers\widthScale = 4
+$\NuraThings\Print\Numbers\heightScale = 5
+run = CommandList\NuraThings\Print\Numbers\Run
+
+
+$\NuraThings\Print\Numbers\Number = $ActiveID3
+$\NuraThings\Print\Numbers\widthScale = 5
+$\NuraThings\Print\Numbers\heightScale = 5
+run = CommandList\NuraThings\Print\Numbers\Run
+
+
+$\NuraThings\Print\Numbers\Number = $ActiveTypeID
+run = CommandList\NuraThings\Print\Numbers\Run
+;
+$\NuraThings\Print\Numbers\Number = $ActiveID
+$\NuraThings\Print\Numbers\widthScale = 4
+run = CommandList\NuraThings\Print\Numbers\Run
+;
+$\NuraThings\Print\Numbers\Number = $ModCount
+$\NuraThings\Print\Numbers\widthScale = 3
+run = CommandList\NuraThings\Print\Numbers\Run
+;
+$\NuraThings\Print\Numbers\Number = $menu_mode
+$\NuraThings\Print\Numbers\widthScale = 6
+run = CommandList\NuraThings\Print\Numbers\Run
+;
+$\NuraThings\Print\Numbers\Number = $ModTypeID
+$\NuraThings\Print\Numbers\widthScale = 7
+run = CommandList\NuraThings\Print\Numbers\Run
+;
+$\NuraThings\Print\Numbers\Number = $TypeIndex
+$\NuraThings\Print\Numbers\widthScale = 8
+run = CommandList\NuraThings\Print\Numbers\Run
+;
+$\NuraThings\Print\Numbers\Number = $ModTypesCount
+$\NuraThings\Print\Numbers\widthScale = 9
+run = CommandList\NuraThings\Print\Numbers\Run

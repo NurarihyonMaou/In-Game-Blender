@@ -1,0 +1,1197 @@
+; Navia
+
+; Constants -------------------------
+
+[Constants]
+global $active = 0
+global $creditinfo = 0
+
+global persist $cat_ears = 1
+global persist $boots = 2
+global persist $thong = 1
+global persist $top = 1
+global persist $accs = 1
+global persist $sweater = 1
+global persist $body = 1
+
+
+[Present]
+post $active = 0
+run = CommandListCreditInfo
+
+
+[KeyCatEars]
+condition = $active && $mod_type_id == $\NuraThings\ModManager\ActiveTypeID && $mod_enabled == 1
+key = L
+type = cycle
+$cat_ears = 0,1
+
+
+[KeyBoots]
+condition = $active && $mod_type_id == $\NuraThings\ModManager\ActiveTypeID && $mod_enabled == 1
+key = K
+type = cycle
+$boots = 0,1,2
+
+
+[KeyThong]
+condition = $active && $mod_type_id == $\NuraThings\ModManager\ActiveTypeID && $mod_enabled == 1
+key = P
+type = cycle
+$thong = 0,1
+
+
+[KeyTop]
+condition = $active && $mod_type_id == $\NuraThings\ModManager\ActiveTypeID && $mod_enabled == 1
+key = O
+type = cycle
+$top = 0,1
+
+
+[KeyAccs]
+condition = $active && $mod_type_id == $\NuraThings\ModManager\ActiveTypeID && $mod_enabled == 1
+key = I
+type = cycle
+$accs = 0,1
+
+
+[KeySweater]
+condition = $active && $mod_type_id == $\NuraThings\ModManager\ActiveTypeID && $mod_enabled == 1
+key = U
+type = cycle
+$sweater = 0,1
+
+
+[KeyBody]
+condition = $active && $mod_type_id == $\NuraThings\ModManager\ActiveTypeID && $mod_enabled == 1
+key = H
+type = cycle
+$body = 1,2
+
+; Overrides -------------------------
+
+
+[TextureOverrideNaviaPosition]
+hash = f4e09bd7
+match_priority = 0
+if $Mod_Enabled
+    vb0 = ResourceNaviaPosition
+    $activeForMenu = 1
+    $active = 1
+    
+endif
+
+[TextureOverrideNaviaBlend]
+hash = bc0e2536
+match_priority = 0
+if $Mod_Enabled
+    vb1 = ResourceNaviaBlend
+    handling = skip
+    draw = 184164,0
+    
+endif
+
+[TextureOverrideNaviaTexcoord]
+hash = 8a666020
+match_priority = 0
+if $Mod_Enabled
+    vb1 = ResourceNaviaTexcoord
+    
+endif
+
+[TextureOverrideNaviaVertexLimitRaise]
+hash = 6b4e87d7
+match_priority = 0
+if $Mod_Enabled
+    override_vertex_count = 184164
+    override_byte_stride = 92
+    
+endif
+
+[TextureOverrideNaviaIB]
+hash = 7321d0b1
+match_priority = 0
+if $once_per_frame
+    run = CommandListManageMod
+    $once_per_frame = 0
+endif
+
+if $Mod_Enabled
+    handling = skip
+    
+endif
+
+[TextureOverrideNaviaHead]
+hash = 7321d0b1
+match_first_index = 0
+if $once_per_frame
+    run = CommandListManageMod
+    $once_per_frame = 0
+endif
+
+if $Mod_Enabled
+    ib = ResourceNaviaHeadIB
+    ps-t0 = ResourceNaviaHeadNormalMap
+    ps-t1 = ResourceNaviaHeadDiffuse
+    ps-t2 = ResourceNaviaHeadLightMap
+    run = CommandList\global\ORFix\ORFix
+    
+    ; NaviaHead
+    ; Cat Ears (6517)
+    if $cat_ears
+        drawindexed = 69, 0, 0
+    endif
+    ; Regular Hair (5837)
+    drawindexed = 434, 23838, 0
+    
+endif
+
+[TextureOverrideNaviaBody]
+hash = 7321d0b1
+match_first_index = 54342
+if $once_per_frame
+    run = CommandListManageMod
+    $once_per_frame = 0
+endif
+
+if $Mod_Enabled
+    ib = ResourceNaviaBodyIB
+    ps-t0 = ResourceNaviaBodyNormalMap
+    ps-t1 = ResourceNaviaBodyDiffuse
+    ps-t2 = ResourceNaviaBodyLightMap
+    run = CommandList\global\ORFix\ORFix
+    
+    ; NaviaBody Eyes (120)
+    drawindexed = 6688, 0, 0
+    
+endif
+
+[TextureOverrideNaviaDress]
+hash = 7321d0b1
+match_first_index = 74844
+if $once_per_frame
+    run = CommandListManageMod
+    $once_per_frame = 0
+endif
+
+if $Mod_Enabled
+    ib = ResourceNaviaDressIB
+    ps-t0 = ResourceNaviaBodyNormalMap
+    
+    $texture_id = 1
+    
+    if $use_og || $update_texture
+        ps-t1 = ResourceNaviaBodyDiffuse
+        if $update_texture
+            
+            if $update_frame == -1
+                $update_frame = $\NuraThings\ColorPicker\frame+5
+            else if $\NuraThings\ColorPicker\frame >= $update_frame || $force_update == 1
+                
+                if $\NuraThings\ColorPicker\color_changed || $force_update == 1
+                    run = CommandListModifyTexture
+                    $use_og = 0
+                    $update_texture = 0
+                    $update_frame = -1
+                    $force_update = 0
+                endif
+            endif
+            
+            ps-t1 = ResourceVirtualDress
+        endif
+    else
+        ps-t1 = ResourceVirtualDress
+    endif
+    
+    ps-t2 = ResourceNaviaBodyLightMap
+    run = CommandList\global\ORFix\ORFix
+    
+    ; NaviaDress
+    ; VD Accs (8995)
+    if $accs
+        drawindexed = 41541, 770112, 0
+    endif
+    ; Navia  (46716)
+    if $body == 1 && $boots != 1
+        drawindexed = 259308, 60348, 0
+    endif
+    ; Navia Boots (34382)
+    if $boots == 1
+        drawindexed = 191148, 319656, 0
+    endif
+    ; Navia TH (46928)
+    if $body == 2 && $boots != 1
+        drawindexed = 259308, 510804, 0
+    endif
+    ; Boots (8418)
+    if $boots == 1
+        drawindexed = 42168, 0, 0
+    endif
+    ; Heels (4186)
+    if $boots == 2
+        drawindexed = 18180, 42168, 0
+    endif
+    ; VD Thong (8159)
+    if $thong
+        drawindexed = 36351, 811653, 0
+    endif
+    ; VD Top (4143)
+    if $top
+        drawindexed = 19164, 848004, 0
+    endif
+    ; VK Sweater (9763)
+    if $sweater
+        drawindexed = 47490, 867168, 0
+    endif
+    
+endif
+
+[TextureOverrideNaviaFaceHeadDiffuse]
+hash = 5fbb9b27
+match_priority = 0
+if $Mod_Enabled
+    this = ResourceNaviaFaceHeadDiffuse
+    
+    
+    ; CommandList -----------------------
+    
+endif
+
+[CommandListCreditInfo]
+if $creditinfo == 0 && $active == 1
+pre Resource\ShaderFixes\help.ini\Notification = ResourceCreditInfo
+pre run = CustomShader\ShaderFixes\help.ini\FormatText
+pre $\ShaderFixes\help.ini\notification_timeout = time + 5.0
+$creditinfo = 1
+endif
+
+; Resources -------------------------
+
+
+
+[ResourceNaviaBlend]
+type = Buffer
+stride = 32
+filename = NaviaBlend.buf
+
+
+[ResourceNaviaTexcoord]
+type = Buffer
+stride = 20
+filename = NaviaTexcoord.buf
+
+
+[ResourceNaviaHeadIB]
+type = Buffer
+format = DXGI_FORMAT_R32_UINT
+filename = NaviaHead.ib
+
+
+[ResourceNaviaBodyIB]
+type = Buffer
+format = DXGI_FORMAT_R32_UINT
+filename = NaviaBody.ib
+
+
+[ResourceNaviaDressIB]
+type = Buffer
+format = DXGI_FORMAT_R32_UINT
+filename = NaviaDress.ib
+
+
+[ResourceNaviaHeadNormalMap]
+filename = NaviaHeadNormalMap.dds
+
+
+[ResourceNaviaHeadDiffuse]
+filename = NaviaHeadDiffuse.dds
+
+
+[ResourceNaviaHeadLightMap]
+filename = NaviaHeadLightMap.dds
+
+
+[ResourceNaviaBodyNormalMap]
+filename = NaviaBodyNormalMap.dds
+
+
+[ResourceNaviaBodyDiffuse]
+filename = NaviaBodyDiffuse.dds
+
+
+[ResourceNaviaBodyLightMap]
+filename = NaviaBodyLightMap.dds
+
+
+[ResourceNaviaDressNormalMap]
+filename = NaviaDressNormalMap.dds
+
+
+[ResourceNaviaDressDiffuse]
+filename = NaviaDressDiffuse.dds
+
+
+[ResourceNaviaDressLightMap]
+filename = NaviaDressLightMap.dds
+
+
+[ResourceNaviaFaceHeadDiffuse]
+filename = NaviaFaceHeadDiffuse.dds
+
+
+[ResourceCreditInfo]
+type = Buffer
+data = "Created by Levi, more at Patreon.com/LeviMods"
+
+; .ini generated by XXMI (XX-Model-Importer)
+; If you have any issues or find any bugs, please open a ticket at https://github.com/leotorrez/XXMI-Tools/issues
+; #GENERATED SLIDERIMPACT
+
+
+[Constants]
+global $activeForMenu = 1
+global $menu = 0
+global $hover = 0
+global $click = 0
+global $size_x = 0.15
+global $off_x = 0.8
+global $bar = 0.025
+global $size_y = 0.5
+global $off_y = 0.05
+global $num_slider
+post $num_slider = 2+1
+global $icon_size = 0.04
+global $text_y = 0.0165
+global $text_x = 0.055
+global $reset = 0
+global $precise = 0
+global $inside = 0
+global $number = 0
+global $toggleclick = 0
+global $scale = 1
+global persist $Key1 = 0
+global $bar1_yo
+post $bar1_yo = 1/$num_slider
+global persist $Key2 = 0
+global $bar2_yo
+post $bar2_yo = 2/$num_slider
+
+ResourceNaviaPosition = copy ResourceNaviaPositionBase
+post run = CommandListComputeShapeKeys
+
+
+[Present]
+post $activeForMenu = 0
+if $activeForMenu == 1
+    run = CommandListMenu
+    run = CommandListComputeShapeKeys
+endif
+
+
+[CommandListComputeShapeKeys]
+cs-u5 = copy ResourceNaviaPositionBase
+run = CommandListKey1
+run = CommandListKey2
+
+ResourceNaviaPosition = copy cs-u5
+; clean up
+x88 = 0
+cs-u5 = null
+cs-t50 = null
+cs-t51 = null
+
+[CommandListKey1]
+cs-t50 = copy ResourceNaviaPositionBase
+cs-t51 = copy ResourceNaviaPositionBot
+x88 = $Key1*$scale
+run = CustomShaderKeys
+
+[CommandListKey2]
+cs-t50 = copy ResourceNaviaPositionBase
+cs-t51 = copy ResourceNaviaPositionTop
+x88 = $Key2*$scale
+run = CustomShaderKeys
+
+
+[CustomShaderKeys]
+;**** SHAPE KEY SHADER ****
+;Contributors: Cybertron, SinsOfSeven, DiXiao
+;cs = resources/ShapeKey.hlsl
+dispatch =  184164, 1, 1
+
+[ResourceNaviaPosition]
+
+[ResourceNaviaPositionBase]
+type = Buffer
+stride = 40
+filename = NaviaPositionBase.buf
+
+[ResourceNaviaPositionBot]
+type = Buffer
+stride = 40
+filename = NaviaPositionBot.buf
+
+[ResourceNaviaPositionTop]
+type = Buffer
+stride = 40
+filename = NaviaPositionTop.buf
+
+
+[KeyToggleMenu]
+condition = $active && $mod_type_id == $\NuraThings\ModManager\ActiveTypeID && $mod_enabled == 1ForMenu
+key = >
+type = toggle
+$menu = 1
+
+
+[KeyClick]
+condition = $menu && $mod_type_id == $\NuraThings\ModManager\ActiveTypeID && $mod_enabled == 1
+key = VK_RBUTTON
+type = hold
+$click = 1
+
+
+[KeyToggleClick]
+condition = $menu && $mod_type_id == $\NuraThings\ModManager\ActiveTypeID && $mod_enabled == 1
+key = VK_RBUTTON
+type = hold
+$toggleclick = 1
+
+
+[KeyReset]
+condition = $menu && $mod_type_id == $\NuraThings\ModManager\ActiveTypeID && $mod_enabled == 1
+key = ]
+type = toggle
+$reset = 1
+
+
+[KeyPrecise]
+condition = $menu && $mod_type_id == $\NuraThings\ModManager\ActiveTypeID && $mod_enabled == 1
+key = RIGHT
+back = LEFT
+type = cycle
+$precise = -1,0,1
+
+
+[KeyHoldHover]
+condition = $menu && $mod_type_id == $\NuraThings\ModManager\ActiveTypeID && $mod_enabled == 1
+key = VK_ALT VK_CTRL
+type = hold
+$hover = 1
+
+
+[ResourceBarsUI]
+;filename = resources/slider_bar.png
+
+[ResourceSliderUI]
+;filename = resources/slider.png
+
+[ResourceSliderUIOn]
+;filename = resources/slideron.png
+
+
+
+
+[ResourceBackgroundUI]
+;filename = resources/background.png
+
+[ResourceBorderUI]
+;filename = resources/border.png
+
+[ResourceSliderIcon1]
+;filename = resources/Icon1.png
+
+[ResourceSliderIcon2]
+;filename = resources/Icon2.png
+
+
+[CustomShaderSliderMenu]
+;vs = resources/UIElement.hlsl
+;ps = resources/UIElement.hlsl
+blend = ADD SRC_ALPHA INV_SRC_ALPHA
+cull = none
+topology = triangle_strip
+o0 = set_viewport bb
+Draw = 4,0
+
+
+[CommandListBackdrop]
+x87 = $size_x
+y87 = $size_y
+z87 = $off_x
+w87 = $off_y
+ps-t100 = ResourceBackgroundUI
+run = CustomShaderSliderMenu
+
+
+
+ps-t100 = ResourceBorderUI
+x87 = 0.001
+y87 = $size_y
+z87 = $off_x
+w87 = $off_y
+run = CustomShaderSliderMenu
+x87 = 0.001
+y87 = $size_y
+z87 = $off_x+$size_x
+w87 = $off_y
+run = CustomShaderSliderMenu
+x87 = $size_x
+y87 = 0.002
+z87 = $off_x
+w87 = $off_y
+run = CustomShaderSliderMenu
+x87 = $size_x
+y87 = 0.002
+z87 = $off_x
+w87 = $off_y+$size_y
+run = CustomShaderSliderMenu
+
+x87 = $icon_size
+y87 = $size_y
+z87 = $off_x-$icon_size
+w87 = $off_y
+ps-t100 = ResourceBackgroundUI
+run = CustomShaderSliderMenu
+ps-t100 = ResourceBorderUI
+x87 = $icon_size
+y87 = 0.002
+z87 = $off_x-$icon_size
+w87 = $off_y
+run = CustomShaderSliderMenu
+x87 = $icon_size
+y87 = 0.002
+z87 = $off_x-$icon_size
+w87 = $off_y+$size_y
+run = CustomShaderSliderMenu
+x87 = 0.001
+y87 = $size_y
+z87 = $off_x-$icon_size
+w87 = $off_y
+run = CustomShaderSliderMenu
+
+
+[CommandListBars]
+x87 = $size_x
+y87 = $bar
+z87 = $off_x
+ps-t100 = ResourceBarsUI
+run = CustomShaderSliderMenu
+
+
+
+
+
+[CommandListSlider1]
+local $v = $Key1
+;DRAW CURSOR
+x87 = $bar*res_height/res_width
+y87 = $bar
+z87 = $v*$size_x+$off_x-($bar*res_height/res_width)/2
+w87 = $bar1_yo * $size_y + $off_y
+if $inside == 1 && $number == 1
+    ps-t100 = ResourceSliderUIOn
+else
+    ps-t100 = ResourceSliderUI
+endif
+run = CustomShaderSliderMenu
+;DRAW ICON
+x87 = $icon_size
+y87 = $icon_size*res_width/res_height
+z87 = $off_x-$icon_size
+w87 = $bar1_yo * $size_y + $off_y - ($icon_size/2)
+ps-t100 = ResourceSliderIcon1
+run = CustomShaderSliderMenu
+
+
+[CommandListSlider2]
+local $v = $Key2
+;DRAW CURSOR
+x87 = $bar*res_height/res_width
+y87 = $bar
+z87 = $v*$size_x+$off_x-($bar*res_height/res_width)/2
+w87 = $bar2_yo * $size_y + $off_y
+if $inside == 1 && $number == 2
+    ps-t100 = ResourceSliderUIOn
+else
+    ps-t100 = ResourceSliderUI
+endif
+run = CustomShaderSliderMenu
+;DRAW ICON
+x87 = $icon_size
+y87 = $icon_size*res_width/res_height
+z87 = $off_x-$icon_size
+w87 = $bar2_yo * $size_y + $off_y - ($icon_size/2)
+ps-t100 = ResourceSliderIcon2
+run = CustomShaderSliderMenu
+
+
+[CommandListMenu]
+local $v = 0
+
+if $menu == 1
+    run = CommandListBackdrop
+
+    w87 = $bar1_yo * $size_y + $off_y
+    run = CommandListBars
+
+    w87 = $bar2_yo * $size_y + $off_y
+    run = CommandListBars
+
+    if cursor_x > $off_x && cursor_x < $off_x + $size_x && cursor_y > $off_y-$size_y/20 && cursor_y < $off_y+$size_y/10 && $toggleclick == 1
+        $off_x = cursor_x-$size_x/2
+        $off_y = cursor_y-$size_y/40
+    endif
+
+    if cursor_x > $off_x && cursor_x < $off_x + $size_x
+        if cursor_y > $bar1_yo * $size_y + $off_y && cursor_y < $bar1_yo * $size_y + $bar + $off_y
+            $inside = 1
+            $number = 1
+            if $hover || $click
+                $v = (cursor_x-$off_x)/$size_x
+                $Key1 = $v
+            endif
+            if $precise !=0 && ($Key1>0 || $precise>0)
+                $Key1 = $Key1 + ($precise/100)
+                $precise = 0
+            endif
+
+            if $Key1 < 0.01
+                $Key1=0
+            endif
+        endif
+        if cursor_y > $bar2_yo * $size_y + $off_y && cursor_y < $bar2_yo * $size_y + $bar + $off_y
+            $inside = 1
+            $number = 2
+            if $hover || $click
+                $v = (cursor_x-$off_x)/$size_x
+                $Key2 = $v
+            endif
+            if $precise !=0 && ($Key2>0 || $precise>0)
+                $Key2 = $Key2 + ($precise/100)
+                $precise = 0
+            endif
+
+            if $Key2 < 0.01
+                $Key2=0
+            endif
+        endif
+
+    endif
+    $precise = 0
+    if $reset == 1
+        $Key1 = 0
+        $Key2 = 0
+    endif
+    $reset = 0
+    run = CommandListSlider1
+    run = CommandListSlider2
+
+$inside = 0
+endif
+;###MENU CODE END
+
+
+
+[Constants]
+global $init = 1
+
+global persist $tint_strength = 0.5
+
+global persist $hue_center
+global persist $hue_range
+
+global $use_og
+global $update_texture
+global $force_update
+global $update_frame = -1
+
+global $texture_id
+global $selected_texture_id = 1
+
+global $packedRGB
+global $packedHSV
+global $packedHSL
+
+global persist $packedRGB_Body
+global persist $packedHSV_Body
+global persist $packedHSL_Body
+
+global persist $packedRGB_Head
+global persist $packedHSV_Head
+global persist $packedHSL_Head
+
+global persist $packedRGB_Dress
+global persist $packedHSV_Dress
+global persist $packedHSL_Dress
+
+
+[Present]
+
+if $\NuraThings\ColorPicker\selector_type_changed == 1
+    $update_texture = 1
+
+    if ($\NuraThings\ColorPicker\selector_type == 0 && $packedHSV != 0)
+        $\NuraThings\ColorPicker\packedHSV = $packedHSV
+        $\NuraThings\ColorPicker\use_packed = 1
+    endif
+
+    if ($\NuraThings\ColorPicker\selector_type == 1 && $packedRGB != 0)
+        $\NuraThings\ColorPicker\packedRGB = $packedRGB
+        $\NuraThings\ColorPicker\use_packed = 1
+    endif
+
+    if ($\NuraThings\ColorPicker\selector_type == 2 && $packedHSL != 0)
+        $\NuraThings\ColorPicker\packedHSL = $packedHSL
+        $\NuraThings\ColorPicker\use_packed = 1
+    endif
+
+    $force_update = 1
+endif
+
+if $\NuraThings\ColorPicker\menu || $init
+
+    if $init && (($\NuraThings\ColorPicker\selector_type == 0 && $packedHSV != 0) || ($\NuraThings\ColorPicker\selector_type == 1 && $packedRGB != 0) || ($\NuraThings\ColorPicker\selector_type == 2 && $packedHSL != 0))
+
+        run = CommandListLoadPackedColors
+
+        if ($\NuraThings\ColorPicker\selector_type == 0 && $packedHSV != 0)
+            $\NuraThings\ColorPicker\packedHSV = $packedHSV
+        endif
+
+        if ($\NuraThings\ColorPicker\selector_type == 1 && $packedRGB != 0)
+            $\NuraThings\ColorPicker\packedRGB = $packedRGB
+        endif
+
+        if ($\NuraThings\ColorPicker\selector_type == 2 && $packedHSL != 0)
+            $\NuraThings\ColorPicker\packedHSL = $packedHSL
+        endif
+
+        $\NuraThings\ColorPicker\use_packed = 1
+
+        run = CustomShader\NuraThings\ColorPicker\DrawColorPickers
+
+        $force_update = 1
+    endif
+
+
+    if $\NuraThings\ColorPicker\check_color
+        run = CommandList\NuraThings\ColorPicker\IsWithinMenuRange
+
+        if $\NuraThings\ColorPicker\InRange
+            $update_texture = 1
+        else
+            $update_texture = 0
+        endif
+    else
+        $update_texture = 0
+    endif
+
+    if $\NuraThings\ColorPicker\wait_frame != 0
+        if $\NuraThings\ColorPicker\frame - $\NuraThings\ColorPicker\wait_frame >= 5
+
+            run = CommandList\NuraThings\ColorPicker\StorePackedColors
+
+            if $\NuraThings\ColorPicker\selector_type == 0
+                $packedHSV = $\NuraThings\ColorPicker\packedHSV
+            elif $\NuraThings\ColorPicker\selector_type == 1
+                $packedRGB = $\NuraThings\ColorPicker\packedRGB
+            elif $\NuraThings\ColorPicker\selector_type == 2
+                $packedHSL = $\NuraThings\ColorPicker\packedHSL
+            endif
+
+            run = CommandListSavePackedColors
+
+            if $\NuraThings\ColorPicker\check_color
+                $\NuraThings\ColorPicker\wait_frame = $\NuraThings\ColorPicker\frame
+            else
+                $\NuraThings\ColorPicker\wait_frame = 0
+            endif
+        endif
+    endif
+
+    ;$\NuraThings\Print\Numbers\Number = $previousPackedHSL != $packedHSL
+    ;$\NuraThings\Print\Numbers\widthScale = 6
+    ;$\NuraThings\Print\Numbers\heightScale = 3
+    ;run = CommandList\NuraThings\Print\Numbers\Run
+;
+    ;$\NuraThings\Print\Numbers\Number = $previousPackedRGB != $packedRGB
+    ;$\NuraThings\Print\Numbers\widthScale = 6
+    ;$\NuraThings\Print\Numbers\heightScale = 4
+    ;run = CommandList\NuraThings\Print\Numbers\Run
+;
+    ;$\NuraThings\Print\Numbers\Number = $previousPackedHSV != $packedHSV
+    ;$\NuraThings\Print\Numbers\widthScale = 6
+    ;$\NuraThings\Print\Numbers\heightScale = 5
+    ;run = CommandList\NuraThings\Print\Numbers\Run
+
+
+   ;$\NuraThings\Print\Numbers\Number = cursor_y
+   ;$\NuraThings\Print\Numbers\widthScale = 6
+   ;$\NuraThings\Print\Numbers\heightScale = 6
+   ;run = CommandList\NuraThings\Print\Numbers\Run
+
+
+    $\NuraThings\Print\Numbers\Number = $hue_range
+    $\NuraThings\Print\Numbers\widthScale = 6
+    $\NuraThings\Print\Numbers\heightScale = 8
+    run = CommandList\NuraThings\Print\Numbers\Run
+
+    $\NuraThings\Print\Numbers\Number = $hue_center
+    $\NuraThings\Print\Numbers\widthScale = 7
+    $\NuraThings\Print\Numbers\heightScale = 8
+    run = CommandList\NuraThings\Print\Numbers\Run
+
+    $\NuraThings\Print\Numbers\Number = $tint_strength
+    $\NuraThings\Print\Numbers\widthScale = 8
+    $\NuraThings\Print\Numbers\heightScale = 8
+    run = CommandList\NuraThings\Print\Numbers\Run
+
+    if $init
+        $update_texture = 1
+        $init = 0
+    endif
+endif
+
+
+
+[KeyTintStrength]
+key = VK_RIGHT
+back = VK_LEFT
+type = cycle
+$tint_strength = 0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0
+$update_texture = 1
+$force_update = 1
+
+
+[KeyHueCenter]
+key = ]
+back = [
+type = cycle
+$hue_center = 0, 20, 40, 60, 80, 100, 120, 140, 160, 180, 200, 220, 240, 260, 280, 300, 320, 340, 360
+$update_texture = 1
+$force_update = 1
+
+
+[KeyHueRange]
+key = /
+back = ,
+type = cycle
+$hue_range = 0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100, 105, 110, 115, 120, 125, 130, 135, 140, 145, 150, 155, 160, 165, 170, 175, 180
+$update_texture = 1
+$force_update = 1
+
+
+[CommandListLoadPackedColors]
+if $selected_texture_id == 0
+
+    $packedHSL = $packedHSL_Body
+    $packedHSV = $packedHSV_Body
+    $packedRGB = $packedRGB_Body
+
+elif $selected_texture_id == 1
+
+    $packedHSL = $packedHSL_Dress
+    $packedHSV = $packedHSV_Dress
+    $packedRGB = $packedRGB_Dress
+
+elif $selected_texture_id == 2
+
+    $packedHSL = $packedHSL_Head
+    $packedHSV = $packedHSV_Head
+    $packedRGB = $packedRGB_Head
+
+endif
+
+
+
+[CommandListSavePackedColors]
+if $selected_texture_id == 0
+
+    $packedHSL_Body = $packedHSL
+    $packedHSV_Body = $packedHSV
+    $packedRGB_Body = $packedRGB
+
+elif $selected_texture_id == 1
+
+    $packedHSL_Dress = $packedHSL
+    $packedHSV_Dress = $packedHSV
+    $packedRGB_Dress = $packedRGB
+
+elif $selected_texture_id == 2
+
+    $packedHSL_Head = $packedHSL
+    $packedHSV_Head = $packedHSV
+    $packedRGB_Head = $packedRGB
+
+endif
+
+
+
+[CommandListModifyTexture]
+
+$\NuraThings\TextureManipulator\hue_center = $hue_center
+$\NuraThings\TextureManipulator\hue_range = $hue_range
+$\NuraThings\TextureManipulator\tint_strength = $tint_strength
+
+run = CustomShader\NuraThings\TextureManipulator\ModifyTexture
+
+if $texture_id == 0
+    ResourceVirtualBody = copy Resource\NuraThings\TextureManipulator\VirtualTexture
+else if $texture_id == 1
+    ResourceVirtualDress = copy Resource\NuraThings\TextureManipulator\VirtualTexture
+else if $texture_id == 2
+    ResourceVirtualHead = copy Resource\NuraThings\TextureManipulator\VirtualTexture
+endif
+
+clear = cs-t0
+clear = cs-u0
+
+cs-t0 = null
+cs-u0 = null
+
+clear = Resource\NuraThings\TextureManipulator\VirtualTexture
+
+
+
+
+[ResourceVirtualBody]
+
+
+[ResourceVirtualDress]
+
+
+[ResourceVirtualHead]
+
+
+
+[Constants]
+; Mod Manager
+global $NuraManager_active = 0
+
+global $mod_type_id = 37
+global persist $mod_id = -1
+global persist $mod_enabled
+
+global $swapped_in = 1
+
+global $IncludedInMaxCount = 0
+global $Nura_Manager_First_Run = 1
+
+global $Resources_Set = 0
+
+global $once_per_frame = 1
+
+global persist $id_slot = 0
+
+
+
+
+[Present]
+; Mod Manager
+if $NuraManager_active > 0
+    post $NuraManager_active = $NuraManager_active-1
+endif
+
+if $NuraManager_active == 0
+    $swapped_in = 1
+endif
+
+post $once_per_frame = 1
+
+[ResourceModPath]
+type = Buffer
+data = "F:\XXMI\Games\Genshin\GIMI\Mods\CharacterMods\VirginDestroyerNavia\NaviaMod\Navia.ini"
+
+[ResourceModToggles]
+type = Buffer
+format = R8_UINT
+filename = Toggles.txt
+
+[ResourceModAuthor]
+type = Buffer
+data = "Created by Levi, more at Patreon.com/LeviMods"
+
+[ResourceModName]
+type = Buffer
+data = "NaviaMod"
+
+[CommandListManageMod]       
+$NuraManager_active = 10
+
+if $\NuraThings\ModManager\setID == 1
+    if $mod_type_id == $\NuraThings\ModManager\ActiveTypeID
+
+        if $mod_enabled
+    
+            if $id_slot == 0
+                $\NuraThings\ModManager\ActiveID = $mod_id
+    
+            else if $id_slot == 1
+                $\NuraThings\ModManager\ActiveID1 = $mod_id
+    
+            else if $id_slot == 2
+                $\NuraThings\ModManager\ActiveID2 = $mod_id
+    
+            else if $id_slot == 3
+                $\NuraThings\ModManager\ActiveID3 = $mod_id
+    
+            else if $id_slot == 4
+                $\NuraThings\ModManager\ActiveID4 = $mod_id
+    
+            else if $id_slot == 5
+                $\NuraThings\ModManager\ActiveID5 = $mod_id
+    
+            else if $\NuraThings\ModManager\ChooseActiveID == 0
+                $\NuraThings\ModManager\ActiveID = $mod_id
+    
+            else if $\NuraThings\ModManager\ChooseActiveID == 1
+                $\NuraThings\ModManager\ActiveID1 = $mod_id
+    
+            else if $\NuraThings\ModManager\ChooseActiveID == 2
+                $\NuraThings\ModManager\ActiveID2 = $mod_id
+    
+            else if $\NuraThings\ModManager\ChooseActiveID == 3
+                $\NuraThings\ModManager\ActiveID3 = $mod_id
+    
+            else if $\NuraThings\ModManager\ChooseActiveID == 4
+                $\NuraThings\ModManager\ActiveID4 = $mod_id
+    
+            else if $\NuraThings\ModManager\ChooseActiveID == 5
+                $\NuraThings\ModManager\ActiveID5 = $mod_id
+            endif
+        endif
+    endif
+endif
+   
+if $swapped_in || $\NuraThings\ModManager\ResetIDs == 1
+
+    $\NuraThings\ModManager\ModTypeID = $mod_type_id
+
+    run = CustomShader\NuraThings\ModManager\HandleModelIDs
+
+    if $mod_type_id == $\NuraThings\ModManager\ActiveTypeID
+
+        if $mod_enabled
+
+            if $id_slot == 0
+                $\NuraThings\ModManager\ActiveID = $mod_id
+
+            else if $id_slot == 1
+                $\NuraThings\ModManager\ActiveID1 = $mod_id
+
+            else if $id_slot == 2
+                $\NuraThings\ModManager\ActiveID2 = $mod_id
+
+            else if $id_slot == 3
+                $\NuraThings\ModManager\ActiveID3 = $mod_id
+
+            else if $id_slot == 4
+                $\NuraThings\ModManager\ActiveID4 = $mod_id
+
+            else if $id_slot == 5
+                $\NuraThings\ModManager\ActiveID5 = $mod_id
+
+            else if $\NuraThings\ModManager\ChooseActiveID == 0
+                $\NuraThings\ModManager\ActiveID = $mod_id
+
+            else if $\NuraThings\ModManager\ChooseActiveID == 1
+                $\NuraThings\ModManager\ActiveID1 = $mod_id
+
+            else if $\NuraThings\ModManager\ChooseActiveID == 2
+                $\NuraThings\ModManager\ActiveID2 = $mod_id
+
+            else if $\NuraThings\ModManager\ChooseActiveID == 3
+                $\NuraThings\ModManager\ActiveID3 = $mod_id
+
+            else if $\NuraThings\ModManager\ChooseActiveID == 4
+                $\NuraThings\ModManager\ActiveID4 = $mod_id
+
+            else if $\NuraThings\ModManager\ChooseActiveID == 5
+                $\NuraThings\ModManager\ActiveID5 = $mod_id
+            endif
+
+        ;else if $\NuraThings\ModManager\ModCount == 0
+        ;    $\NuraThings\ModManager\ActiveID = 0
+        ;    $\NuraThings\ModManager\ActiveID1 = 0
+        ;    $\NuraThings\ModManager\ActiveID2 = 0
+        ;    $\NuraThings\ModManager\ActiveID3 = 0
+        ;    $\NuraThings\ModManager\ActiveID4 = 0
+        ;    $\NuraThings\ModManager\ActiveID5 = 0
+        endif
+
+
+        if $\NuraThings\ModManager\Random_Mode == 1
+            post $\NuraThings\ModManager\get_random_id_next_frame = 1
+        endif
+
+        if $Nura_Manager_First_Run
+            if $\NuraThings\ModManager\Random_Mode == 2
+                post $\NuraThings\ModManager\get_random_id_next_frame = 1
+            endif
+            post $Nura_Manager_First_Run = 0
+        endif
+
+    endif
+
+    $swapped_in = 0
+endif
+
+
+if $mod_type_id == $\NuraThings\ModManager\ActiveTypeID
+
+    if $once_per_frame  
+
+        $\NuraThings\ModManager\AllModsActiveCount = $\NuraThings\ModManager\AllModsActiveCount+1
+
+        $\NuraThings\ModManager\ModCount = $\NuraThings\ModManager\ModCount+1
+
+        if $mod_id == -1 || $\NuraThings\ModManager\ResetIDs == 2
+            $mod_id = $\NuraThings\ModManager\ModCount
+        endif
+
+        $once_per_frame = 0
+
+        $\NuraThings\ModManager\ModID = $mod_id
+
+        run = CustomShader\NuraThings\ModManager\HandleModIDs
+    endif
+
+    if $mod_id == $\NuraThings\ModManager\ActiveID || $mod_id == $\NuraThings\ModManager\ActiveID1 || $mod_id == $\NuraThings\ModManager\ActiveID2 || $mod_id == $\NuraThings\ModManager\ActiveID3 || $mod_id == $\NuraThings\ModManager\ActiveID2 || $mod_id == $\NuraThings\ModManager\ActiveID3 || $mod_id == $\NuraThings\ModManager\ActiveID4 || $mod_id == $\NuraThings\ModManager\ActiveID5
+        $mod_enabled = 1
+
+        if $mod_id == $\NuraThings\ModManager\ActiveID
+            $id_slot = 0
+        else if $mod_id == $\NuraThings\ModManager\ActiveID1
+            $id_slot = 1
+        else if $mod_id == $\NuraThings\ModManager\ActiveID2
+            $id_slot = 2
+        else if $mod_id == $\NuraThings\ModManager\ActiveID3
+            $id_slot = 3
+        else if $mod_id == $\NuraThings\ModManager\ActiveID4
+            $id_slot = 4
+        else if $mod_id == $\NuraThings\ModManager\ActiveID5
+            $id_slot = 5
+        endif
+
+
+	Resource\NuraThings\ModManager\ModPath = ref ResourceModPath unless_null
+	Resource\NuraThings\ModManager\ModToggles = ref ResourceModToggles unless_null
+	Resource\NuraThings\ModManager\ModAuthor = ref ResourceModAuthor unless_null
+	Resource\NuraThings\ModManager\ModName = ref ResourceModName unless_null
+
+        
+    else
+        $mod_enabled = 0
+        
+    endif
+endif
+
+
+if $once_per_frame  
+    $\NuraThings\ModManager\AllModsActiveCount = $\NuraThings\ModManager\AllModsActiveCount+1
+    $once_per_frame = 0
+endif
+
+
+

@@ -1,0 +1,3 @@
+Action   Type   Keys  Amt
+------  ------  ----  ---
+Menu    toggle   M     1 

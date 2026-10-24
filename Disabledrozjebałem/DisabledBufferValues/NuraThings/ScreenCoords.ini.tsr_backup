@@ -1,0 +1,449 @@
+[Constants]
+; normalized scroll value: 0 = top, 1 = bottom
+global $scroll_norm = 0.0
+
+global $pos_y = 0.33
+global $move
+
+global $menu_width
+global $menu_height
+
+global $menu_x = -0.01
+global $menu_y = 0.225
+
+global $toggles_menu_width
+global $toggles_menu_height
+
+global $toggles_menu_x = -0.0018125
+global $toggles_menu_y = 0.225
+
+global $logo_width
+global $logo_height
+
+global $active_width
+global $active_height
+
+global $scroll_y = 0.33
+
+global $string_type
+
+global $dragging
+global $grab_offset
+global $new_pos
+
+global $Active_X = 0.009
+global $Active_Offset_X = 0.08475
+
+global $Active_Y = 0.2575
+global $Active_Y2 = 0.5125
+
+
+global $ID_X = 0.09
+global $ID_X_Offset = 0.84
+global $ID_X_Over_Ten = -0.265
+
+global $ID_Y = 2.685
+global $ID_Y2 = 7.825
+
+global $show_cursor_pos
+
+post $menu_width = 816/res_width
+post $menu_height = 684/res_height
+
+post $toggles_menu_width = 512/res_width
+post $toggles_menu_height = 684/res_height
+
+post $logo_width = 128/res_width
+post $logo_height = 128/res_height
+
+post $active_width = 144/res_width
+post $active_height = 72/res_height
+
+[Present]
+;
+;if $move
+;    if cursor_x >= 0.25375 && cursor_x <= 0.25375 + 0.005
+;        if cursor_y >= $scroll_y && cursor_y <= ($scroll_y + 0.1)
+;            $dragging = 1
+;            $grab_offset = cursor_y - $scroll_y
+;        endif
+;    endif
+;
+;    if $dragging
+;
+;        $new_pos = cursor_y - $grab_offset
+;
+;        if $new_pos < 0.33
+;            $new_pos = 0.33
+;        endif
+;
+;        if $new_pos > (0.713 - 0.1)
+;            $new_pos = 0.613
+;        endif
+;
+;        $scroll_y = $new_pos
+;        $scroll_norm = ($scroll_y - 0.33) / (0.713 - 0.33 - 0.1)
+;    endif
+;else
+;    $dragging = 0
+;endif
+;
+;x1 = $scroll_norm
+;y1 = 69 
+
+if $show_cursor_pos
+
+    $\NuraThings\Print\Numbers\Number = $scroll_norm
+    $\NuraThings\Print\Numbers\widthScale = 5.94
+    $\NuraThings\Print\Numbers\heightScale = 1.45
+    run = CommandList\NuraThings\Print\Numbers\Run
+
+    $\NuraThings\Print\Numbers\Number = (cursor_x*2-1)
+    $\NuraThings\Print\Numbers\widthScale = 7
+    $\NuraThings\Print\Numbers\heightScale = 3
+    run = CommandList\NuraThings\Print\Numbers\Run
+
+    $\NuraThings\Print\Numbers\Number = (cursor_y*2-1) * -1
+    $\NuraThings\Print\Numbers\widthScale = 7
+    $\NuraThings\Print\Numbers\heightScale = 4
+    run = CommandList\NuraThings\Print\Numbers\Run
+
+    $\NuraThings\Print\Numbers\Number = cursor_x
+    $\NuraThings\Print\Numbers\widthScale = 8
+    $\NuraThings\Print\Numbers\heightScale = 3
+    run = CommandList\NuraThings\Print\Numbers\Run
+
+    $\NuraThings\Print\Numbers\Number = cursor_y
+    $\NuraThings\Print\Numbers\widthScale = 8
+    $\NuraThings\Print\Numbers\heightScale = 4
+    run = CommandList\NuraThings\Print\Numbers\Run
+
+endif
+;run = CommandListDrawMenu
+
+[KeyCurorPos]
+key = \
+type = cycle
+smart = true
+$show_cursor_pos = 0,1
+
+;[CommandListDrawMenu]
+;if Resource\zzzzzNuraThings\ModManager\ModToggles !== null
+;    $\NuraThings\Draw\width = $menu_width
+;    $\NuraThings\Draw\height = $menu_height
+;
+;    $\NuraThings\Draw\offset_x = $menu_x
+;    $\NuraThings\Draw\offset_y = $menu_y
+;
+;    ps-t100 = ResourceMenu
+;else
+;    $\NuraThings\Draw\width = $toggles_menu_width
+;    $\NuraThings\Draw\height = $toggles_menu_height
+;
+;    $\NuraThings\Draw\offset_x = $toggles_menu_x
+;    $\NuraThings\Draw\offset_y = $toggles_menu_y
+;
+;    ps-t100 = ResourceMenuToggles
+;endif
+;
+;run = CommandList\NuraThings\Draw\Run
+;
+;
+;$\NuraThings\Draw\width = $active_width
+;$\NuraThings\Draw\height = $active_height
+;
+;if $\NuraThings\ModManager\ChooseActiveID == 0
+;    $\NuraThings\Draw\offset_x = $Active_X
+;    $\NuraThings\Draw\offset_y = $Active_Y   
+;       
+;elif $\NuraThings\ModManager\ChooseActiveID == 1
+;    $\NuraThings\Draw\offset_x = $Active_X + $Active_Offset_X
+;    $\NuraThings\Draw\offset_y = $Active_Y          
+;
+;elif $\NuraThings\ModManager\ChooseActiveID == 2
+;    $\NuraThings\Draw\offset_x = $Active_X + ($Active_Offset_X * 2)
+;    $\NuraThings\Draw\offset_y = $Active_Y        
+;
+;elif $\NuraThings\ModManager\ChooseActiveID == 3
+;    $\NuraThings\Draw\offset_x = $Active_X
+;    $\NuraThings\Draw\offset_y = $Active_Y2    
+;
+;elif $\NuraThings\ModManager\ChooseActiveID == 4
+;    $\NuraThings\Draw\offset_x = $Active_X + $Active_Offset_X
+;    $\NuraThings\Draw\offset_y = $Active_Y2    
+;
+;elif $\NuraThings\ModManager\ChooseActiveID == 5
+;    $\NuraThings\Draw\offset_x = $Active_X + ($Active_Offset_X * 2)
+;    $\NuraThings\Draw\offset_y = $Active_Y2     
+;endif
+;
+;ps-t100 = ResourceActive
+;run = CommandList\NuraThings\Draw\Run
+;
+;
+;
+;$\NuraThings\Draw\width = $logo_width
+;$\NuraThings\Draw\height = $logo_height
+;
+;$\NuraThings\Draw\offset_x = 0.177
+;$\NuraThings\Draw\offset_y = 0.335           
+;
+;ps-t100 = ResourceModLogoDefault
+;run = CommandList\NuraThings\Draw\Run
+;
+;$\NuraThings\Draw\width = 0.005 
+;$\NuraThings\Draw\height = 0.1
+;
+;$\NuraThings\Draw\offset_x = 0.25375
+;$\NuraThings\Draw\offset_y = $scroll_y           
+;
+;ps-t100 = ResourceScrollBar
+;run = CommandList\NuraThings\Draw\Run
+;
+;
+;$\NuraThings\Print\Numbers\Number = 1
+;
+;if $\NuraThings\Print\Numbers\Number < 10
+;    $\NuraThings\Print\Numbers\widthScale = $ID_X
+;else
+;    $\NuraThings\Print\Numbers\widthScale = $ID_X - $ID_X_Over_Ten
+;endif
+;
+;$\NuraThings\Print\Numbers\heightScale = $ID_Y             
+;run = CommandList\NuraThings\Print\Numbers\Run
+;
+;
+;$\NuraThings\Print\Numbers\Number = 2
+;
+;if $\NuraThings\Print\Numbers\Number < 10
+;    $\NuraThings\Print\Numbers\widthScale = $ID_X + $ID_X_Offset
+;else
+;    $\NuraThings\Print\Numbers\widthScale = $ID_X + $ID_X_Offset - $ID_X_Over_Ten
+;endif
+;
+;$\NuraThings\Print\Numbers\heightScale = $ID_Y             
+;run = CommandList\NuraThings\Print\Numbers\Run
+;
+;
+;$\NuraThings\Print\Numbers\Number = 3
+;
+;if $\NuraThings\Print\Numbers\Number < 10
+;    $\NuraThings\Print\Numbers\widthScale = $ID_X + ($ID_X_Offset*2)
+;else
+;    $\NuraThings\Print\Numbers\widthScale = $ID_X + ($ID_X_Offset*2) - $ID_X_Over_Ten
+;endif
+;
+;$\NuraThings\Print\Numbers\heightScale = $ID_Y            
+;run = CommandList\NuraThings\Print\Numbers\Run
+;
+;
+;$\NuraThings\Print\Numbers\Number = 4
+;
+;if $\NuraThings\Print\Numbers\Number < 10
+;    $\NuraThings\Print\Numbers\widthScale = $ID_X
+;else
+;    $\NuraThings\Print\Numbers\widthScale = $ID_X - $ID_X_Over_Ten
+;endif
+;
+;$\NuraThings\Print\Numbers\heightScale = $ID_Y2           
+;run = CommandList\NuraThings\Print\Numbers\Run
+;
+;
+;$\NuraThings\Print\Numbers\Number = 5
+;
+;if $\NuraThings\Print\Numbers\Number < 10
+;    $\NuraThings\Print\Numbers\widthScale = $ID_X + $ID_X_Offset
+;else
+;    $\NuraThings\Print\Numbers\widthScale = $ID_X + $ID_X_Offset - $ID_X_Over_Ten
+;endif
+;
+;$\NuraThings\Print\Numbers\heightScale = $ID_Y2          
+;run = CommandList\NuraThings\Print\Numbers\Run
+;
+;
+;$\NuraThings\Print\Numbers\Number = 6
+;
+;if $\NuraThings\Print\Numbers\Number < 10
+;    $\NuraThings\Print\Numbers\widthScale = $ID_X + ($ID_X_Offset*2)
+;else
+;    $\NuraThings\Print\Numbers\widthScale = $ID_X + ($ID_X_Offset*2) - $ID_X_Over_Ten
+;endif
+;
+;$\NuraThings\Print\Numbers\heightScale = $ID_Y2        
+;run = CommandList\NuraThings\Print\Numbers\Run
+;
+;
+;if Resource\NuraThings\ModManager\ModToggles !== null
+;    Resource\NuraThings\Print\Custom\Text = ref ResourceModToggles
+;    Resource\NuraThings\Print\Custom\TextParams = ref ResourceTextParamsToggles
+;    run = CommandList\NuraThings\Print\Custom\PrintText
+;endif
+;
+;y1 = 66
+;
+;Resource\NuraThings\Print\Custom\Text = ref ResourceModName
+;Resource\NuraThings\Print\Custom\TextParams = ref ResourceTextParamsName
+;run = CommandList\NuraThings\Print\Custom\PrintText
+;
+;Resource\NuraThings\Print\Custom\Text = ref ResourceModAuthor
+;Resource\NuraThings\Print\Custom\TextParams = ref ResourceTextParamsAuthor
+;run = CommandList\NuraThings\Print\Custom\PrintText
+;
+;y1 = 69
+;
+;Resource\NuraThings\Print\Custom\Text = ref ResourceModDescription
+;Resource\NuraThings\Print\Custom\TextParams = ref ResourceTextParamsDesc
+;run = CommandList\NuraThings\Print\Custom\PrintText
+;
+;y1 = 66 
+;run = CommandListPrintType
+;run = CommandListPrintModCount
+;run = CommandListPrintRMode
+
+
+;[CommandListPrintType]
+;$string_type = 0
+;run = CustomShaderCreateString
+;
+;Resource\NuraThings\Print\Custom\Text = ref ResourceStringData
+;Resource\NuraThings\Print\Custom\TextParams = ref ResourceTextParamTypeID
+;run = CommandList\NuraThings\Print\Custom\PrintText
+;
+;
+;[CommandListPrintModCount]
+;$string_type = 1
+;run = CustomShaderCreateString
+;
+;y1 = 66 
+;
+;Resource\NuraThings\Print\Custom\Text = ref ResourceStringData
+;Resource\NuraThings\Print\Custom\TextParams = ref ResourceTextParamModCount
+;run = CommandList\NuraThings\Print\Custom\PrintText
+;
+;
+;[CommandListPrintRMode]
+;$string_type = 2
+;run = CustomShaderCreateString
+;
+;y1 = 66 
+;
+;Resource\NuraThings\Print\Custom\Text = ref ResourceStringData
+;Resource\NuraThings\Print\Custom\TextParams = ref ResourceTextParamRandomMode
+;run = CommandList\NuraThings\Print\Custom\PrintText
+;
+;
+;[CustomShaderCreateString]
+;cs = Shaders/CreateString.hlsl
+;
+;if $string_type == 0
+;    x67 = $\NuraThings\ModManager\TypeIndex+1
+;    y67 = $\NuraThings\ModManager\ModTypesCount
+;
+;elif $string_type == 1
+;    x67 = $\NuraThings\ModManager\ModCount
+;else
+;    x67 = $\NuraThings\ModManager\Random_Mode
+;endif
+;
+;z67 = $string_type
+;
+;clear = ResourceStringData
+;
+;cs-u0 = ResourceStringData
+;cs-t0 = Resource\NuraThings\ModManager\ModelID
+;
+;dispatch = 1,1,1
+;
+;cs-u0 = null
+;cs-t0 = null
+
+
+[KeyMove]
+key = VK_LBUTTON
+type = hold
+$move = 1
+
+
+[ResourceStringData]
+type = RWBuffer
+format = R32_UINT
+array = 128
+
+[ResourceMenu]
+filename = ModManager\MenuWToggles.dds
+
+[ResourceMenuToggles]
+filename = ModManager\Menu2.dds
+
+[ResourceActive]
+filename = ModManager\Active2.dds
+
+[ResourceBackground]
+filename = Background.dds
+
+
+
+[ResourceModPath]
+type = Buffer
+data = "F:\XXMI\Games\Genshin\GIMI\Mods\CharacterMods\Navia\Virgin Destroyer Navia\Navia.ini"
+
+[ResourceModToggles]
+type = Buffer
+format = R8_UINT
+filename = Toggles.txt
+
+[ResourceModAuthor]
+type = Buffer
+data = "Created by Nurarihyon | Outfit Model and Textures made by [Insert Name Here] | Base Body by ZeroRuka"
+
+[ResourceModName]
+type = Buffer
+data = "Virgin Destroyer Navia"
+
+[ResourceModDescription]
+type = Buffer
+data = "RGB and Body Proportions Sliders"
+
+[ResourceModLogoDefault]
+filename = ModManager/Logo.dds
+
+[ResourceScrollBar]
+filename = ModManager/ScrollBar.dds
+
+
+[ResourceTextParamsToggles]
+type = StructuredBuffer
+array = 1
+data = R32_FLOAT  -0.479 +0.3325 -0.21 -0.51  0.00 0.25 0.75 1   0.00 0.00 0.00 0.0   0.02  0.05   1 1   0   1
+
+[ResourceTextParamsName]
+type = StructuredBuffer
+array = 1
+data = R32_FLOAT  -0.965 +0.3 -0.65 +0.3  0.00 0.25 0.75 1   0.00 0.00 0.00 0.0   0.02  0.05   1 1   0   1
+
+[ResourceTextParamsAuthor]      
+type = StructuredBuffer
+array = 1
+data = R32_FLOAT  -0.965 +0.22 -0.65 -0.3  0.00 0.25 0.75 1   0.00 0.00 0.00 0.0   0.02  0.05   1 1   0   1
+
+[ResourceTextParamsDesc]    
+type = StructuredBuffer
+array = 1
+data = R32_FLOAT  -0.965 -0.08 -0.50 -0.40  0.00 0.25 0.75 1   0.00 0.00 0.00 0.0   0.02  0.05   1 1   0   1
+
+[ResourceTextParamTypeID]    
+type = StructuredBuffer
+array = 1
+data = R32_FLOAT  -0.64 -0.4825 -0.5 -0.4825  0.00 0.25 0.75 1   0.00 0.00 0.00 0.0   0.02  0.05   3 2   2   1
+
+[ResourceTextParamModCount]    
+type = StructuredBuffer
+array = 1
+data = R32_FLOAT  -0.82 -0.4825 -0.67 -0.4825  0.00 0.25 0.75 1   0.00 0.00 0.00 0.0   0.02  0.05   2 2   1   1
+
+[ResourceTextParamRandomMode]
+type = StructuredBuffer
+array = 1
+data = R32_FLOAT  -0.97 -0.4825 -0.81 -0.4825  0.00 0.25 0.75 1   0.00 0.00 0.00 0.0   0.02  0.05   1 2   0   1
+;                x1-^  y1-^  x2-^  y2-^   | R-^  G-^  B-^  A-^  | R-^  G-^  B-^  A-^  | ^-H    V-^ | ^ ^ | ^- text alignment: 0=left 1=center 2=right | ^- font scale
+;                Rectangle (range -1:+1)  | Text Color          | Background Color    | Border     |  ^- h/v-anchor: 0=none 1=left/top 2=center 3=right/bottom 

@@ -1,0 +1,4 @@
+Normal: Cursor_X = {x1:.4f} | Cursor_Y = {y1:.4f}
+Shader: Cursor_X = {z1:.4f} | Cursor_Y = {w1:.4f}
+RShader: Cursor_X = {z2:.4f} | Cursor_Y = {w2:.4f}
+

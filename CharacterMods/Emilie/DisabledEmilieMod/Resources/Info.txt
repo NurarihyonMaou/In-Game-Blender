@@ -1,0 +1,12 @@
+P to Toggle Skirt
+O (o) to Toggle Shorts
+> to Toggle Menu
+< to Reset Body Parts
+0 to Reset Colors for Currently Selected Part (Outfit/Hair/Eyes)
+6 to Cycle through RGB Slider Types
+7 to Cycle through Parts (Outfit/Hair/Eyes)
+
+CTRL + ALT + P to Toggle Snake
+
+To Unlock Body Sliders reach at least (5 Point/10 in Easy Mode) in Snake
+To Unlock RGB Sliders reach at least (10 Points/20 in Easy Mode) in Snake

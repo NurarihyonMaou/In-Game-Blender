@@ -1,0 +1,158 @@
+[Constants]
+global $active = 0
+global $XXX = 0
+ResourceDMap = copy_desc oD
+
+[ResourceDMap]
+type = Texture2D
+format = DXGI_FORMAT_R24G8_TYPELESS
+; width = 2560
+; height = 1440
+array = 1
+msaa = 1
+
+[Present]
+
+clear = ResourceDMap
+
+x1 = window_width
+y1 = window_height
+
+x3 = $active
+
+x2 = (time * 120)%360
+;x2 = (cursor_window_x/2560) * 360
+vs-t1 = ResourcePOSITION
+vs-t0 = Resourcevb
+
+run = CommandListDrawModel
+
+post $active = 0
+
+[CommandListDrawModel]
+ps-t0 = Resource7
+ib = Resourceib7
+run = CustomShader3DModel
+
+ps-t0 = Resource6
+ib = Resourceib6
+run = CustomShader3DModel
+
+ps-t0 = Resource5
+ib = Resourceib5
+run = CustomShader3DModel
+
+ps-t0 = Resource4
+ib = Resourceib4
+run = CustomShader3DModel
+
+ps-t0 = Resource3
+ib = Resourceib3
+run = CustomShader3DModel
+
+ps-t0 = Resource2
+ib = Resourceib2
+run = CustomShader3DModel
+
+ps-t0 = Resource1
+ib = Resourceib1
+run = CustomShader3DModel
+
+; [TextureOverrideVB]
+; hash = e2685889
+; ; ResourceOrigVB = copy vb0
+; $active = 1
+
+[CustomShader3DModel]
+vs = test.hlsl
+hs = null
+ds = null
+gs = null
+ps = test.hlsl
+cs = null
+
+run = BuiltInCommandListUnbindAllRenderTargets
+oD = ResourceDMap
+o0 = set_viewport bb
+
+blend = ADD SRC_ALPHA INV_SRC_ALPHA
+cull = back
+front = CounterClockwise
+fill = solid
+depth_enable = TRUE
+depth_write_mask = ALL
+depth_func = GREATER_EQUAL
+
+topology = triangle_list
+drawindexed = auto
+
+[ResourcePOSITION]
+type = Buffer
+format = R32G32B32_FLOAT
+filename = POSITION.buf
+
+[ResourceD]
+type = RWBuffer
+format = R32_FLOAT
+array = 3686400
+
+[Resourcevb]
+type = Buffer
+format = R32_FLOAT
+filename = vb.vb
+
+[Resourceib1]
+type = Buffer
+format = R16_UINT
+filename = ib1.ib
+
+[Resourceib2]
+type = Buffer
+format = R16_UINT
+filename = ib2.ib
+
+[Resourceib3]
+type = Buffer
+format = R16_UINT
+filename = ib3.ib
+
+[Resourceib4]
+type = Buffer
+format = R16_UINT
+filename = ib4.ib
+
+[Resourceib5]
+type = Buffer
+format = R16_UINT
+filename = ib5.ib
+
+[Resourceib6]
+type = Buffer
+format = R16_UINT
+filename = ib6.ib
+
+[Resourceib7]
+type = Buffer
+format = R16_UINT
+filename = ib7.ib
+
+[Resource1]
+filename = 1.dds
+
+[Resource2]
+filename = 2.dds
+
+[Resource3]
+filename = 3.dds
+
+[Resource4]
+filename = 4.dds
+
+[Resource5]
+filename = 5.dds
+
+[Resource6]
+filename = 6.dds
+
+[Resource7]
+filename = 7.dds

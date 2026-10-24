@@ -1,0 +1,648 @@
+; Lauma
+
+; Constants -------------------------
+
+[Constants]
+global $active = 0
+global $creditinfo = 0
+
+
+[Present]
+post $active = 0
+run = CommandListCreditInfo
+
+; Overrides -------------------------
+
+
+[TextureOverrideLaumaBodyPosition]
+hash = 89e96109
+match_priority = 0
+$run_manage = 1
+if $Mod_Enabled
+    vb0 = ResourceLaumaBodyPosition
+    $active = 1
+    
+endif
+
+[TextureOverrideLaumaBodyBlend]
+hash = 8226cf84
+match_priority = 0
+if $Mod_Enabled
+    handling = skip
+    vb1 = ResourceLaumaBodyBlend
+    draw = 21172, 0
+    
+endif
+
+[TextureOverrideLaumaBodyTexcoord]
+hash = d8e6d8e4
+match_priority = 0
+if $Mod_Enabled
+    vb1 = ResourceLaumaBodyTexcoord
+    
+endif
+
+[TextureOverrideLaumaBodyVertexLimitRaise]
+hash = cecefbb2
+match_priority = 0
+if $Mod_Enabled
+    override_vertex_count = 21172
+    override_byte_stride = 40
+    
+endif
+
+[TextureOverrideLaumaBangPosition]
+hash = f25edf24
+match_priority = 0
+$run_manage = 1
+if $Mod_Enabled
+    vb0 = ResourceLaumaBangPosition
+    $active = 1
+    
+endif
+
+[TextureOverrideLaumaBangBlend]
+hash = 158785a8
+match_priority = 0
+if $Mod_Enabled
+    handling = skip
+    vb1 = ResourceLaumaBangBlend
+    draw = 2425, 0
+    
+endif
+
+[TextureOverrideLaumaBangTexcoord]
+hash = 1e0aafe0
+match_priority = 0
+if $Mod_Enabled
+    vb1 = ResourceLaumaBangTexcoord
+    
+endif
+
+[TextureOverrideLaumaBangVertexLimitRaise]
+hash = e26e1db3
+match_priority = 0
+if $Mod_Enabled
+    override_vertex_count = 2425
+    override_byte_stride = 40
+    
+endif
+
+[TextureOverrideLaumaEyePosition]
+hash = 7e27b643
+match_priority = 0
+$run_manage = 1
+if $Mod_Enabled
+    vb0 = ResourceLaumaEyePosition
+    $active = 1
+    
+endif
+
+[TextureOverrideLaumaEyeBlend]
+hash = 6442cc7e
+match_priority = 0
+if $Mod_Enabled
+    handling = skip
+    vb1 = ResourceLaumaEyeBlend
+    draw = 266, 0
+    
+endif
+
+[TextureOverrideLaumaEyeTexcoord]
+hash = 6eb0f6d7
+match_priority = 0
+if $Mod_Enabled
+    vb1 = ResourceLaumaEyeTexcoord
+    
+endif
+
+[TextureOverrideLaumaEyeVertexLimitRaise]
+hash = 0a7a76aa
+match_priority = 0
+if $Mod_Enabled
+    override_vertex_count = 266
+    override_byte_stride = 40
+    
+endif
+
+[TextureOverrideLaumaBodyIB]
+hash = ce158bd6
+match_priority = 0
+$run_manage = 1
+if $Mod_Enabled
+    handling = skip
+    
+endif
+
+[TextureOverrideLaumaBodyA]
+hash = ce158bd6
+match_first_index = 0
+$run_manage = 1
+if $Mod_Enabled
+    ib = ResourceLaumaBodyAIB
+    ps-t0 = ResourceLaumaBodyANormalMap
+    ps-t1 = ResourceLaumaBodyADiffuse
+    ps-t2 = ResourceLaumaBodyALightMap
+    run = CommandList\global\ORFix\ORFix
+    ; LaumaBodyA-vb0=89e96109.txt (5081)
+    drawindexed = 19074, 0, 0
+    
+endif
+
+[TextureOverrideLaumaBodyB]
+hash = ce158bd6
+match_first_index = 19074
+$run_manage = 1
+if $Mod_Enabled
+    ib = ResourceLaumaBodyBIB
+    ps-t0 = ResourceLaumaBodyBDiffuse
+    ps-t1 = ResourceLaumaBodyBLightMap
+    ; LaumaBodyB-vb0=89e96109.txt (15599)
+    drawindexed = 56280, 0, 0
+    
+endif
+
+[TextureOverrideLaumaBodyC]
+hash = ce158bd6
+match_first_index = 75702
+$run_manage = 1
+if $Mod_Enabled
+    ib = ResourceLaumaBodyCIB
+    ps-t0 = ResourceLaumaBodyCNormalMap
+    ps-t1 = ResourceLaumaBodyCDiffuse
+    ps-t2 = ResourceLaumaBodyCLightMap
+    run = CommandList\global\ORFix\ORFix
+    ; LaumaBodyC-vb0=89e96109.txt (492)
+    drawindexed = 1659, 0, 0
+    
+endif
+
+[TextureOverrideLaumaBangIB]
+hash = 5a1345c9
+match_priority = 0
+$run_manage = 1
+if $Mod_Enabled
+    handling = skip
+    
+endif
+
+[TextureOverrideLaumaBangA]
+hash = 5a1345c9
+match_first_index = 0
+$run_manage = 1
+if $Mod_Enabled
+    ib = ResourceLaumaBangAIB
+    ps-t0 = ResourceLaumaBangANormalMap
+    ps-t1 = ResourceLaumaBangADiffuse
+    ps-t2 = ResourceLaumaBangALightMap
+    run = CommandList\global\ORFix\ORFix
+    ; LaumaBangA-vb0=f25edf24.txt (2425)
+    drawindexed = 8862, 0, 0
+    
+endif
+
+[TextureOverrideLaumaEyeIB]
+hash = c3e809a5
+match_priority = 0
+$run_manage = 1
+if $Mod_Enabled
+    handling = skip
+    
+endif
+
+[TextureOverrideLaumaEyeA]
+hash = c3e809a5
+match_first_index = 0
+$run_manage = 1
+if $Mod_Enabled
+    ib = ResourceLaumaEyeAIB
+    ps-t0 = ResourceLaumaEyeADiffuse
+    ps-t1 = ResourceLaumaEyeALightMap
+    ; LaumaEyeA-vb0=7e27b643.txt (266)
+    drawindexed = 768, 0, 0
+    
+    
+    ; CommandList -----------------------
+    
+endif
+
+[CommandListCreditInfo]
+if $creditinfo == 0 && $active > 0
+	pre Resource\ShaderFixes\help.ini\Notification = ResourceCreditInfo
+	pre run = CustomShader\ShaderFixes\help.ini\FormatText
+	pre $\ShaderFixes\help.ini\notification_timeout = time + 5.0
+	$creditinfo = 1
+endif
+
+; Resources -------------------------
+
+
+[ResourceLaumaBodyPosition]
+type = Buffer
+stride = 40
+filename = LaumaBodyPosition.buf
+
+
+[ResourceLaumaBodyBlend]
+type = Buffer
+stride = 32
+filename = LaumaBodyBlend.buf
+
+
+[ResourceLaumaBodyTexcoord]
+type = Buffer
+stride = 20
+filename = LaumaBodyTexcoord.buf
+
+
+[ResourceLaumaBodyAIB]
+type = Buffer
+format = DXGI_FORMAT_R32_UINT
+filename = LaumaBodyA.ib
+
+
+[ResourceLaumaBodyBIB]
+type = Buffer
+format = DXGI_FORMAT_R32_UINT
+filename = LaumaBodyB.ib
+
+
+[ResourceLaumaBodyCIB]
+type = Buffer
+format = DXGI_FORMAT_R32_UINT
+filename = LaumaBodyC.ib
+
+
+[ResourceLaumaBangPosition]
+type = Buffer
+stride = 40
+filename = LaumaBangPosition.buf
+
+
+[ResourceLaumaBangBlend]
+type = Buffer
+stride = 32
+filename = LaumaBangBlend.buf
+
+
+[ResourceLaumaBangTexcoord]
+type = Buffer
+stride = 12
+filename = LaumaBangTexcoord.buf
+
+
+[ResourceLaumaBangAIB]
+type = Buffer
+format = DXGI_FORMAT_R32_UINT
+filename = LaumaBangA.ib
+
+
+[ResourceLaumaEyePosition]
+type = Buffer
+stride = 40
+filename = LaumaEyePosition.buf
+
+
+[ResourceLaumaEyeBlend]
+type = Buffer
+stride = 32
+filename = LaumaEyeBlend.buf
+
+
+[ResourceLaumaEyeTexcoord]
+type = Buffer
+stride = 12
+filename = LaumaEyeTexcoord.buf
+
+
+[ResourceLaumaEyeAIB]
+type = Buffer
+format = DXGI_FORMAT_R32_UINT
+filename = LaumaEyeA.ib
+
+
+[ResourceLaumaBodyANormalMap]
+filename = LaumaBodyANormalMap.dds
+
+
+[ResourceLaumaBodyADiffuse]
+filename = LaumaBodyADiffuse.dds
+
+
+[ResourceLaumaBodyALightMap]
+filename = LaumaBodyALightMap.dds
+
+
+[ResourceLaumaBodyBDiffuse]
+filename = LaumaBodyBDiffuse.dds
+
+
+[ResourceLaumaBodyBLightMap]
+filename = LaumaBodyBLightMap.dds
+
+
+[ResourceLaumaBodyCNormalMap]
+filename = LaumaBodyCNormalMap.dds
+
+
+[ResourceLaumaBodyCDiffuse]
+filename = LaumaBodyCDiffuse.dds
+
+
+[ResourceLaumaBodyCLightMap]
+filename = LaumaBodyCLightMap.dds
+
+
+[ResourceLaumaBangANormalMap]
+filename = LaumaBangANormalMap.dds
+
+
+[ResourceLaumaBangADiffuse]
+filename = LaumaBangADiffuse.dds
+
+
+[ResourceLaumaBangALightMap]
+filename = LaumaBangALightMap.dds
+
+
+[ResourceLaumaEyeADiffuse]
+filename = LaumaEyeADiffuse.dds
+
+
+[ResourceLaumaEyeALightMap]
+filename = LaumaEyeALightMap.dds
+
+
+[ResourceCreditInfo]
+type = Buffer
+data = "Created by Nurarihyon"
+
+; .ini generated by XXMI (XX-Model-Importer) v1.5.4
+; If you have any issues or find any bugs, please open a ticket at https://github.com/leotorrez/XXMI-Tools/issues
+
+
+
+[Constants]
+; Mod Manager
+global $NuraManager_active = 0
+
+global $run_manage = 0
+
+global $mod_type_id = 26
+global persist $mod_id = -1
+global persist $mod_enabled
+
+global persist $bound_mod_type
+global persist $bound_mod_id
+
+global $swapped_in = 1
+global $set_random = 1
+
+global $IncludedInMaxCount = 0
+global $Nura_Manager_First_Run = 1
+global $Nura_Manager_Init = 1
+
+global $Resources_Set = 0
+
+global $once_per_frame = 1
+
+global $add_mod_name = 0
+
+global $run_counter = 0
+
+global $QueuePos
+
+post $\zzzzzNuraThings\ModManager\tempModID = $mod_id
+post $\zzzzzNuraThings\ModManager\tempModTypeID = $mod_type_id
+post Resource\zzzzzNuraThings\ModManager\TempModName = ref ResourceModName unless_null
+  
+post run = CustomShader\zzzzzNuraThings\ModManager\AllModsNames
+
+post $\zzzzzNuraThings\ModManager\AllModsCount = $\zzzzzNuraThings\ModManager\AllModsCount+1
+
+post run = CommandListAddBound
+
+
+
+[Present]
+; Mod Manager
+if $NuraManager_active > 0
+    $NuraManager_active = $NuraManager_active-1
+endif
+
+if $NuraManager_active == 0
+    $swapped_in = 1
+    $set_random = 1
+endif
+
+$once_per_frame = 1
+
+if $run_counter == 2
+	$run_counter = 0
+endif
+
+if $run_counter == 1
+	$run_counter = 2
+endif
+
+if $\zzzzzNuraThings\ModManager\BindMod
+    if $mod_type_id == $\zzzzzNuraThings\ModManager\to_y_type_id && $mod_id == $\zzzzzNuraThings\ModManager\to_y
+        run = CommandListSetBoundMod
+    endif
+endif
+
+if $\zzzzzNuraThings\ModManager\unbind_type == $mod_type_id && $\zzzzzNuraThings\ModManager\unbind_id == $mod_id
+    $bound_mod_type = 0
+    $bound_mod_id = 0
+    
+    $\zzzzzNuraThings\ModManager\bound_mod_type = 0
+    $\zzzzzNuraThings\ModManager\bound_mod_id = 0
+    $\zzzzzNuraThings\ModManager\ReloadBoundModsList = 3
+endif
+
+if $\zzzzzNuraThings\ModManager\bound_mod_type == $mod_type_id
+    if $\zzzzzNuraThings\ModManager\bound_mod_id == $mod_id
+        $mod_enabled = 1
+        
+        if $mod_type_id == $\zzzzzNuraThings\ModManager\ActiveTypeID
+            run = CommandList\zzzzzNuraThings\ModManager\ResetResources
+            $\zzzzzNuraThings\ModManager\ActiveID = $mod_id
+        endif
+    else
+        $mod_enabled = 0
+    endif
+endif
+
+if $run_manage
+    run = CommandListManageMod
+    $run_manage = 0
+endif
+
+if $\zzzzzNuraThings\ModManager\ReloadBoundModsList == 2
+    run = CommandListAddBound
+endif
+
+if $Nura_Manager_Init && $mod_id == -1
+    $\zzzzzNuraThings\ModManager\init_mod_type_id = $mod_type_id
+    run = CommandList\zzzzzNuraThings\ModManager\HandleInit
+    $mod_id = $\zzzzzNuraThings\ModManager\init_mod_count
+
+    $\zzzzzNuraThings\ModManager\tempModID = $mod_id
+    Resource\zzzzzNuraThings\ModManager\TempModName = ref ResourceModName unless_null
+     
+    run = CustomShader\zzzzzNuraThings\ModManager\AddModName
+
+    $Nura_Manager_Init = 0
+endif
+[ResourceModPath]
+type = Buffer
+data = "CharacterMods\Lauma\Lauma.ini"
+
+[ResourceModAuthor]
+type = Buffer
+data = "Created by Nurarihyon"
+
+[ResourceModName]
+type = Buffer
+data = "Lauma"
+
+;[ResourceModDescription]
+;type = Buffer
+;data = 
+
+[CommandListAddBound]
+if $bound_mod_type > 0 && $bound_mod_id > 0
+    $\zzzzzNuraThings\ModManager\temp_mod_type_id = $mod_type_id
+    $\zzzzzNuraThings\ModManager\temp_mod_id = $mod_id
+
+    $\zzzzzNuraThings\ModManager\temp_bound_mod_type = $bound_mod_type
+    $\zzzzzNuraThings\ModManager\temp_bound_mod_id = $bound_mod_id
+    
+    run = CustomShader\zzzzzNuraThings\ModManager\BoundPairs
+endif
+
+[CommandListSetBoundMod]
+$bound_mod_type = $\zzzzzNuraThings\ModManager\bind_x_type_id
+$bound_mod_id = $\zzzzzNuraThings\ModManager\bind_x
+
+$\zzzzzNuraThings\ModManager\BindMod = 0
+$\zzzzzNuraThings\ModManager\ReloadBoundModsList = 3
+
+
+[CommandListSetActive]
+if $mod_enabled
+    $\zzzzzNuraThings\ModManager\ActiveID = $mod_id
+    $\zzzzzNuraThings\ModManager\ChangedID = 0
+endif
+
+
+[CommandListManageMod]       
+$NuraManager_active = 10
+
+if $mod_type_id == $\zzzzzNuraThings\ModManager\ActiveTypeID
+    if $\zzzzzNuraThings\ModManager\SetActive == 1
+        run = CommandListSetActive
+    endif
+    
+    if $\zzzzzNuraThings\ModManager\ResetNames == 1
+        $\zzzzzNuraThings\ModManager\tempModID = $mod_id
+        Resource\zzzzzNuraThings\ModManager\TempModName = ref ResourceModName unless_null
+            
+        run = CustomShader\zzzzzNuraThings\ModManager\AddModName
+    endif
+endif
+
+
+if ($run_counter == 0) && ($swapped_in || $\zzzzzNuraThings\ModManager\ResetIDs == 1)
+
+    $run_counter = $run_counter+1
+
+    $\zzzzzNuraThings\ModManager\ModTypeID = $mod_type_id
+
+    run = CustomShader\zzzzzNuraThings\ModManager\HandleModelIDs
+
+    if $mod_type_id == $\zzzzzNuraThings\ModManager\ActiveTypeID
+
+        if $\zzzzzNuraThings\ModManager\ResetNames == 0
+            $\zzzzzNuraThings\ModManager\tempModID = $mod_id
+            Resource\zzzzzNuraThings\ModManager\TempModName = ref ResourceModName unless_null
+                
+            run = CustomShader\zzzzzNuraThings\ModManager\AddModName
+        endif
+        
+        run = CommandListSetActive
+
+        if $set_random
+            if $\zzzzzNuraThings\ModManager\Random_Mode == 1
+                $\zzzzzNuraThings\ModManager\get_random_id = 1
+            endif
+
+            if $Nura_Manager_First_Run
+                if $\zzzzzNuraThings\ModManager\Random_Mode == 2
+                    $\zzzzzNuraThings\ModManager\get_random_id = 1
+                endif
+                $Nura_Manager_First_Run = 0
+            endif
+            $set_random = 0
+        endif
+    endif
+
+    if $swapped_in
+        $\zzzzzNuraThings\ModManager\modded_objects_detections = $\zzzzzNuraThings\ModManager\modded_objects_detections + 1
+    endif
+
+    $swapped_in = 0
+endif
+
+
+if $mod_type_id == $\zzzzzNuraThings\ModManager\ActiveTypeID
+
+    $\zzzzzNuraThings\ModManager\ModCount = $\zzzzzNuraThings\ModManager\ModCount+1
+
+    if $mod_id == -1 || $\zzzzzNuraThings\ModManager\ResetIDs == 2
+        $mod_id = $\zzzzzNuraThings\ModManager\ModCount
+    endif
+
+    $\zzzzzNuraThings\ModManager\ModID = $mod_id
+
+    run = CustomShader\zzzzzNuraThings\ModManager\HandleModIDs
+    
+    if !$\zzzzzNuraThings\ModManager\ChangedID
+        run = CommandListSetActive
+    endif
+    
+    $\zzzzzNuraThings\ModManager\holding_var = $mod_id
+    run = CommandList\zzzzzNuraThings\ModManager\CountIDsSum
+    
+    if $mod_id == $\zzzzzNuraThings\ModManager\ActiveID
+        $mod_enabled = 1
+
+        
+		Resource\zzzzzNuraThings\ModManager\ModPath = ref ResourceModPath unless_null
+		Resource\zzzzzNuraThings\ModManager\ModAuthor = ref ResourceModAuthor unless_null
+		Resource\zzzzzNuraThings\ModManager\ModName = ref ResourceModName unless_null
+
+        
+    else
+        $mod_enabled = 0
+        
+    endif
+endif
+
+$\zzzzzNuraThings\ModManager\AllModsActiveCount = $\zzzzzNuraThings\ModManager\AllModsActiveCount+1
+
+if $mod_enabled
+    if $bound_mod_type > 0 && $bound_mod_id > 0
+        if $QueuePos == 0
+            $\zzzzzNuraThings\ModManager\BindQueue = $\zzzzzNuraThings\ModManager\BindQueue + 1
+            $QueuePos = $\zzzzzNuraThings\ModManager\BindQueue
+        endif
+    
+        if $\zzzzzNuraThings\ModManager\BindQueuePos == $QueuePos
+            $\zzzzzNuraThings\ModManager\bound_mod_type = $bound_mod_type
+            $\zzzzzNuraThings\ModManager\bound_mod_id = $bound_mod_id
+
+            $QueuePos = 0
+        endif
+    endif
+endif

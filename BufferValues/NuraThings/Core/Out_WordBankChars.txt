@@ -1,0 +1,36 @@
+run = CommandList\global\ORFix\ORFix
+run = CommandList\global\ORFix\NNFix
+drawindexed = 10014, 0, 0
+run = CommandList\global\ORFix\NNFix
+run = CommandList\global\ORFix\ORFix
+ps-t0 = ResourceDiffuse
+ps-t0 = ResourceNormalMap
+ps-t1 = ResourceNormalMap
+ps-t2 = ResourceNormalMap
+ps-t1 = ResourceDiffuse
+ps-t0 = ResourceDiffuse
+ps-t2 = ResourceDiffuse
+ps-t2 = ResourceLightMap
+ps-t1 = ResourceLightMap
+ps-t0 = ResourceLightMap
+ps-t0 = ResourceNormalMap; ps-t1 = ResourceDiffuse; ps-t2 = ResourceLightMap; run = CommandList\global\ORFix\ORFix; drawindexed = 10014, 0, 0
+ps-t0 = ResourceNormalMap; ps-t1 = ResourceDiffuse; ps-t2 = ResourceLightMap; drawindexed = 10014, 0, 0; run = CommandList\global\ORFix\ORFix
+ps-t0 = ResourceNormalMap; ps-t1 = ResourceDiffuse; ps-t2 = ResourceLightMap; run = CommandList\global\ORFix\ORFix
+ORFix Applier
+XXMI Launcher
+TextureOverride Fixer
+Green Characters
+Missing Textures
+Game Crash
+ORFix or NNFix
+More Texture Slots
+Additional DrawIndexed
+Resource\GIMI\NormalMap = ref ResourceBodyNormalMap; Resource\GIMI\Diffuse = ref ResourceBodyDiffuse; Resource\GIMI\LightMap = ref ResourceBodyLightMap; run = CommandList\GIMI\SetTextures; DrawIndexed = 1234, 0, 0
+ps-t0 = ResourceBodyNormalMap; ps-t1 = ResourceBodyDiffuse; ps-t2 = ResourceBodyLightMap; run = CommandList\global\ORFix\ORFix
+ps-t1 = ResourceBodyDiffuse; ps-t2 = ResourceBodyLightMap; run = CommandList\global\ORFix\NNFix
+GIMI/Core/GIMI/Libraries
+Mods/Characters
+Game/Binaries
+ps-t0 = NormalMap; ps-t1 = Diffuse; ps-t2 = LightMap
+ps-t1 = NormalMap; ps-t2 = Diffuse; ps-t0 = LightMap
+ps-t2 = NormalMap; ps-t0 = Diffuse; ps-t1 = LightMap

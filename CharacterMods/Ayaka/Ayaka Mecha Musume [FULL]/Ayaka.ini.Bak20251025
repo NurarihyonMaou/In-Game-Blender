@@ -1,0 +1,702 @@
+; ===========     ABOUT     =============
+; "Ayaka Mecha Musume" mod by Lillyfox, Zlevir
+; A port from Strinova (Calabiyau), Character - Xinxia, Skin - Mobile Angel
+;
+; More mods at https://patreon.com/zlevir
+;
+; Distributing the mod is prohibited without the author's permission
+; No commercial use
+; No derivatives
+
+; ===========      UI       =============
+; I am not as kind as AGMG tool devs
+; so if you use parts of my implementation of
+; the interface, you are bound to credit me
+; with a link :P
+
+; ========================================
+; Stuff that is safe to change
+; Generally, it's only safe to change the buttons
+; you press to call the menu and reset the UI position
+
+; Button that brings up or hides the menu
+[KeyMenu]
+condition = $active == 1
+key = no_modifiers /
+type = cycle
+$menu = 0,1
+
+; Resets menu position
+; More specifically, it resets the mod menu widget
+; position, made it in case you dragged window somewhere
+; where you shouldn't and now can't get it back
+; I tried to drag it into some inaccessible place myself
+; but couldn't do it, but you can never trust anyone
+; not to break it, hence the reset function exists
+[KeyMenu.ResetPosition]
+condition = $menu == 1
+key = no_ctrl shift VK_RIGHT
+run = CommandListResetMenuPos
+
+; Moves menu up
+[KeyMenu.Menu.UP]
+condition = $menu == 1
+key = no_alt no_shift ctrl VK_UP
+type = hold
+run = CommandListMoveMenu.UP
+
+; Moves menu down
+[KeyMenu.Menu.DOWN]
+condition = $menu == 1
+key = no_alt no_shift ctrl VK_DOWN
+type = hold
+run = CommandListMoveMenu.DOWN
+
+; Moves menu left
+[KeyMenu.Menu.LEFT]
+condition = $menu == 1
+key = no_alt no_shift ctrl VK_LEFT
+type = hold
+run = CommandListMoveMenu.LEFT
+
+; Moves menu right
+[KeyMenu.Menu.RIGHT]
+condition = $menu == 1
+key = no_alt no_shift ctrl VK_RIGHT
+type = hold
+run = CommandListMoveMenu.RIGHT
+
+; Navigates forward through the menu (toggles/sliders)
+[KeyMenu.Navigate.FORWARD]
+condition = $menu == 1 && !$navigating 
+key = no_ctrl no_shift no_alt VK_DOWN
+type = hold
+run = CommandListNavigateMenu.FORWARD
+
+; Navigates backwards through the menu (toggles/sliders)
+[KeyMenu.Navigate.BACKWARDS]
+condition = $menu == 1 && !$navigating 
+key = no_ctrl no_shift no_alt VK_UP
+type = hold
+run = CommandListNavigateMenu.BACKWARDS
+
+; Emulates click on a selected toggle slot
+; Or moves the cursor of selected slider
+[KeyMenu.Navigate.PRESS.LEFT]
+condition = $menu == 1
+key = no_ctrl no_shift no_alt VK_LEFT
+type = hold
+run = CommandListNavigateMenu.Press.LEFT
+
+[KeyMenu.Navigate.PRESS.RIGHT]
+condition = $menu == 1
+key = no_ctrl no_shift no_alt VK_RIGHT
+type = hold
+run = CommandListNavigateMenu.Press.RIGHT
+
+; =========================================
+; Below is stuff that is extremely unsafe to change.
+; If you do that and the mod breaks, it's on you, not on me.
+; Do it only if you know what you are doing
+
+; Constants -------------------------
+[Constants]
+global persist $head_acc = 1
+global persist $neck_acc = 1
+global persist $arms = 1
+global persist $suit = 1
+global persist $gloves = 1
+global persist $dress = 1
+global persist $wings = 1
+global persist $stockings = 1
+global persist $dildo = 0
+
+global $active = 0
+global $gliding = 0
+
+global $menu = 0
+global $menu_move = 1
+global $menu_d
+global $mms
+global $page = 0
+global $hold
+global $holdShape
+global $drag
+
+global $navigating
+global $navSpeed
+global $hovering
+global $slot
+global $hoveredSlot
+global $clickedSlot
+global $selectedSlot = 0
+global $targetSelectedSlot = 0
+global $navDirection = -1
+
+global persist $mx = 0.05
+global persist $my = 0.25
+
+global $ww
+global $wh
+global $cpx
+global $cpy
+
+global $dt
+global $ts
+
+global persist $AnimSpeed = 0.2
+global $TargetAnimSpeed
+post $TargetAnimSpeed = $AnimSpeed
+global $Freq
+
+[KeyHold]
+condition = $menu == 1 && $hovering == 0
+key = no_ctrl no_shift alt VK_LBUTTON
+type = hold
+$hold = 1
+
+[KeyHoldShape]
+condition = $menu == 1 && $hovering > 1
+key = no_ctrl no_shift alt VK_LBUTTON
+type = hold
+run = CommandListHoldShape
+
+[CommandListHoldShape]
+$holdShape = $hovering
+post $holdShape = 0
+
+[KeyClickedSlot]
+condition = $hovering == 1 && $menu == 1
+key = no_ctrl no_shift alt VK_LBUTTON
+run = CommandListClickedSlot
+
+[Present]
+if $active
+  $dt = time - $ts
+  $ts = time
+  if $menu
+      run = CommandListOutfitMenu
+  endif
+endif
+post $active = 0
+post $gliding = 0
+
+; Overrides -------------------------
+
+[TextureOverrideGliderIB]
+hash = f195ef18
+if $active == 1 && $wings == 1
+	handling = skip
+	$gliding = 1
+endif
+
+[TextureOverrideAyakaPosition]
+hash = 0107925f
+vb0 = ResourceAyakaPosition
+$active = 1
+
+[TextureOverrideAyakaBlend]
+hash = 3d534190
+vb1 = ResourceAyakaBlend
+handling = skip
+draw = 34296,0
+
+[TextureOverrideAyakaTexcoord]
+hash = 0c7e5f66
+vb1 = ResourceAyakaTexcoord
+
+[TextureOverrideAyakaVertexLimitRaise]
+hash = 9d2c1c5d
+
+[TextureOverrideAyakaIB]
+hash = 0cafd227
+handling = skip
+
+[TextureOverrideAyakaHead]
+hash = 0cafd227
+match_first_index = 0
+ib = ResourceAyakaHeadIB
+drawindexed = 9513, 0, 0
+
+[TextureOverrideAyakaBody]
+hash = 0cafd227
+match_first_index = 11565
+ib = ResourceAyakaBodyIB
+ps-t0 = ResourceAyakaBodyDiffuse
+ps-t1 = ResourceAyakaBodyLightMap
+run = CommandList\global\ORFix\NNFix
+drawindexed = 45264, 23262, 0
+drawindexed = 390, 69207, 0
+if $arms == 1
+	drawindexed = 1308, 0, 0
+endif
+if $gloves == 1
+	drawindexed = 12378, 1308, 0
+endif
+if $neck_acc == 1
+	drawindexed = 4452, 13686, 0
+endif
+if $suit == 1
+	drawindexed = 5124, 18138, 0
+endif
+if $head_acc == 1
+	drawindexed = 681, 68526, 0
+endif
+if $wings == 1
+	if $gliding == 1
+		drawindexed = 11568, 81165, 0
+	else
+		drawindexed = 11568, 69597, 0
+	endif
+endif
+if $stockings == 1
+	drawindexed = 4998, 96621, 0
+else
+	drawindexed = 3888, 92733, 0
+endif
+if $dildo == 1
+	if $suit == 1
+		drawindexed = 4260, 103053, 0
+	else
+		drawindexed = 1434, 101619, 0
+		drawindexed = 4260, 107313, 0
+	endif
+else
+	drawindexed = 4260, 103053, 0
+endif
+[TextureOverrideAyakaDress]
+hash = 0cafd227
+match_first_index = 58209
+ib = ResourceAyakaDressIB
+ps-t0 = ResourceAyakaBodyDiffuse
+ps-t1 = ResourceAyakaBodyLightMap
+run = CommandList\global\ORFix\NNFix
+drawindexed = 192, 9882, 0
+if $dress == 1
+	drawindexed = 8250, 0, 0
+endif
+if $gloves == 1
+	drawindexed = 1632, 8250, 0
+endif
+
+; CommandList -----------------------
+
+[CommandListDimensions]
+if window_width != 0 && window_height != 0
+  $ww = window_width
+  $wh = window_height
+elif rt_width != 0 && rt_height != 0
+  $ww = rt_width
+  $wh = rt_height
+else
+  $ww = res_width
+  $wh = res_height
+endif
+
+if cursor_x > 0 && cursor_y > 0 && cursor_x < 1 && cursor_y < 1
+    $cpx = cursor_x
+    $cpy = cursor_y
+elif cursor_window_x > 0 && cursor_window_y > 0 && cursor_window_x < 1 && cursor_window_y < 1
+    $cpx = cursor_window_x / $ww
+    $cpy = cursor_window_y / $wh
+else
+    $cpx = cursor_screen_x / $ww
+    $cpy = cursor_screen_y / $wh
+endif
+
+
+[CommandListResetMenuPos]
+$mx = 50 / $ww
+$my = 0.5 - 360 / $wh
+$AnimSpeed = 0.2
+$TargetAnimSpeed = 0.2
+
+[CommandListMoveMenu]
+$mms = $mms + (0.00025 * ($mms < 0.01))
+if $menu_d == 1
+  $my = $my - $mms
+elif $menu_d == 2
+  $my = $my + $mms
+elif $menu_d == 3
+  $mx = $mx - $mms
+elif $menu_d == 4
+  $mx = $mx + $mms
+endif
+
+if $mx < 0
+  $mx = 0
+elif $mx + 360 / $ww > 1
+  $mx = 1 - 360 / $ww
+endif
+
+if $my < 0
+  $my = 0
+elif $my + 560 / $wh > 1
+  $my = 1 - 560 / $wh
+endif
+
+[CommandListMoveMenu.UP]
+$menu_d = 1
+post $menu_d = 0
+post $mms = 0
+
+[CommandListMoveMenu.DOWN]
+$menu_d = 2
+post $menu_d = 0
+post $mms = 0
+
+[CommandListMoveMenu.LEFT]
+$menu_d = 3
+post $menu_d = 0
+post $mms = 0
+
+[CommandListMoveMenu.RIGHT]
+$menu_d = 4
+post $menu_d = 0
+post $mms = 0
+
+[CommandListNavigateMenu]
+$navSpeed = $navSpeed + 0.085
+if $navSpeed > 2
+  $targetSelectedSlot = ($targetSelectedSlot + ($navDirection * $dt * 6))
+  $selectedSlot = $targetSelectedSlot // 1
+else
+  $targetSelectedSlot = $selectedSlot
+endif
+if $navDirection == -1
+  if $selectedSlot == 0
+    $selectedSlot = 9
+    $targetSelectedSlot = 10
+  endif
+elif $navDirection == 1
+  if $selectedSlot == 10
+    $selectedSlot = 1
+    $targetSelectedSlot = 1
+  endif
+endif
+
+[CommandListNavigateMenu.MoveSliderCursor]
+$navSpeed = $navSpeed + (0.02 * $dt * ($navSpeed < 0.02))
+
+if $selectedSlot == 1
+  $AnimSpeed = $AnimSpeed + $navSpeed * $navDirection
+  if $AnimSpeed < 0
+    $AnimSpeed = 0
+  elif $AnimSpeed > 1
+    $AnimSpeed = 1
+  endif
+  $TargetAnimSpeed = $AnimSpeed
+endif
+
+[CommandListNavigateMenu.FORWARD]
+$navDirection = 1
+$navigating = 1
+$selectedSlot = $selectedSlot + 1
+run = CommandListNavigateMenu
+post $navDirection = 0
+post $navigating = 0
+post $navSpeed = 0
+post $selectedSlot = $selectedSlot // 1
+post $targetSelectedSlot = $selectedSlot
+
+[CommandListNavigateMenu.BACKWARDS]
+$navDirection = -1
+$navigating = 1
+$selectedSlot = $selectedSlot - 1
+run = CommandListNavigateMenu
+post $navDirection = 0
+post $navigating = 0
+post $navSpeed = 0
+post $selectedSlot = $selectedSlot // 1
+post $targetSelectedSlot = $selectedSlot
+
+[CommandListNavigateMenu.Press.LEFT]
+if $page == 1
+  if $selectedSlot > 0 && $selectedSlot < 7
+    $navigating = 2
+    $navDirection = -1
+    post $navigating = 0
+    post $navDirection = 0
+    post $navSpeed = 0
+    run = CommandListNavigateMenu.MoveSliderCursor
+  else
+    run = CommandListClickedSlot
+  endif
+  
+else
+  run = CommandListClickedSlot
+endif
+
+[CommandListNavigateMenu.Press.RIGHT]
+if $page == 1
+  if $selectedSlot > 0 && $selectedSlot < 7
+    $navigating = 2
+    $navDirection = 1
+    post $navigating = 0
+    post $navDirection = 0
+    post $navSpeed = 0
+    run = CommandListNavigateMenu.MoveSliderCursor
+  else
+    run = CommandListClickedSlot
+  endif
+else
+  run = CommandListClickedSlot
+endif
+
+[CommandListClickedSlot]
+$clickedSlot = $hoveredSlot
+
+if $clickedSlot == 1
+  $head_acc = 1 - $head_acc
+elif $clickedSlot == 2
+  $neck_acc = 1 - $neck_acc
+elif $clickedSlot == 3
+  $arms = 1 - $arms
+elif $clickedSlot == 4
+  $suit = 1 - $suit
+elif $clickedSlot == 5
+  $gloves = 1 - $gloves
+elif $clickedSlot == 6
+  $dress = 1 - $dress
+elif $clickedSlot == 7
+  $wings = 1 - $wings
+elif $clickedSlot == 8
+  $stockings = 1 - $stockings
+elif $clickedSlot == 9
+  $dildo = 1 - $dildo
+endif
+
+[CommandListSlotItemImage]
+x87 = 52 / $ww 
+y87 = 52 / $wh
+z87 = z87 + 6 / $ww
+w87 = w87 + 12 / $ww
+if $slot == 1
+    ps-t100 = ResourceMenuItem.1
+    run = CustomShaderElement
+elif $slot == 2
+    ps-t100 = ResourceMenuItem.2
+    run = CustomShaderElement
+elif $slot == 3
+    ps-t100 = ResourceMenuItem.3
+    run = CustomShaderElement
+elif $slot == 4
+    ps-t100 = ResourceMenuItem.4
+    run = CustomShaderElement
+elif $slot == 5
+    ps-t100 = ResourceMenuItem.5
+    run = CustomShaderElement
+elif $slot == 6
+    ps-t100 = ResourceMenuItem.6
+    run = CustomShaderElement
+elif $slot == 7
+    ps-t100 = ResourceMenuItem.7
+    run = CustomShaderElement
+elif $slot == 8
+    ps-t100 = ResourceMenuItem.8
+    run = CustomShaderElement
+elif $slot == 9
+    ps-t100 = ResourceMenuItem.plug
+    run = CustomShaderElement
+endif
+
+x87 = 64 / $ww 
+y87 = 64 / $wh
+z87 = z87 - 6 / $ww
+w87 = w87 - 12 / $ww
+
+[CommandListOutfitMenu]
+run = CommandListDimensions
+run = CommandListBackground
+if $navigating == 1
+  run = CommandListNavigateMenu
+elif $navigating == 2
+  run = CommandListNavigateMenu.MoveSliderCursor
+endif
+if $menu_d > 0
+  run = CommandListMoveMenu
+endif
+
+[CommandListBackground]
+local $cox
+local $coy
+ps-t100 = ResourceMenuBG
+y87 = 560 / $wh
+x87 = 360 / $ww
+if $hovering == 0
+    if $drag == 0
+        if $cpx > $mx + 0.0125 && $cpx < ($mx+x87-0.0035) && $cpy > $my && $cpy < ($my+y87-0.0035)
+            if $hold
+                $cox = $cpx - $mx
+                $coy = $cpy - $my
+                $drag = 1
+            endif
+        endif
+    else
+        if $hold
+            $mx = $cpx - $cox
+            $my = $cpy - $coy
+        else
+            $drag = 0
+        endif
+    endif
+endif
+z87 = $mx
+w87 = $my
+run = CustomShaderElement
+run = CommandListDrawToggles
+
+[CommandListDrawToggles]
+local $z0 = z87 + 23 / $ww
+local $z1 = $z0 + 125 / $ww
+local $z2 = $z0 + 250 / $ww
+local $wo = 84 / $wh
+$hovering = 0
+$slot = 0
+x87 = 64 / $ww 
+y87 = 64 / $wh
+z87 = $z0
+w87 = w87 + 60 / $wh
+run = CommandListSlot
+z87 = $z1
+run = CommandListSlot
+z87 = $z0
+w87 = w87 + $wo
+run = CommandListSlot
+z87 = $z1
+run = CommandListSlot
+z87 = $z2
+run = CommandListSlot
+z87 = $z1
+w87 = w87 + $wo
+run = CommandListSlot
+z87 = $z2
+run = CommandListSlot
+z87 = $z1
+w87 = w87 + $wo
+run = CommandListSlot
+z87 = $z2
+w87 = w87 + $wo
+run = CommandListSlot
+
+[CommandListSlot]
+$slot = $slot + 1
+run = CommandListSlotItemImage
+if $cpx > z87 && $cpx < (z87+x87-0.0035) && $cpy > w87 && $cpy < (w87+y87-0.0035)
+    ps-t100 = ResourceItemSlotHover.1
+    $hovering = 1
+    $hoveredSlot = $slot
+    $selectedSlot = 0
+else
+    if $slot == $selectedSlot // 1
+      $hoveredSlot = $slot
+      ps-t100 = ResourceItemSlotHover.1
+    else
+      ps-t100 = ResourceItemSlot
+    endif
+endif
+run = CustomShaderElement
+if $clickedSlot == $slot
+    ps-t100 = ResourceItemSlotHover.2
+    run = CustomShaderElement
+    $clickedSlot = 0
+endif
+
+[CustomShaderElement]
+vs = .\res/draw_2d.hlsl
+ps = .\res/draw_2d.hlsl
+run = BuiltInCommandListUnbindAllRenderTargets
+blend = ADD SRC_ALPHA INV_SRC_ALPHA
+cull = none
+topology = triangle_strip
+o0 = set_viewport bb
+Draw = 4,0
+
+; Resources -------------------------
+
+[ResourceAyakaPosition]
+type = Buffer
+stride = 40
+filename = AyakaPosition.buf
+
+[ResourceAyakaPosition.B]
+type = Buffer
+stride = 40
+filename = AyakaPosition.buf
+
+[ResourceAyakaPosition.ANIM]
+type = Buffer
+stride = 40
+filename = AyakaPosition.ANIM.buf
+
+[ResourceAyakaBlend]
+type = Buffer
+stride = 32
+filename = AyakaBlend.buf
+
+[ResourceAyakaTexcoord]
+type = Buffer
+stride = 20
+filename = AyakaTexcoord.buf
+
+[ResourceAyakaHeadIB]
+type = Buffer
+format = DXGI_FORMAT_R32_UINT
+filename = AyakaHead.ib
+
+[ResourceAyakaBodyIB]
+type = Buffer
+format = DXGI_FORMAT_R32_UINT
+filename = AyakaBody.ib
+
+[ResourceAyakaDressIB]
+type = Buffer
+format = DXGI_FORMAT_R32_UINT
+filename = AyakaDress.ib
+
+[ResourceAyakaBodyDiffuse]
+filename = AyakaBodyDiffuse.dds
+
+[ResourceAyakaBodyLightMap]
+filename = AyakaBodyLightMap.dds
+
+; ==========================================
+
+[ResourceMenuBG]
+filename = .\res\Menu.dds
+
+[ResourceItemSlot]
+filename = .\res\Slot.dds
+
+[ResourceItemSlotHover.1]
+filename = .\res\Slot_Hover.dds
+
+[ResourceItemSlotHover.2]
+filename = .\res\Slot_Hover_2.dds
+
+[ResourceMenuItem.1]
+filename =.\res\item_hat.dds
+
+[ResourceMenuItem.2]
+filename =.\res\item_collar.dds
+
+[ResourceMenuItem.3]
+filename = .\res\item_arm.dds
+
+[ResourceMenuItem.4]
+filename =.\res\item_suit.dds
+
+[ResourceMenuItem.5]
+filename = .\res\item_gloves.dds
+
+[ResourceMenuItem.6]
+filename = .\res\item_dress.dds
+
+[ResourceMenuItem.7]
+filename = .\res\item_wing.dds
+
+[ResourceMenuItem.8]
+filename = .\res\item_leg.dds
+
+[ResourceMenuItem.plug]
+filename =.\res\item_plug.dds

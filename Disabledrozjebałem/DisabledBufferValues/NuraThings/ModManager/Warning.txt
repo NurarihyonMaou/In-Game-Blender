@@ -1,0 +1,7 @@
+Warning!!
+
+Inconsistent Object Detection
+
+Move the Camera/Move to a Different Location
+or
+Leave the Character Menu

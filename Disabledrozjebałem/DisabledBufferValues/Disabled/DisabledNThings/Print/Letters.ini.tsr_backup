@@ -1,0 +1,426 @@
+namespace = NuraThings\Print\Letters
+
+[Constants]
+global $offset_x = 0.4
+global $offset_y = 0.4
+
+global $Line_Break1 = 13
+global $Line_Break2 = -1
+global $Line_Break3 = -1
+
+global $reset_x = 0
+
+global $Custom_Offset_X = 0
+global $Custom_Offset_Y = 0
+
+global $string1
+global $string2
+global $string3
+global $string4
+global $string5
+global $string6
+global $string7
+global $string8
+global $string9
+global $string10
+
+global $tempString1
+global $tempString2
+global $tempString3
+global $tempString4
+global $tempString5
+global $tempString6
+global $tempString7
+global $tempString8
+global $tempString9
+global $tempString10
+
+global $num = 0
+global $num2 = 0
+global $show = 0
+global $count = 0
+global $countTo4 = 0
+
+global $tempString
+
+;(0.10*0.9999*64//1) + (0.27*0.9999*64//1*64) + (0.10*0.9999*64//1*64**2) + (0.10*0.9999*64//1*64**3)
+$tempString1 = $string1
+$tempString2 = $string2
+$tempString3 = $string3
+$tempString4 = $string4
+$tempString5 = $string5
+$tempString6 = $string6
+$tempString7 = $string7
+$tempString8 = $string8
+$tempString9 = $string9
+$tempString10 = $string10
+
+;[Present]
+;if $show
+;    pre run = CommandListA
+;endif
+
+
+
+;x4 = $\math\Ceil\out
+;Resource\Debug_CB\CB = ref IniParams
+
+;[KeyShowLetters]
+;key = N
+;type = toggle
+;$show = 1
+
+[CustomShaderDraw]
+local $x87 = x87
+local $y87 = y87
+local $z87 = z87
+local $w87 = w87
+
+x87 = 256/res_width/4
+y87 = 256/res_height/4
+z87 = $offset_x+$num
+w87 = $offset_y+$num2
+
+vs = ../Shaders/UIElement.hlsl
+ps = ../Shaders/UIElement.hlsl
+blend = ADD SRC_ALPHA INV_SRC_ALPHA
+cull = none
+topology = triangle_strip
+o0 = set_viewport bb
+Draw = 4,0
+
+clear = ps-t100
+
+x87 = $x87
+y87 = $y87
+z87 = $z87
+w87 = $w87
+
+[CommandListReset]
+$string1 = null
+$string2 = null
+$string3 = null
+$string4 = null
+$string5 = null
+$string6 = null
+$string7 = null
+$string8 = null
+$string9 = null
+$string10 = null
+
+[CommandListB]
+post run = CommandListRun
+
+[CommandListRun]
+;$\Math\Round\in = ($ncod%64/63)
+;run = CommandList\Math\Round\Run
+;$\NuraDebug\printMe = $count
+;$\NuraDebug\widthScale = 4
+;$\NuraDebug\heightScale = 0.35*$count
+;run = CommandList\NuraDebug\Debug
+
+;\NuraDebug\printMe = $countTo4
+;\NuraDebug\widthScale = 2
+;\NuraDebug\heightScale = 0.35*$count
+;un = CommandList\NuraDebug\Debug
+;$\Math\Round\out*100
+
+if $tempString1%100 > 9
+
+    $count = $count+1
+    $countTo4 = $countTo4+1
+    $tempString = $tempString1
+    run = CommandListDealWithLetters
+    $tempString1 = $tempString1/100//1
+    run = CommandListB
+
+else if $tempString2%100 > 9
+
+    $count = $count+1
+    $countTo4 = $countTo4+1
+    $tempString = $tempString2
+    run = CommandListDealWithLetters
+    $tempString2 = $tempString2/100//1
+    run = CommandListB
+
+else if $tempString3%100 > 9
+
+    $count = $count+1
+    $countTo4 = $countTo4+1
+    $tempString = $tempString3
+    run = CommandListDealWithLetters
+    $tempString3 = $tempString3/100//1
+    run = CommandListB
+
+else if $tempString4%100 > 9
+
+    $count = $count+1
+    $countTo4 = $countTo4+1
+    $tempString = $tempString4
+
+    run = CommandListDealWithLetters
+    $tempString4 = $tempString4/100//1
+    run = CommandListB
+
+else if $tempString5%100 > 9
+
+    $count = $count+1
+    $countTo4 = $countTo4+1
+    $tempString = $tempString5
+    run = CommandListDealWithLetters
+    $tempString5 = $tempString5/100//1
+    run = CommandListB
+
+else if $tempString6%100 > 9
+
+    $count = $count+1
+    $countTo4 = $countTo4+1
+    $tempString = $tempString6
+    run = CommandListDealWithLetters
+    $tempString6 = $tempString6/100//1
+    run = CommandListB
+
+else if $tempString7%100 > 9
+
+    $count = $count+1
+    $countTo4 = $countTo4+1
+    $tempString = $tempString7
+    run = CommandListDealWithLetters
+    $tempString7 = $tempString7/100//1
+    run = CommandListB
+
+else if $tempString8%100 > 9
+
+    $count = $count+1
+    $countTo4 = $countTo4+1
+    $tempString = $tempString8
+    run = CommandListDealWithLetters
+    $tempString8 = $tempString8/100//1
+    run = CommandListB
+
+else if $tempString9%100 > 9
+
+    $count = $count+1
+    $countTo4 = $countTo4+1
+    $tempString = $tempString9
+    run = CommandListDealWithLetters
+    $tempString9 = $tempString9/100//1
+    run = CommandListB
+
+else if $tempString10%100 > 9
+
+    $count = $count+1
+    $countTo4 = $countTo4+1
+    $tempString = $tempString10
+    run = CommandListDealWithLetters
+    $tempString10 = $tempString10/100//1
+    run = CommandListB
+else 
+    $count = 0
+    $countTo4 = 0
+    $num = 0
+    $num2 = 0
+    $tempString = $string1
+    $tempString1 = $string1
+    $tempString2 = $string2
+    $tempString3 = $string3
+    $tempString4 = $string4
+    $tempString5 = $string5
+    $tempString6 = $string6
+    $tempString7 = $string7
+    $tempString8 = $string8
+    $tempString9 = $string9
+    $tempString10 = $string10
+endif
+
+
+[CommandListDealWithLetters]
+;$\Math\Ceil\in = ($ncod%64/63)
+;run = CommandList\Math\Ceil\Run
+;$\Math\Ceil\in = $tempString%100/100
+;run = CommandList\Math\Ceil\Run99
+$tempString = $tempString%100
+;$\Math\Ceil\out
+;$\NuraDebug\printMe = $tempString
+;$\NuraDebug\widthScale = 2
+;$\NuraDebug\heightScale = 0.35*$count
+;run = CommandList\NuraDebug\Debug
+
+
+if $tempString == 10
+    ps-t100 = ResourceLetterA
+else if $tempString == 11
+    ps-t100 = ResourceLetterB
+else if $tempString == 12
+    ps-t100 = ResourceLetterC
+else if $tempString == 13
+    ps-t100 = ResourceLetterD
+else if $tempString == 14
+    ps-t100 = ResourceLetterE
+else if $tempString == 15
+    ps-t100 = ResourceLetterF
+else if $tempString == 16
+    ps-t100 = ResourceLetterG
+else if $tempString == 17
+    ps-t100 = ResourceLetterH
+else if $tempString == 18
+    ps-t100 = ResourceLetterI
+else if $tempString == 19
+    ps-t100 = ResourceLetterJ
+else if $tempString == 20
+    ps-t100 = ResourceLetterK
+else if $tempString == 21
+    ps-t100 = ResourceLetterL
+else if $tempString == 22
+    ps-t100 = ResourceLetterM
+else if $tempString == 23
+    ps-t100 = ResourceLetterN
+else if $tempString == 24
+    ps-t100 = ResourceLetterO
+else if $tempString == 25
+    ps-t100 = ResourceLetterP
+else if $tempString == 26
+    ps-t100 = ResourceLetterQ
+else if $tempString == 27
+    ps-t100 = ResourceLetterR
+else if $tempString == 28
+    ps-t100 = ResourceLetterS
+else if $tempString == 29
+    ps-t100 = ResourceLetterT
+else if $tempString == 30
+    ps-t100 = ResourceLetterU
+else if $tempString == 31
+    ps-t100 = ResourceLetterV
+else if $tempString == 32
+    ps-t100 = ResourceLetterW
+else if $tempString == 33
+    ps-t100 = ResourceLetterX
+else if $tempString == 34
+    ps-t100 = ResourceLetterY
+else if $tempString >= 35
+    ps-t100 = ResourceLetterZ
+endif
+
+
+if $count == $Line_Break1 || $count == $Line_Break2 || $count == $Line_Break3
+    $num2 = $num2+0.06
+    $num = $Custom_Offset_X
+endif
+
+if $reset_x == 1
+	if $count == $Line_Break1
+		$Custom_Offset_X = 0
+	endif
+else if $reset_x == 2
+	if $count == $Line_Break2
+		$Custom_Offset_X = 0
+	endif
+else if $reset_x == 3
+	if $count == $Line_Break3
+		$Custom_Offset_X = 0
+	endif
+endif
+
+if $count == 0
+    $num2 = 0
+endif
+
+if $tempString != 99
+    run = CustomShaderDraw
+endif
+;//64
+
+$num = $num+0.035
+
+if $num >= 1
+    $num = 0
+    $Custom_Offset_X = 0
+endif
+
+
+
+
+[ResourceLetterA]
+filename = ../Letters/A.dds
+
+[ResourceLetterB]
+filename = ../Letters/B.dds
+
+[ResourceLetterC]
+filename = ../Letters/C.dds
+
+[ResourceLetterD]
+filename = ../Letters/D.dds
+
+
+[ResourceLetterE]
+filename = ../Letters/E.dds
+
+[ResourceLetterF]
+filename = ../Letters/F.dds
+
+[ResourceLetterG]
+filename = ../Letters/G.dds
+
+[ResourceLetterH]
+filename = ../Letters/H.dds
+
+
+
+[ResourceLetterI]
+filename = ../Letters/I.dds
+
+[ResourceLetterJ]
+filename = ../Letters/J.dds
+
+[ResourceLetterK]
+filename = ../Letters/K.dds
+
+[ResourceLetterL]
+filename = ../Letters/L.dds
+
+
+
+[ResourceLetterM]
+filename = ../Letters/M.dds
+
+[ResourceLetterN]
+filename = ../Letters/N.dds
+
+[ResourceLetterO]
+filename = ../Letters/O.dds
+
+[ResourceLetterP]
+filename = ../Letters/P.dds
+
+
+[ResourceLetterQ]
+filename = ../Letters/Q.dds
+
+[ResourceLetterR]
+filename = ../Letters/R.dds
+
+[ResourceLetterS]
+filename = ../Letters/S.dds
+
+[ResourceLetterT]
+filename = ../Letters/T.dds
+
+[ResourceLetterU]
+filename = ../Letters/U.dds
+
+
+[ResourceLetterV]
+filename = ../Letters/V.dds
+
+[ResourceLetterW]
+filename = ../Letters/W.dds
+
+[ResourceLetterX]
+filename = ../Letters/X.dds
+
+[ResourceLetterY]
+filename = ../Letters/Y.dds
+
+[ResourceLetterZ]
+filename = ../Letters/Z.dds

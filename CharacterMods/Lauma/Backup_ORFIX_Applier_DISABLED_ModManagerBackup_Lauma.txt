@@ -1,0 +1,265 @@
+; Lauma
+
+; Constants -------------------------
+
+[Constants]
+global $active = 0
+global $creditinfo = 0
+
+[Present]
+post $active = 0
+run = CommandListCreditInfo
+
+; Overrides -------------------------
+
+[TextureOverrideLaumaBodyPosition]
+hash = 89e96109
+vb0 = ResourceLaumaBodyPosition
+$active = 1
+
+[TextureOverrideLaumaBodyBlend]
+hash = 8226cf84
+handling = skip
+vb1 = ResourceLaumaBodyBlend
+draw = 21172, 0
+
+[TextureOverrideLaumaBodyTexcoord]
+hash = d8e6d8e4
+vb1 = ResourceLaumaBodyTexcoord
+
+[TextureOverrideLaumaBodyVertexLimitRaise]
+hash = cecefbb2
+override_vertex_count = 21172
+override_byte_stride = 40
+
+[TextureOverrideLaumaBangPosition]
+hash = f25edf24
+vb0 = ResourceLaumaBangPosition
+$active = 1
+
+[TextureOverrideLaumaBangBlend]
+hash = 158785a8
+handling = skip
+vb1 = ResourceLaumaBangBlend
+draw = 2425, 0
+
+[TextureOverrideLaumaBangTexcoord]
+hash = 1e0aafe0
+vb1 = ResourceLaumaBangTexcoord
+
+[TextureOverrideLaumaBangVertexLimitRaise]
+hash = e26e1db3
+override_vertex_count = 2425
+override_byte_stride = 40
+
+[TextureOverrideLaumaEyePosition]
+hash = 7e27b643
+vb0 = ResourceLaumaEyePosition
+$active = 1
+
+[TextureOverrideLaumaEyeBlend]
+hash = 6442cc7e
+handling = skip
+vb1 = ResourceLaumaEyeBlend
+draw = 266, 0
+
+[TextureOverrideLaumaEyeTexcoord]
+hash = 6eb0f6d7
+vb1 = ResourceLaumaEyeTexcoord
+
+[TextureOverrideLaumaEyeVertexLimitRaise]
+hash = 0a7a76aa
+override_vertex_count = 266
+override_byte_stride = 40
+
+[TextureOverrideLaumaBodyIB]
+hash = ce158bd6
+handling = skip
+
+[TextureOverrideLaumaBodyA]
+hash = ce158bd6
+match_first_index = 0
+ib = ResourceLaumaBodyAIB
+ps-t0 = ResourceLaumaBodyANormalMap
+ps-t1 = ResourceLaumaBodyADiffuse
+ps-t2 = ResourceLaumaBodyALightMap
+run = CommandList\global\ORFix\ORFix
+; LaumaBodyA-vb0=89e96109.txt (5081)
+drawindexed = 19074, 0, 0
+
+[TextureOverrideLaumaBodyB]
+hash = ce158bd6
+match_first_index = 19074
+ib = ResourceLaumaBodyBIB
+ps-t0 = ResourceLaumaBodyBDiffuse
+ps-t1 = ResourceLaumaBodyBLightMap
+; LaumaBodyB-vb0=89e96109.txt (15599)
+drawindexed = 56280, 0, 0
+
+[TextureOverrideLaumaBodyC]
+hash = ce158bd6
+match_first_index = 75702
+ib = ResourceLaumaBodyCIB
+ps-t0 = ResourceLaumaBodyCNormalMap
+ps-t1 = ResourceLaumaBodyCDiffuse
+ps-t2 = ResourceLaumaBodyCLightMap
+run = CommandList\global\ORFix\ORFix
+; LaumaBodyC-vb0=89e96109.txt (492)
+drawindexed = 1659, 0, 0
+
+[TextureOverrideLaumaBangIB]
+hash = 5a1345c9
+handling = skip
+
+[TextureOverrideLaumaBangA]
+hash = 5a1345c9
+match_first_index = 0
+ib = ResourceLaumaBangAIB
+ps-t0 = ResourceLaumaBangANormalMap
+ps-t1 = ResourceLaumaBangADiffuse
+ps-t2 = ResourceLaumaBangALightMap
+run = CommandList\global\ORFix\ORFix
+; LaumaBangA-vb0=f25edf24.txt (2425)
+drawindexed = 8862, 0, 0
+
+[TextureOverrideLaumaEyeIB]
+hash = c3e809a5
+handling = skip
+
+[TextureOverrideLaumaEyeA]
+hash = c3e809a5
+match_first_index = 0
+ib = ResourceLaumaEyeAIB
+ps-t0 = ResourceLaumaEyeADiffuse
+ps-t1 = ResourceLaumaEyeALightMap
+; LaumaEyeA-vb0=7e27b643.txt (266)
+drawindexed = 768, 0, 0
+
+
+; CommandList -----------------------
+
+[CommandListCreditInfo]
+if $creditinfo == 0 && $active > 0
+	pre Resource\ShaderFixes\help.ini\Notification = ResourceCreditInfo
+	pre run = CustomShader\ShaderFixes\help.ini\FormatText
+	pre $\ShaderFixes\help.ini\notification_timeout = time + 5.0
+	$creditinfo = 1
+endif
+
+; Resources -------------------------
+
+[ResourceLaumaBodyPosition]
+type = Buffer
+stride = 40
+filename = LaumaBodyPosition.buf
+
+[ResourceLaumaBodyBlend]
+type = Buffer
+stride = 32
+filename = LaumaBodyBlend.buf
+
+[ResourceLaumaBodyTexcoord]
+type = Buffer
+stride = 20
+filename = LaumaBodyTexcoord.buf
+
+[ResourceLaumaBodyAIB]
+type = Buffer
+format = DXGI_FORMAT_R32_UINT
+filename = LaumaBodyA.ib
+
+[ResourceLaumaBodyBIB]
+type = Buffer
+format = DXGI_FORMAT_R32_UINT
+filename = LaumaBodyB.ib
+
+[ResourceLaumaBodyCIB]
+type = Buffer
+format = DXGI_FORMAT_R32_UINT
+filename = LaumaBodyC.ib
+
+[ResourceLaumaBangPosition]
+type = Buffer
+stride = 40
+filename = LaumaBangPosition.buf
+
+[ResourceLaumaBangBlend]
+type = Buffer
+stride = 32
+filename = LaumaBangBlend.buf
+
+[ResourceLaumaBangTexcoord]
+type = Buffer
+stride = 12
+filename = LaumaBangTexcoord.buf
+
+[ResourceLaumaBangAIB]
+type = Buffer
+format = DXGI_FORMAT_R32_UINT
+filename = LaumaBangA.ib
+
+[ResourceLaumaEyePosition]
+type = Buffer
+stride = 40
+filename = LaumaEyePosition.buf
+
+[ResourceLaumaEyeBlend]
+type = Buffer
+stride = 32
+filename = LaumaEyeBlend.buf
+
+[ResourceLaumaEyeTexcoord]
+type = Buffer
+stride = 12
+filename = LaumaEyeTexcoord.buf
+
+[ResourceLaumaEyeAIB]
+type = Buffer
+format = DXGI_FORMAT_R32_UINT
+filename = LaumaEyeA.ib
+
+[ResourceLaumaBodyANormalMap]
+filename = LaumaBodyANormalMap.dds
+
+[ResourceLaumaBodyADiffuse]
+filename = LaumaBodyADiffuse.dds
+
+[ResourceLaumaBodyALightMap]
+filename = LaumaBodyALightMap.dds
+
+[ResourceLaumaBodyBDiffuse]
+filename = LaumaBodyBDiffuse.dds
+
+[ResourceLaumaBodyBLightMap]
+filename = LaumaBodyBLightMap.dds
+
+[ResourceLaumaBodyCNormalMap]
+filename = LaumaBodyCNormalMap.dds
+
+[ResourceLaumaBodyCDiffuse]
+filename = LaumaBodyCDiffuse.dds
+
+[ResourceLaumaBodyCLightMap]
+filename = LaumaBodyCLightMap.dds
+
+[ResourceLaumaBangANormalMap]
+filename = LaumaBangANormalMap.dds
+
+[ResourceLaumaBangADiffuse]
+filename = LaumaBangADiffuse.dds
+
+[ResourceLaumaBangALightMap]
+filename = LaumaBangALightMap.dds
+
+[ResourceLaumaEyeADiffuse]
+filename = LaumaEyeADiffuse.dds
+
+[ResourceLaumaEyeALightMap]
+filename = LaumaEyeALightMap.dds
+
+[ResourceCreditInfo]
+type = Buffer
+data = "Created by Nurarihyon"
+
+; .ini generated by XXMI (XX-Model-Importer) v1.5.4
+; If you have any issues or find any bugs, please open a ticket at https://github.com/leotorrez/XXMI-Tools/issues

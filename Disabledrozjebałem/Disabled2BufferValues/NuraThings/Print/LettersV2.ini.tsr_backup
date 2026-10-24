@@ -1,0 +1,408 @@
+namespace = NuraThings\Print\Letters\V2
+
+[Constants]
+global $TempCode
+
+global $TempDigit0
+global $TempDigit1
+global $TempDigit2
+global $TempDigit3
+
+global $CursorPos
+
+global $SelectedID
+
+global $TextCode0
+global $TextCode1
+global $TextCode2
+global $TextCode3
+global $TextCode4
+global $TextCode5
+global $TextCode6
+global $TextCode7
+global $TextCode8
+global $TextCode9
+global $TextCode10
+global $TextCode11
+
+global $offset_x = 0
+global $offset_y = 0
+
+global $spacing_x = 0.1
+global $spacing_y = 0.1
+
+global $font_size = 0.1
+
+global $do_once = 0
+
+[Present]
+;Resource\Debugger\DebugRW = ref ResourceDebug
+
+if $\NuraThings\KeyDetector\detect_keys
+    $offset_x = -0.50
+    $offset_y = 0.75
+
+    ;run = CommandListGetLetters
+    ;run = CommandListRenderText
+
+    ;$\NuraThings\Print\Numbers\Number = $TempCode
+    ;$\NuraThings\Print\Numbers\widthScale = 1
+    ;$\NuraThings\Print\Numbers\heightScale = 6
+    ;run = CommandList\NuraThings\Print\Numbers\Run
+;
+    ;$\NuraThings\Print\Numbers\Number = $CursorPos
+    ;$\NuraThings\Print\Numbers\widthScale = 1
+    ;$\NuraThings\Print\Numbers\heightScale = 7
+    ;run = CommandList\NuraThings\Print\Numbers\Run
+;
+    ;$\NuraThings\Print\Numbers\Number = $SelectedID
+    ;$\NuraThings\Print\Numbers\widthScale = 2
+    ;$\NuraThings\Print\Numbers\heightScale = 7
+    ;run = CommandList\NuraThings\Print\Numbers\Run
+;
+    ;$\NuraThings\Print\Numbers\Number = $TempDigit0
+    ;$\NuraThings\Print\Numbers\widthScale = 1
+    ;$\NuraThings\Print\Numbers\heightScale = 8
+    ;run = CommandList\NuraThings\Print\Numbers\Run
+;
+    ;$\NuraThings\Print\Numbers\Number = $TempDigit1
+    ;$\NuraThings\Print\Numbers\widthScale = 2
+    ;$\NuraThings\Print\Numbers\heightScale = 8
+    ;run = CommandList\NuraThings\Print\Numbers\Run
+;
+    ;$\NuraThings\Print\Numbers\Number = $TempDigit2
+    ;$\NuraThings\Print\Numbers\widthScale = 3
+    ;$\NuraThings\Print\Numbers\heightScale = 8
+    ;run = CommandList\NuraThings\Print\Numbers\Run
+;
+    ;$\NuraThings\Print\Numbers\Number = $TempDigit3
+    ;$\NuraThings\Print\Numbers\widthScale = 4
+    ;$\NuraThings\Print\Numbers\heightScale = 8
+    ;run = CommandList\NuraThings\Print\Numbers\Run
+
+elif $TempDigit0 != -1
+    run = CommandListEncode
+    run = CommandListClearTemp
+endif
+
+
+
+[CommandListClearTemp]
+$TempDigit0 = 0
+$TempDigit1 = 0
+$TempDigit2 = 0
+$TempDigit3 = 0
+
+$CursorPos = 0
+;$TempCode = 0
+
+[CommandListGetLetters]
+local $key_code = $\NuraThings\KeyDetector\key_code
+local $changed
+
+if $key_code == 54
+    run = CommandListDeleteChar
+    $\NuraThings\KeyDetector\key_code = 0
+
+    $changed = 1
+
+elif $key_code == 73
+    run = CommandListClearTypeCodes
+    run = CommandListClearTemp
+    $\NuraThings\KeyDetector\key_code = 0
+
+elif $key_code == 50
+    run = CommandListMoveLeft
+    $\NuraThings\KeyDetector\key_code = 0
+
+elif $key_code == 51
+    run = CommandListMoveRight
+    $\NuraThings\KeyDetector\key_code = 0
+
+elif $key_code < 36
+    if $CursorPos == 0 && $key_code != 0
+        $TempDigit0 = $key_code
+        $\NuraThings\KeyDetector\key_code = 0
+        $changed = 1
+
+    elif $CursorPos == 1 && $key_code != 0
+        $TempDigit1 = $key_code
+        $\NuraThings\KeyDetector\key_code = 0
+        $changed = 1
+
+    elif $CursorPos == 2 && $key_code != 0
+        $TempDigit2 = $key_code
+        $\NuraThings\KeyDetector\key_code = 0
+        $changed = 1
+
+    elif $CursorPos == 3 && $key_code != 0
+        $TempDigit3 = $key_code
+        $\NuraThings\KeyDetector\key_code = 0
+        $changed = 1
+    endif
+endif
+
+if $changed
+    run = CommandListEncode
+endif
+
+[CommandListEncode]
+$TempCode = $TempDigit0 + ($TempDigit1 * 40) + ($TempDigit2 * 40 ** 2) + ($TempDigit3 * 40 ** 3)
+
+if $SelectedID == 0
+    $TextCode0 = $TempCode
+elif $SelectedID == 1
+    $TextCode1 = $TempCode
+elif $SelectedID == 2
+    $TextCode2 = $TempCode
+elif $SelectedID == 3
+    $TextCode3 = $TempCode
+elif $SelectedID == 4
+    $TextCode4 = $TempCode
+elif $SelectedID == 5
+    $TextCode5 = $TempCode
+elif $SelectedID == 6
+    $TextCode6 = $TempCode
+elif $SelectedID == 7
+    $TextCode7 = $TempCode
+elif $SelectedID == 8
+    $TextCode8 = $TempCode
+elif $SelectedID == 9
+    $TextCode9 = $TempCode
+elif $SelectedID == 10
+    $TextCode10 = $TempCode
+elif $SelectedID == 11
+    $TextCode11 = $TempCode
+endif
+
+if $TempDigit0 != 0 || $TempDigit1 != 0 || $TempDigit2 != 0 || $TempDigit3 != 0
+    if $TempDigit0 == 0
+        $CursorPos = 0
+    elif $TempDigit1 == 0
+        $CursorPos = 1
+    elif $TempDigit2 == 0
+        $CursorPos = 2
+    elif $TempDigit3 == 0
+        $CursorPos = 3
+    endif
+endif
+
+
+
+if $TempDigit0 != 0 && $TempDigit1 != 0 && $TempDigit2 != 0 && $TempDigit3 != 0
+    run = CommandListClearTemp
+
+    if $SelectedID < 11
+        $SelectedID = $SelectedID+1
+    else
+        $SelectedID = 0
+    endif
+endif
+
+[CommandListMoveLeft]
+if $CursorPos > 0
+    $CursorPos = $CursorPos - 1
+else 
+    $CursorPos = 3
+    $SelectedID = $SelectedID-1
+endif
+
+
+[CommandListMoveRight]
+if $CursorPos < 3
+    $CursorPos = $CursorPos + 1
+else 
+    $CursorPos = 0
+    $SelectedID = $SelectedID+1
+endif
+
+[CommandListDecodeToDigits]
+; Decode TempCode back into digits
+if $SelectedID == 0
+    $TempCode = $TextCode0
+elif $SelectedID == 1
+    $TempCode = $TextCode1
+elif $SelectedID == 2
+    $TempCode = $TextCode2
+elif $SelectedID == 3
+    $TempCode = $TextCode3
+elif $SelectedID == 4
+    $TempCode = $TextCode4
+elif $SelectedID == 5
+    $TempCode = $TextCode5
+elif $SelectedID == 6
+    $TempCode = $TextCode6
+elif $SelectedID == 7
+    $TempCode = $TextCode7
+elif $SelectedID == 8
+    $TempCode = $TextCode8
+elif $SelectedID == 9
+    $TempCode = $TextCode9
+elif $SelectedID == 10
+    $TempCode = $TextCode10
+elif $SelectedID == 11
+    $TempCode = $TextCode11
+endif
+
+$TempDigit0 = $TempCode % 40
+$TempDigit1 = ($TempCode / 40) % 40
+$TempDigit2 = ($TempCode / (40 * 40)) % 40
+$TempDigit3 = ($TempCode / (40 * 40 * 40)) % 40
+
+
+
+[CommandListDeleteChar]
+; Remove a character at the current cursor position (0-3) from the selected text slot
+
+; Define helper to clear digit by isolating remaining digits
+
+if $SelectedID == 0
+    $TextCode0 = ($TextCode0 % (40 ** $CursorPos)) + (($TextCode0 / (40 ** ($CursorPos + 1))) * (40 ** ($CursorPos + 1)))
+elif $SelectedID == 1
+    $TextCode1 = ($TextCode1 % (40 ** $CursorPos)) + (($TextCode1 / (40 ** ($CursorPos + 1))) * (40 ** ($CursorPos + 1)))
+elif $SelectedID == 2
+    $TextCode2 = ($TextCode2 % (40 ** $CursorPos)) + (($TextCode2 / (40 ** ($CursorPos + 1))) * (40 ** ($CursorPos + 1)))
+elif $SelectedID == 3
+    $TextCode3 = ($TextCode3 % (40 ** $CursorPos)) + (($TextCode3 / (40 ** ($CursorPos + 1))) * (40 ** ($CursorPos + 1)))
+elif $SelectedID == 4
+    $TextCode4 = ($TextCode4 % (40 ** $CursorPos)) + (($TextCode4 / (40 ** ($CursorPos + 1))) * (40 ** ($CursorPos + 1)))
+elif $SelectedID == 5
+    $TextCode5 = ($TextCode5 % (40 ** $CursorPos)) + (($TextCode5 / (40 ** ($CursorPos + 1))) * (40 ** ($CursorPos + 1)))
+elif $SelectedID == 6
+    $TextCode6 = ($TextCode6 % (40 ** $CursorPos)) + (($TextCode6 / (40 ** ($CursorPos + 1))) * (40 ** ($CursorPos + 1)))
+elif $SelectedID == 7
+    $TextCode7 = ($TextCode7 % (40 ** $CursorPos)) + (($TextCode7 / (40 ** ($CursorPos + 1))) * (40 ** ($CursorPos + 1)))
+elif $SelectedID == 8
+    $TextCode8 = ($TextCode8 % (40 ** $CursorPos)) + (($TextCode8 / (40 ** ($CursorPos + 1))) * (40 ** ($CursorPos + 1)))
+elif $SelectedID == 9
+    $TextCode9 = ($TextCode9 % (40 ** $CursorPos)) + (($TextCode9 / (40 ** ($CursorPos + 1))) * (40 ** ($CursorPos + 1)))
+elif $SelectedID == 10
+    $TextCode10 = ($TextCode10 % (40 ** $CursorPos)) + (($TextCode10 / (40 ** ($CursorPos + 1))) * (40 ** ($CursorPos + 1)))
+elif $SelectedID == 11
+    $TextCode11 = ($TextCode11 % (40 ** $CursorPos)) + (($TextCode11 / (40 ** ($CursorPos + 1))) * (40 ** ($CursorPos + 1)))
+endif
+
+run = CommandListDecodeToDigits
+
+[CustomShaderCreateString]
+cs = ../Shaders/GenerateString.hlsl
+
+x93 = $TextCode0
+y93 = $TextCode1
+z93 = $TextCode2
+w93 = $TextCode3
+
+x94 = $TextCode4
+y94 = $TextCode5
+z94 = $TextCode6
+w94 = $TextCode7
+
+x95 = $TextCode8
+y95 = $TextCode9
+z95 = $TextCode10
+w95 = $TextCode11
+
+;clear = ResourceString
+
+cs-u0 = ResourceString
+
+;cs-u1 = ResourceDebug
+
+dispatch = 48,1,1
+
+cs-u0 = null
+
+run = BuiltInCommandListUnbindAllRenderTargets
+;[CustomShaderRenderString]
+;cs = RenderString.hlsl
+;
+;cs-u0 = ResourceString
+;cs-u1 = ResourceASCIIGlyph
+;
+;dispatch = 1,1,1
+;
+;or
+
+[CustomShaderRenderString]
+vs = ../Shaders/RenderString.hlsl
+ps = ../Shaders/RenderString.hlsl
+
+ps-t1 = ResourceASCIIGlyph
+vs-t0 = ResourceString
+vs-t2 = ResourceLayout
+
+x96 = $offset_x
+y96 = $offset_y
+
+z96 = $spacing_x
+w96 = $spacing_y
+
+x97 = $font_size
+
+o0 = set_viewport bb
+topology = triangle_strip
+blend = ADD SRC_ALPHA INV_SRC_ALPHA
+cull = none
+
+drawinstanced = 4,48, 1, 1
+; 48 instances for 48 characters
+run = BuiltInCommandListUnbindAllRenderTargets
+
+;clear = ResourceString
+
+
+[CustomShaderGetLayout]
+cs = ../Shaders/GetLayout.hlsl
+
+clear = ResourceLayout
+
+cs-t0 = ResourceString
+cs-u0 = ResourceLayout
+cs-u1 = ResourceDebug
+
+dispatch = 1, 1, 1
+
+cs-u0 = null
+cs-t0 = null
+cs-u1 = null
+run = BuiltInCommandListUnbindAllRenderTargets
+
+[CommandListRenderText]
+clear = ResourceString
+run = CustomShaderCreateString
+run = CustomShaderGetLayout
+run = CustomShaderRenderString
+
+[CommandListClearTypeCodes]
+$TextCode0 = 0
+$TextCode1 = 0
+$TextCode2 = 0
+$TextCode3 = 0
+$TextCode4 = 0
+$TextCode5 = 0
+$TextCode6 = 0
+$TextCode7 = 0
+$TextCode8 = 0
+$TextCode9 = 0
+$TextCode10 = 0
+$TextCode11 = 0
+
+$SelectedID = 0
+
+[ResourceASCIIGlyph]
+filename = ASCIIGlyph.dds
+
+[ResourceString]
+type = Buffer
+format = R32_UINT
+array = 64
+
+[ResourceLayout]
+type = Buffer
+format = R32G32_FLOAT
+array = 64
+
+[ResourceDebug]
+type = RWBuffer
+format = R32G32B32A32_FLOAT
+array = 64

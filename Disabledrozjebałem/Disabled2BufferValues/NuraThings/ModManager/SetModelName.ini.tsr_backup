@@ -1,0 +1,755 @@
+namespace = yyyyyNuraThings\ModManager\ModelName
+
+[Constants]
+
+global $init = 1
+
+global $Amount = 80
+
+
+[CommandListSetName]
+
+if $init == 1
+
+	$\zzzzzNuraThings\ModManager\tempModTypeID = 2
+	Resource\zzzzzNuraThings\ModManager\TempModelName = ResourceArlecchino
+	run = CustomShader\zzzzzNuraThings\ModManager\AddAllModelNames
+
+	$\zzzzzNuraThings\ModManager\tempModTypeID = 5
+	Resource\zzzzzNuraThings\ModManager\TempModelName = ResourceBennett
+	run = CustomShader\zzzzzNuraThings\ModManager\AddAllModelNames
+
+	$\zzzzzNuraThings\ModManager\tempModTypeID = 6
+	Resource\zzzzzNuraThings\ModManager\TempModelName = ResourceBennett
+	run = CustomShader\zzzzzNuraThings\ModManager\AddAllModelNames
+
+	$\zzzzzNuraThings\ModManager\tempModTypeID = 7
+	Resource\zzzzzNuraThings\ModManager\TempModelName = ResourceChasca
+	run = CustomShader\zzzzzNuraThings\ModManager\AddAllModelNames
+
+	$\zzzzzNuraThings\ModManager\tempModTypeID = 50
+	Resource\zzzzzNuraThings\ModManager\TempModelName = ResourceChest
+	run = CustomShader\zzzzzNuraThings\ModManager\AddAllModelNames
+
+	$\zzzzzNuraThings\ModManager\tempModTypeID = 8
+	Resource\zzzzzNuraThings\ModManager\TempModelName = ResourceChiori
+	run = CustomShader\zzzzzNuraThings\ModManager\AddAllModelNames
+
+	$\zzzzzNuraThings\ModManager\tempModTypeID = 9
+	Resource\zzzzzNuraThings\ModManager\TempModelName = ResourceCitlali
+	run = CustomShader\zzzzzNuraThings\ModManager\AddAllModelNames
+
+	$\zzzzzNuraThings\ModManager\tempModTypeID = 10
+	Resource\zzzzzNuraThings\ModManager\TempModelName = ResourceClorinde
+	run = CustomShader\zzzzzNuraThings\ModManager\AddAllModelNames
+
+	$\zzzzzNuraThings\ModManager\tempModTypeID = 51
+	Resource\zzzzzNuraThings\ModManager\TempModelName = ResourceCrimson
+	run = CustomShader\zzzzzNuraThings\ModManager\AddAllModelNames
+
+	$\zzzzzNuraThings\ModManager\tempModTypeID = 53
+	Resource\zzzzzNuraThings\ModManager\TempModelName = ResourceCulus
+	run = CustomShader\zzzzzNuraThings\ModManager\AddAllModelNames
+
+	$\zzzzzNuraThings\ModManager\tempModTypeID = 54
+	Resource\zzzzzNuraThings\ModManager\TempModelName = ResourceCulus
+	run = CustomShader\zzzzzNuraThings\ModManager\AddAllModelNames
+
+	$\zzzzzNuraThings\ModManager\tempModTypeID = 55
+	Resource\zzzzzNuraThings\ModManager\TempModelName = ResourceCulus
+	run = CustomShader\zzzzzNuraThings\ModManager\AddAllModelNames
+
+	$\zzzzzNuraThings\ModManager\tempModTypeID = 56
+	Resource\zzzzzNuraThings\ModManager\TempModelName = ResourceCulus
+	run = CustomShader\zzzzzNuraThings\ModManager\AddAllModelNames
+
+	$\zzzzzNuraThings\ModManager\tempModTypeID = 52
+	Resource\zzzzzNuraThings\ModManager\TempModelName = ResourceCulus
+	run = CustomShader\zzzzzNuraThings\ModManager\AddAllModelNames
+
+	$\zzzzzNuraThings\ModManager\tempModTypeID = 47
+	Resource\zzzzzNuraThings\ModManager\TempModelName = ResourceDehya
+	run = CustomShader\zzzzzNuraThings\ModManager\AddAllModelNames
+
+	$\zzzzzNuraThings\ModManager\tempModTypeID = 11
+	Resource\zzzzzNuraThings\ModManager\TempModelName = ResourceDiona
+	run = CustomShader\zzzzzNuraThings\ModManager\AddAllModelNames
+
+	$\zzzzzNuraThings\ModManager\tempModTypeID = 48
+	Resource\zzzzzNuraThings\ModManager\TempModelName = ResourceEula
+	run = CustomShader\zzzzzNuraThings\ModManager\AddAllModelNames
+
+	$\zzzzzNuraThings\ModManager\tempModTypeID = 12
+	Resource\zzzzzNuraThings\ModManager\TempModelName = ResourceFischl
+	run = CustomShader\zzzzzNuraThings\ModManager\AddAllModelNames
+
+	$\zzzzzNuraThings\ModManager\tempModTypeID = 13
+	Resource\zzzzzNuraThings\ModManager\TempModelName = ResourceFurina
+	run = CustomShader\zzzzzNuraThings\ModManager\AddAllModelNames
+
+	$\zzzzzNuraThings\ModManager\tempModTypeID = 17
+	Resource\zzzzzNuraThings\ModManager\TempModelName = ResourceGaming
+	run = CustomShader\zzzzzNuraThings\ModManager\AddAllModelNames
+
+	$\zzzzzNuraThings\ModManager\tempModTypeID = 16
+	Resource\zzzzzNuraThings\ModManager\TempModelName = ResourceGaming
+	run = CustomShader\zzzzzNuraThings\ModManager\AddAllModelNames
+
+	$\zzzzzNuraThings\ModManager\tempModTypeID = 15
+	Resource\zzzzzNuraThings\ModManager\TempModelName = ResourceGamingEFFECT
+	run = CustomShader\zzzzzNuraThings\ModManager\AddAllModelNames
+
+	$\zzzzzNuraThings\ModManager\tempModTypeID = 18
+	Resource\zzzzzNuraThings\ModManager\TempModelName = ResourceGanyu
+	run = CustomShader\zzzzzNuraThings\ModManager\AddAllModelNames
+
+	$\zzzzzNuraThings\ModManager\tempModTypeID = 5952
+	Resource\zzzzzNuraThings\ModManager\TempModelName = ResourceItto
+	run = CustomShader\zzzzzNuraThings\ModManager\AddAllModelNames
+
+	$\zzzzzNuraThings\ModManager\tempModTypeID = 9456
+	Resource\zzzzzNuraThings\ModManager\TempModelName = ResourceIttoPack
+	run = CustomShader\zzzzzNuraThings\ModManager\AddAllModelNames
+
+	$\zzzzzNuraThings\ModManager\tempModTypeID = 9553
+	Resource\zzzzzNuraThings\ModManager\TempModelName = ResourceIttoPack
+	run = CustomShader\zzzzzNuraThings\ModManager\AddAllModelNames
+
+	$\zzzzzNuraThings\ModManager\tempModTypeID = 2136
+	Resource\zzzzzNuraThings\ModManager\TempModelName = ResourceIttoPack
+	run = CustomShader\zzzzzNuraThings\ModManager\AddAllModelNames
+
+	$\zzzzzNuraThings\ModManager\tempModTypeID = 4944
+	Resource\zzzzzNuraThings\ModManager\TempModelName = ResourceJeanneAlter
+	run = CustomShader\zzzzzNuraThings\ModManager\AddAllModelNames
+
+	$\zzzzzNuraThings\ModManager\tempModTypeID = 61
+	Resource\zzzzzNuraThings\ModManager\TempModelName = ResourceKatheryne
+	run = CustomShader\zzzzzNuraThings\ModManager\AddAllModelNames
+
+	$\zzzzzNuraThings\ModManager\tempModTypeID = 62
+	Resource\zzzzzNuraThings\ModManager\TempModelName = ResourceKatheryne
+	run = CustomShader\zzzzzNuraThings\ModManager\AddAllModelNames
+
+	$\zzzzzNuraThings\ModManager\tempModTypeID = 20
+	Resource\zzzzzNuraThings\ModManager\TempModelName = ResourceKirara
+	run = CustomShader\zzzzzNuraThings\ModManager\AddAllModelNames
+
+	$\zzzzzNuraThings\ModManager\tempModTypeID = 4170
+	Resource\zzzzzNuraThings\ModManager\TempModelName = ResourceKiraraMaster
+	run = CustomShader\zzzzzNuraThings\ModManager\AddAllModelNames
+
+	$\zzzzzNuraThings\ModManager\tempModTypeID = 22
+	Resource\zzzzzNuraThings\ModManager\TempModelName = ResourceKokomi
+	run = CustomShader\zzzzzNuraThings\ModManager\AddAllModelNames
+
+	$\zzzzzNuraThings\ModManager\tempModTypeID = 32
+	Resource\zzzzzNuraThings\ModManager\TempModelName = ResourceKujou
+	run = CustomShader\zzzzzNuraThings\ModManager\AddAllModelNames
+
+	$\zzzzzNuraThings\ModManager\tempModTypeID = 23
+	Resource\zzzzzNuraThings\ModManager\TempModelName = ResourceLauma
+	run = CustomShader\zzzzzNuraThings\ModManager\AddAllModelNames
+
+	$\zzzzzNuraThings\ModManager\tempModTypeID = 3695
+	Resource\zzzzzNuraThings\ModManager\TempModelName = ResourceLeoTorreZYaoYaoswimtoggle
+	run = CustomShader\zzzzzNuraThings\ModManager\AddAllModelNames
+
+	$\zzzzzNuraThings\ModManager\tempModTypeID = 57
+	Resource\zzzzzNuraThings\ModManager\TempModelName = ResourceLumenspar
+	run = CustomShader\zzzzzNuraThings\ModManager\AddAllModelNames
+
+	$\zzzzzNuraThings\ModManager\tempModTypeID = 24
+	Resource\zzzzzNuraThings\ModManager\TempModelName = ResourceLumine
+	run = CustomShader\zzzzzNuraThings\ModManager\AddAllModelNames
+
+	$\zzzzzNuraThings\ModManager\tempModTypeID = 3299
+	Resource\zzzzzNuraThings\ModManager\TempModelName = ResourceMagicNeuvilletteGyra
+	run = CustomShader\zzzzzNuraThings\ModManager\AddAllModelNames
+
+	$\zzzzzNuraThings\ModManager\tempModTypeID = 8139
+	Resource\zzzzzNuraThings\ModManager\TempModelName = ResourceMagicNeuvilletteKarp
+	run = CustomShader\zzzzzNuraThings\ModManager\AddAllModelNames
+
+	$\zzzzzNuraThings\ModManager\tempModTypeID = 8666
+	Resource\zzzzzNuraThings\ModManager\TempModelName = ResourceMagicNeuvilletteMegaBurst
+	run = CustomShader\zzzzzNuraThings\ModManager\AddAllModelNames
+
+	$\zzzzzNuraThings\ModManager\tempModTypeID = 8130
+	Resource\zzzzzNuraThings\ModManager\TempModelName = ResourceMagicNeuvilletteMegaCharge
+	run = CustomShader\zzzzzNuraThings\ModManager\AddAllModelNames
+
+	$\zzzzzNuraThings\ModManager\tempModTypeID = 7649
+	Resource\zzzzzNuraThings\ModManager\TempModelName = ResourceMagicNeuvilletteSwim
+	run = CustomShader\zzzzzNuraThings\ModManager\AddAllModelNames
+
+	$\zzzzzNuraThings\ModManager\tempModTypeID = 4
+	Resource\zzzzzNuraThings\ModManager\TempModelName = ResourceMenu
+	run = CustomShader\zzzzzNuraThings\ModManager\AddAllModelNames
+
+	$\zzzzzNuraThings\ModManager\tempModTypeID = 14
+	Resource\zzzzzNuraThings\ModManager\TempModelName = ResourceMing
+	run = CustomShader\zzzzzNuraThings\ModManager\AddAllModelNames
+
+	$\zzzzzNuraThings\ModManager\tempModTypeID = 26
+	Resource\zzzzzNuraThings\ModManager\TempModelName = ResourceMizuki
+	run = CustomShader\zzzzzNuraThings\ModManager\AddAllModelNames
+
+	$\zzzzzNuraThings\ModManager\tempModTypeID = 27
+	Resource\zzzzzNuraThings\ModManager\TempModelName = ResourceMona
+	run = CustomShader\zzzzzNuraThings\ModManager\AddAllModelNames
+
+	$\zzzzzNuraThings\ModManager\tempModTypeID = 1241
+	Resource\zzzzzNuraThings\ModManager\TempModelName = ResourceMualani
+	run = CustomShader\zzzzzNuraThings\ModManager\AddAllModelNames
+
+	$\zzzzzNuraThings\ModManager\tempModTypeID = 29
+	Resource\zzzzzNuraThings\ModManager\TempModelName = ResourceNilou
+	run = CustomShader\zzzzzNuraThings\ModManager\AddAllModelNames
+
+	$\zzzzzNuraThings\ModManager\tempModTypeID = 58
+	Resource\zzzzzNuraThings\ModManager\TempModelName = ResourcePurifying
+	run = CustomShader\zzzzzNuraThings\ModManager\AddAllModelNames
+
+	$\zzzzzNuraThings\ModManager\tempModTypeID = 59
+	Resource\zzzzzNuraThings\ModManager\TempModelName = ResourcePyroculus
+	run = CustomShader\zzzzzNuraThings\ModManager\AddAllModelNames
+
+	$\zzzzzNuraThings\ModManager\tempModTypeID = 36
+	Resource\zzzzzNuraThings\ModManager\TempModelName = ResourceRecurve
+	run = CustomShader\zzzzzNuraThings\ModManager\AddAllModelNames
+
+	$\zzzzzNuraThings\ModManager\tempModTypeID = 30
+	Resource\zzzzzNuraThings\ModManager\TempModelName = ResourceRosaria
+	run = CustomShader\zzzzzNuraThings\ModManager\AddAllModelNames
+
+	$\zzzzzNuraThings\ModManager\tempModTypeID = 31
+	Resource\zzzzzNuraThings\ModManager\TempModelName = ResourceRosaria
+	run = CustomShader\zzzzzNuraThings\ModManager\AddAllModelNames
+
+	$\zzzzzNuraThings\ModManager\tempModTypeID = 60
+	Resource\zzzzzNuraThings\ModManager\TempModelName = ResourceSacred
+	run = CustomShader\zzzzzNuraThings\ModManager\AddAllModelNames
+
+	$\zzzzzNuraThings\ModManager\tempModTypeID = 37
+	Resource\zzzzzNuraThings\ModManager\TempModelName = ResourceSequence
+	run = CustomShader\zzzzzNuraThings\ModManager\AddAllModelNames
+
+	$\zzzzzNuraThings\ModManager\tempModTypeID = 33
+	Resource\zzzzzNuraThings\ModManager\TempModelName = ResourceShenhe
+	run = CustomShader\zzzzzNuraThings\ModManager\AddAllModelNames
+
+	$\zzzzzNuraThings\ModManager\tempModTypeID = 34
+	Resource\zzzzzNuraThings\ModManager\TempModelName = ResourceShenhe
+	run = CustomShader\zzzzzNuraThings\ModManager\AddAllModelNames
+
+	$\zzzzzNuraThings\ModManager\tempModTypeID = 7174
+	Resource\zzzzzNuraThings\ModManager\TempModelName = ResourceShironen
+	run = CustomShader\zzzzzNuraThings\ModManager\AddAllModelNames
+
+	$\zzzzzNuraThings\ModManager\tempModTypeID = 35
+	Resource\zzzzzNuraThings\ModManager\TempModelName = ResourceSigewinne
+	run = CustomShader\zzzzzNuraThings\ModManager\AddAllModelNames
+
+	$\zzzzzNuraThings\ModManager\tempModTypeID = 38
+	Resource\zzzzzNuraThings\ModManager\TempModelName = ResourceSigewinne
+	run = CustomShader\zzzzzNuraThings\ModManager\AddAllModelNames
+
+	$\zzzzzNuraThings\ModManager\tempModTypeID = 39
+	Resource\zzzzzNuraThings\ModManager\TempModelName = ResourceSkirk
+	run = CustomShader\zzzzzNuraThings\ModManager\AddAllModelNames
+
+	$\zzzzzNuraThings\ModManager\tempModTypeID = 19
+	Resource\zzzzzNuraThings\ModManager\TempModelName = ResourceTanya
+	run = CustomShader\zzzzzNuraThings\ModManager\AddAllModelNames
+
+	$\zzzzzNuraThings\ModManager\tempModTypeID = 63
+	Resource\zzzzzNuraThings\ModManager\TempModelName = ResourceThe
+	run = CustomShader\zzzzzNuraThings\ModManager\AddAllModelNames
+
+	$\zzzzzNuraThings\ModManager\tempModTypeID = 4946
+	Resource\zzzzzNuraThings\ModManager\TempModelName = ResourceThoma
+	run = CustomShader\zzzzzNuraThings\ModManager\AddAllModelNames
+
+	$\zzzzzNuraThings\ModManager\tempModTypeID = 4967
+	Resource\zzzzzNuraThings\ModManager\TempModelName = ResourceThomaPack
+	run = CustomShader\zzzzzNuraThings\ModManager\AddAllModelNames
+
+	$\zzzzzNuraThings\ModManager\tempModTypeID = 1854
+	Resource\zzzzzNuraThings\ModManager\TempModelName = ResourceThomaPack
+	run = CustomShader\zzzzzNuraThings\ModManager\AddAllModelNames
+
+	$\zzzzzNuraThings\ModManager\tempModTypeID = 4197
+	Resource\zzzzzNuraThings\ModManager\TempModelName = ResourceThomaPack
+	run = CustomShader\zzzzzNuraThings\ModManager\AddAllModelNames
+
+	$\zzzzzNuraThings\ModManager\tempModTypeID = 25
+	Resource\zzzzzNuraThings\ModManager\TempModelName = ResourceTraveler
+	run = CustomShader\zzzzzNuraThings\ModManager\AddAllModelNames
+
+	$\zzzzzNuraThings\ModManager\tempModTypeID = 9448
+	Resource\zzzzzNuraThings\ModManager\TempModelName = ResourceTravelerBoy
+	run = CustomShader\zzzzzNuraThings\ModManager\AddAllModelNames
+
+	$\zzzzzNuraThings\ModManager\tempModTypeID = 1598
+	Resource\zzzzzNuraThings\ModManager\TempModelName = ResourceTravelerBoyPack
+	run = CustomShader\zzzzzNuraThings\ModManager\AddAllModelNames
+
+	$\zzzzzNuraThings\ModManager\tempModTypeID = 3008
+	Resource\zzzzzNuraThings\ModManager\TempModelName = ResourceTravelerBoyPack
+	run = CustomShader\zzzzzNuraThings\ModManager\AddAllModelNames
+
+	$\zzzzzNuraThings\ModManager\tempModTypeID = 7286
+	Resource\zzzzzNuraThings\ModManager\TempModelName = ResourceTravelerBoyPack
+	run = CustomShader\zzzzzNuraThings\ModManager\AddAllModelNames
+
+	$\zzzzzNuraThings\ModManager\tempModTypeID = 40
+	Resource\zzzzzNuraThings\ModManager\TempModelName = ResourceXiangling
+	run = CustomShader\zzzzzNuraThings\ModManager\AddAllModelNames
+
+	$\zzzzzNuraThings\ModManager\tempModTypeID = 49
+	Resource\zzzzzNuraThings\ModManager\TempModelName = ResourceXiao
+	run = CustomShader\zzzzzNuraThings\ModManager\AddAllModelNames
+
+	$\zzzzzNuraThings\ModManager\tempModTypeID = 41
+	Resource\zzzzzNuraThings\ModManager\TempModelName = ResourceXilonen
+	run = CustomShader\zzzzzNuraThings\ModManager\AddAllModelNames
+
+	$\zzzzzNuraThings\ModManager\tempModTypeID = 42
+	Resource\zzzzzNuraThings\ModManager\TempModelName = ResourceXingqiu
+	run = CustomShader\zzzzzNuraThings\ModManager\AddAllModelNames
+
+	$\zzzzzNuraThings\ModManager\tempModTypeID = 43
+	Resource\zzzzzNuraThings\ModManager\TempModelName = ResourceYae
+	run = CustomShader\zzzzzNuraThings\ModManager\AddAllModelNames
+
+	$\zzzzzNuraThings\ModManager\tempModTypeID = 45
+	Resource\zzzzzNuraThings\ModManager\TempModelName = ResourceYelan
+	run = CustomShader\zzzzzNuraThings\ModManager\AddAllModelNames
+
+	$\zzzzzNuraThings\ModManager\tempModTypeID = 46
+	Resource\zzzzzNuraThings\ModManager\TempModelName = ResourceYoimiya
+	run = CustomShader\zzzzzNuraThings\ModManager\AddAllModelNames
+
+	run = CustomShader\zzzzzNuraThings\ModManager\AddCountToModelNames
+
+	$init = 0
+endif
+
+if $\zzzzzNuraThings\ModManager\ActiveTypeID == 2
+    Resource\zzzzzNuraThings\ModManager\ModelName = ResourceArlecchino
+elif $\zzzzzNuraThings\ModManager\ActiveTypeID == 5
+    Resource\zzzzzNuraThings\ModManager\ModelName = ResourceBennett
+elif $\zzzzzNuraThings\ModManager\ActiveTypeID == 6
+    Resource\zzzzzNuraThings\ModManager\ModelName = ResourceBennett
+elif $\zzzzzNuraThings\ModManager\ActiveTypeID == 7
+    Resource\zzzzzNuraThings\ModManager\ModelName = ResourceChasca
+elif $\zzzzzNuraThings\ModManager\ActiveTypeID == 50
+    Resource\zzzzzNuraThings\ModManager\ModelName = ResourceChest
+elif $\zzzzzNuraThings\ModManager\ActiveTypeID == 8
+    Resource\zzzzzNuraThings\ModManager\ModelName = ResourceChiori
+elif $\zzzzzNuraThings\ModManager\ActiveTypeID == 9
+    Resource\zzzzzNuraThings\ModManager\ModelName = ResourceCitlali
+elif $\zzzzzNuraThings\ModManager\ActiveTypeID == 10
+    Resource\zzzzzNuraThings\ModManager\ModelName = ResourceClorinde
+elif $\zzzzzNuraThings\ModManager\ActiveTypeID == 51
+    Resource\zzzzzNuraThings\ModManager\ModelName = ResourceCrimson
+elif $\zzzzzNuraThings\ModManager\ActiveTypeID == 53
+    Resource\zzzzzNuraThings\ModManager\ModelName = ResourceCulus
+elif $\zzzzzNuraThings\ModManager\ActiveTypeID == 54
+    Resource\zzzzzNuraThings\ModManager\ModelName = ResourceCulus
+elif $\zzzzzNuraThings\ModManager\ActiveTypeID == 55
+    Resource\zzzzzNuraThings\ModManager\ModelName = ResourceCulus
+elif $\zzzzzNuraThings\ModManager\ActiveTypeID == 56
+    Resource\zzzzzNuraThings\ModManager\ModelName = ResourceCulus
+elif $\zzzzzNuraThings\ModManager\ActiveTypeID == 52
+    Resource\zzzzzNuraThings\ModManager\ModelName = ResourceCulus
+elif $\zzzzzNuraThings\ModManager\ActiveTypeID == 47
+    Resource\zzzzzNuraThings\ModManager\ModelName = ResourceDehya
+elif $\zzzzzNuraThings\ModManager\ActiveTypeID == 11
+    Resource\zzzzzNuraThings\ModManager\ModelName = ResourceDiona
+elif $\zzzzzNuraThings\ModManager\ActiveTypeID == 48
+    Resource\zzzzzNuraThings\ModManager\ModelName = ResourceEula
+elif $\zzzzzNuraThings\ModManager\ActiveTypeID == 12
+    Resource\zzzzzNuraThings\ModManager\ModelName = ResourceFischl
+elif $\zzzzzNuraThings\ModManager\ActiveTypeID == 13
+    Resource\zzzzzNuraThings\ModManager\ModelName = ResourceFurina
+elif $\zzzzzNuraThings\ModManager\ActiveTypeID == 17
+    Resource\zzzzzNuraThings\ModManager\ModelName = ResourceGaming
+elif $\zzzzzNuraThings\ModManager\ActiveTypeID == 16
+    Resource\zzzzzNuraThings\ModManager\ModelName = ResourceGaming
+elif $\zzzzzNuraThings\ModManager\ActiveTypeID == 15
+    Resource\zzzzzNuraThings\ModManager\ModelName = ResourceGamingEFFECT
+elif $\zzzzzNuraThings\ModManager\ActiveTypeID == 18
+    Resource\zzzzzNuraThings\ModManager\ModelName = ResourceGanyu
+elif $\zzzzzNuraThings\ModManager\ActiveTypeID == 5952
+    Resource\zzzzzNuraThings\ModManager\ModelName = ResourceItto
+elif $\zzzzzNuraThings\ModManager\ActiveTypeID == 9456
+    Resource\zzzzzNuraThings\ModManager\ModelName = ResourceIttoPack
+elif $\zzzzzNuraThings\ModManager\ActiveTypeID == 9553
+    Resource\zzzzzNuraThings\ModManager\ModelName = ResourceIttoPack
+elif $\zzzzzNuraThings\ModManager\ActiveTypeID == 2136
+    Resource\zzzzzNuraThings\ModManager\ModelName = ResourceIttoPack
+elif $\zzzzzNuraThings\ModManager\ActiveTypeID == 4944
+    Resource\zzzzzNuraThings\ModManager\ModelName = ResourceJeanneAlter
+elif $\zzzzzNuraThings\ModManager\ActiveTypeID == 61
+    Resource\zzzzzNuraThings\ModManager\ModelName = ResourceKatheryne
+elif $\zzzzzNuraThings\ModManager\ActiveTypeID == 62
+    Resource\zzzzzNuraThings\ModManager\ModelName = ResourceKatheryne
+elif $\zzzzzNuraThings\ModManager\ActiveTypeID == 20
+    Resource\zzzzzNuraThings\ModManager\ModelName = ResourceKirara
+elif $\zzzzzNuraThings\ModManager\ActiveTypeID == 4170
+    Resource\zzzzzNuraThings\ModManager\ModelName = ResourceKiraraMaster
+elif $\zzzzzNuraThings\ModManager\ActiveTypeID == 22
+    Resource\zzzzzNuraThings\ModManager\ModelName = ResourceKokomi
+elif $\zzzzzNuraThings\ModManager\ActiveTypeID == 32
+    Resource\zzzzzNuraThings\ModManager\ModelName = ResourceKujou
+elif $\zzzzzNuraThings\ModManager\ActiveTypeID == 23
+    Resource\zzzzzNuraThings\ModManager\ModelName = ResourceLauma
+elif $\zzzzzNuraThings\ModManager\ActiveTypeID == 3695
+    Resource\zzzzzNuraThings\ModManager\ModelName = ResourceLeoTorreZYaoYaoswimtoggle
+elif $\zzzzzNuraThings\ModManager\ActiveTypeID == 57
+    Resource\zzzzzNuraThings\ModManager\ModelName = ResourceLumenspar
+elif $\zzzzzNuraThings\ModManager\ActiveTypeID == 24
+    Resource\zzzzzNuraThings\ModManager\ModelName = ResourceLumine
+elif $\zzzzzNuraThings\ModManager\ActiveTypeID == 3299
+    Resource\zzzzzNuraThings\ModManager\ModelName = ResourceMagicNeuvilletteGyra
+elif $\zzzzzNuraThings\ModManager\ActiveTypeID == 8139
+    Resource\zzzzzNuraThings\ModManager\ModelName = ResourceMagicNeuvilletteKarp
+elif $\zzzzzNuraThings\ModManager\ActiveTypeID == 8666
+    Resource\zzzzzNuraThings\ModManager\ModelName = ResourceMagicNeuvilletteMegaBurst
+elif $\zzzzzNuraThings\ModManager\ActiveTypeID == 8130
+    Resource\zzzzzNuraThings\ModManager\ModelName = ResourceMagicNeuvilletteMegaCharge
+elif $\zzzzzNuraThings\ModManager\ActiveTypeID == 7649
+    Resource\zzzzzNuraThings\ModManager\ModelName = ResourceMagicNeuvilletteSwim
+elif $\zzzzzNuraThings\ModManager\ActiveTypeID == 4
+    Resource\zzzzzNuraThings\ModManager\ModelName = ResourceMenu
+elif $\zzzzzNuraThings\ModManager\ActiveTypeID == 14
+    Resource\zzzzzNuraThings\ModManager\ModelName = ResourceMing
+elif $\zzzzzNuraThings\ModManager\ActiveTypeID == 26
+    Resource\zzzzzNuraThings\ModManager\ModelName = ResourceMizuki
+elif $\zzzzzNuraThings\ModManager\ActiveTypeID == 27
+    Resource\zzzzzNuraThings\ModManager\ModelName = ResourceMona
+elif $\zzzzzNuraThings\ModManager\ActiveTypeID == 1241
+    Resource\zzzzzNuraThings\ModManager\ModelName = ResourceMualani
+elif $\zzzzzNuraThings\ModManager\ActiveTypeID == 29
+    Resource\zzzzzNuraThings\ModManager\ModelName = ResourceNilou
+elif $\zzzzzNuraThings\ModManager\ActiveTypeID == 58
+    Resource\zzzzzNuraThings\ModManager\ModelName = ResourcePurifying
+elif $\zzzzzNuraThings\ModManager\ActiveTypeID == 59
+    Resource\zzzzzNuraThings\ModManager\ModelName = ResourcePyroculus
+elif $\zzzzzNuraThings\ModManager\ActiveTypeID == 36
+    Resource\zzzzzNuraThings\ModManager\ModelName = ResourceRecurve
+elif $\zzzzzNuraThings\ModManager\ActiveTypeID == 30
+    Resource\zzzzzNuraThings\ModManager\ModelName = ResourceRosaria
+elif $\zzzzzNuraThings\ModManager\ActiveTypeID == 31
+    Resource\zzzzzNuraThings\ModManager\ModelName = ResourceRosaria
+elif $\zzzzzNuraThings\ModManager\ActiveTypeID == 60
+    Resource\zzzzzNuraThings\ModManager\ModelName = ResourceSacred
+elif $\zzzzzNuraThings\ModManager\ActiveTypeID == 37
+    Resource\zzzzzNuraThings\ModManager\ModelName = ResourceSequence
+elif $\zzzzzNuraThings\ModManager\ActiveTypeID == 33
+    Resource\zzzzzNuraThings\ModManager\ModelName = ResourceShenhe
+elif $\zzzzzNuraThings\ModManager\ActiveTypeID == 34
+    Resource\zzzzzNuraThings\ModManager\ModelName = ResourceShenhe
+elif $\zzzzzNuraThings\ModManager\ActiveTypeID == 7174
+    Resource\zzzzzNuraThings\ModManager\ModelName = ResourceShironen
+elif $\zzzzzNuraThings\ModManager\ActiveTypeID == 35
+    Resource\zzzzzNuraThings\ModManager\ModelName = ResourceSigewinne
+elif $\zzzzzNuraThings\ModManager\ActiveTypeID == 38
+    Resource\zzzzzNuraThings\ModManager\ModelName = ResourceSigewinne
+elif $\zzzzzNuraThings\ModManager\ActiveTypeID == 39
+    Resource\zzzzzNuraThings\ModManager\ModelName = ResourceSkirk
+elif $\zzzzzNuraThings\ModManager\ActiveTypeID == 19
+    Resource\zzzzzNuraThings\ModManager\ModelName = ResourceTanya
+elif $\zzzzzNuraThings\ModManager\ActiveTypeID == 63
+    Resource\zzzzzNuraThings\ModManager\ModelName = ResourceThe
+elif $\zzzzzNuraThings\ModManager\ActiveTypeID == 4946
+    Resource\zzzzzNuraThings\ModManager\ModelName = ResourceThoma
+elif $\zzzzzNuraThings\ModManager\ActiveTypeID == 4967
+    Resource\zzzzzNuraThings\ModManager\ModelName = ResourceThomaPack
+elif $\zzzzzNuraThings\ModManager\ActiveTypeID == 1854
+    Resource\zzzzzNuraThings\ModManager\ModelName = ResourceThomaPack
+elif $\zzzzzNuraThings\ModManager\ActiveTypeID == 4197
+    Resource\zzzzzNuraThings\ModManager\ModelName = ResourceThomaPack
+elif $\zzzzzNuraThings\ModManager\ActiveTypeID == 25
+    Resource\zzzzzNuraThings\ModManager\ModelName = ResourceTraveler
+elif $\zzzzzNuraThings\ModManager\ActiveTypeID == 9448
+    Resource\zzzzzNuraThings\ModManager\ModelName = ResourceTravelerBoy
+elif $\zzzzzNuraThings\ModManager\ActiveTypeID == 1598
+    Resource\zzzzzNuraThings\ModManager\ModelName = ResourceTravelerBoyPack
+elif $\zzzzzNuraThings\ModManager\ActiveTypeID == 3008
+    Resource\zzzzzNuraThings\ModManager\ModelName = ResourceTravelerBoyPack
+elif $\zzzzzNuraThings\ModManager\ActiveTypeID == 7286
+    Resource\zzzzzNuraThings\ModManager\ModelName = ResourceTravelerBoyPack
+elif $\zzzzzNuraThings\ModManager\ActiveTypeID == 40
+    Resource\zzzzzNuraThings\ModManager\ModelName = ResourceXiangling
+elif $\zzzzzNuraThings\ModManager\ActiveTypeID == 49
+    Resource\zzzzzNuraThings\ModManager\ModelName = ResourceXiao
+elif $\zzzzzNuraThings\ModManager\ActiveTypeID == 41
+    Resource\zzzzzNuraThings\ModManager\ModelName = ResourceXilonen
+elif $\zzzzzNuraThings\ModManager\ActiveTypeID == 42
+    Resource\zzzzzNuraThings\ModManager\ModelName = ResourceXingqiu
+elif $\zzzzzNuraThings\ModManager\ActiveTypeID == 43
+    Resource\zzzzzNuraThings\ModManager\ModelName = ResourceYae
+elif $\zzzzzNuraThings\ModManager\ActiveTypeID == 45
+    Resource\zzzzzNuraThings\ModManager\ModelName = ResourceYelan
+elif $\zzzzzNuraThings\ModManager\ActiveTypeID == 46
+    Resource\zzzzzNuraThings\ModManager\ModelName = ResourceYoimiya
+endif
+
+[ResourceArlecchino]
+type = Buffer
+data = "Arlecchino"
+
+[ResourceBennett]
+type = Buffer
+data = "Bennett"
+
+[ResourceChasca]
+type = Buffer
+data = "Chasca"
+
+[ResourceChest]
+type = Buffer
+data = "Chest"
+
+[ResourceChiori]
+type = Buffer
+data = "Chiori"
+
+[ResourceCitlali]
+type = Buffer
+data = "Citlali"
+
+[ResourceClorinde]
+type = Buffer
+data = "Clorinde"
+
+[ResourceCrimson]
+type = Buffer
+data = "Crimson"
+
+[ResourceCulus]
+type = Buffer
+data = "Culus"
+
+[ResourceDehya]
+type = Buffer
+data = "Dehya"
+
+[ResourceDiona]
+type = Buffer
+data = "Diona"
+
+[ResourceEula]
+type = Buffer
+data = "Eula"
+
+[ResourceFischl]
+type = Buffer
+data = "Fischl"
+
+[ResourceFurina]
+type = Buffer
+data = "Furina"
+
+[ResourceGaming]
+type = Buffer
+data = "Gaming"
+
+[ResourceGamingEFFECT]
+type = Buffer
+data = "gamingeffect"
+
+[ResourceGanyu]
+type = Buffer
+data = "Ganyu"
+
+[ResourceItto]
+type = Buffer
+data = "Itto"
+
+[ResourceIttoPack]
+type = Buffer
+data = "IttoPack"
+
+[ResourceJeanneAlter]
+type = Buffer
+data = "JeanneAlter"
+
+[ResourceKatheryne]
+type = Buffer
+data = "Katheryne"
+
+[ResourceKirara]
+type = Buffer
+data = "Kirara"
+
+[ResourceKiraraMaster]
+type = Buffer
+data = "kiraraMaster"
+
+[ResourceKokomi]
+type = Buffer
+data = "Kokomi"
+
+[ResourceKujou]
+type = Buffer
+data = "Kujou"
+
+[ResourceLauma]
+type = Buffer
+data = "Lauma"
+
+[ResourceLeoTorreZYaoYaoswimtoggle]
+type = Buffer
+data = "LeoTorreZYaoYaoswimtoggle"
+
+[ResourceLumenspar]
+type = Buffer
+data = "Lumenspar"
+
+[ResourceLumine]
+type = Buffer
+data = "Lumine"
+
+[ResourceMagicNeuvilletteGyra]
+type = Buffer
+data = "MagicNeuvilletteGyra"
+
+[ResourceMagicNeuvilletteKarp]
+type = Buffer
+data = "MagicNeuvilletteKarp"
+
+[ResourceMagicNeuvilletteMegaBurst]
+type = Buffer
+data = "MagicNeuvilletteMegaBurst"
+
+[ResourceMagicNeuvilletteMegaCharge]
+type = Buffer
+data = "MagicNeuvilletteMegaCharge"
+
+[ResourceMagicNeuvilletteSwim]
+type = Buffer
+data = "MagicNeuvilletteSwim"
+
+[ResourceMenu]
+type = Buffer
+data = "Menu"
+
+[ResourceMing]
+type = Buffer
+data = "Ming"
+
+[ResourceMizuki]
+type = Buffer
+data = "Mizuki"
+
+[ResourceMona]
+type = Buffer
+data = "Mona"
+
+[ResourceMualani]
+type = Buffer
+data = "Mualani"
+
+[ResourceNilou]
+type = Buffer
+data = "Nilou"
+
+[ResourcePurifying]
+type = Buffer
+data = "Purifying"
+
+[ResourcePyroculus]
+type = Buffer
+data = "Pyroculus"
+
+[ResourceRecurve]
+type = Buffer
+data = "Recurve"
+
+[ResourceRosaria]
+type = Buffer
+data = "Rosaria"
+
+[ResourceSacred]
+type = Buffer
+data = "Sacred"
+
+[ResourceSequence]
+type = Buffer
+data = "Sequence"
+
+[ResourceShenhe]
+type = Buffer
+data = "Shenhe"
+
+[ResourceShironen]
+type = Buffer
+data = "Shironen"
+
+[ResourceSigewinne]
+type = Buffer
+data = "Sigewinne"
+
+[ResourceSkirk]
+type = Buffer
+data = "Skirk"
+
+[ResourceTanya]
+type = Buffer
+data = "tanya"
+
+[ResourceThe]
+type = Buffer
+data = "The"
+
+[ResourceThoma]
+type = Buffer
+data = "Thoma"
+
+[ResourceThomaPack]
+type = Buffer
+data = "ThomaPack"
+
+[ResourceTraveler]
+type = Buffer
+data = "Traveler"
+
+[ResourceTravelerBoy]
+type = Buffer
+data = "TravelerBoy"
+
+[ResourceTravelerBoyPack]
+type = Buffer
+data = "TravelerBoyPack"
+
+[ResourceXiangling]
+type = Buffer
+data = "Xiangling"
+
+[ResourceXiao]
+type = Buffer
+data = "Xiao"
+
+[ResourceXilonen]
+type = Buffer
+data = "Xilonen"
+
+[ResourceXingqiu]
+type = Buffer
+data = "Xingqiu"
+
+[ResourceYae]
+type = Buffer
+data = "Yae"
+
+[ResourceYelan]
+type = Buffer
+data = "Yelan"
+
+[ResourceYoimiya]
+type = Buffer
+data = "Yoimiya"

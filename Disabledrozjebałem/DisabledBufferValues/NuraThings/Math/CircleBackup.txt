@@ -1,0 +1,6 @@
+;// x,y is the point to test
+;// cx, cy is circle center, and radius is circle radius
+;function pointInCircle(x, y, cx, cy, radius) {
+;  var distancesquared = (x - cx) * (x - cx) + (y - cy) * (y - cy);
+;  return distancesquared <= radius * radius;
+;}

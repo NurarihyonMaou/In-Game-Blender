@@ -1,0 +1,58 @@
+~Broken ORFix results in green characters|Patience|Update ORFix|
+~ORFix ORFixAPI ORFix Applier|Only ORFix|Only ORFixAPI|
+~Fix broken mods manually|Use Applier|Reinstall game|
+~Do not add ORFix or NNFix under Face Texture Overrides|Add under Face Head|Add anywhere|
+~/ps-t0 = NormalMap/ps-t1 = Diffuse/ps-t2 = Lightmap/|ps-t0 = Diffuse/ps-t1 = NormalMap/|/ps-t0 = Lightmap/ps-t1 = Diffuse|
+~/ps-t0 = Diffuse ps-t1 = Lightmap|ps-t0 = NormalMaps ps-t1 = Diffuse|Any order|
+~ORFix Applier (gamebanana.com/tools/16472)|ORFix Installer|Manual patch|
+~Remove duplicates from Mods Folder|Restart game|Ignore|
+~
+ps-t0 = NormalMaps
+ps-t1 = Diffuse
+ps-t2 = Lightmap
+
+|
+ps-t0 = Diffuse
+ps-t1 = Lightmap
+
+|
+ps-t0 = Lightmap
+ps-t1 = Diffuse|
+
+~/
+ps-t0 = Diffuse
+ps-t1 = Lightmap
+|
+/
+ps-t1 = Diffuse
+ps-t2 = Lightmap
+|
+/
+ps-t1 = Lightmap
+ps-t2 = Diffuse
+|
+~Do not add ORFix command if no slots|Add ORFix anyway|Use NNFix|
+~Search and delete duplicates|Keep duplicates|Disable mods|
+~//ps-t0 = ResourceClorindeBodyNormalMap
+ps-t1 = ResourceClorindeBodyDiffuse
+ps-t2 = ResourceClorindeBodyLightmap
+
+run = CommandList\global\ORFix\ORFix
+
+drawindexed = x,y,z/|/
+ps-t0 = ResourceClorindeBodyNormalMap
+ps-t1 = ResourceClorindeBodyDiffuse
+ps-t2 = ResourceClorindeBodyLightmap
+
+drawindexed = x,y,z
+
+run = CommandList\global\ORFix\ORFix
+/|/
+ps-t0 = ResourceClorindeBodyNormalMap
+
+run = CommandList\global\ORFix\ORFix
+
+ps-t1 = ResourceClorindeBodyDiffuse
+ps-t2 = ResourceClorindeBodyLightmap
+
+drawindexed = x,y,z/|

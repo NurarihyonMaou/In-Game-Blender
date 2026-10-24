@@ -1,0 +1,748 @@
+; Merged Mod: .\00\ChestCommon.ini, .\01\ChestCommon.ini
+
+; Constants ---------------------------
+
+[Constants]
+global persist $swapvar = 0
+global $active
+global $creditinfo = 0
+
+[KeySwap]
+condition = $active == 1
+key = p
+type = cycle
+$swapvar = 0,1,2
+$creditinfo = 0
+
+[Present]
+post $active = 0
+
+; Shader ------------------------------
+
+; Overrides ---------------------------
+
+[TextureOverrideChestCommonPosition]
+hash = 46ef4305
+run = CommandListChestCommonPosition
+$active = 1
+
+[TextureOverrideChestCommonBlend]
+hash = f209ea68
+run = CommandListChestCommonBlend
+
+[TextureOverrideChestCommonTexcoord]
+hash = b18b5a35
+run = CommandListChestCommonTexcoord
+
+[TextureOverrideChestCommonVertexLimitRaise]
+hash = b3eafc8f
+
+[TextureOverrideChestCommonIB]
+hash = 5f23621b
+run = CommandListChestCommonIB
+
+[TextureOverrideChestCommonHead]
+hash = 5f23621b
+match_first_index = 0
+run = CommandListChestCommonHead
+
+; CommandList -------------------------
+
+[CommandListChestCommonPosition]
+if $swapvar == 0
+	vb0 = ResourceChestCommonPosition.0
+else if $swapvar == 1
+	vb0 = ResourceChestCommonPosition.1
+endif
+
+[CommandListChestCommonBlend]
+if $swapvar == 0
+	vb1 = ResourceChestCommonBlend.0
+	handling = skip
+	draw = 694,0
+else if $swapvar == 1
+	vb1 = ResourceChestCommonBlend.1
+	handling = skip
+	draw = 1400,0
+endif
+
+[CommandListChestCommonTexcoord]
+if $swapvar == 0
+	vb1 = ResourceChestCommonTexcoord.0
+else if $swapvar == 1
+	vb1 = ResourceChestCommonTexcoord.1
+endif
+
+[CommandListChestCommonIB]
+if $swapvar == 0
+	handling = skip
+	drawindexed = auto
+else if $swapvar == 1
+	handling = skip
+	drawindexed = auto
+endif
+
+[CommandListChestCommonHead]
+if $swapvar == 0
+	ib = ResourceChestCommonHeadIB.0
+	ps-t0 = ResourceChestCommonHeadDiffuse.0
+	ps-t1 = ResourceChestCommonHeadLightMap.0
+	ps-t2 = ResourceChestCommonHeadShadow.0
+	ps-t3 = ResourceChestCommonHeadt3.0
+else if $swapvar == 1
+	ib = ResourceChestCommonHeadIB.1
+	ps-t0 = ResourceChestCommonHeadDiffuse.1
+	ps-t1 = ResourceChestCommonHeadLightMap.1
+	ps-t2 = ResourceChestCommonHeadShadow.1
+	ps-t3 = ResourceChestCommonHeadt3.1
+endif
+
+; Resources ---------------------------
+
+[ResourceChestCommonPosition.0]
+type = Buffer
+stride = 40
+filename = .\00\ChestCommonPosition.buf
+
+[ResourceChestCommonBlend.0]
+type = Buffer
+stride = 32
+filename = .\00\ChestCommonBlend.buf
+
+[ResourceChestCommonTexcoord.0]
+type = Buffer
+stride = 8
+filename = .\00\ChestCommonTexcoord.buf
+
+[ResourceChestCommonHeadIB.0]
+type = Buffer
+format = DXGI_FORMAT_R32_UINT
+filename = .\00\ChestCommonHead.ib
+
+[ResourceChestCommonHeadDiffuse.0]
+filename = .\00\ChestCommonHeadDiffuse.dds
+
+[ResourceChestCommonHeadLightMap.0]
+filename = .\00\ChestCommonHeadLightMap.dds
+
+[ResourceChestCommonHeadShadow.0]
+filename = .\00\ChestCommonHeadShadow.dds
+
+[ResourceChestCommonHeadt3.0]
+filename = .\00\ChestCommonHeadt3.dds
+
+[ResourceChestCommonPosition.1]
+type = Buffer
+stride = 40
+filename = .\01\ChestCommonPosition.buf
+
+[ResourceChestCommonBlend.1]
+type = Buffer
+stride = 32
+filename = .\01\ChestCommonBlend.buf
+
+[ResourceChestCommonTexcoord.1]
+type = Buffer
+stride = 8
+filename = .\01\ChestCommonTexcoord.buf
+
+[ResourceChestCommonHeadIB.1]
+type = Buffer
+format = DXGI_FORMAT_R32_UINT
+filename = .\01\ChestCommonHead.ib
+
+[ResourceChestCommonHeadDiffuse.1]
+filename = .\01\ChestCommonHeadDiffuse.dds
+
+[ResourceChestCommonHeadLightMap.1]
+filename = .\01\ChestCommonHeadLightMap.dds
+
+[ResourceChestCommonHeadShadow.1]
+filename = .\01\ChestCommonHeadShadow.dds
+
+[ResourceChestCommonHeadt3.1]
+filename = .\01\ChestCommonHeadt3.dds
+
+
+; Overrides ---------------------------
+
+[TextureOverrideChestExquisitePosition]
+hash = c426a5b3
+run = CommandListChestExquisitePosition
+$active = 1
+
+[TextureOverrideChestExquisiteBlend]
+hash = 2ee0b752
+run = CommandListChestExquisiteBlend
+
+[TextureOverrideChestExquisiteTexcoord]
+hash = 65783aa7
+run = CommandListChestExquisiteTexcoord
+
+[TextureOverrideChestExquisiteVertexLimitRaise]
+hash = f7a38326
+
+[TextureOverrideChestExquisiteIB]
+hash = fa049e1b
+run = CommandListChestExquisiteIB
+
+[TextureOverrideChestExquisiteHead]
+hash = fa049e1b
+match_first_index = 0
+run = CommandListChestExquisiteHead
+
+; CommandList -------------------------
+
+[CommandListChestExquisitePosition]
+if $swapvar == 0
+	vb0 = ResourceChestExquisitePosition.0
+else if $swapvar == 1
+	vb0 = ResourceChestExquisitePosition.1
+endif
+
+[CommandListChestExquisiteBlend]
+if $swapvar == 0
+	vb1 = ResourceChestExquisiteBlend.0
+	handling = skip
+	draw = 1912,0
+else if $swapvar == 1
+	vb1 = ResourceChestExquisiteBlend.1
+	handling = skip
+	draw = 1912,0
+endif
+
+[CommandListChestExquisiteTexcoord]
+if $swapvar == 0
+	vb1 = ResourceChestExquisiteTexcoord.0
+else if $swapvar == 1
+	vb1 = ResourceChestExquisiteTexcoord.1
+endif
+
+[CommandListChestExquisiteIB]
+if $swapvar == 0
+	handling = skip
+	drawindexed = auto
+else if $swapvar == 1
+	handling = skip
+	drawindexed = auto
+endif
+
+[CommandListChestExquisiteHead]
+if $swapvar == 0
+	ib = ResourceChestExquisiteHeadIB.0
+	ps-t0 = ResourceChestExquisiteHeadDiffuse.0
+	ps-t1 = ResourceChestExquisiteHeadLightMap.0
+	ps-t2 = ResourceChestExquisiteHeadShadow.0
+	ps-t3 = ResourceChestExquisiteHeadt3.0
+else if $swapvar == 1
+	ib = ResourceChestExquisiteHeadIB.1
+	ps-t0 = ResourceChestExquisiteHeadDiffuse.1
+	ps-t1 = ResourceChestExquisiteHeadLightMap.1
+	ps-t2 = ResourceChestExquisiteHeadShadow.1
+	ps-t3 = ResourceChestExquisiteHeadt3.1
+endif
+
+; Resources ---------------------------
+
+[ResourceChestExquisitePosition.0]
+type = Buffer
+stride = 40
+filename = .\00\ChestExquisitePosition.buf
+
+[ResourceChestExquisiteBlend.0]
+type = Buffer
+stride = 32
+filename = .\00\ChestExquisiteBlend.buf
+
+[ResourceChestExquisiteTexcoord.0]
+type = Buffer
+stride = 8
+filename = .\00\ChestExquisiteTexcoord.buf
+
+[ResourceChestExquisiteHeadIB.0]
+type = Buffer
+format = DXGI_FORMAT_R32_UINT
+filename = .\00\ChestExquisiteHead.ib
+
+[ResourceChestExquisiteHeadDiffuse.0]
+filename = .\00\ChestExquisiteHeadDiffuse.dds
+
+[ResourceChestExquisiteHeadLightMap.0]
+filename = .\00\ChestExquisiteHeadLightMap.dds
+
+[ResourceChestExquisiteHeadShadow.0]
+filename = .\00\ChestExquisiteHeadShadow.dds
+
+[ResourceChestExquisiteHeadt3.0]
+filename = .\00\ChestExquisiteHeadt3.dds
+
+[ResourceChestExquisitePosition.1]
+type = Buffer
+stride = 40
+filename = .\01\ChestExquisitePosition.buf
+
+[ResourceChestExquisiteBlend.1]
+type = Buffer
+stride = 32
+filename = .\01\ChestExquisiteBlend.buf
+
+[ResourceChestExquisiteTexcoord.1]
+type = Buffer
+stride = 8
+filename = .\01\ChestExquisiteTexcoord.buf
+
+[ResourceChestExquisiteHeadIB.1]
+type = Buffer
+format = DXGI_FORMAT_R32_UINT
+filename = .\01\ChestExquisiteHead.ib
+
+[ResourceChestExquisiteHeadDiffuse.1]
+filename = .\01\ChestExquisiteHeadDiffuse.dds
+
+[ResourceChestExquisiteHeadLightMap.1]
+filename = .\01\ChestExquisiteHeadLightMap.dds
+
+[ResourceChestExquisiteHeadShadow.1]
+filename = .\01\ChestExquisiteHeadShadow.dds
+
+[ResourceChestExquisiteHeadt3.1]
+filename = .\01\ChestExquisiteHeadt3.dds
+
+
+; Overrides ---------------------------
+
+[TextureOverrideChestLuxuriousPosition]
+hash = 600d512d
+run = CommandListChestLuxuriousPosition
+$active = 1
+
+[TextureOverrideChestLuxuriousBlend]
+hash = 908b5498
+run = CommandListChestLuxuriousBlend
+
+[TextureOverrideChestLuxuriousTexcoord]
+hash = 29c80aa7
+run = CommandListChestLuxuriousTexcoord
+
+[TextureOverrideChestLuxuriousVertexLimitRaise]
+hash = 6fef5b23
+
+[TextureOverrideChestLuxuriousIB]
+hash = fe755262
+run = CommandListChestLuxuriousIB
+
+[TextureOverrideChestLuxuriousHead]
+hash = fe755262
+match_first_index = 0
+run = CommandListChestLuxuriousHead
+
+; CommandList -------------------------
+
+[CommandListChestLuxuriousPosition]
+if $swapvar == 0
+	vb0 = ResourceChestLuxuriousPosition.0
+else if $swapvar == 1
+	vb0 = ResourceChestLuxuriousPosition.1
+endif
+
+[CommandListChestLuxuriousBlend]
+if $swapvar == 0
+	vb1 = ResourceChestLuxuriousBlend.0
+	handling = skip
+	draw = 2792,0
+else if $swapvar == 1
+	vb1 = ResourceChestLuxuriousBlend.1
+	handling = skip
+	draw = 2792,0
+endif
+
+[CommandListChestLuxuriousTexcoord]
+if $swapvar == 0
+	vb1 = ResourceChestLuxuriousTexcoord.0
+else if $swapvar == 1
+	vb1 = ResourceChestLuxuriousTexcoord.1
+endif
+
+[CommandListChestLuxuriousIB]
+if $swapvar == 0
+	handling = skip
+	drawindexed = auto
+else if $swapvar == 1
+	handling = skip
+	drawindexed = auto
+endif
+
+[CommandListChestLuxuriousHead]
+if $swapvar == 0
+	ib = ResourceChestLuxuriousHeadIB.0
+	ps-t0 = ResourceChestLuxuriousHeadDiffuse.0
+	ps-t1 = ResourceChestLuxuriousHeadLightMap.0
+	ps-t2 = ResourceChestLuxuriousHeadShadow.0
+	ps-t3 = ResourceChestLuxuriousHeadt3.0
+else if $swapvar == 1
+	ib = ResourceChestLuxuriousHeadIB.1
+	ps-t0 = ResourceChestLuxuriousHeadDiffuse.1
+	ps-t1 = ResourceChestLuxuriousHeadLightMap.1
+	ps-t2 = ResourceChestLuxuriousHeadShadow.1
+	ps-t3 = ResourceChestLuxuriousHeadt3.1
+endif
+
+; Resources ---------------------------
+
+[ResourceChestLuxuriousPosition.0]
+type = Buffer
+stride = 40
+filename = .\00\ChestLuxuriousPosition.buf
+
+[ResourceChestLuxuriousBlend.0]
+type = Buffer
+stride = 32
+filename = .\00\ChestLuxuriousBlend.buf
+
+[ResourceChestLuxuriousTexcoord.0]
+type = Buffer
+stride = 8
+filename = .\00\ChestLuxuriousTexcoord.buf
+
+[ResourceChestLuxuriousHeadIB.0]
+type = Buffer
+format = DXGI_FORMAT_R32_UINT
+filename = .\00\ChestLuxuriousHead.ib
+
+[ResourceChestLuxuriousHeadDiffuse.0]
+filename = .\00\ChestLuxuriousHeadDiffuse.dds
+
+[ResourceChestLuxuriousHeadLightMap.0]
+filename = .\00\ChestLuxuriousHeadLightMap.dds
+
+[ResourceChestLuxuriousHeadShadow.0]
+filename = .\00\ChestLuxuriousHeadShadow.dds
+
+[ResourceChestLuxuriousHeadt3.0]
+filename = .\00\ChestLuxuriousHeadt3.dds
+
+[ResourceChestLuxuriousPosition.1]
+type = Buffer
+stride = 40
+filename = .\01\ChestLuxuriousPosition.buf
+
+[ResourceChestLuxuriousBlend.1]
+type = Buffer
+stride = 32
+filename = .\01\ChestLuxuriousBlend.buf
+
+[ResourceChestLuxuriousTexcoord.1]
+type = Buffer
+stride = 8
+filename = .\01\ChestLuxuriousTexcoord.buf
+
+[ResourceChestLuxuriousHeadIB.1]
+type = Buffer
+format = DXGI_FORMAT_R32_UINT
+filename = .\01\ChestLuxuriousHead.ib
+
+[ResourceChestLuxuriousHeadDiffuse.1]
+filename = .\01\ChestLuxuriousHeadDiffuse.dds
+
+[ResourceChestLuxuriousHeadLightMap.1]
+filename = .\01\ChestLuxuriousHeadLightMap.dds
+
+[ResourceChestLuxuriousHeadShadow.1]
+filename = .\01\ChestLuxuriousHeadShadow.dds
+
+[ResourceChestLuxuriousHeadt3.1]
+filename = .\01\ChestLuxuriousHeadt3.dds
+
+
+; Overrides ---------------------------
+
+[TextureOverrideChestPreciousPosition]
+hash = e9239f65
+run = CommandListChestPreciousPosition
+$active = 1
+
+[TextureOverrideChestPreciousBlend]
+hash = 8784eaff
+run = CommandListChestPreciousBlend
+
+[TextureOverrideChestPreciousTexcoord]
+hash = 16ebb894
+run = CommandListChestPreciousTexcoord
+
+[TextureOverrideChestPreciousVertexLimitRaise]
+hash = e2d15c3e
+
+[TextureOverrideChestPreciousIB]
+hash = e4c1a951
+run = CommandListChestPreciousIB
+
+[TextureOverrideChestPreciousHead]
+hash = e4c1a951
+match_first_index = 0
+run = CommandListChestPreciousHead
+
+; CommandList -------------------------
+
+[CommandListChestPreciousPosition]
+if $swapvar == 0
+	vb0 = ResourceChestPreciousPosition.0
+else if $swapvar == 1
+	vb0 = ResourceChestPreciousPosition.1
+endif
+
+[CommandListChestPreciousBlend]
+if $swapvar == 0
+	vb1 = ResourceChestPreciousBlend.0
+	handling = skip
+	draw = 2958,0
+else if $swapvar == 1
+	vb1 = ResourceChestPreciousBlend.1
+	handling = skip
+	draw = 2958,0
+endif
+
+[CommandListChestPreciousTexcoord]
+if $swapvar == 0
+	vb1 = ResourceChestPreciousTexcoord.0
+else if $swapvar == 1
+	vb1 = ResourceChestPreciousTexcoord.1
+endif
+
+[CommandListChestPreciousIB]
+if $swapvar == 0
+	handling = skip
+	drawindexed = auto
+else if $swapvar == 1
+	handling = skip
+	drawindexed = auto
+endif
+
+[CommandListChestPreciousHead]
+if $swapvar == 0
+	ib = ResourceChestPreciousHeadIB.0
+	ps-t0 = ResourceChestPreciousHeadDiffuse.0
+	ps-t1 = ResourceChestPreciousHeadLightMap.0
+	ps-t2 = ResourceChestPreciousHeadShadow.0
+	ps-t3 = ResourceChestPreciousHeadt3.0
+else if $swapvar == 1
+	ib = ResourceChestPreciousHeadIB.1
+	ps-t0 = ResourceChestPreciousHeadDiffuse.1
+	ps-t1 = ResourceChestPreciousHeadLightMap.1
+	ps-t2 = ResourceChestPreciousHeadShadow.1
+	ps-t3 = ResourceChestPreciousHeadt3.1
+endif
+
+; Resources ---------------------------
+
+[ResourceChestPreciousPosition.0]
+type = Buffer
+stride = 40
+filename = .\00\ChestPreciousPosition.buf
+
+[ResourceChestPreciousBlend.0]
+type = Buffer
+stride = 32
+filename = .\00\ChestPreciousBlend.buf
+
+[ResourceChestPreciousTexcoord.0]
+type = Buffer
+stride = 8
+filename = .\00\ChestPreciousTexcoord.buf
+
+[ResourceChestPreciousHeadIB.0]
+type = Buffer
+format = DXGI_FORMAT_R32_UINT
+filename = .\00\ChestPreciousHead.ib
+
+[ResourceChestPreciousHeadDiffuse.0]
+filename = .\00\ChestPreciousHeadDiffuse.dds
+
+[ResourceChestPreciousHeadLightMap.0]
+filename = .\00\ChestPreciousHeadLightMap.dds
+
+[ResourceChestPreciousHeadShadow.0]
+filename = .\00\ChestPreciousHeadShadow.dds
+
+[ResourceChestPreciousHeadt3.0]
+filename = .\00\ChestPreciousHeadt3.dds
+
+[ResourceChestPreciousPosition.1]
+type = Buffer
+stride = 40
+filename = .\01\ChestPreciousPosition.buf
+
+[ResourceChestPreciousBlend.1]
+type = Buffer
+stride = 32
+filename = .\01\ChestPreciousBlend.buf
+
+[ResourceChestPreciousTexcoord.1]
+type = Buffer
+stride = 8
+filename = .\01\ChestPreciousTexcoord.buf
+
+[ResourceChestPreciousHeadIB.1]
+type = Buffer
+format = DXGI_FORMAT_R32_UINT
+filename = .\01\ChestPreciousHead.ib
+
+[ResourceChestPreciousHeadDiffuse.1]
+filename = .\01\ChestPreciousHeadDiffuse.dds
+
+[ResourceChestPreciousHeadLightMap.1]
+filename = .\01\ChestPreciousHeadLightMap.dds
+
+[ResourceChestPreciousHeadShadow.1]
+filename = .\01\ChestPreciousHeadShadow.dds
+
+[ResourceChestPreciousHeadt3.1]
+filename = .\01\ChestPreciousHeadt3.dds
+
+; Overrides ---------------------------
+
+[TextureOverrideChestLuxuriousLODPosition]
+hash = d6152644
+run = CommandListChestLuxuriousLODPosition
+$active = 1
+
+[TextureOverrideChestLuxuriousLODBlend]
+hash = b6924a50
+run = CommandListChestLuxuriousLODBlend
+
+[TextureOverrideChestLuxuriousLODTexcoord]
+hash = dedf9748
+run = CommandListChestLuxuriousLODTexcoord
+
+[TextureOverrideChestLuxuriousLODVertexLimitRaise]
+hash = 4ababa09
+
+[TextureOverrideChestLuxuriousLODIB]
+hash = c5f45c5b
+run = CommandListChestLuxuriousLODIB
+
+[TextureOverrideChestLuxuriousLOD]
+hash = c5f45c5b
+match_first_index = 0
+run = CommandListChestLuxuriousLOD
+
+; CommandList -------------------------
+
+[CommandListChestLuxuriousLODPosition]
+if $swapvar == 0
+	vb0 = ResourceChestLuxuriousLODPosition.0
+else if $swapvar == 1
+	vb0 = ResourceChestLuxuriousLODPosition.1
+endif
+
+[CommandListChestLuxuriousLODBlend]
+if $swapvar == 0
+	vb1 = ResourceChestLuxuriousLODBlend.0
+	handling = skip
+	draw = 1912,0 
+else if $swapvar == 1
+	vb1 = ResourceChestLuxuriousLODBlend.1
+	handling = skip
+	draw = 1912,0 
+endif
+
+[CommandListChestLuxuriousLODTexcoord]
+if $swapvar == 0
+	vb1 = ResourceChestLuxuriousLODTexcoord.0
+else if $swapvar == 1
+	vb1 = ResourceChestLuxuriousLODTexcoord.1
+endif
+
+[CommandListChestLuxuriousLODIB]
+if $swapvar == 0
+	handling = skip
+	drawindexed = auto
+else if $swapvar == 1
+	handling = skip
+	drawindexed = auto
+endif
+
+[CommandListChestLuxuriousLOD]
+if $swapvar == 0
+	ib = ResourceChestLuxuriousLODHeadIB.0
+	ps-t0 = ResourceChestLuxuriousLODDiffuse.0
+	ps-t1 = ResourceChestLuxuriousLODLightMap.0
+	ps-t2 = ResourceChestLuxuriousLODShadow.0
+	ps-t3 = ResourceChestLuxuriousLODt3.0
+else if $swapvar == 1
+	ib = ResourceChestLuxuriousLODHeadIB.1
+	ps-t0 = ResourceChestLuxuriousLODDiffuse.1
+	ps-t1 = ResourceChestLuxuriousLODLightMap.1
+	ps-t2 = ResourceChestLuxuriousLODShadow.1
+	ps-t3 = ResourceChestLuxuriousLODt3.1
+endif
+
+; Resources ---------------------------
+
+[ResourceChestLuxuriousLODPosition.0]
+type = Buffer
+stride = 40
+filename = .\00\ChestLuxuriousLODPosition.buf
+
+[ResourceChestLuxuriousLODBlend.0]
+type = Buffer
+stride = 32
+filename = .\00\ChestLuxuriousLODBlend.buf
+
+[ResourceChestLuxuriousLODTexcoord.0]
+type = Buffer
+stride = 8
+filename = .\00\ChestLuxuriousLODTexcoord.buf
+
+[ResourceChestLuxuriousLODHeadIB.0]
+type = Buffer
+format = DXGI_FORMAT_R32_UINT
+filename = .\00\ChestLuxuriousLODHead.ib
+
+[ResourceChestLuxuriousLODDiffuse.0]
+filename = .\00\ChestLuxuriousLODDiffuse.dds
+
+[ResourceChestLuxuriousLODLightMap.0]
+filename = .\00\ChestLuxuriousLODLightMap.dds
+
+[ResourceChestLuxuriousLODShadow.0]
+filename = .\00\ChestLuxuriousLODShadow.dds
+
+[ResourceChestLuxuriousLODt3.0]
+filename = .\00\ChestLuxuriousLODt3.dds
+
+[ResourceChestLuxuriousLODPosition.1]
+type = Buffer
+stride = 40
+filename = .\01\ChestLuxuriousLODPosition.buf
+
+[ResourceChestLuxuriousLODBlend.1]
+type = Buffer
+stride = 32
+filename = .\01\ChestLuxuriousLODBlend.buf
+
+[ResourceChestLuxuriousLODTexcoord.1]
+type = Buffer
+stride = 8
+filename = .\01\ChestLuxuriousLODTexcoord.buf
+
+[ResourceChestLuxuriousLODHeadIB.1]
+type = Buffer
+format = DXGI_FORMAT_R32_UINT
+filename = .\01\ChestLuxuriousLODHead.ib
+
+[ResourceChestLuxuriousLODDiffuse.1]
+filename = .\01\ChestLuxuriousLODDiffuse.dds
+
+[ResourceChestLuxuriousLODLightMap.1]
+filename = .\01\ChestLuxuriousLODLightMap.dds
+
+[ResourceChestLuxuriousLODShadow.1]
+filename = .\01\ChestLuxuriousLODShadow.dds
+
+[ResourceChestLuxuriousLODt3.1]
+filename = .\01\ChestLuxuriousLODt3.dds
+
+
+
+; .ini generated by GIMI (Genshin-Impact-Model-Importer) mod merger script
+; If you have any issues or find any bugs, please open a ticket at https://github.com/SilentNightSound/GI-Model-Importer/issues or contact SilentNightSound#7430 on discord

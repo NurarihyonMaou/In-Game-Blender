@@ -1,0 +1,32 @@
+namespace = math\cos
+
+; ---------------------------DESCRIPTION---
+; cos(in)
+; Returns a Float value or NaN
+;
+; -------------------------------EXAMPLE---
+; $\math\cos\in = 40
+; run = commandlist\math\cos\run
+; x = $\math\cos\out
+; ; x will be -0.666937
+
+[Constants]
+global $in
+global $out
+
+[CommandListRun]
+local $pi = 3.14159265
+if $in == inf || $in == -inf || $in == NaN || $in == null
+    $out = NaN
+else
+    local $x = ($in+$pi/2)%$pi-$pi/2
+    local $xx = $x*$x
+    local $f0 = -($xx/2)
+    local $f1 = (($xx*$xx)/24)
+    local $f2 = -(($xx*$xx*$xx)/720)
+    local $f3 = (($xx*$xx*$xx*$xx)/40320)
+    local $f4 = -(($xx*$xx*$xx*$xx*$xx)/3628800)
+    $out = -((($in+$pi/2)/$pi)%2//1*2-1) * (1+$f0+$f1+$f2+$f3+$f4)
+endif
+$in = 0
+

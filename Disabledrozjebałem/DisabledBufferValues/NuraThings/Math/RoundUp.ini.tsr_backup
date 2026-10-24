@@ -1,0 +1,45 @@
+namespace = math\roundEGEGGEGG
+
+[Constants]
+global $in
+global $out
+
+[CommandListRun]
+if $in == inf || $in == -inf || $in == NaN || $in == null
+    $out = NaN
+else
+
+    if $in%1*10 != 0 || $in%1*100 != 0 || $in%1*1000 != 0
+
+             ;       $\NuraDebug\printMe = $in*10*10%10/100
+           ; $\NuraDebug\widthScale = 4
+           ; $\NuraDebug\heightScale = 5
+           ; run = CommandList\NuraDebug\Debug   
+
+        if $in*100*10%10 < 5 && $in*100*10%10 > 0
+            $out = $in//1
+
+        else if $in*10*10*10%100 >= 5 && $in*10*10*10%100 < 10
+            $out = $in-($in*10*10*10%100/1000) + 0.01         
+
+
+        else if (($in*10*10)%10 < 5) && (($in*10*10)%10 > 0)
+            $out = $in//1
+
+
+        else if $in*10*10%10 >= 5 && $in*10*10%10 < 10
+            $out = $in//1 + 0.1
+
+
+        else if $in*10%10 < 5 && $in*10%10 > 0
+            $out = $in/1
+
+        else if $in*10%10 >= 5 && $in*10%10 < 10
+            $out = $in//1 + 1
+            
+        endif
+    else
+        $out = $in//1
+    endif
+endif
+$in = 0

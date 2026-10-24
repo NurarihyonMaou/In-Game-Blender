@@ -1,0 +1,2406 @@
+namespace = NuraThings\ModManager\CharacterModData
+
+[Constants]
+global persist $Albedo = 1
+
+global persist $Alhaitham = 1
+
+global persist $Aloy = 1
+
+global persist $Amber = 1
+
+global persist $AmberCN = 1
+
+global persist $Arlecchino = 1
+
+global persist $Ayaka = 1
+
+global persist $Ayato = 1
+
+global persist $Baizhu = 1
+
+global persist $Barbara = 1
+
+global persist $BarbaraSummertime = 1
+
+global persist $Beidou = 1
+
+global persist $Bennett = 1
+
+global persist $Candace = 1
+
+global persist $Charlotte = 1
+
+global persist $Chasca = 1
+
+global persist $Chevreuse = 1
+
+global persist $Childe = 1
+
+global persist $Chiori = 1
+
+global persist $Chongyun = 1
+
+global persist $Clorinde = 1
+
+global persist $Collei = 1
+
+global persist $Cyno = 1
+
+global persist $Dehya = 1
+
+global persist $Diluc = 1
+
+global persist $DilucFlamme = 1
+
+global persist $Diona = 1
+
+global persist $Dori = 1
+
+global persist $Emilie = 1
+
+global persist $Eula = 1
+
+global persist $Faruzan = 1
+
+global persist $Fischl = 1
+
+global persist $FischlHighness = 1
+
+global persist $Freminet = 1
+
+global persist $Furina = 1
+
+global persist $GaMing = 1
+
+global persist $Ganyu = 1
+
+global persist $GanyuTwilight = 1
+
+global persist $Gorou = 1
+
+global persist $Heizou = 1
+
+global persist $HuTao = 1
+
+global persist $Itto = 1
+
+global persist $Jean = 1
+
+global persist $JeanCN = 1
+
+global persist $JeanSea = 1
+
+global persist $Kachina = 1
+
+global persist $Kaeya = 1
+
+global persist $KaeyaSailwind = 1
+
+global persist $Kaveh = 1
+
+global persist $Kazuha = 1
+
+global persist $Keqing = 1
+
+global persist $KeqingOpulent = 1
+
+global persist $Kirara = 1
+
+global persist $KiraraBoots = 1
+
+global persist $Klee = 1
+
+global persist $KleeBlossomingStarlight = 1
+
+global persist $Kokomi = 1
+
+global persist $KujouSara = 1
+
+global persist $Layla = 1
+
+global persist $Lisa = 1
+
+global persist $LisaStudent = 1
+
+global persist $Lynette = 1
+
+global persist $Lyney = 1
+
+global persist $Mika = 1
+
+global persist $Mona = 1
+
+global persist $MonaCN = 1
+
+global persist $Mualani = 1
+
+global persist $Nahida = 1
+
+global persist $Navia = 1
+
+global persist $Neuvillette = 1
+
+global persist $Nilou = 1
+
+global persist $NilouBreeze = 1
+
+global persist $Ningguang = 1
+
+global persist $NingguangOrchid = 1
+
+global persist $Noelle = 1
+
+global persist $Qiqi = 1
+
+global persist $RaidenShogun = 1
+
+global persist $Razor = 1
+
+global persist $Rosaria = 1
+
+global persist $RosariaCN = 1
+
+global persist $Sayu = 1
+
+global persist $Sethos = 1
+
+global persist $Shenhe = 1
+
+global persist $ShenheFrostFlower = 1
+
+global persist $Shinobu = 1
+
+global persist $Sucrose = 1
+
+global persist $Thoma = 1
+
+global persist $Tighnari = 1
+
+global persist $TravelerBoy = 1
+
+global persist $TravelerGirl = 1
+
+global persist $Venti = 1
+
+global persist $Wanderer = 1
+
+global persist $Wriothesley = 1
+
+global persist $Xiangling = 1
+
+global persist $Xianyun = 1
+
+global persist $Xiao = 1
+
+global persist $Xilonen = 1
+
+global persist $Xingqiu = 1
+
+global persist $XingqiuBamboo = 1
+
+global persist $Xinyan = 1
+
+global persist $Yae = 1
+
+global persist $Yanfei = 1
+
+global persist $YaoYao = 1
+
+global persist $Yelan = 1
+
+global persist $Yoimiya = 1
+
+global persist $YunJin = 1
+
+global persist $Zhongli = 1
+
+
+global persist $Mavuika = 1
+
+global persist $Citlali = 1
+
+
+global $Active_Mavuika = 0
+
+global $Active_Citlali = 0
+
+
+global $Active_Albedo = 0
+
+global $Active_Alhaitham = 0
+
+global $Active_Aloy = 0
+
+global $Active_Amber = 0
+
+global $Active_AmberCN = 0
+
+global $Active_Arlecchino = 0
+
+global $Active_Ayaka = 0
+
+global $Active_Ayato = 0
+
+global $Active_Baizhu = 0
+
+global $Active_Barbara = 0
+
+global $Active_BarbaraSummertime = 0
+
+global $Active_Beidou = 0
+
+global $Active_Bennett = 0
+
+global $Active_Candace = 0
+
+global $Active_Charlotte = 0
+
+global $Active_Chasca = 0
+
+global $Active_Chevreuse = 0
+
+global $Active_Childe = 0
+
+global $Active_Chiori = 0
+
+global $Active_Chongyun = 0
+
+global $Active_Clorinde = 0
+
+global $Active_Collei = 0
+
+global $Active_Cyno = 0
+
+global $Active_Dehya = 0
+
+global $Active_Diluc = 0
+
+global $Active_DilucFlamme = 0
+
+global $Active_Diona = 0
+
+global $Active_Dori = 0
+
+global $Active_Emilie = 0
+
+global $Active_Eula = 0
+
+global $Active_Faruzan = 0
+
+global $Active_Fischl = 0
+
+global $Active_FischlHighness = 0
+
+global $Active_Freminet = 0
+
+global $Active_Furina = 0
+
+global $Active_GaMing = 0
+
+global $Active_Ganyu = 0
+
+global $Active_GanyuTwilight = 0
+
+global $Active_Gorou = 0
+
+global $Active_Heizou = 0
+
+global $Active_HuTao = 0
+
+global $Active_Itto = 0
+
+global $Active_Jean = 0
+
+global $Active_JeanCN = 0
+
+global $Active_JeanSea = 0
+
+global $Active_Kachina = 0
+
+global $Active_Kaeya = 0
+
+global $Active_KaeyaSailwind = 0
+
+global $Active_Kaveh = 0
+
+global $Active_Kazuha = 0
+
+global $Active_Keqing = 0
+
+global $Active_KeqingOpulent = 0
+
+global $Active_Kirara = 0
+
+global $Active_KiraraBoots = 0
+
+global $Active_Klee = 0
+
+global $Active_KleeBlossomingStarlight = 0
+
+global $Active_Kokomi = 0
+
+global $Active_KujouSara = 0
+
+global $Active_Layla = 0
+
+global $Active_Lisa = 0
+
+global $Active_LisaStudent = 0
+
+global $Active_Lynette = 0
+
+global $Active_Lyney = 0
+
+global $Active_Mika = 0
+
+global $Active_Mona = 0
+
+global $Active_MonaCN = 0
+
+global $Active_Mualani = 0
+
+global $Active_Nahida = 0
+
+global $Active_Navia = 0
+
+global $Active_Neuvillette = 0
+
+global $Active_Nilou = 0
+
+global $Active_NilouBreeze = 0
+
+global $Active_Ningguang = 0
+
+global $Active_NingguangOrchid = 0
+
+global $Active_Noelle = 0
+
+global $Active_Qiqi = 0
+
+global $Active_RaidenShogun = 0
+
+global $Active_Razor = 0
+
+global $Active_Rosaria = 0
+
+global $Active_RosariaCN = 0
+
+global $Active_Sayu = 0
+
+global $Active_Sethos = 0
+
+global $Active_Shenhe = 0
+
+global $Active_ShenheFrostFlower = 0
+
+global $Active_Shinobu = 0
+
+global $Active_Sucrose = 0
+
+global $Active_Thoma = 0
+
+global $Active_Tighnari = 0
+
+global $Active_TravelerBoy = 0
+
+global $Active_TravelerGirl = 0
+
+global $Active_Venti = 0
+
+global $Active_Wanderer = 0
+
+global $Active_Wriothesley = 0
+
+global $Active_Xiangling = 0
+
+global $Active_Xianyun = 0
+
+global $Active_Xiao = 0
+
+global $Active_Xilonen = 0
+
+global $Active_Xingqiu = 0
+
+global $Active_XingqiuBamboo = 0
+
+global $Active_Xinyan = 0
+
+global $Active_Yae = 0
+
+global $Active_Yanfei = 0
+
+global $Active_YaoYao = 0
+
+global $Active_Yelan = 0
+
+global $Active_Yoimiya = 0
+
+global $Active_YunJin = 0
+
+global $Active_Zhongli = 0
+
+
+[Present]
+post $Active_Albedo = 0
+
+post $Active_Alhaitham = 0
+
+post $Active_Aloy = 0
+
+post $Active_Amber = 0
+
+post $Active_AmberCN = 0
+
+post $Active_Arlecchino = 0
+
+post $Active_Ayaka = 0
+
+post $Active_Ayato = 0
+
+post $Active_Baizhu = 0
+
+post $Active_Barbara = 0
+
+post $Active_BarbaraSummertime = 0
+
+post $Active_Beidou = 0
+
+post $Active_Bennett = 0
+
+post $Active_Candace = 0
+
+post $Active_Charlotte = 0
+
+post $Active_Chasca = 0
+
+post $Active_Chevreuse = 0
+
+post $Active_Childe = 0
+
+post $Active_Chiori = 0
+
+post $Active_Chongyun = 0
+
+post $Active_Clorinde = 0
+
+post $Active_Collei = 0
+
+post $Active_Cyno = 0
+
+post $Active_Dehya = 0
+
+post $Active_Diluc = 0
+
+post $Active_DilucFlamme = 0
+
+post $Active_Diona = 0
+
+post $Active_Dori = 0
+
+post $Active_Emilie = 0
+
+post $Active_Eula = 0
+
+post $Active_Faruzan = 0
+
+post $Active_Fischl = 0
+
+post $Active_FischlHighness = 0
+
+post $Active_Freminet = 0
+
+post $Active_Furina = 0
+
+post $Active_GaMing = 0
+
+post $Active_Ganyu = 0
+
+post $Active_GanyuTwilight = 0
+
+post $Active_Gorou = 0
+
+post $Active_Heizou = 0
+
+post $Active_HuTao = 0
+
+post $Active_Itto = 0
+
+post $Active_Jean = 0
+
+post $Active_JeanCN = 0
+
+post $Active_JeanSea = 0
+
+post $Active_Kachina = 0
+
+post $Active_Kaeya = 0
+
+post $Active_KaeyaSailwind = 0
+
+post $Active_Kaveh = 0
+
+post $Active_Kazuha = 0
+
+post $Active_Keqing = 0
+
+post $Active_KeqingOpulent = 0
+
+post $Active_Kirara = 0
+
+post $Active_KiraraBoots = 0
+
+post $Active_Klee = 0
+
+post $Active_KleeBlossomingStarlight = 0
+
+post $Active_Kokomi = 0
+
+post $Active_KujouSara = 0
+
+post $Active_Layla = 0
+
+post $Active_Lisa = 0
+
+post $Active_LisaStudent = 0
+
+post $Active_Lynette = 0
+
+post $Active_Lyney = 0
+
+post $Active_Mika = 0
+
+post $Active_Mona = 0
+
+post $Active_MonaCN = 0
+
+post $Active_Mualani = 0
+
+post $Active_Nahida = 0
+
+post $Active_Navia = 0
+
+post $Active_Neuvillette = 0
+
+post $Active_Nilou = 0
+
+post $Active_NilouBreeze = 0
+
+post $Active_Ningguang = 0
+
+post $Active_NingguangOrchid = 0
+
+post $Active_Noelle = 0
+
+post $Active_Qiqi = 0
+
+post $Active_RaidenShogun = 0
+
+post $Active_Razor = 0
+
+post $Active_Rosaria = 0
+
+post $Active_RosariaCN = 0
+
+post $Active_Sayu = 0
+
+post $Active_Sethos = 0
+
+post $Active_Shenhe = 0
+
+post $Active_ShenheFrostFlower = 0
+
+post $Active_Shinobu = 0
+
+post $Active_Sucrose = 0
+
+post $Active_Thoma = 0
+
+post $Active_Tighnari = 0
+
+post $Active_TravelerBoy = 0
+
+post $Active_TravelerGirl = 0
+
+post $Active_Venti = 0
+
+post $Active_Wanderer = 0
+
+post $Active_Wriothesley = 0
+
+post $Active_Xiangling = 0
+
+post $Active_Xianyun = 0
+
+post $Active_Xiao = 0
+
+post $Active_Xilonen = 0
+
+post $Active_Xingqiu = 0
+
+post $Active_XingqiuBamboo = 0
+
+post $Active_Xinyan = 0
+
+post $Active_Yae = 0
+
+post $Active_Yanfei = 0
+
+post $Active_YaoYao = 0
+
+post $Active_Yelan = 0
+
+post $Active_Yoimiya = 0
+
+post $Active_YunJin = 0
+
+post $Active_Zhongli = 0
+
+post $Active_Mavuika = 0
+
+post $Active_Citlali = 0
+
+[CommandListSaveModID]
+if $\NuraThings\ModManager\currentCharacterID == 1
+    $Albedo = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 2
+    $Alhaitham = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 3
+    $Aloy = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 4
+    $Amber = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 5
+    $AmberCN = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 6
+    $Arlecchino = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 7
+    $Ayaka = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 8
+    $Ayato = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 9
+    $Baizhu = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 10
+    $Barbara = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 11
+    $BarbaraSummertime = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 12
+    $Beidou = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 13
+    $Bennett = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 14
+    $Candace = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 15
+    $Charlotte = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 16
+    $Chasca = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 17
+    $Chevreuse = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 18
+    $Childe = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 19
+    $Chiori = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 20
+    $Chongyun = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 21
+    $Clorinde = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 22
+    $Collei = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 23
+    $Cyno = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 24
+    $Dehya = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 25
+    $Diluc = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 26
+    $DilucFlamme = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 27
+    $Diona = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 28
+    $Dori = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 29
+    $Emilie = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 30
+    $Eula = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 31
+    $Faruzan = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 32
+    $Fischl = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 33
+    $FischlHighness = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 34
+    $Freminet = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 35
+    $Furina = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 36
+    $GaMing = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 37
+    $Ganyu = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 38
+    $GanyuTwilight = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 39
+    $Gorou = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 40
+    $Heizou = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 41
+    $HuTao = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 42
+    $Itto = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 43
+    $Jean = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 44
+    $JeanCN = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 45
+    $JeanSea = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 46
+    $Kachina = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 47
+    $Kaeya = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 48
+    $KaeyaSailwind = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 49
+    $Kaveh = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 50
+    $Kazuha = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 51
+    $Keqing = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 52
+    $KeqingOpulent = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 53
+    $Kirara = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 54
+    $KiraraBoots = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 55
+    $Klee = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 56
+    $KleeBlossomingStarlight = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 57
+    $Kokomi = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 58
+    $KujouSara = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 59
+    $Layla = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 60
+    $Lisa = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 61
+    $LisaStudent = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 62
+    $Lynette = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 63
+    $Lyney = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 64
+    $Mika = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 65
+    $Mona = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 66
+    $MonaCN = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 67
+    $Mualani = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 68
+    $Nahida = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 69
+    $Navia = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 70
+    $Neuvillette = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 71
+    $Nilou = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 72
+    $NilouBreeze = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 73
+    $Ningguang = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 74
+    $NingguangOrchid = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 75
+    $Noelle = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 76
+    $Qiqi = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 77
+    $RaidenShogun = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 78
+    $Razor = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 79
+    $Rosaria = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 80
+    $RosariaCN = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 81
+    $Sayu = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 82
+    $Sethos = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 83
+    $Shenhe = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 84
+    $ShenheFrostFlower = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 85
+    $Shinobu = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 86
+    $Sucrose = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 87
+    $Thoma = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 88
+    $Tighnari = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 89
+    $TravelerBoy = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 90
+    $TravelerGirl = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 91
+    $Venti = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 92
+    $Wanderer = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 93
+    $Wriothesley = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 94
+    $Xiangling = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 95
+    $Xianyun = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 96
+    $Xiao = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 97
+    $Xilonen = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 98
+    $Xingqiu = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 99
+    $XingqiuBamboo = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 100
+    $Xinyan = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 101
+    $Yae = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 102
+    $Yanfei = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 103
+    $YaoYao = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 104
+    $Yelan = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 105
+    $Yoimiya = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 106
+    $YunJin = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 107
+    $Zhongli = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 109
+    $Mavuika = $\NuraThings\ModManager\currentModID
+endif
+
+if $\NuraThings\ModManager\currentCharacterID == 108
+    $Citlali = $\NuraThings\ModManager\currentModID
+endif
+
+[TextureOverrideAlbedo]
+hash = df65bb00
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 1 || $\NuraThings\ModManager\activeID == 0
+    $Active_Albedo = 1
+    $\NuraThings\ModManager\currentCharacterID = 1
+    if $Albedo != -1
+        $\NuraThings\ModManager\currentModID = $Albedo
+    endif
+endif
+
+[TextureOverrideAlhaitham]
+hash = 3ef08385
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 2 || $\NuraThings\ModManager\activeID == 0
+    $Active_Alhaitham = 1
+    $\NuraThings\ModManager\currentCharacterID = 2
+    if $Alhaitham != -1
+        $\NuraThings\ModManager\currentModID = $Alhaitham
+    endif
+endif
+
+[TextureOverrideAloy]
+hash = 46de82f3
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 3 || $\NuraThings\ModManager\activeID == 0
+    $Active_Aloy = 1
+    $\NuraThings\ModManager\currentCharacterID = 3
+    if $Aloy != -1
+        $\NuraThings\ModManager\currentModID = $Aloy
+    endif
+endif
+
+[TextureOverrideAmber]
+hash = a2ea4b2d
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 4 || $\NuraThings\ModManager\activeID == 0
+    $Active_Amber = 1
+    $\NuraThings\ModManager\currentCharacterID = 4
+    if $Amber != -1
+        $\NuraThings\ModManager\currentModID = $Amber
+    endif
+endif
+
+[TextureOverrideAmberCN]
+hash = 557b2eff
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 5 || $\NuraThings\ModManager\activeID == 0
+    $Active_AmberCN = 1
+    $\NuraThings\ModManager\currentCharacterID = 5
+    if $AmberCN != -1
+        $\NuraThings\ModManager\currentModID = $AmberCN
+    endif
+endif
+
+[TextureOverrideArlecchino]
+hash = 6895f405
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 6 || $\NuraThings\ModManager\activeID == 0
+    $Active_Arlecchino = 1
+    $\NuraThings\ModManager\currentCharacterID = 6
+    if $Arlecchino != -1
+        $\NuraThings\ModManager\currentModID = $Arlecchino
+    endif
+endif
+
+[TextureOverrideAyaka]
+hash = 0107925f
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 7 || $\NuraThings\ModManager\activeID == 0
+    $Active_Ayaka = 1
+    $\NuraThings\ModManager\currentCharacterID = 7
+    if $Ayaka != -1
+        $\NuraThings\ModManager\currentModID = $Ayaka
+    endif
+endif
+
+[TextureOverrideAyato]
+hash = b473c856
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 8 || $\NuraThings\ModManager\activeID == 0
+    $Active_Ayato = 1
+    $\NuraThings\ModManager\currentCharacterID = 8
+    if $Ayato != -1
+        $\NuraThings\ModManager\currentModID = $Ayato
+    endif
+endif
+
+[TextureOverrideBaizhu]
+hash = 17baa562
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 9 || $\NuraThings\ModManager\activeID == 0
+    $Active_Baizhu = 1
+    $\NuraThings\ModManager\currentCharacterID = 9
+    if $Baizhu != -1
+        $\NuraThings\ModManager\currentModID = $Baizhu
+    endif
+endif
+
+[TextureOverrideBarbara]
+hash = 85282151
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 10 || $\NuraThings\ModManager\activeID == 0
+    $Active_Barbara = 1
+    $\NuraThings\ModManager\currentCharacterID = 10
+    if $Barbara != -1
+        $\NuraThings\ModManager\currentModID = $Barbara
+    endif
+endif
+
+[TextureOverrideBarbaraSummertime]
+hash = 8b9e7c22
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 11 || $\NuraThings\ModManager\activeID == 0
+    $Active_BarbaraSummertime = 1
+    $\NuraThings\ModManager\currentCharacterID = 11
+    if $BarbaraSummertime != -1
+        $\NuraThings\ModManager\currentModID = $BarbaraSummertime
+    endif
+endif
+
+[TextureOverrideBeidou]
+hash = 51197c51
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 12 || $\NuraThings\ModManager\activeID == 0
+    $Active_Beidou = 1
+    $\NuraThings\ModManager\currentCharacterID = 12
+    if $Beidou != -1
+        $\NuraThings\ModManager\currentModID = $Beidou
+    endif
+endif
+
+[TextureOverrideBennett]
+hash = 6cff51b4
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 13 || $\NuraThings\ModManager\activeID == 0
+    $Active_Bennett = 1
+    $\NuraThings\ModManager\currentCharacterID = 13
+    if $Bennett != -1
+        $\NuraThings\ModManager\currentModID = $Bennett
+    endif
+endif
+
+[TextureOverrideCandace]
+hash = 9cee8711
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 14 || $\NuraThings\ModManager\activeID == 0
+    $Active_Candace = 1
+    $\NuraThings\ModManager\currentCharacterID = 14
+    if $Candace != -1
+        $\NuraThings\ModManager\currentModID = $Candace
+    endif
+endif
+
+[TextureOverrideCharlotte]
+hash = c5a6d98e
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 15 || $\NuraThings\ModManager\activeID == 0
+    $Active_Charlotte = 1
+    $\NuraThings\ModManager\currentCharacterID = 15
+    if $Charlotte != -1
+        $\NuraThings\ModManager\currentModID = $Charlotte
+    endif
+endif
+
+[TextureOverrideChasca]
+hash = b5a29a7d
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 16 || $\NuraThings\ModManager\activeID == 0
+    $Active_Chasca = 1
+    $\NuraThings\ModManager\currentCharacterID = 16
+    if $Chasca != -1
+        $\NuraThings\ModManager\currentModID = $Chasca
+    endif
+endif
+
+[TextureOverrideChevreuse]
+hash = 4d8d965a
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 17 || $\NuraThings\ModManager\activeID == 0
+    $Active_Chevreuse = 1
+    $\NuraThings\ModManager\currentCharacterID = 17
+    if $Chevreuse != -1
+        $\NuraThings\ModManager\currentModID = $Chevreuse
+    endif
+endif
+
+[TextureOverrideChilde]
+hash = 186eac84
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 18 || $\NuraThings\ModManager\activeID == 0
+    $Active_Childe = 1
+    $\NuraThings\ModManager\currentCharacterID = 18
+    if $Childe != -1
+        $\NuraThings\ModManager\currentModID = $Childe
+    endif
+endif
+
+[TextureOverrideChiori]
+hash = c8e25747
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 19 || $\NuraThings\ModManager\activeID == 0
+    $Active_Chiori = 1
+    $\NuraThings\ModManager\currentCharacterID = 19
+    if $Chiori != -1
+        $\NuraThings\ModManager\currentModID = $Chiori
+    endif
+endif
+
+[TextureOverrideChongyun]
+hash = 489e3621
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 20 || $\NuraThings\ModManager\activeID == 0
+    $Active_Chongyun = 1
+    $\NuraThings\ModManager\currentCharacterID = 20
+    if $Chongyun != -1
+        $\NuraThings\ModManager\currentModID = $Chongyun
+    endif
+endif
+
+[TextureOverrideClorinde]
+hash = 07f8ad68
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 21 || $\NuraThings\ModManager\activeID == 0
+    $Active_Clorinde = 1
+    $\NuraThings\ModManager\currentCharacterID = 21
+    if $Clorinde != -1
+        $\NuraThings\ModManager\currentModID = $Clorinde
+    endif
+endif
+
+[TextureOverrideCollei]
+hash = 348e58c4
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 22 || $\NuraThings\ModManager\activeID == 0
+    $Active_Collei = 1
+    $\NuraThings\ModManager\currentCharacterID = 22
+    if $Collei != -1
+        $\NuraThings\ModManager\currentModID = $Collei
+    endif
+endif
+
+[TextureOverrideCyno]
+hash = 226f076e
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 23 || $\NuraThings\ModManager\activeID == 0
+    $Active_Cyno = 1
+    $\NuraThings\ModManager\currentCharacterID = 23
+    if $Cyno != -1
+        $\NuraThings\ModManager\currentModID = $Cyno
+    endif
+endif
+
+[TextureOverrideDehya]
+hash = 9aeecbcb
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 24 || $\NuraThings\ModManager\activeID == 0
+    $Active_Dehya = 1
+    $\NuraThings\ModManager\currentCharacterID = 24
+    if $Dehya != -1
+        $\NuraThings\ModManager\currentModID = $Dehya
+    endif
+endif
+
+[TextureOverrideDiluc]
+hash = 71625c4d
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 25 || $\NuraThings\ModManager\activeID == 0
+    $Active_Diluc = 1
+    $\NuraThings\ModManager\currentCharacterID = 25
+    if $Diluc != -1
+        $\NuraThings\ModManager\currentModID = $Diluc
+    endif
+endif
+
+[TextureOverrideDilucFlamme]
+hash = a2d909c8
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 26 || $\NuraThings\ModManager\activeID == 0
+    $Active_DilucFlamme = 1
+    $\NuraThings\ModManager\currentCharacterID = 26
+    if $DilucFlamme != -1
+        $\NuraThings\ModManager\currentModID = $DilucFlamme
+    endif
+endif
+
+[TextureOverrideDiona]
+hash = e8083f19
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 27 || $\NuraThings\ModManager\activeID == 0
+    $Active_Diona = 1
+    $\NuraThings\ModManager\currentCharacterID = 27
+    if $Diona != -1
+        $\NuraThings\ModManager\currentModID = $Diona
+    endif
+endif
+
+[TextureOverrideDori]
+hash = 2a2a63ab
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 28 || $\NuraThings\ModManager\activeID == 0
+    $Active_Dori = 1
+    $\NuraThings\ModManager\currentCharacterID = 28
+    if $Dori != -1
+        $\NuraThings\ModManager\currentModID = $Dori
+    endif
+endif
+
+[TextureOverrideEmilie]
+hash = 62679081
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 29 || $\NuraThings\ModManager\activeID == 0
+    $Active_Emilie = 1
+    $\NuraThings\ModManager\currentCharacterID = 29
+    if $Emilie != -1
+        $\NuraThings\ModManager\currentModID = $Emilie
+    endif
+endif
+
+[TextureOverrideEula]
+hash = 107ba6e7
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 30 || $\NuraThings\ModManager\activeID == 0
+    $Active_Eula = 1
+    $\NuraThings\ModManager\currentCharacterID = 30
+    if $Eula != -1
+        $\NuraThings\ModManager\currentModID = $Eula
+    endif
+endif
+
+[TextureOverrideFaruzan]
+hash = 6162188c
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 31 || $\NuraThings\ModManager\activeID == 0
+    $Active_Faruzan = 1
+    $\NuraThings\ModManager\currentCharacterID = 31
+    if $Faruzan != -1
+        $\NuraThings\ModManager\currentModID = $Faruzan
+    endif
+endif
+
+[TextureOverrideFischl]
+hash = bf6aef4d
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 32 || $\NuraThings\ModManager\activeID == 0
+    $Active_Fischl = 1
+    $\NuraThings\ModManager\currentCharacterID = 32
+    if $Fischl != -1
+        $\NuraThings\ModManager\currentModID = $Fischl
+    endif
+endif
+
+[TextureOverrideFischlHighness]
+hash = 8f473224
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 33 || $\NuraThings\ModManager\activeID == 0
+    $Active_FischlHighness = 1
+    $\NuraThings\ModManager\currentCharacterID = 33
+    if $FischlHighness != -1
+        $\NuraThings\ModManager\currentModID = $FischlHighness
+    endif
+endif
+
+[TextureOverrideFreminet]
+hash = d2bfc751
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 34 || $\NuraThings\ModManager\activeID == 0
+    $Active_Freminet = 1
+    $\NuraThings\ModManager\currentCharacterID = 34
+    if $Freminet != -1
+        $\NuraThings\ModManager\currentModID = $Freminet
+    endif
+endif
+
+[TextureOverrideFurina]
+hash = 8294fe98
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 35 || $\NuraThings\ModManager\activeID == 0
+    $Active_Furina = 1
+    $\NuraThings\ModManager\currentCharacterID = 35
+    if $Furina != -1
+        $\NuraThings\ModManager\currentModID = $Furina
+    endif
+endif
+
+[TextureOverrideGaMing]
+hash = b94ef036
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 36 || $\NuraThings\ModManager\activeID == 0
+    $Active_GaMing = 1
+    $\NuraThings\ModManager\currentCharacterID = 36
+    if $GaMing != -1
+        $\NuraThings\ModManager\currentModID = $GaMing
+    endif
+endif
+
+[TextureOverrideGanyu]
+hash = a5169f1d
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 37 || $\NuraThings\ModManager\activeID == 0
+    $Active_Ganyu = 1
+    $\NuraThings\ModManager\currentCharacterID = 37
+    if $Ganyu != -1
+        $\NuraThings\ModManager\currentModID = $Ganyu
+    endif
+endif
+
+[TextureOverrideGanyuTwilight]
+hash = 9b3f356e
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 38 || $\NuraThings\ModManager\activeID == 0
+    $Active_GanyuTwilight = 1
+    $\NuraThings\ModManager\currentCharacterID = 38
+    if $GanyuTwilight != -1
+        $\NuraThings\ModManager\currentModID = $GanyuTwilight
+    endif
+endif
+
+[TextureOverrideGorou]
+hash = 3ce94cac
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 39 || $\NuraThings\ModManager\activeID == 0
+    $Active_Gorou = 1
+    $\NuraThings\ModManager\currentCharacterID = 39
+    if $Gorou != -1
+        $\NuraThings\ModManager\currentModID = $Gorou
+    endif
+endif
+
+[TextureOverrideHeizou]
+hash = 51a75ba6
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 40 || $\NuraThings\ModManager\activeID == 0
+    $Active_Heizou = 1
+    $\NuraThings\ModManager\currentCharacterID = 40
+    if $Heizou != -1
+        $\NuraThings\ModManager\currentModID = $Heizou
+    endif
+endif
+
+[TextureOverrideHuTao]
+hash = dd16576c
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 41 || $\NuraThings\ModManager\activeID == 0
+    $Active_HuTao = 1
+    $\NuraThings\ModManager\currentCharacterID = 41
+    if $HuTao != -1
+        $\NuraThings\ModManager\currentModID = $HuTao
+    endif
+endif
+
+[TextureOverrideItto]
+hash = 3e61a41f
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 42 || $\NuraThings\ModManager\activeID == 0
+    $Active_Itto = 1
+    $\NuraThings\ModManager\currentCharacterID = 42
+    if $Itto != -1
+        $\NuraThings\ModManager\currentModID = $Itto
+    endif
+endif
+
+[TextureOverrideJean]
+hash = 191af650
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 43 || $\NuraThings\ModManager\activeID == 0
+    $Active_Jean = 1
+    $\NuraThings\ModManager\currentCharacterID = 43
+    if $Jean != -1
+        $\NuraThings\ModManager\currentModID = $Jean
+    endif
+endif
+
+[TextureOverrideJeanCN]
+hash = 93bb2522
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 44 || $\NuraThings\ModManager\activeID == 0
+    $Active_JeanCN = 1
+    $\NuraThings\ModManager\currentCharacterID = 44
+    if $JeanCN != -1
+        $\NuraThings\ModManager\currentModID = $JeanCN
+    endif
+endif
+
+[TextureOverrideJeanSea]
+hash = 16fef1eb
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 45 || $\NuraThings\ModManager\activeID == 0
+    $Active_JeanSea = 1
+    $\NuraThings\ModManager\currentCharacterID = 45
+    if $JeanSea != -1
+        $\NuraThings\ModManager\currentModID = $JeanSea
+    endif
+endif
+
+[TextureOverrideKachina]
+hash = 888c4b7c
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 46 || $\NuraThings\ModManager\activeID == 0
+    $Active_Kachina = 1
+    $\NuraThings\ModManager\currentCharacterID = 46
+    if $Kachina != -1
+        $\NuraThings\ModManager\currentModID = $Kachina
+    endif
+endif
+
+[TextureOverrideKaeya]
+hash = 8a081f34
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 47 || $\NuraThings\ModManager\activeID == 0
+    $Active_Kaeya = 1
+    $\NuraThings\ModManager\currentCharacterID = 47
+    if $Kaeya != -1
+        $\NuraThings\ModManager\currentModID = $Kaeya
+    endif
+endif
+
+[TextureOverrideKaeyaSailwind]
+hash = b9b77eff
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 48 || $\NuraThings\ModManager\activeID == 0
+    $Active_KaeyaSailwind = 1
+    $\NuraThings\ModManager\currentCharacterID = 48
+    if $KaeyaSailwind != -1
+        $\NuraThings\ModManager\currentModID = $KaeyaSailwind
+    endif
+endif
+
+[TextureOverrideKaveh]
+hash = b56fd424
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 49 || $\NuraThings\ModManager\activeID == 0
+    $Active_Kaveh = 1
+    $\NuraThings\ModManager\currentCharacterID = 49
+    if $Kaveh != -1
+        $\NuraThings\ModManager\currentModID = $Kaveh
+    endif
+endif
+
+[TextureOverrideKazuha]
+hash = 7c0c47b3
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 50 || $\NuraThings\ModManager\activeID == 0
+    $Active_Kazuha = 1
+    $\NuraThings\ModManager\currentCharacterID = 50
+    if $Kazuha != -1
+        $\NuraThings\ModManager\currentModID = $Kazuha
+    endif
+endif
+
+[TextureOverrideKeqing]
+hash = 3aaf3e94
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 51 || $\NuraThings\ModManager\activeID == 0
+    $Active_Keqing = 1
+    $\NuraThings\ModManager\currentCharacterID = 51
+    if $Keqing != -1
+        $\NuraThings\ModManager\currentModID = $Keqing
+    endif
+endif
+
+[TextureOverrideKeqingOpulent]
+hash = 0d7e3cc5
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 52 || $\NuraThings\ModManager\activeID == 0
+    $Active_KeqingOpulent = 1
+    $\NuraThings\ModManager\currentCharacterID = 52
+    if $KeqingOpulent != -1
+        $\NuraThings\ModManager\currentModID = $KeqingOpulent
+    endif
+endif
+
+[TextureOverrideKirara]
+hash = b57d7fe2
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 53 || $\NuraThings\ModManager\activeID == 0
+    $Active_Kirara = 1
+    $\NuraThings\ModManager\currentCharacterID = 53
+    if $Kirara != -1
+        $\NuraThings\ModManager\currentModID = $Kirara
+    endif
+endif
+
+[TextureOverrideKiraraBoots]
+hash = f8013ba9
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 54 || $\NuraThings\ModManager\activeID == 0
+    $Active_KiraraBoots = 1
+    $\NuraThings\ModManager\currentCharacterID = 54
+    if $KiraraBoots != -1
+        $\NuraThings\ModManager\currentModID = $KiraraBoots
+    endif
+endif
+
+[TextureOverrideKlee]
+hash = dcd74904
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 55 || $\NuraThings\ModManager\activeID == 0
+    $Active_Klee = 1
+    $\NuraThings\ModManager\currentCharacterID = 55
+    if $Klee != -1
+        $\NuraThings\ModManager\currentModID = $Klee
+    endif
+endif
+
+[TextureOverrideKleeBlossomingStarlight]
+hash = 0f5fedb4
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 56 || $\NuraThings\ModManager\activeID == 0
+    $Active_KleeBlossomingStarlight = 1
+    $\NuraThings\ModManager\currentCharacterID = 56
+    if $KleeBlossomingStarlight != -1
+        $\NuraThings\ModManager\currentModID = $KleeBlossomingStarlight
+    endif
+endif
+
+[TextureOverrideKokomi]
+hash = dde4750a
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 57 || $\NuraThings\ModManager\activeID == 0
+    $Active_Kokomi = 1
+    $\NuraThings\ModManager\currentCharacterID = 57
+    if $Kokomi != -1
+        $\NuraThings\ModManager\currentModID = $Kokomi
+    endif
+endif
+
+[TextureOverrideKujouSara]
+hash = b82eaa26
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 58 || $\NuraThings\ModManager\activeID == 0
+    $Active_KujouSara = 1
+    $\NuraThings\ModManager\currentCharacterID = 58
+    if $KujouSara != -1
+        $\NuraThings\ModManager\currentModID = $KujouSara
+    endif
+endif
+
+[TextureOverrideLayla]
+hash = 2656ccca
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 59 || $\NuraThings\ModManager\activeID == 0
+    $Active_Layla = 1
+    $\NuraThings\ModManager\currentCharacterID = 59
+    if $Layla != -1
+        $\NuraThings\ModManager\currentModID = $Layla
+    endif
+endif
+
+[TextureOverrideLisa]
+hash = 2a557add
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 60 || $\NuraThings\ModManager\activeID == 0
+    $Active_Lisa = 1
+    $\NuraThings\ModManager\currentCharacterID = 60
+    if $Lisa != -1
+        $\NuraThings\ModManager\currentModID = $Lisa
+    endif
+endif
+
+[TextureOverrideLisaStudent]
+hash = 37c70461
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 61 || $\NuraThings\ModManager\activeID == 0
+    $Active_LisaStudent = 1
+    $\NuraThings\ModManager\currentCharacterID = 61
+    if $LisaStudent != -1
+        $\NuraThings\ModManager\currentModID = $LisaStudent
+    endif
+endif
+
+[TextureOverrideLynette]
+hash = 98eb2db4
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 62 || $\NuraThings\ModManager\activeID == 0
+    $Active_Lynette = 1
+    $\NuraThings\ModManager\currentCharacterID = 62
+    if $Lynette != -1
+        $\NuraThings\ModManager\currentModID = $Lynette
+    endif
+endif
+
+[TextureOverrideLyney]
+hash = 6f7b7740
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 63 || $\NuraThings\ModManager\activeID == 0
+    $Active_Lyney = 1
+    $\NuraThings\ModManager\currentCharacterID = 63
+    if $Lyney != -1
+        $\NuraThings\ModManager\currentModID = $Lyney
+    endif
+endif
+
+[TextureOverrideMika]
+hash = 1876e82e
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 64 || $\NuraThings\ModManager\activeID == 0
+    $Active_Mika = 1
+    $\NuraThings\ModManager\currentCharacterID = 64
+    if $Mika != -1
+        $\NuraThings\ModManager\currentModID = $Mika
+    endif
+endif
+
+[TextureOverrideMona]
+hash = 7a1dc890
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 65 || $\NuraThings\ModManager\activeID == 0
+    $Active_Mona = 1
+    $\NuraThings\ModManager\currentCharacterID = 65
+    if $Mona != -1
+        $\NuraThings\ModManager\currentModID = $Mona
+    endif
+endif
+
+[TextureOverrideMonaCN]
+hash = 515f3ce6
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 66 || $\NuraThings\ModManager\activeID == 0
+    $Active_MonaCN = 1
+    $\NuraThings\ModManager\currentCharacterID = 66
+    if $MonaCN != -1
+        $\NuraThings\ModManager\currentModID = $MonaCN
+    endif
+endif
+
+[TextureOverrideMualani]
+hash = 03872d46
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 67 || $\NuraThings\ModManager\activeID == 0
+    $Active_Mualani = 1
+    $\NuraThings\ModManager\currentCharacterID = 67
+    if $Mualani != -1
+        $\NuraThings\ModManager\currentModID = $Mualani
+    endif
+endif
+
+[TextureOverrideNahida]
+hash = 7106f05d
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 68 || $\NuraThings\ModManager\activeID == 0
+    $Active_Nahida = 1
+    $\NuraThings\ModManager\currentCharacterID = 68
+    if $Nahida != -1
+        $\NuraThings\ModManager\currentModID = $Nahida
+    endif
+endif
+
+[TextureOverrideNavia]
+hash = f4e09bd7
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 69 || $\NuraThings\ModManager\activeID == 0
+    $Active_Navia = 1
+    $\NuraThings\ModManager\currentCharacterID = 69
+    if $Navia != -1
+        $\NuraThings\ModManager\currentModID = $Navia
+    endif
+endif
+
+[TextureOverrideNeuvillette]
+hash = cad3a022
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 70 || $\NuraThings\ModManager\activeID == 0
+    $Active_Neuvillette = 1
+    $\NuraThings\ModManager\currentCharacterID = 70
+    if $Neuvillette != -1
+        $\NuraThings\ModManager\currentModID = $Neuvillette
+    endif
+endif
+
+[TextureOverrideNilou]
+hash = b2acc1df
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 71 || $\NuraThings\ModManager\activeID == 0
+    $Active_Nilou = 1
+    $\NuraThings\ModManager\currentCharacterID = 71
+    if $Nilou != -1
+        $\NuraThings\ModManager\currentModID = $Nilou
+    endif
+endif
+
+[TextureOverrideNilouBreeze]
+hash = 7d53d78f
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 72 || $\NuraThings\ModManager\activeID == 0
+    $Active_NilouBreeze = 1
+    $\NuraThings\ModManager\currentCharacterID = 72
+    if $NilouBreeze != -1
+        $\NuraThings\ModManager\currentModID = $NilouBreeze
+    endif
+endif
+
+[TextureOverrideNingguang]
+hash = f9e1b52b
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 73 || $\NuraThings\ModManager\activeID == 0
+    $Active_Ningguang = 1
+    $\NuraThings\ModManager\currentCharacterID = 73
+    if $Ningguang != -1
+        $\NuraThings\ModManager\currentModID = $Ningguang
+    endif
+endif
+
+[TextureOverrideNingguangOrchid]
+hash = db37b198
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 74 || $\NuraThings\ModManager\activeID == 0
+    $Active_NingguangOrchid = 1
+    $\NuraThings\ModManager\currentCharacterID = 74
+    if $NingguangOrchid != -1
+        $\NuraThings\ModManager\currentModID = $NingguangOrchid
+    endif
+endif
+
+[TextureOverrideNoelle]
+hash = d1384d15
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 75 || $\NuraThings\ModManager\activeID == 0
+    $Active_Noelle = 1
+    $\NuraThings\ModManager\currentCharacterID = 75
+    if $Noelle != -1
+        $\NuraThings\ModManager\currentModID = $Noelle
+    endif
+endif
+
+[TextureOverrideQiqi]
+hash = cad5bebb
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 76 || $\NuraThings\ModManager\activeID == 0
+    $Active_Qiqi = 1
+    $\NuraThings\ModManager\currentCharacterID = 76
+    if $Qiqi != -1
+        $\NuraThings\ModManager\currentModID = $Qiqi
+    endif
+endif
+
+[TextureOverrideRaidenShogun]
+hash = e48c61f3
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 77 || $\NuraThings\ModManager\activeID == 0
+    $Active_RaidenShogun = 1
+    $\NuraThings\ModManager\currentCharacterID = 77
+    if $RaidenShogun != -1
+        $\NuraThings\ModManager\currentModID = $RaidenShogun
+    endif
+endif
+
+[TextureOverrideRazor]
+hash = 4662c505
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 78 || $\NuraThings\ModManager\activeID == 0
+    $Active_Razor = 1
+    $\NuraThings\ModManager\currentCharacterID = 78
+    if $Razor != -1
+        $\NuraThings\ModManager\currentModID = $Razor
+    endif
+endif
+
+[TextureOverrideRosaria]
+hash = 748f40a5
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 79 || $\NuraThings\ModManager\activeID == 0
+    $Active_Rosaria = 1
+    $\NuraThings\ModManager\currentCharacterID = 79
+    if $Rosaria != -1
+        $\NuraThings\ModManager\currentModID = $Rosaria
+    endif
+endif
+
+[TextureOverrideRosariaCN]
+hash = 59a1f8b1
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 80 || $\NuraThings\ModManager\activeID == 0
+    $Active_RosariaCN = 1
+    $\NuraThings\ModManager\currentCharacterID = 80
+    if $RosariaCN != -1
+        $\NuraThings\ModManager\currentModID = $RosariaCN
+    endif
+endif
+
+[TextureOverrideSayu]
+hash = c70b7fce
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 81 || $\NuraThings\ModManager\activeID == 0
+    $Active_Sayu = 1
+    $\NuraThings\ModManager\currentCharacterID = 81
+    if $Sayu != -1
+        $\NuraThings\ModManager\currentModID = $Sayu
+    endif
+endif
+
+[TextureOverrideSethos]
+hash = 60d33d25
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 82 || $\NuraThings\ModManager\activeID == 0
+    $Active_Sethos = 1
+    $\NuraThings\ModManager\currentCharacterID = 82
+    if $Sethos != -1
+        $\NuraThings\ModManager\currentModID = $Sethos
+    endif
+endif
+
+[TextureOverrideShenhe]
+hash = e44b58b5
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 83 || $\NuraThings\ModManager\activeID == 0
+    $Active_Shenhe = 1
+    $\NuraThings\ModManager\currentCharacterID = 83
+    if $Shenhe != -1
+        $\NuraThings\ModManager\currentModID = $Shenhe
+    endif
+endif
+
+[TextureOverrideShenheFrostFlower]
+hash = ee0980eb
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 84 || $\NuraThings\ModManager\activeID == 0
+    $Active_ShenheFrostFlower = 1
+    $\NuraThings\ModManager\currentCharacterID = 84
+    if $ShenheFrostFlower != -1
+        $\NuraThings\ModManager\currentModID = $ShenheFrostFlower
+    endif
+endif
+
+[TextureOverrideShinobu]
+hash = 7cfb62ea
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 85 || $\NuraThings\ModManager\activeID == 0
+    $Active_Shinobu = 1
+    $\NuraThings\ModManager\currentCharacterID = 85
+    if $Shinobu != -1
+        $\NuraThings\ModManager\currentModID = $Shinobu
+    endif
+endif
+
+[TextureOverrideSucrose]
+hash = b655c335
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 86 || $\NuraThings\ModManager\activeID == 0
+    $Active_Sucrose = 1
+    $\NuraThings\ModManager\currentCharacterID = 86
+    if $Sucrose != -1
+        $\NuraThings\ModManager\currentModID = $Sucrose
+    endif
+endif
+
+[TextureOverrideThoma]
+hash = 24ecd71a
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 87 || $\NuraThings\ModManager\activeID == 0
+    $Active_Thoma = 1
+    $\NuraThings\ModManager\currentCharacterID = 87
+    if $Thoma != -1
+        $\NuraThings\ModManager\currentModID = $Thoma
+    endif
+endif
+
+[TextureOverrideTighnari]
+hash = ed2e7d59
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 88 || $\NuraThings\ModManager\activeID == 0
+    $Active_Tighnari = 1
+    $\NuraThings\ModManager\currentCharacterID = 88
+    if $Tighnari != -1
+        $\NuraThings\ModManager\currentModID = $Tighnari
+    endif
+endif
+
+[TextureOverrideTravelerBoy]
+hash = c77e380b
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 89 || $\NuraThings\ModManager\activeID == 0
+    $Active_TravelerBoy = 1
+    $\NuraThings\ModManager\currentCharacterID = 89
+    if $TravelerBoy != -1
+        $\NuraThings\ModManager\currentModID = $TravelerBoy
+    endif
+endif
+
+[TextureOverrideTravelerGirl]
+hash = 8239be13
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 90 || $\NuraThings\ModManager\activeID == 0
+    $Active_TravelerGirl = 1
+    $\NuraThings\ModManager\currentCharacterID = 90
+    if $TravelerGirl != -1
+        $\NuraThings\ModManager\currentModID = $TravelerGirl
+    endif
+endif
+
+[TextureOverrideVenti]
+hash = 09a91a5c
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 91 || $\NuraThings\ModManager\activeID == 0
+    $Active_Venti = 1
+    $\NuraThings\ModManager\currentCharacterID = 91
+    if $Venti != -1
+        $\NuraThings\ModManager\currentModID = $Venti
+    endif
+endif
+
+[TextureOverrideWanderer]
+hash = 0110e1c7
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 92 || $\NuraThings\ModManager\activeID == 0
+    $Active_Wanderer = 1
+    $\NuraThings\ModManager\currentCharacterID = 92
+    if $Wanderer != -1
+        $\NuraThings\ModManager\currentModID = $Wanderer
+    endif
+endif
+
+[TextureOverrideWriothesley]
+hash = aa6f1268
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 93 || $\NuraThings\ModManager\activeID == 0
+    $Active_Wriothesley = 1
+    $\NuraThings\ModManager\currentCharacterID = 93
+    if $Wriothesley != -1
+        $\NuraThings\ModManager\currentModID = $Wriothesley
+    endif
+endif
+
+[TextureOverrideXiangling]
+hash = 9427917d
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 94 || $\NuraThings\ModManager\activeID == 0
+    $Active_Xiangling = 1
+    $\NuraThings\ModManager\currentCharacterID = 94
+    if $Xiangling != -1
+        $\NuraThings\ModManager\currentModID = $Xiangling
+    endif
+endif
+
+[TextureOverrideXianyun]
+hash = 39838e8f
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 95 || $\NuraThings\ModManager\activeID == 0
+    $Active_Xianyun = 1
+    $\NuraThings\ModManager\currentCharacterID = 95
+    if $Xianyun != -1
+        $\NuraThings\ModManager\currentModID = $Xianyun
+    endif
+endif
+
+[TextureOverrideXiao]
+hash = 9464bf2d
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 96 || $\NuraThings\ModManager\activeID == 0
+    $Active_Xiao = 1
+    $\NuraThings\ModManager\currentCharacterID = 96
+    if $Xiao != -1
+        $\NuraThings\ModManager\currentModID = $Xiao
+    endif
+endif
+
+[TextureOverrideXilonen]
+hash = a4571ede
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 97 || $\NuraThings\ModManager\activeID == 0
+    $Active_Xilonen = 1
+    $\NuraThings\ModManager\currentCharacterID = 97
+    if $Xilonen != -1
+        $\NuraThings\ModManager\currentModID = $Xilonen
+    endif
+endif
+
+[TextureOverrideXingqiu]
+hash = 25aed172
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 98 || $\NuraThings\ModManager\activeID == 0
+    $Active_Xingqiu = 1
+    $\NuraThings\ModManager\currentCharacterID = 98
+    if $Xingqiu != -1
+        $\NuraThings\ModManager\currentModID = $Xingqiu
+    endif
+endif
+
+[TextureOverrideXingqiuBamboo]
+hash = cc158a1e
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 99 || $\NuraThings\ModManager\activeID == 0
+    $Active_XingqiuBamboo = 1
+    $\NuraThings\ModManager\currentCharacterID = 99
+    if $XingqiuBamboo != -1
+        $\NuraThings\ModManager\currentModID = $XingqiuBamboo
+    endif
+endif
+
+[TextureOverrideXinyan]
+hash = 76ed85f0
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 100 || $\NuraThings\ModManager\activeID == 0
+    $Active_Xinyan = 1
+    $\NuraThings\ModManager\currentCharacterID = 100
+    if $Xinyan != -1
+        $\NuraThings\ModManager\currentModID = $Xinyan
+    endif
+endif
+
+[TextureOverrideYae]
+hash = 3a7f71f5
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 101 || $\NuraThings\ModManager\activeID == 0
+    $Active_Yae = 1
+    $\NuraThings\ModManager\currentCharacterID = 101
+    if $Yae != -1
+        $\NuraThings\ModManager\currentModID = $Yae
+    endif
+endif
+
+[TextureOverrideYanfei]
+hash = eb8b62d3
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 102 || $\NuraThings\ModManager\activeID == 0
+    $Active_Yanfei = 1
+    $\NuraThings\ModManager\currentCharacterID = 102
+    if $Yanfei != -1
+        $\NuraThings\ModManager\currentModID = $Yanfei
+    endif
+endif
+
+[TextureOverrideYaoYao]
+hash = 293449d6
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 103 || $\NuraThings\ModManager\activeID == 0
+    $Active_YaoYao = 1
+    $\NuraThings\ModManager\currentCharacterID = 103
+    if $YaoYao != -1
+        $\NuraThings\ModManager\currentModID = $YaoYao
+    endif
+endif
+
+[TextureOverrideYelan]
+hash = c58c76f9
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 104 || $\NuraThings\ModManager\activeID == 0
+    $Active_Yelan = 1
+    $\NuraThings\ModManager\currentCharacterID = 104
+    if $Yelan != -1
+        $\NuraThings\ModManager\currentModID = $Yelan
+    endif
+endif
+
+[TextureOverrideYoimiya]
+hash = 65618289
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 105 || $\NuraThings\ModManager\activeID == 0
+    $Active_Yoimiya = 1
+    $\NuraThings\ModManager\currentCharacterID = 105
+    if $Yoimiya != -1
+        $\NuraThings\ModManager\currentModID = $Yoimiya
+    endif
+endif
+
+[TextureOverrideYunJin]
+hash = 221f052e
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 106 || $\NuraThings\ModManager\activeID == 0
+    $Active_YunJin = 1
+    $\NuraThings\ModManager\currentCharacterID = 106
+    if $YunJin != -1
+        $\NuraThings\ModManager\currentModID = $YunJin
+    endif
+endif
+
+[TextureOverrideZhongli]
+hash = a75ba32e
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 107 || $\NuraThings\ModManager\activeID == 0
+    $Active_Zhongli = 1
+    $\NuraThings\ModManager\currentCharacterID = 107
+    if $Zhongli != -1
+        $\NuraThings\ModManager\currentModID = $Zhongli
+    endif
+endif
+
+[TextureOverrideMavuika]
+hash = 039618b0
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 109 || $\NuraThings\ModManager\activeID == 0
+    $Active_Mavuika = 1
+    $\NuraThings\ModManager\currentCharacterID = 109
+    if $Mavuika != -1
+        $\NuraThings\ModManager\currentModID = $Mavuika
+    endif
+endif
+
+[TextureOverrideCitlali]
+hash = 362dc30c
+match_priority = 0
+$\NuraThings\ModManager\activeCharas = $\NuraThings\ModManager\activeCharas+1
+if $\NuraThings\ModManager\activeID == 108 || $\NuraThings\ModManager\activeID == 0
+    $Active_Citlali = 1
+    $\NuraThings\ModManager\currentCharacterID = 108
+    if $Citlali != -1
+        $\NuraThings\ModManager\currentModID = $Citlali
+    endif
+endif

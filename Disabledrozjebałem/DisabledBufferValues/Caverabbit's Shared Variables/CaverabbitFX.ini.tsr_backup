@@ -1,0 +1,114 @@
+namespace = rabbitFX
+
+[constants]
+global $R = 0
+global $G = 0
+global $B = 0
+global $colourShift = 0
+global $brightness = 0
+global $bloom = 0
+
+global $TempX17
+global $TempY17
+global $TempZ17
+global $TempW17
+global $TempZ18
+global $TempY18
+
+[CustomShaderBodyNN]
+run = CommandListPre
+ps = ./Shaders/CaveRabbitRGBFX-NNBody.hlsl
+run = CommandListPost
+
+[CustomShaderDressNN]
+run = CommandListPre
+ps = ./Shaders/CaveRabbitRGBFX-NNDress.hlsl
+run = CommandListPost
+
+[CustomShaderBodyWN]
+run = CommandListPre
+ps = ./Shaders/CaveRabbitRGBFX-WNBody.hlsl
+run = CommandListPost
+
+[CustomShaderDressWN]
+run = CommandListPre
+ps = ./Shaders/CaveRabbitRGBFX-WNDress.hlsl
+run = CommandListPost
+
+[CustomShaderWeapon]
+run = CommandListPre
+ps = ./Shaders/CaveRabbitRGBFX-Weapon.hlsl
+run = CommandListPost
+
+[CommandListPre]
+$TempX17 = x17
+$TempY17 = y17
+$TempZ17 = w17
+$TempW17 = z17
+$TempZ18 = z18
+$TempY18 = y18
+x17 = $R
+y17 = $G
+z17 = $B
+w17 = $colourShift
+z18 = $brightness
+y18 = $bloom
+
+[CommandListPost]
+handling = skip
+drawindexed = auto
+x17 = $TempX17
+y17 = $TempY17
+z17 = $TempZ17
+w17 = $TempW17
+z17 = $TempZ18
+y17 = $TempY18
+$R = 0
+$G = 0
+$B = 0
+$colourShift = 0
+$brightness = 0
+$bloom = 0
+
+; TexFX integration Provided by SinsOfSeven -----------------------------
+
+; [TextureOverride_NormalModStuff]
+; hash = 
+; ib = 
+; ps-t# =
+;
+; REM [CommandList_is_optional]
+; REM we need to move some drawcalls to custom shaders based on the filter_index
+; REM cute performace hack
+; local $ps = ps
+; REM 4243.05 is the Diffuse
+; REM 4243.07 is the Diffuse with backface texcoord (requires texfx 1.051+)
+; if $ps == 4243.05 || $ps == 4243.07
+; 	REM preferably set some values for the drawindexed
+;	run = customshader_yourshader
+; REM if you want to use TexFx transparency you need this
+; REM this matches the outlines, so you can do something else here too. (shared with ORFIX)
+; elif $ps//1 == 037730 && $ps != 037730.01
+; 	REM Raw Setup for transparency
+;	$\texfx\_1 = <your_index_count>
+;	$\texfx\_2 = <your_first_index>
+;	run = CommandList\TexFx\SetInstanceValues
+;	run = CommandList\TexFx\SetResourceReferences
+;	REM (checks if ORFix is active)
+;	if x70//1 == 037730
+;		REM for Nata chars run = CustomShader\TexFx\ComponentNatlanSupressHH.0
+;		run = CustomShader\TexFx\ComponentSupressHH.0
+;	else
+;		REM for Nata chars run = CustomShader\TexFx\ComponentNatlanSupressHH.1
+;		run = CustomShader\TexFx\ComponentSupressHH.1
+;	endif
+;	REM CleanUp since we're going raw
+;	$\TexFx\_1 = 0
+;	$\TexFx\_2 = 0
+;	run = CommandList\TexFx\ResetResources
+;	run = CommandList\TexFx\ClearInstanceValues
+; else
+;	REM fall through shader, this can be all kinds of things.
+;	REM You can comment this out and see what happens, it's kinda neat!
+;	drawindexed = <your_index_count>, <your_first_index>, 0
+; endif

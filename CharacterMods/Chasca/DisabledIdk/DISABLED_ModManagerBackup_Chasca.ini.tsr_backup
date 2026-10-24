@@ -1,0 +1,285 @@
+; Chasca
+
+; Constants -------------------------
+
+[Constants]
+global $active = 0
+global $creditinfo = 0
+global persist $top = 0
+global persist $pants = 0
+global persist $arm = 0
+global persist $boots = 0
+global persist $vision = 0
+global persist $piercing = 0
+global persist $piercingnipple = 0
+global persist $cape = 0
+global persist $cloak = 0
+global persist $feather = 0
+
+[KeySwapPiercingNavel]
+condition = $active == 1
+key = NO_MODIFIERS ]
+back = Alt ]
+type = cycle
+$piercing = 0,1,2,3
+
+[KeySwapTop]
+condition = $active == 1
+key = NO_MODIFIERS 6
+back = Alt 6
+type = cycle
+$top = 0,1
+
+[KeySwapPants]
+condition = $active == 1
+key = NO_MODIFIERS 7
+back = Alt 7
+type = cycle
+$pants = 0,1
+
+[KeySwapArm]
+condition = $active == 1
+key = NO_MODIFIERS 9
+back = Alt 9
+type = cycle
+$arm = 0,1
+
+[KeySwapBoots]
+condition = $active == 1
+key = NO_MODIFIERS 8
+back = Alt 8
+type = cycle
+$boots = 0,1
+
+[KeySwapVision]
+condition = $active == 1
+key = NO_MODIFIERS /
+back = Alt /
+type = cycle
+$vision = 0,1
+
+[KeySwapCape]
+condition = $active == 1
+key = NO_MODIFIERS =
+back = Alt =
+type = cycle
+$cape = 0,1
+
+[KeySwapCloak]
+condition = $active == 1
+key = NO_MODIFIERS ;
+back = Alt ;
+type = cycle
+$cloak = 0,1
+
+[KeySwapFeather]
+condition = $active == 1
+key = NO_MODIFIERS '
+back = Alt '
+type = cycle
+$feather = 0,1
+
+[Present]
+post $active = 0
+run = CommandListCreditInfo
+
+; Overrides -------------------------
+
+[TextureOverrideChascaPosition]
+hash = b5a29a7d
+vb0 = ResourceChascaPosition
+$active = 1
+
+[TextureOverrideChascaBlend]
+hash = 399df744
+vb1 = ResourceChascaBlend
+handling = skip
+draw = 54208,0 
+
+[TextureOverrideChascaTexcoord]
+hash = cea113ae
+vb1 = ResourceChascaTexcoord
+
+[TextureOverrideChascaVertexLimitRaise]
+hash = db1ccc0d
+; override_vertex_count = 54208
+; override_byte_stride = 84
+
+[TextureOverrideChascaIB]
+hash = 980cee65
+handling = skip
+
+[TextureOverrideChascaHead]
+hash = 980cee65
+match_first_index = 0
+ib = ResourceChascaHeadIB
+ps-t0 = ResourceChascaNormalMap
+ps-t1 = ResourceChascaDiffuse
+ps-t2 = ResourceChascaLightMap
+ps-t8 = ResourceChascaNatlanFX
+run = CommandList\global\ORFix\ORFix
+	; Head_Clth_HatPart (346)
+	drawindexed = 798, 8676, 0
+	; Head_Hair (5908)
+	drawindexed = 21810, 9474, 0
+if $cape == 0
+	; Head_Clth_Cape (690)
+	drawindexed = 2316, 0, 0
+endif
+
+if $cloak == 0
+	; Head_Clth_Cloak (1526)
+	drawindexed = 5592, 2316, 0
+endif
+
+if $feather == 0
+	; Head_Clth_Feather (344)
+	drawindexed = 768, 7908, 0
+endif
+
+[TextureOverrideChascaBody]
+hash = 980cee65
+match_first_index = 32064
+ib = ResourceChascaBodyIB
+ps-t0 = ResourceChascaNormalMap
+ps-t1 = ResourceChascaDiffuse
+ps-t2 = ResourceChascaLightMap
+ps-t8 = ResourceChascaNatlanFX
+run = CommandList\global\ORFix\ORFix
+
+if $pants == 0
+		; BodyForPantsSFW (12775)
+		drawindexed = 64677, 20868, 0
+		; Body_Clth_Belt_etc (992)
+		drawindexed = 2178, 154500, 0
+else if $pants == 1
+		; BodyForShortsSFW (13014)
+		drawindexed = 66099, 85545, 0
+		; Body_Clth_Belt_etc (992)
+		drawindexed = 2178, 154500, 0
+endif
+
+if $arm == 0
+		; Body_Clth_Arm (996)
+		drawindexed = 2856, 151644, 0
+endif
+
+if $boots == 0
+		; Body_Clth_Boots (3818)
+		drawindexed = 10152, 156678, 0
+else if $boots == 1
+		; BodyFootsSFW (3966)
+		drawindexed = 20868, 0, 0
+endif
+
+if $vision == 0
+		; Body_Clth_Vission (2516)
+		drawindexed = 5112, 166830, 0
+endif
+
+[TextureOverrideChascaDress]
+hash = 980cee65
+match_first_index = 79233
+ib = ResourceChascaDressIB
+ps-t0 = ResourceChascaNormalMap
+ps-t1 = ResourceChascaDiffuse
+ps-t2 = ResourceChascaLightMap
+ps-t8 = ResourceChascaNatlanFX
+run = CommandList\global\ORFix\ORFix
+
+if $top == 0
+		; Clth_Top_SFW (2793)
+		drawindexed = 8496, 13842, 0
+else if $top == 1
+		; Clth_UnderwearT_SFW (798) - Free trial ended, now subscribe x)
+		drawindexed = 2472, 22338, 0
+endif
+
+if $pants == 0
+		; Clth_Pant_SFW (1804)
+		drawindexed = 6936, 2088, 0
+else if $pants == 1
+		; Clth_Shorts_SFW (1420)
+		drawindexed = 4818, 9024, 0
+endif
+
+if $piercing == 0
+		; Dress_PiercingNavel (251)
+		drawindexed = 1044, 0, 0
+else if $piercing == 1
+		; Dress_PiercingNavelTop (251)
+		drawindexed = 1044, 1044, 0
+else if $piercing == 2
+		; Dress_PiercingNavel (251)
+		drawindexed = 1044, 0, 0
+		; Dress_PiercingNavelTop (251)
+		drawindexed = 1044, 1044, 0
+endif
+
+[TextureOverrideChascaFaceHeadDiffuse]
+hash = df04be2e
+this = ResourceChascaFaceHeadDiffuse
+
+; CommandList -----------------------
+
+[CommandListCreditInfo]
+if $creditinfo == 0 && $active == 1
+    pre Resource\ShaderFixes\help.ini\Notification = ResourceCreditInfo
+    pre run = CustomShader\ShaderFixes\help.ini\FormatText
+    pre $\ShaderFixes\help.ini\notification_timeout = time + 5.0
+    $creditinfo = 1
+endif
+
+; Resources -------------------------
+
+[ResourceChascaPosition]
+type = Buffer
+stride = 40
+filename = ChascaPosition.buf
+
+[ResourceChascaBlend]
+type = Buffer
+stride = 32
+filename = ChascaBlend.buf
+
+[ResourceChascaTexcoord]
+type = Buffer
+stride = 12
+filename = ChascaTexcoord.buf
+
+[ResourceChascaHeadIB]
+type = Buffer
+format = DXGI_FORMAT_R32_UINT
+filename = ChascaHead.ib
+
+[ResourceChascaBodyIB]
+type = Buffer
+format = DXGI_FORMAT_R32_UINT
+filename = ChascaBody.ib
+
+[ResourceChascaDressIB]
+type = Buffer
+format = DXGI_FORMAT_R32_UINT
+filename = ChascaDress.ib
+
+[ResourceChascaFaceHeadDiffuse]
+filename = ChascaFaceHeadDiffuse.dds
+
+[ResourceChascaDiffuse]
+filename = ChascaDiffuse.dds
+
+[ResourceChascaLightMap]
+filename = ChascaLightMap.dds
+
+[ResourceChascaNormalMap]
+filename = ChascaNormalMap.dds
+
+[ResourceChascaNatlanFX]
+filename = ChascaNatlanFX.dds
+
+[ResourceCreditInfo]
+type = Buffer
+data = "Created by KiberSkyDen"
+
+; .ini generated by XXMI (XX-Model-Importer)
+; If you have any issues or find any bugs, please open a ticket at https://github.com/leotorrez/XXMI-Tools/issues

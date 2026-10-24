@@ -1,0 +1,564 @@
+namespace = NuraThings\Print\Numbers
+
+[Constants]
+global $Number = -1
+
+global $num0
+global $num1
+global $num2
+global $num3
+global $num4
+global $num5
+
+global $widthScale = 5
+global $heightScale = 1
+
+global $dot
+global $minus
+
+global $gap = 0.019
+
+[CustomShaderSliderMenu]
+vs = ../Shaders/UIElement.hlsl
+ps = ../Shaders/UIElement.hlsl
+blend = ADD SRC_ALPHA INV_SRC_ALPHA
+cull = none
+topology = triangle_strip
+o0 = set_viewport bb
+Draw = 4,0
+
+[CommandListRun]
+local $tempPrintMe
+
+$dot = 0
+$minus = 0
+
+$num5 = -10
+$num4 = -10
+$num3 = -10
+$num2 = -10
+$num1 = -10
+$num0 = -10
+
+;if $Number < 1
+if $Number != inf || $Number != -inf || $Number != NaN || $Number != null
+
+    if $Number == 0
+       $num0 = 0
+    endif
+
+    if $Number < 0
+        $minus = 1
+        $Number = $Number*(-1)
+    endif
+
+    $tempPrintMe = $Number//1
+
+    if $tempPrintMe >= 100000 && $tempPrintMe < 1000000
+        $num5 = $tempPrintMe%10
+        $tempPrintMe = $tempPrintMe//10
+    endif
+
+    if $tempPrintMe >= 10000 && $tempPrintMe < 100000
+        $num4 = $tempPrintMe%10
+        $tempPrintMe = $tempPrintMe//10
+    endif
+
+    if $tempPrintMe >= 1000 && $tempPrintMe < 10000
+        $num3 = $tempPrintMe%10
+        $tempPrintMe = $tempPrintMe//10
+    endif
+
+
+    if $Number >= 100 && $Number < 1000
+
+        $num2 = ($Number%10)//1
+        $num1 = ($Number%100)/10//1
+        $num0 = $Number//100
+
+        if $Number%1 != 0
+            $dot = 3
+            $tempPrintMe = $Number*1000
+
+            if $tempPrintMe%10 != 0
+                $num5 = $tempPrintMe%10
+            endif
+
+            if $tempPrintMe%100 != 0
+                $num4 = ($tempPrintMe//10)%10
+            endif
+
+            $num3 = ($tempPrintMe//100)%10
+        endif
+
+    else if $tempPrintMe >= 100 && $tempPrintMe < 1000
+        $num2 = $tempPrintMe%10
+        $tempPrintMe = $tempPrintMe//10
+    endif
+
+
+    if $Number >= 10 && $Number < 100
+
+        $num1 = ($Number%10)//1
+        $num0 = $Number//10
+
+        if $Number%1 != 0
+            $dot = 2
+            $tempPrintMe = $Number*1000
+
+            if $tempPrintMe%10 != 0
+                $num4 = $tempPrintMe%10
+            endif
+
+            if $tempPrintMe%100 != 0
+                $num3 = ($tempPrintMe//10)%10
+            endif
+
+            $num2 = ($tempPrintMe//100)%10
+        endif
+
+    else if $tempPrintMe >= 10 && $tempPrintMe < 100
+        $num1 = $tempPrintMe%10
+        $num0 = $tempPrintMe//10
+        $tempPrintMe = $tempPrintMe//10
+    endif
+
+    if $Number >= 1 && $Number < 10
+        $num0 = $Number//1
+        if $Number%1 != 0
+            $dot = 1
+            $tempPrintMe = $Number*1000+0.0001
+
+            if $tempPrintMe%10 != 0
+                $num4 = $tempPrintMe%10//1
+            endif
+
+            if $tempPrintMe%100 != 0
+                $num3 = ($tempPrintMe//10)%10
+            endif
+
+            $num2 = ($tempPrintMe//100)%10
+        endif
+
+    else if $tempPrintMe >= 1 && $tempPrintMe < 10
+        $num0 = $tempPrintMe//1
+    endif
+
+    ; 0.001-0.999...
+
+    if $Number < 1 && $Number > 0
+        $tempPrintMe = $Number
+        $num0 = 0
+        $dot = 1
+        if $tempPrintMe*10 >= 1
+            $tempPrintMe = $tempPrintMe*100
+            $num2 = $tempPrintMe/10//1
+
+            if $tempPrintMe%10 != 0
+
+                if ($tempPrintMe%10) >= 1
+                    $num3 = ($tempPrintMe%10)//1
+                    $tempPrintMe = $tempPrintMe * 10
+
+                    if $tempPrintMe%10 != 0
+                        $num4 = ($Number*1000)%10
+                    endif
+
+                else
+                    $num3 = 0
+                    $num4 = ($Number*1000)%10
+                endif
+            endif
+
+        else
+            $num2 = 0
+            $num3 = (($tempPrintMe*100)%10)//1
+            $num4 = ($Number*1000)%10
+        endif
+
+    endif
+
+    $tempPrintMe = -1
+    $Number = -1
+    run = CommandListPrint
+endif
+
+
+[CommandListPrint]
+local $x87 = x87
+local $y87 = y87
+local $z87 = z87
+local $w87 = w87
+
+x87 = 0.04
+y87 = 0.04
+
+z87 = 0.1*$widthScale
+w87 = 0.1*$heightScale
+
+if $minus
+    ps-t100 = Resource\NuraThings\Numbers\Minus
+    run = CustomShaderSliderMenu
+endif
+
+z87 = z87+$gap
+
+if $num0 == 0
+    ps-t100 = Resource\NuraThings\Numbers\Number0
+    run = CustomShaderSliderMenu
+endif
+
+if $num0 == 1
+    ps-t100 = Resource\NuraThings\Numbers\Number1
+    run = CustomShaderSliderMenu
+endif
+
+if $num0 == 2
+    ps-t100 = Resource\NuraThings\Numbers\Number2
+    run = CustomShaderSliderMenu
+endif
+
+if $num0 == 3
+    ps-t100 = Resource\NuraThings\Numbers\Number3
+    run = CustomShaderSliderMenu
+endif
+
+if $num0 == 4
+    ps-t100 = Resource\NuraThings\Numbers\Number4
+    run = CustomShaderSliderMenu
+endif
+
+if $num0 == 5
+    ps-t100 = Resource\NuraThings\Numbers\Number5
+    run = CustomShaderSliderMenu
+endif
+
+if $num0 == 6
+    ps-t100 = Resource\NuraThings\Numbers\Number6
+    run = CustomShaderSliderMenu
+endif
+
+if $num0 == 7
+    ps-t100 = Resource\NuraThings\Numbers\Number7
+    run = CustomShaderSliderMenu
+endif
+
+if $num0 == 8
+    ps-t100 = Resource\NuraThings\Numbers\Number8
+    run = CustomShaderSliderMenu
+endif
+
+if $num0 == 9
+    ps-t100 = Resource\NuraThings\Numbers\Number9
+    run = CustomShaderSliderMenu
+endif
+
+
+
+z87 = z87+$gap
+
+if $dot == 1 
+    w87 = 0.1*$heightScale+0.0125
+
+    ps-t100 = Resource\NuraThings\Numbers\Dot
+    run = CustomShaderSliderMenu
+
+    w87 = 0.1*$heightScale
+endif
+
+
+
+if $num1 == 0
+    ps-t100 = Resource\NuraThings\Numbers\Number0
+    run = CustomShaderSliderMenu
+endif
+
+if $num1 == 1
+    ps-t100 = Resource\NuraThings\Numbers\Number1
+    run = CustomShaderSliderMenu
+endif
+
+if $num1 == 2
+    ps-t100 = Resource\NuraThings\Numbers\Number2
+    run = CustomShaderSliderMenu
+endif
+
+if $num1 == 3
+    ps-t100 = Resource\NuraThings\Numbers\Number3
+    run = CustomShaderSliderMenu
+endif
+
+if $num1 == 4
+    ps-t100 = Resource\NuraThings\Numbers\Number4
+    run = CustomShaderSliderMenu
+endif
+
+if $num1 == 5
+    ps-t100 = Resource\NuraThings\Numbers\Number5
+    run = CustomShaderSliderMenu
+endif
+
+if $num1 == 6
+    ps-t100 = Resource\NuraThings\Numbers\Number6
+    run = CustomShaderSliderMenu
+endif
+
+if $num1 == 7
+    ps-t100 = Resource\NuraThings\Numbers\Number7
+    run = CustomShaderSliderMenu
+endif
+
+if $num1 == 8
+    ps-t100 = Resource\NuraThings\Numbers\Number8
+    run = CustomShaderSliderMenu
+endif
+
+if $num1 == 9
+    ps-t100 = Resource\NuraThings\Numbers\Number9
+    run = CustomShaderSliderMenu
+endif
+
+
+
+z87 = z87+$gap
+
+if $dot == 2 
+    w87 = 0.11*$heightScale
+    ps-t100 = Resource\NuraThings\Numbers\Dot
+    run = CustomShaderSliderMenu
+
+    w87 = 0.1*$heightScale
+    z87 = z87+$gap
+endif
+
+
+
+if $num2 == 0
+    ps-t100 = Resource\NuraThings\Numbers\Number0
+    run = CustomShaderSliderMenu
+endif
+
+if $num2 == 1
+    ps-t100 = Resource\NuraThings\Numbers\Number1
+    run = CustomShaderSliderMenu
+endif
+
+if $num2 == 2
+    ps-t100 = Resource\NuraThings\Numbers\Number2
+    run = CustomShaderSliderMenu
+endif
+
+if $num2 == 3
+    ps-t100 = Resource\NuraThings\Numbers\Number3
+    run = CustomShaderSliderMenu
+endif
+
+if $num2 == 4
+    ps-t100 = Resource\NuraThings\Numbers\Number4
+    run = CustomShaderSliderMenu
+endif
+
+if $num2 == 5
+    ps-t100 = Resource\NuraThings\Numbers\Number5
+    run = CustomShaderSliderMenu
+endif
+
+if $num2 == 6
+    ps-t100 = Resource\NuraThings\Numbers\Number6
+    run = CustomShaderSliderMenu
+endif
+
+if $num2 == 7
+    ps-t100 = Resource\NuraThings\Numbers\Number7
+    run = CustomShaderSliderMenu
+endif
+
+if $num2 == 8
+    ps-t100 = Resource\NuraThings\Numbers\Number8
+    run = CustomShaderSliderMenu
+endif
+
+if $num2 == 9
+    ps-t100 = Resource\NuraThings\Numbers\Number9
+    run = CustomShaderSliderMenu
+endif
+
+
+
+z87 = z87+$gap
+
+if $dot == 3
+    w87 = 0.11*$heightScale
+    ps-t100 = Resource\NuraThings\Numbers\Dot
+    run = CustomShaderSliderMenu
+
+    w87 = 0.1*$heightScale
+    z87 = z87+$gap
+endif
+
+
+
+if $num3 == 0
+    ps-t100 = Resource\NuraThings\Numbers\Number0
+    run = CustomShaderSliderMenu
+endif
+
+if $num3 == 1
+    ps-t100 = Resource\NuraThings\Numbers\Number1
+    run = CustomShaderSliderMenu
+endif
+
+if $num3 == 2
+    ps-t100 = Resource\NuraThings\Numbers\Number2
+    run = CustomShaderSliderMenu
+endif
+
+if $num3 == 3
+    ps-t100 = Resource\NuraThings\Numbers\Number3
+    run = CustomShaderSliderMenu
+endif
+
+if $num3 == 4
+    ps-t100 = Resource\NuraThings\Numbers\Number4
+    run = CustomShaderSliderMenu
+endif
+
+if $num3 == 5
+    ps-t100 = Resource\NuraThings\Numbers\Number5
+    run = CustomShaderSliderMenu
+endif
+
+if $num3 == 6
+    ps-t100 = Resource\NuraThings\Numbers\Number6
+    run = CustomShaderSliderMenu
+endif
+
+if $num3 == 7
+    ps-t100 = Resource\NuraThings\Numbers\Number7
+    run = CustomShaderSliderMenu
+endif
+
+if $num3 == 8
+    ps-t100 = Resource\NuraThings\Numbers\Number8
+    run = CustomShaderSliderMenu
+endif
+
+if $num3 == 9
+    ps-t100 = Resource\NuraThings\Numbers\Number9
+    run = CustomShaderSliderMenu
+endif
+
+
+z87 = z87+$gap
+
+
+if $num4 == 0
+    ps-t100 = Resource\NuraThings\Numbers\Number0
+    run = CustomShaderSliderMenu
+endif
+
+if $num4 == 1
+    ps-t100 = Resource\NuraThings\Numbers\Number1
+    run = CustomShaderSliderMenu
+endif
+
+if $num4 == 2
+    ps-t100 = Resource\NuraThings\Numbers\Number2
+    run = CustomShaderSliderMenu
+endif
+
+if $num4 == 3
+    ps-t100 = Resource\NuraThings\Numbers\Number3
+    run = CustomShaderSliderMenu
+endif
+
+if $num4 == 4
+    ps-t100 = Resource\NuraThings\Numbers\Number4
+    run = CustomShaderSliderMenu
+endif
+
+if $num4 == 5
+    ps-t100 = Resource\NuraThings\Numbers\Number5
+    run = CustomShaderSliderMenu
+endif
+
+if $num4 == 6
+    ps-t100 = Resource\NuraThings\Numbers\Number6
+    run = CustomShaderSliderMenu
+endif
+
+if $num4 == 7
+    ps-t100 = Resource\NuraThings\Numbers\Number7
+    run = CustomShaderSliderMenu
+endif
+
+if $num4 == 8
+    ps-t100 = Resource\NuraThings\Numbers\Number8
+    run = CustomShaderSliderMenu
+endif
+
+if $num4 == 9
+    ps-t100 = Resource\NuraThings\Numbers\Number9
+    run = CustomShaderSliderMenu
+endif
+
+
+z87 = z87+$gap
+
+if $num5 == 0
+    ps-t100 = Resource\NuraThings\Numbers\Number0
+    run = CustomShaderSliderMenu
+endif
+
+if $num5 == 1
+    ps-t100 = Resource\NuraThings\Numbers\Number1
+    run = CustomShaderSliderMenu
+endif
+
+if $num5 == 2
+    ps-t100 = Resource\NuraThings\Numbers\Number2
+    run = CustomShaderSliderMenu
+endif
+
+if $num5 == 3
+    ps-t100 = Resource\NuraThings\Numbers\Number3
+    run = CustomShaderSliderMenu
+endif
+
+if $num5 == 4
+    ps-t100 = Resource\NuraThings\Numbers\Number4
+    run = CustomShaderSliderMenu
+endif
+
+if $num5 == 5
+    ps-t100 = Resource\NuraThings\Numbers\Number5
+    run = CustomShaderSliderMenu
+endif
+
+if $num5 == 6
+    ps-t100 = Resource\NuraThings\Numbers\Number6
+    run = CustomShaderSliderMenu
+endif
+
+if $num5 == 7
+    ps-t100 = Resource\NuraThings\Numbers\Number7
+    run = CustomShaderSliderMenu
+endif
+
+if $num5 == 8
+    ps-t100 = Resource\NuraThings\Numbers\Number8
+    run = CustomShaderSliderMenu
+endif
+
+if $num5 == 9
+    ps-t100 = Resource\NuraThings\Numbers\Number9
+    run = CustomShaderSliderMenu
+endif
+
+$widthScale = 5
+$heightScale = 1
+
+x87 = $x87
+y87 = $y87
+z87 = $z87
+w87 = $w87

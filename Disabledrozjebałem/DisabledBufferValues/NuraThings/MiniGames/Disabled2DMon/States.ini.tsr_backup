@@ -1,0 +1,57 @@
+namespace = NuraThings\MiniGames\2DMon\States
+
+[Constants]
+global $id = -1
+
+global $name_string1
+global $name_string2
+global $name_string3
+
+global $rounds
+global $chance_for_early_expire
+
+
+[CommandListPrintStatus]
+run = CommandList\NuraThings\Print\Letters\V2\ClearTypeCodes
+
+if $\NuraThings\MiniGames\2DMon\load_data == 0
+    $\NuraThings\Print\Letters\V2\offset_x = -0.225
+    $\NuraThings\Print\Letters\V2\offset_y = 0.4
+
+elif $\NuraThings\MiniGames\2DMon\load_data == 1
+    $\NuraThings\Print\Letters\V2\offset_x = 0.225
+    $\NuraThings\Print\Letters\V2\offset_y = -0.4
+endif
+
+$\NuraThings\Print\Letters\V2\TextCode0 = 25 + $name_string1
+$\NuraThings\Print\Letters\V2\TextCode1 = 14 + $name_string2
+$\NuraThings\Print\Letters\V2\TextCode2 = 14 + $name_string3
+
+run = CommandList\NuraThings\Print\Letters\V2\RenderText
+
+
+[CommandListLoadStatus]
+if $id >= 0
+    if $id == 0
+        run = CommandListParalyzed
+    endif
+
+    run = CommandListPrintStatus
+    run = CommandListUnLoadStatus
+endif
+
+[CommandListUnLoadStatus]
+$name_string1 = 0
+$name_string2 = 0
+$name_string3 = 0
+
+$rounds = 0
+$chance_for_early_expire = 0
+
+[CommandListParalyzed]
+$name_string1 = 123456
+$name_string2 = 123456
+$name_string3 = 123456
+
+$rounds = 3
+$chance_for_early_expire = 0

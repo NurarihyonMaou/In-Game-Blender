@@ -1,0 +1,1141 @@
+namespace = NuraThings\SkillCounter\Resources
+
+[ResourceAlbedoElementalSkill]
+filename = Icons/AlbedoElementalSkill.dds
+
+[ResourceAlbedoElementalBurst]
+filename = Icons/AlbedoElementalBurst.dds
+
+[ResourceAlhaithamElementalSkill]
+filename = Icons/AlhaithamElementalSkill.dds
+
+[ResourceAlhaithamElementalBurst]
+filename = Icons/AlhaithamElementalBurst.dds
+
+[ResourceAloyElementalSkill]
+filename = Icons/AloyElementalSkill.dds
+
+[ResourceAloyElementalBurst]
+filename = Icons/AloyElementalBurst.dds
+
+[ResourceAmberElementalSkill]
+filename = Icons/AmberElementalSkill.dds
+
+[ResourceAmberElementalBurst]
+filename = Icons/AmberElementalBurst.dds
+
+[ResourceAratakiIttoElementalSkill]
+filename = Icons/AratakiIttoElementalSkill.dds
+
+[ResourceAratakiIttoElementalBurst]
+filename = Icons/AratakiIttoElementalBurst.dds
+
+[ResourceArlecchinoElementalSkill]
+filename = Icons/ArlecchinoElementalSkill.dds
+
+[ResourceArlecchinoElementalBurst]
+filename = Icons/ArlecchinoElementalBurst.dds
+
+[ResourceBaizhuElementalSkill]
+filename = Icons/BaizhuElementalSkill.dds
+
+[ResourceBaizhuElementalBurst]
+filename = Icons/BaizhuElementalBurst.dds
+
+[ResourceBarbaraElementalSkill]
+filename = Icons/BarbaraElementalSkill.dds
+
+[ResourceBarbaraElementalBurst]
+filename = Icons/BarbaraElementalBurst.dds
+
+[ResourceBeidouElementalSkill]
+filename = Icons/BeidouElementalSkill.dds
+
+[ResourceBeidouElementalBurst]
+filename = Icons/BeidouElementalBurst.dds
+
+[ResourceBennettElementalSkill]
+filename = Icons/BennettElementalSkill.dds
+
+[ResourceBennettElementalBurst]
+filename = Icons/BennettElementalBurst.dds
+
+[ResourceCandaceElementalSkill]
+filename = Icons/CandaceElementalSkill.dds
+
+[ResourceCandaceElementalBurst]
+filename = Icons/CandaceElementalBurst.dds
+
+[ResourceCharlotteElementalSkill]
+filename = Icons/CharlotteElementalSkill.dds
+
+[ResourceCharlotteElementalBurst]
+filename = Icons/CharlotteElementalBurst.dds
+
+[ResourceChevreuseElementalSkill]
+filename = Icons/ChevreuseElementalSkill.dds
+
+[ResourceChevreuseElementalBurst]
+filename = Icons/ChevreuseElementalBurst.dds
+
+[ResourceChioriElementalSkill]
+filename = Icons/ChioriElementalSkill.dds
+
+[ResourceChioriElementalBurst]
+filename = Icons/ChioriElementalBurst.dds
+
+[ResourceChongyunElementalSkill]
+filename = Icons/ChongyunElementalSkill.dds
+
+[ResourceChongyunElementalBurst]
+filename = Icons/ChongyunElementalBurst.dds
+
+[ResourceClorindeElementalSkill]
+filename = Icons/ClorindeElementalSkill.dds
+
+[ResourceClorindeElementalBurst]
+filename = Icons/ClorindeElementalBurst.dds
+
+[ResourceColleiElementalSkill]
+filename = Icons/ColleiElementalSkill.dds
+
+[ResourceColleiElementalBurst]
+filename = Icons/ColleiElementalBurst.dds
+
+[ResourceCynoElementalSkill]
+filename = Icons/CynoElementalSkill.dds
+
+[ResourceCynoElementalBurst]
+filename = Icons/CynoElementalBurst.dds
+
+[ResourceDehyaElementalSkill]
+filename = Icons/DehyaElementalSkill.dds
+
+[ResourceDehyaElementalBurst]
+filename = Icons/DehyaElementalBurst.dds
+
+[ResourceDilucElementalSkill]
+filename = Icons/DilucElementalSkill.dds
+
+[ResourceDilucElementalBurst]
+filename = Icons/DilucElementalBurst.dds
+
+[ResourceDionaElementalSkill]
+filename = Icons/DionaElementalSkill.dds
+
+[ResourceDionaElementalBurst]
+filename = Icons/DionaElementalBurst.dds
+
+[ResourceDoriElementalSkill]
+filename = Icons/DoriElementalSkill.dds
+
+[ResourceDoriElementalBurst]
+filename = Icons/DoriElementalBurst.dds
+
+[ResourceEulaElementalSkill]
+filename = Icons/EulaElementalSkill.dds
+
+[ResourceEulaElementalBurst]
+filename = Icons/EulaElementalBurst.dds
+
+[ResourceFaruzanElementalSkill]
+filename = Icons/FaruzanElementalSkill.dds
+
+[ResourceFaruzanElementalBurst]
+filename = Icons/FaruzanElementalBurst.dds
+
+[ResourceFischlElementalSkill]
+filename = Icons/FischlElementalSkill.dds
+
+[ResourceFischlElementalBurst]
+filename = Icons/FischlElementalBurst.dds
+
+[ResourceFreminetElementalSkill]
+filename = Icons/FreminetElementalSkill.dds
+
+[ResourceFreminetElementalBurst]
+filename = Icons/FreminetElementalBurst.dds
+
+[ResourceFurinaElementalSkill]
+filename = Icons/FurinaElementalSkill.dds
+
+[ResourceFurinaElementalBurst]
+filename = Icons/FurinaElementalBurst.dds
+
+[ResourceGamingElementalSkill]
+filename = Icons/GamingElementalSkill.dds
+
+[ResourceGamingElementalBurst]
+filename = Icons/GamingElementalBurst.dds
+
+[ResourceGanyuElementalSkill]
+filename = Icons/GanyuElementalSkill.dds
+
+[ResourceGanyuElementalBurst]
+filename = Icons/GanyuElementalBurst.dds
+
+[ResourceGorouElementalSkill]
+filename = Icons/GorouElementalSkill.dds
+
+[ResourceGorouElementalBurst]
+filename = Icons/GorouElementalBurst.dds
+
+[ResourceHuTaoElementalSkill]
+filename = Icons/HuTaoElementalSkill.dds
+
+[ResourceHuTaoElementalBurst]
+filename = Icons/HuTaoElementalBurst.dds
+
+[ResourceJeanElementalSkill]
+filename = Icons/JeanElementalSkill.dds
+
+[ResourceJeanElementalBurst]
+filename = Icons/JeanElementalBurst.dds
+
+[ResourceKaedeharaKazuhaElementalSkill]
+filename = Icons/KaedeharaKazuhaElementalSkill.dds
+
+[ResourceKaedeharaKazuhaElementalBurst]
+filename = Icons/KaedeharaKazuhaElementalBurst.dds
+
+[ResourceKaeyaElementalSkill]
+filename = Icons/KaeyaElementalSkill.dds
+
+[ResourceKaeyaElementalBurst]
+filename = Icons/KaeyaElementalBurst.dds
+
+[ResourceKamisatoAyakaElementalSkill]
+filename = Icons/KamisatoAyakaElementalSkill.dds
+
+[ResourceKamisatoAyakaElementalBurst]
+filename = Icons/KamisatoAyakaElementalBurst.dds
+
+[ResourceKamisatoAyatoElementalSkill]
+filename = Icons/KamisatoAyatoElementalSkill.dds
+
+[ResourceKamisatoAyatoElementalBurst]
+filename = Icons/KamisatoAyatoElementalBurst.dds
+
+[ResourceKavehElementalSkill]
+filename = Icons/KavehElementalSkill.dds
+
+[ResourceKavehElementalBurst]
+filename = Icons/KavehElementalBurst.dds
+
+[ResourceKeqingElementalSkill]
+filename = Icons/KeqingElementalSkill.dds
+
+[ResourceKeqingElementalBurst]
+filename = Icons/KeqingElementalBurst.dds
+
+[ResourceKiraraElementalSkill]
+filename = Icons/KiraraElementalSkill.dds
+
+[ResourceKiraraElementalBurst]
+filename = Icons/KiraraElementalBurst.dds
+
+[ResourceKleeElementalSkill]
+filename = Icons/KleeElementalSkill.dds
+
+[ResourceKleeElementalBurst]
+filename = Icons/KleeElementalBurst.dds
+
+[ResourceKujouSaraElementalSkill]
+filename = Icons/KujouSaraElementalSkill.dds
+
+[ResourceKujouSaraElementalBurst]
+filename = Icons/KujouSaraElementalBurst.dds
+
+[ResourceKukiShinobuElementalSkill]
+filename = Icons/KukiShinobuElementalSkill.dds
+
+[ResourceKukiShinobuElementalBurst]
+filename = Icons/KukiShinobuElementalBurst.dds
+
+[ResourceLaylaElementalSkill]
+filename = Icons/LaylaElementalSkill.dds
+
+[ResourceLaylaElementalBurst]
+filename = Icons/LaylaElementalBurst.dds
+
+[ResourceLisaElementalSkill]
+filename = Icons/LisaElementalSkill.dds
+
+[ResourceLisaElementalBurst]
+filename = Icons/LisaElementalBurst.dds
+
+[ResourceLynetteElementalSkill]
+filename = Icons/LynetteElementalSkill.dds
+
+[ResourceLynetteElementalBurst]
+filename = Icons/LynetteElementalBurst.dds
+
+[ResourceLyneyElementalSkill]
+filename = Icons/LyneyElementalSkill.dds
+
+[ResourceLyneyElementalBurst]
+filename = Icons/LyneyElementalBurst.dds
+
+[ResourceMikaElementalSkill]
+filename = Icons/MikaElementalSkill.dds
+
+[ResourceMikaElementalBurst]
+filename = Icons/MikaElementalBurst.dds
+
+[ResourceMonaElementalSkill]
+filename = Icons/MonaElementalSkill.dds
+
+[ResourceMonaElementalBurst]
+filename = Icons/MonaElementalBurst.dds
+
+[ResourceNahidaElementalSkill]
+filename = Icons/NahidaElementalSkill.dds
+
+[ResourceNahidaElementalBurst]
+filename = Icons/NahidaElementalBurst.dds
+
+[ResourceNaviaElementalSkill]
+filename = Icons/NaviaElementalSkill.dds
+
+[ResourceNaviaElementalBurst]
+filename = Icons/NaviaElementalBurst.dds
+
+[ResourceNeuvilletteElementalSkill]
+filename = Icons/NeuvilletteElementalSkill.dds
+
+[ResourceNeuvilletteElementalBurst]
+filename = Icons/NeuvilletteElementalBurst.dds
+
+[ResourceNilouElementalSkill]
+filename = Icons/NilouElementalSkill.dds
+
+[ResourceNilouElementalBurst]
+filename = Icons/NilouElementalBurst.dds
+
+[ResourceNingguangElementalSkill]
+filename = Icons/NingguangElementalSkill.dds
+
+[ResourceNingguangElementalBurst]
+filename = Icons/NingguangElementalBurst.dds
+
+[ResourceNoelleElementalSkill]
+filename = Icons/NoelleElementalSkill.dds
+
+[ResourceNoelleElementalBurst]
+filename = Icons/NoelleElementalBurst.dds
+
+[ResourceQiqiElementalSkill]
+filename = Icons/QiqiElementalSkill.dds
+
+[ResourceQiqiElementalBurst]
+filename = Icons/QiqiElementalBurst.dds
+
+[ResourceRaidenShogunElementalSkill]
+filename = Icons/RaidenShogunElementalSkill.dds
+
+[ResourceRaidenShogunElementalBurst]
+filename = Icons/RaidenShogunElementalBurst.dds
+
+[ResourceRazorElementalSkill]
+filename = Icons/RazorElementalSkill.dds
+
+[ResourceRazorElementalBurst]
+filename = Icons/RazorElementalBurst.dds
+
+[ResourceRosariaElementalSkill]
+filename = Icons/RosariaElementalSkill.dds
+
+[ResourceRosariaElementalBurst]
+filename = Icons/RosariaElementalBurst.dds
+
+[ResourceSangonomiyaKokomiElementalSkill]
+filename = Icons/SangonomiyaKokomiElementalSkill.dds
+
+[ResourceSangonomiyaKokomiElementalBurst]
+filename = Icons/SangonomiyaKokomiElementalBurst.dds
+
+[ResourceSayuElementalSkill]
+filename = Icons/SayuElementalSkill.dds
+
+[ResourceSayuElementalBurst]
+filename = Icons/SayuElementalBurst.dds
+
+[ResourceShenheElementalSkill]
+filename = Icons/ShenheElementalSkill.dds
+
+[ResourceShenheElementalBurst]
+filename = Icons/ShenheElementalBurst.dds
+
+[ResourceShikanoinHeizouElementalSkill]
+filename = Icons/ShikanoinHeizouElementalSkill.dds
+
+[ResourceShikanoinHeizouElementalBurst]
+filename = Icons/ShikanoinHeizouElementalBurst.dds
+
+[ResourceSucroseElementalSkill]
+filename = Icons/SucroseElementalSkill.dds
+
+[ResourceSucroseElementalBurst]
+filename = Icons/SucroseElementalBurst.dds
+
+[ResourceTartagliaElementalSkill]
+filename = Icons/TartagliaElementalSkill.dds
+
+[ResourceTartagliaElementalBurst]
+filename = Icons/TartagliaElementalBurst.dds
+
+[ResourceThomaElementalSkill]
+filename = Icons/ThomaElementalSkill.dds
+
+[ResourceThomaElementalBurst]
+filename = Icons/ThomaElementalBurst.dds
+
+[ResourceTighnariElementalSkill]
+filename = Icons/TighnariElementalSkill.dds
+
+[ResourceTighnariElementalBurst]
+filename = Icons/TighnariElementalBurst.dds
+
+[ResourceTravelerAnemoElementalSkill]
+filename = Icons/TravelerAnemoElementalSkill.dds
+
+[ResourceTravelerAnemoElementalBurst]
+filename = Icons/TravelerAnemoElementalBurst.dds
+
+[ResourceTravelerDendroElementalSkill]
+filename = Icons/TravelerDendroElementalSkill.dds
+
+[ResourceTravelerDendroElementalBurst]
+filename = Icons/TravelerDendroElementalBurst.dds
+
+[ResourceTravelerElectroElementalSkill]
+filename = Icons/TravelerElectroElementalSkill.dds
+
+[ResourceTravelerElectroElementalBurst]
+filename = Icons/TravelerElectroElementalBurst.dds
+
+[ResourceTravelerGeoElementalSkill]
+filename = Icons/TravelerGeoElementalSkill.dds
+
+[ResourceTravelerGeoElementalBurst]
+filename = Icons/TravelerGeoElementalBurst.dds
+
+[ResourceTravelerHydroElementalSkill]
+filename = Icons/TravelerHydroElementalSkill.dds
+
+[ResourceTravelerHydroElementalBurst]
+filename = Icons/TravelerHydroElementalBurst.dds
+
+[ResourceVentiElementalSkill]
+filename = Icons/VentiElementalSkill.dds
+
+[ResourceVentiElementalBurst]
+filename = Icons/VentiElementalBurst.dds
+
+[ResourceWandererElementalSkill]
+filename = Icons/WandererElementalSkill.dds
+
+[ResourceWandererElementalBurst]
+filename = Icons/WandererElementalBurst.dds
+
+[ResourceWriothesleyElementalSkill]
+filename = Icons/WriothesleyElementalSkill.dds
+
+[ResourceWriothesleyElementalBurst]
+filename = Icons/WriothesleyElementalBurst.dds
+
+[ResourceXianglingElementalSkill]
+filename = Icons/XianglingElementalSkill.dds
+
+[ResourceXianglingElementalBurst]
+filename = Icons/XianglingElementalBurst.dds
+
+[ResourceXianyunElementalSkill]
+filename = Icons/XianyunElementalSkill.dds
+
+[ResourceXianyunElementalBurst]
+filename = Icons/XianyunElementalBurst.dds
+
+[ResourceXiaoElementalSkill]
+filename = Icons/XiaoElementalSkill.dds
+
+[ResourceXiaoElementalBurst]
+filename = Icons/XiaoElementalBurst.dds
+
+[ResourceXingqiuElementalSkill]
+filename = Icons/XingqiuElementalSkill.dds
+
+[ResourceXingqiuElementalBurst]
+filename = Icons/XingqiuElementalBurst.dds
+
+[ResourceXinyanElementalSkill]
+filename = Icons/XinyanElementalSkill.dds
+
+[ResourceXinyanElementalBurst]
+filename = Icons/XinyanElementalBurst.dds
+
+[ResourceYaeMikoElementalSkill]
+filename = Icons/YaeMikoElementalSkill.dds
+
+[ResourceYaeMikoElementalBurst]
+filename = Icons/YaeMikoElementalBurst.dds
+
+[ResourceYanfeiElementalSkill]
+filename = Icons/YanfeiElementalSkill.dds
+
+[ResourceYanfeiElementalBurst]
+filename = Icons/YanfeiElementalBurst.dds
+
+[ResourceYaoyaoElementalSkill]
+filename = Icons/YaoyaoElementalSkill.dds
+
+[ResourceYaoyaoElementalBurst]
+filename = Icons/YaoyaoElementalBurst.dds
+
+[ResourceYelanElementalSkill]
+filename = Icons/YelanElementalSkill.dds
+
+[ResourceYelanElementalBurst]
+filename = Icons/YelanElementalBurst.dds
+
+[ResourceYoimiyaElementalSkill]
+filename = Icons/YoimiyaElementalSkill.dds
+
+[ResourceYoimiyaElementalBurst]
+filename = Icons/YoimiyaElementalBurst.dds
+
+[ResourceYunJinElementalSkill]
+filename = Icons/YunJinElementalSkill.dds
+
+[ResourceYunJinElementalBurst]
+filename = Icons/YunJinElementalBurst.dds
+
+[ResourceZhongliElementalSkill]
+filename = Icons/ZhongliElementalSkill.dds
+
+[ResourceZhongliElementalBurst]
+filename = Icons/ZhongliElementalBurst.dds
+
+;[Constants]
+;global $lastID1 = -1
+;global $lastID2 = -1
+;global $lastID3 = -1
+;global $lastID4 = -1
+
+;[Present]
+;if $lastID1 != $\NuraThings\SkillCounter\slot_1_unit_id || $lastID2 != $\NuraThings\SkillCounter\slot_2_unit_id || $lastID3 != $\NuraThings\SkillCounter\slot_3_unit_id || $lastID4 != $\NuraThings\SkillCounter\slot_4_unit_id
+;$lastID1 = $\NuraThings\SkillCounter\slot_1_unit_id
+;$lastID2 = $\NuraThings\SkillCounter\slot_2_unit_id
+;$lastID3 = $\NuraThings\SkillCounter\slot_3_unit_id
+;$lastID4 = $\NuraThings\SkillCounter\slot_4_unit_id
+
+
+
+
+[CommandListGibResource]
+if $\NuraThings\SkillCounter\SkillOrBurst == 0
+
+    if $\NuraThings\SkillCounter\current_unit_id == 0
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceAlbedoElementalSkill
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 1
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceAlhaithamElementalSkill
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 2
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceAloyElementalSkill
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 3
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceAmberElementalSkill
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 4
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceAmberElementalSkill
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 5
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceKamisatoAyakaElementalSkill
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 6
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceKamisatoAyatoElementalSkill
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 7
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceBaizhuElementalSkill
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 8
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceBarbaraElementalSkill
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 9
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceBarbaraElementalSkill
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 10
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceBeidouElementalSkill
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 11
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceBennettElementalSkill
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 12
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceCandaceElementalSkill
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 13
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceCharlotteElementalSkill
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 14
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceChevreuseElementalSkill
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 15
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceTartagliaElementalSkill
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 16
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceChioriElementalSkill
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 17
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceChongyunElementalSkill
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 18
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceClorindeElementalSkill
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 19
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceColleiElementalSkill
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 20
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceCynoElementalSkill
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 21
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceDehyaElementalSkill
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 22
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceDilucElementalSkill
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 23
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceDilucElementalSkill
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 24
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceDionaElementalSkill
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 25
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceDoriElementalSkill
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 26
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceEulaElementalSkill
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 27
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceFaruzanElementalSkill
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 28
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceFischlElementalSkill
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 29
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceFischlElementalSkill
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 30
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceFreminetElementalSkill
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 31
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceFurinaElementalSkill
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 32
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceGaMingElementalSkill
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 33
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceGanyuElementalSkill
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 34
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceGanyuElementalSkill
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 35
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceGorouElementalSkill
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 36
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceShikanoinHeizouElementalSkill
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 37
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceHuTaoElementalSkill
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 38
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceAratakiIttoElementalSkill
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 39
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceJeanElementalSkill
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 40
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceJeanElementalSkill
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 41
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceJeanElementalSkill
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 42
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceKaeyaElementalSkill
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 43
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceKaeyaElementalSkill
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 44
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceKavehElementalSkill
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 45
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceKaedeharaKazuhaElementalSkill
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 46
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceKeqingElementalSkill
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 47
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceKeqingElementalSkill
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 48
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceKiraraElementalSkill
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 49
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceKleeElementalSkill
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 50
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceKleeElementalSkill
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 51
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceSangonomiyaKokomiElementalSkill
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 52
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceKujouSaraElementalSkill
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 53
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceLaylaElementalSkill
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 54
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceLisaElementalSkill
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 55
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceLisaElementalSkill
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 56
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceLynetteElementalSkill
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 57
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceLyneyElementalSkill
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 58
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceMikaElementalSkill
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 59
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceMonaElementalSkill
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 60
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceMonaElementalSkill
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 61
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceNahidaElementalSkill
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 62
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceNaviaElementalSkill
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 63
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceNeuvilletteElementalSkill
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 64
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceNilouElementalSkill
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 65
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceNingguangElementalSkill
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 66
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceNingguangElementalSkill
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 67
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceNoelleElementalSkill
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 68
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceQiqiElementalSkill
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 69
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceRaidenShogunElementalSkill
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 70
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceRazorElementalSkill
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 71
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceRosariaElementalSkill
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 72
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceRosariaElementalSkill
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 73
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceSayuElementalSkill
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 74
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceShenheElementalSkill
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 75
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceShenheElementalSkill
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 76
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceKukiShinobuElementalSkill
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 77
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceSucroseElementalSkill
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 78
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceThomaElementalSkill
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 79
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceTighnariElementalSkill
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 80
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceTravelerDendroElementalSkill
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 81
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceTravelerDendroElementalSkill
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 82
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceVentiElementalSkill
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 83
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceWandererElementalSkill
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 84
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceWriothesleyElementalSkill
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 85
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceXianglingElementalSkill
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 86
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceXianyunElementalSkill
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 87
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceXiaoElementalSkill
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 88
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceXingqiuElementalSkill
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 89
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceXingqiuElementalSkill
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 90
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceXinyanElementalSkill
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 91
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceYaeMikoElementalSkill
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 92
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceYanfeiElementalSkill
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 93
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceYaoYaoElementalSkill
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 94
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceYelanElementalSkill
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 95
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceYoimiyaElementalSkill
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 96
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceYunJinElementalSkill
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 97
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceZhongliElementalSkill
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 98
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceArlecchinoElementalSkill
+
+    endif
+    
+
+; MARK: BURST
+
+
+else if $\NuraThings\SkillCounter\SkillOrBurst == 1
+
+    if $\NuraThings\SkillCounter\current_unit_id == 0
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceAlbedoElementalBurst
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 1
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceAlhaithamElementalBurst
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 2
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceAloyElementalBurst
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 3
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceAmberElementalBurst
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 4
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceAmberElementalBurst
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 5
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceKamisatoAyakaElementalBurst
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 6
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceKamisatoAyatoElementalBurst
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 7
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceBaizhuElementalBurst
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 8
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceBarbaraElementalBurst
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 9
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceBarbaraElementalBurst
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 10
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceBeidouElementalBurst
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 11
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceBennettElementalBurst
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 12
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceCandaceElementalBurst
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 13
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceCharlotteElementalBurst
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 14
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceChevreuseElementalBurst
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 15
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceTartagliaElementalBurst
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 16
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceChioriElementalBurst
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 17
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceChongyunElementalBurst
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 18
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceClorindeElementalBurst
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 19
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceColleiElementalBurst
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 20
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceCynoElementalBurst
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 21
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceDehyaElementalBurst
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 22
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceDilucElementalBurst
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 23
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceDilucElementalBurst
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 24
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceDionaElementalBurst
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 25
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceDoriElementalBurst
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 26
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceEulaElementalBurst
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 27
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceFaruzanElementalBurst
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 28
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceFischlElementalBurst
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 29
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceFischlElementalBurst
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 30
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceFreminetElementalBurst
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 31
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceFurinaElementalBurst
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 32
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceGaMingElementalBurst
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 33
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceGanyuElementalBurst
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 34
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceGanyuElementalBurst
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 35
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceGorouElementalBurst
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 36
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceShikanoinHeizouElementalBurst
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 37
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceHuTaoElementalBurst
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 38
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceAratakiIttoElementalBurst
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 39
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceJeanElementalBurst
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 40
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceJeanElementalBurst
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 41
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceJeanElementalBurst
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 42
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceKaeyaElementalBurst
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 43
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceKaeyaElementalBurst
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 44
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceKavehElementalBurst
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 45
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceKaedeharaKazuhaElementalBurst
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 46
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceKeqingElementalBurst
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 47
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceKeqingElementalBurst
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 48
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceKiraraElementalBurst
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 49
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceKleeElementalBurst
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 50
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceKleeElementalBurst
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 51
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceSangonomiyaKokomiElementalBurst
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 52
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceKujouSaraElementalBurst
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 53
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceLaylaElementalBurst
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 54
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceLisaElementalBurst
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 55
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceLisaElementalBurst
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 56
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceLynetteElementalBurst
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 57
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceLyneyElementalBurst
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 58
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceMikaElementalBurst
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 59
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceMonaElementalBurst
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 60
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceMonaElementalBurst
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 61
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceNahidaElementalBurst
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 62
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceNaviaElementalBurst
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 63
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceNeuvilletteElementalBurst
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 64
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceNilouElementalBurst
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 65
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceNingguangElementalBurst
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 66
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceNingguangElementalBurst
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 67
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceNoelleElementalBurst
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 68
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceQiqiElementalBurst
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 69
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceRaidenShogunElementalBurst
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 70
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceRazorElementalBurst
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 71
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceRosariaElementalBurst
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 72
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceRosariaElementalBurst
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 73
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceSayuElementalBurst
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 74
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceShenheElementalBurst
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 75
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceShenheElementalBurst
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 76
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceKukiShinobuElementalBurst
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 77
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceSucroseElementalBurst
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 78
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceThomaElementalBurst
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 79
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceTighnariElementalBurst
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 80
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceTravelerDendroElementalBurst
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 81
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceTravelerDendroElementalBurst
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 82
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceVentiElementalBurst
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 83
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceWandererElementalBurst
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 84
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceWriothesleyElementalBurst
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 85
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceXianglingElementalBurst
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 86
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceXianyunElementalBurst
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 87
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceXiaoElementalBurst
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 88
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceXingqiuElementalBurst
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 89
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceXingqiuElementalBurst
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 90
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceXinyanElementalBurst
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 91
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceYaeMikoElementalBurst
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 92
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceYanfeiElementalBurst
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 93
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceYaoYaoElementalBurst
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 94
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceYelanElementalBurst
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 95
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceYoimiyaElementalBurst
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 96
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceYunJinElementalBurst
+
+    else if $\NuraThings\SkillCounter\current_unit_id == 97
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceZhongliElementalBurst
+    
+    else if $\NuraThings\SkillCounter\current_unit_id == 98
+        Resource\NuraThings\SkillCounter\Icon = ref ResourceArlecchinoElementalBurst
+    endif
+
+endif

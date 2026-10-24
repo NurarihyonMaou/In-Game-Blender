@@ -1,0 +1,50 @@
+namespace = NuraThings\TextureManipulator
+
+[Constants]
+global $hue_center
+global $hue_range
+global $tint_strength
+
+global $texture_width = 1024
+global $texture_height = 1024
+
+
+[CustomShaderModifyTexture]
+cs = Mods/BufferValues/NuraThings/Shaders/TextureManipulator.hlsl
+
+local $x92 = x92
+local $y92 = y92
+local $w92 = w92
+local $w91 = w91
+
+cs-t0 = ps-t1
+cs-u0 = ResourceVirtualTexture
+cs-t1 = Resource\NuraThings\ColorPicker\StoreColors
+cs-u1 = Resource\NuraThings\ColorPicker\SomeBuffer
+
+x92 = $hue_center
+y92 = $hue_range
+w92 = $tint_strength
+w91 = $\NuraThings\ColorPicker\selector_type
+
+dispatch = $texture_width+1//32, $texture_height+1//32, 1
+
+x92 = $x92
+y92 = $y92
+w92 = $w92
+w91 = $w91
+
+cs-t0 = null
+cs-u0 = null
+cs-t1 = null
+cs-u1 = null
+
+
+[ResourceVirtualTexture]
+type = RWTexture2D
+format = R32G32B32A32_FLOAT
+width = 4096
+height = 4096
+array = 1
+msaa = 1
+mips = 1

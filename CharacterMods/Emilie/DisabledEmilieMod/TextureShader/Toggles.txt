@@ -1,0 +1,8 @@
+Toggle (Amount) - Key
+
+Commandlistsethue/Ch (0) - None
+Commandlistsetred/C (0) - None
+Commandlistsetgreen/C (0) - None
+Commandlistsetblue/C (0) - None
+Commandlistsetalpha/C (0) - None
+Commandlistdraw/Updated (1) - None

@@ -1,0 +1,815 @@
+; Navia
+
+; Constants -------------------------
+
+[Constants]
+; TOGGLES
+
+global persist $NaviaBody = 1
+global persist $Navia = 1
+global persist $VD = 1
+
+; TOGGLES ^
+
+global $active = 0
+global $creditinfo = 0
+
+global $texture_id
+
+global $use_og = 1
+
+global persist $packedHSV
+global persist $packedRGB
+global persist $packedHSL
+
+global persist $tint_strength = 0.5
+
+global $update_texture = 0
+
+global persist $hue_center
+global persist $hue_range
+
+global $init = 1
+
+global $hue
+global $saturation
+global $value
+
+global $testVar
+
+[Present]
+post $active = 0
+run = CommandListCreditInfo
+
+
+if $\NuraThings\ColorPicker\selector_type_changed == 1
+    $update_texture = 1
+
+    if ($\NuraThings\ColorPicker\selector_type == 0 && $packedHSV != 0)
+        $\NuraThings\ColorPicker\packedHSV = $packedHSV
+        $\NuraThings\ColorPicker\use_packed = 1
+    endif
+
+    if ($\NuraThings\ColorPicker\selector_type == 1 && $packedRGB != 0)
+        $\NuraThings\ColorPicker\packedRGB = $packedRGB
+        $\NuraThings\ColorPicker\use_packed = 1
+    endif
+
+    if ($\NuraThings\ColorPicker\selector_type == 2 && $packedHSL != 0)
+        $\NuraThings\ColorPicker\packedHSL = $packedHSL
+        $\NuraThings\ColorPicker\use_packed = 1
+    endif
+
+    run = CommandListGetHSV
+endif
+
+if $\NuraThings\ColorPicker\menu || $init
+
+    if $init && (($\NuraThings\ColorPicker\selector_type == 0 && $packedHSV != 0) || ($\NuraThings\ColorPicker\selector_type == 1 && $packedRGB != 0) || ($\NuraThings\ColorPicker\selector_type == 2 && $packedHSL != 0))
+
+        if ($\NuraThings\ColorPicker\selector_type == 0 && $packedHSV != 0)
+            $\NuraThings\ColorPicker\packedHSV = $packedHSV
+        endif
+
+        if ($\NuraThings\ColorPicker\selector_type == 1 && $packedRGB != 0)
+            $\NuraThings\ColorPicker\packedRGB = $packedRGB
+        endif
+
+        if ($\NuraThings\ColorPicker\selector_type == 2 && $packedHSL != 0)
+            $\NuraThings\ColorPicker\packedHSL = $packedHSL
+        endif
+
+        $\NuraThings\ColorPicker\use_packed = 1
+
+        run = CustomShader\NuraThings\ColorPicker\DrawColorPickers
+
+        run = CommandListGetHSV
+    endif
+    ;x90 = 0.7
+    ;y90 = 0.4
+    ;z90 = 0.2
+    ;w90 = 1
+
+;z92 = $hue_center - ($hue_range/2)
+;w92 = $hue_center + ($hue_range/2)
+
+    if $\NuraThings\ColorPicker\check_color
+        run = CommandList\NuraThings\ColorPicker\IsWithinMenuRange
+            
+        if $\NuraThings\ColorPicker\InRange
+            $update_texture = 1
+        else
+            $update_texture = 0
+        endif
+    else
+        if $\NuraThings\ColorPicker\wait_time != 0
+            if time - $\NuraThings\ColorPicker\wait_time >= 0.5
+
+                run = CommandList\NuraThings\ColorPicker\StorePackedColors
+
+                if $\NuraThings\ColorPicker\selector_type == 0
+                    $packedHSV = $\NuraThings\ColorPicker\packedHSV
+                elif $\NuraThings\ColorPicker\selector_type == 1
+                    $packedRGB = $\NuraThings\ColorPicker\packedRGB
+                elif $\NuraThings\ColorPicker\selector_type == 2
+                    $packedHSL = $\NuraThings\ColorPicker\packedHSL
+                endif
+
+                run = CommandListGetHSV
+                $\NuraThings\ColorPicker\wait_time = 0
+            endif
+
+        endif
+        $update_texture = 0
+    endif
+
+    
+    $\NuraThings\Print\Numbers\Number = $hue_center
+    $\NuraThings\Print\Numbers\widthScale = 7
+    $\NuraThings\Print\Numbers\heightScale = 4
+    run = CommandList\NuraThings\Print\Numbers\Run
+
+    $\NuraThings\Print\Numbers\Number = $hue_range
+    $\NuraThings\Print\Numbers\widthScale = 8
+    $\NuraThings\Print\Numbers\heightScale = 4
+    run = CommandList\NuraThings\Print\Numbers\Run
+
+    $\NuraThings\Print\Numbers\Number = $tint_strength
+    $\NuraThings\Print\Numbers\widthScale = 7
+    $\NuraThings\Print\Numbers\heightScale = 5
+    run = CommandList\NuraThings\Print\Numbers\Run
+
+    $\NuraThings\Print\Numbers\Number = $update_texture
+    $\NuraThings\Print\Numbers\widthScale = 8
+    $\NuraThings\Print\Numbers\heightScale = 5
+    run = CommandList\NuraThings\Print\Numbers\Run
+
+    x100 = $packedHSV
+    y100 = $packedHSL
+    z100 = $packedRGB
+
+    $\NuraThings\Print\Numbers\Number = $\NuraThings\ColorPicker\use_packed
+    $\NuraThings\Print\Numbers\widthScale = 6
+    $\NuraThings\Print\Numbers\heightScale = 7
+    run = CommandList\NuraThings\Print\Numbers\Run
+
+
+    $\NuraThings\Print\Numbers\Number = $hue
+    $\NuraThings\Print\Numbers\widthScale = 6
+    $\NuraThings\Print\Numbers\heightScale = 8
+    run = CommandList\NuraThings\Print\Numbers\Run
+
+    $\NuraThings\Print\Numbers\Number = $saturation
+    $\NuraThings\Print\Numbers\widthScale = 7
+    $\NuraThings\Print\Numbers\heightScale = 8
+    run = CommandList\NuraThings\Print\Numbers\Run
+
+    $\NuraThings\Print\Numbers\Number = $value
+    $\NuraThings\Print\Numbers\widthScale = 8
+    $\NuraThings\Print\Numbers\heightScale = 8
+    run = CommandList\NuraThings\Print\Numbers\Run
+
+    if $init
+        $update_texture = 1
+        $init = 0
+    endif
+endif
+
+;ps-t100 = ResourceVirtualBody
+;run = CustomShaderDraw
+; Overrides -------------------------
+[CommandListGetHSV]
+run = CommandList\NuraThings\ColorPicker\StoreHSV
+
+$hue = $\NuraThings\ColorPicker\hue * 360
+$saturation = $\NuraThings\ColorPicker\saturation
+$value = $\NuraThings\ColorPicker\value
+
+
+[KeyTintStrength]
+key = VK_RIGHT
+back = VK_LEFT
+type = cycle
+$tint_strength = 0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0
+$update_texture = 1
+
+[KeyHueCenter]
+key = ]
+back = [
+type = cycle
+$hue_center = 0, 20, 40, 60, 80, 100, 120, 140, 160, 180, 200, 220, 240, 260, 280, 300, 320, 340, 360
+$update_texture = 1
+
+[KeyHueRange]
+key = .
+back = ,
+type = cycle
+$hue_range = 0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100, 105, 110, 115, 120, 125, 130, 135, 140, 145, 150, 155, 160, 165, 170, 175, 180
+$update_texture = 1
+
+
+
+;[CommandListAffectHSV]
+;if $cursor_x >= 0.1 && $cursor_y >= 0.1 && $cursor_x <= 512/res_width + 0.1 && $cursor_y <= 512/res_height + 0.4
+;    $affect_color = 1
+;else
+;    $affect_color = 0
+;    $update_texture = 0
+;endif
+
+[TextureOverrideNaviaPosition]
+hash = f4e09bd7
+match_priority = 0
+if $Mod_Enabled
+    vb0 = ResourceNaviaPosition
+    $active = 1
+endif
+
+[TextureOverrideNaviaBlend]
+hash = bc0e2536
+match_priority = 0
+if $Mod_Enabled
+    vb1 = ResourceNaviaBlend
+    handling = skip
+    draw = 113517,0
+    
+endif
+
+[TextureOverrideNaviaTexcoord]
+hash = 8a666020
+match_priority = 0
+if $Mod_Enabled
+    vb1 = ResourceNaviaTexcoord
+    
+endif
+
+[TextureOverrideNaviaVertexLimitRaise]
+hash = 6b4e87d7
+match_priority = 0
+if $Mod_Enabled
+    ; override_vertex_count = 113517
+    ; override_byte_stride = 92
+    
+endif
+
+[TextureOverrideNaviaIB]
+hash = 7321d0b1
+match_priority = 0
+run = CommandListManageMod
+
+if $Mod_Enabled
+    handling = skip
+    
+endif
+
+[TextureOverrideNaviaHead]
+hash = 7321d0b1
+match_first_index = 0
+run = CommandListManageMod
+
+if $Mod_Enabled
+    ib = ResourceNaviaHeadIB
+    ps-t0 = ResourceNaviaHeadNormalMap
+    ps-t1 = ResourceNaviaHeadDiffuse
+    ps-t2 = ResourceNaviaHeadLightMap
+    ; NaviaHead-vb0=f4e09bd7.txt (5837)
+    drawindexed = 21288, 0, 0
+    
+endif
+run = CommandList\global\ORFix\ORFix
+
+[TextureOverrideNaviaBody]
+hash = 7321d0b1
+match_first_index = 54342
+run = CommandListManageMod
+
+if $Mod_Enabled
+    ib = ResourceNaviaBodyIB
+    ps-t0 = ResourceNaviaBodyNormalMap
+    ps-t1 = ResourceNaviaBodyDiffuse
+    ps-t2 = ResourceNaviaBodyLightMap
+    if $NaviaBody == 1
+        ; NaviaBody Eyes (120)
+        drawindexed = 468, 0, 0
+    endif
+    
+    
+endif
+run = CommandList\global\ORFix\ORFix
+
+[TextureOverrideNaviaDress]
+hash = 7321d0b1
+match_first_index = 74844
+run = CommandListManageMod
+
+if $Mod_Enabled
+    ib = ResourceNaviaDressIB
+    ps-t0 = ResourceNaviaBodyNormalMap
+    $texture_id = 0
+
+    if $use_og || $update_texture
+        ps-t1 = ResourceNaviaBodyDiffuse
+        if $update_texture
+            run = CommandListModifyTexture
+            $use_og = 0
+            $update_texture = 0
+            ps-t1 = ResourceVirtualBody
+        endif
+    else
+        ps-t1 = ResourceVirtualBody
+    endif
+
+    ps-t2 = ResourceNaviaBodyLightMap
+
+    drawindexed = auto
+
+    ;endif
+        ;if ps === 4243.05
+    ;    $test_var = 69
+    ; NaviaDress
+    ;if $VD == 1
+    ;    ; Navia BARE (64985)
+    ;    drawindexed = 259020, 0, 0
+    ;endif
+    ;
+    ;if $VD == 1
+    ;    ; VD Accs (28559)
+    ;    drawindexed = 105624, 259020, 0
+    ;endif
+    ;
+    ;if $VD == 1
+    ;    ; VD Thong (9373)
+    ;    drawindexed = 36360, 364644, 0
+    ;endif
+    ;
+    ;if $VD == 1
+    ;    ; VD Top (4643)
+    ;    drawindexed = 19164, 401004, 0
+    ;endif
+    
+    
+endif
+;run = CommandList\global\ORFix\ORFix
+
+[TextureOverrideNaviaFaceHeadDiffuse]
+hash = 5fbb9b27
+match_priority = 0
+if $Mod_Enabled
+    this = ResourceNaviaFaceHeadDiffuse
+    
+    
+    ; CommandList -----------------------
+    
+endif
+
+[CommandListCreditInfo]
+if $creditinfo == 0 && $active == 1
+    pre Resource\ShaderFixes\help.ini\Notification = ResourceCreditInfo
+    pre run = CustomShader\ShaderFixes\help.ini\FormatText
+    pre $\ShaderFixes\help.ini\notification_timeout = time + 5.0
+    $creditinfo = 1
+endif
+
+
+
+[KeyUseOG]
+key = :
+type = toggle
+$use_og = 1
+
+; Resources -------------------------
+
+
+[ResourceNaviaPosition]
+type = Buffer
+stride = 40
+filename = NaviaPosition.buf
+
+
+[ResourceNaviaBlend]
+type = Buffer
+stride = 32
+filename = NaviaBlend.buf
+
+
+[ResourceNaviaTexcoord]
+type = Buffer
+stride = 20
+filename = NaviaTexcoord.buf
+
+
+[ResourceNaviaHeadIB]
+type = Buffer
+format = DXGI_FORMAT_R32_UINT
+filename = NaviaHead.ib
+
+
+[ResourceNaviaBodyIB]
+type = Buffer
+format = DXGI_FORMAT_R32_UINT
+filename = NaviaBody.ib
+
+
+[ResourceNaviaDressIB]
+type = Buffer
+format = DXGI_FORMAT_R32_UINT
+filename = NaviaDress.ib
+
+
+[ResourceNaviaHeadNormalMap]
+filename = NaviaHeadNormalMap.dds
+
+
+[ResourceNaviaHeadDiffuse]
+filename = NaviaHeadDiffuse.dds
+
+
+[ResourceNaviaHeadLightMap]
+filename = NaviaHeadLightMap.dds
+
+
+[ResourceNaviaBodyNormalMap]
+filename = NaviaBodyNormalMap.dds
+
+
+[ResourceNaviaBodyDiffuse]
+filename = NaviaBodyDiffuse.dds
+
+
+[ResourceNaviaBodyLightMap]
+filename = NaviaBodyLightMap.dds
+
+
+[ResourceNaviaDressNormalMap]
+filename = NaviaDressNormalMap.dds
+
+
+[ResourceNaviaDressDiffuse]
+filename = NaviaDressDiffuse.dds
+
+
+[ResourceNaviaDressLightMap]
+filename = NaviaDressLightMap.dds
+
+
+[ResourceNaviaFaceHeadDiffuse]
+filename = NaviaFaceHeadDiffuse.dds
+
+
+[ResourceCreditInfo]
+type = Buffer
+data = "Created by Levi, more at Patreon.com/LeviMods"
+
+; .ini generated by XXMI (XX-Model-Importer)
+; If you have any issues or find any bugs, please open a ticket at https://github.com/leotorrez/XXMI-Tools/issues
+
+
+; Keys for Toggles
+
+
+[KeyNaviaBody]
+condition = $active && $mod_type_id == $\NuraThings\ModManager\ActiveTypeID && $mod_enabled == 1
+type = cycle
+key = no_modifiers N
+$NaviaBody = 0,1
+
+
+[KeyNavia]
+condition = $active && $mod_type_id == $\NuraThings\ModManager\ActiveTypeID && $mod_enabled == 1
+type = cycle
+key = no_modifiers J
+$Navia = 0,1
+
+
+[KeyVD]
+condition = $active && $mod_type_id == $\NuraThings\ModManager\ActiveTypeID && $mod_enabled == 1
+type = cycle
+key = no_modifiers V
+$VD = 0,1,2,3
+
+
+
+
+[Constants]
+; Mod Manager
+global $NuraManager_active = 0
+
+global $mod_type_id = 34
+global persist $mod_id = -1
+global persist $mod_enabled
+
+global $swapped_in = 1
+
+global $IncludedInMaxCount = 0
+global $Nura_Manager_First_Run = 1
+
+global $Resources_Set = 0
+
+global $once_per_frame = 1
+
+global persist $id_slot = 0
+global $test_var = 30
+
+
+
+
+
+;[ShaderOverrideTest]
+;hash = fc2c555512b0eee5
+;ps-t100 = copy ps-t1
+
+[Present]
+
+; Mod Manager
+if $NuraManager_active > 0
+    post $NuraManager_active = $NuraManager_active-1
+endif
+
+if $NuraManager_active == 0
+    $swapped_in = 1
+endif
+
+post $once_per_frame = 1
+
+
+;ps-t100 = ResourceVirtualBody
+;run = CustomShaderDraw
+
+;ps-t100 = Resource\NuraThings\TextureManipulator\VirtualTexture
+;run = CustomShaderDraw
+;$\NuraThings\Print\Numbers\Number = $test_var
+;$\NuraThings\Print\Numbers\widthScale = 3.1
+;$\NuraThings\Print\Numbers\heightScale = 2.525
+;
+;run = CommandList\NuraThings\Print\Numbers\Run
+
+[ResourceModPath]
+type = Buffer
+data = "F:\XXMI\Games\Genshin\GIMI\Mods\CharacterMods\Navia\VDN\Navia.ini"
+
+[ResourceModToggles]
+type = Buffer
+format = R8_UINT
+filename = Toggles.txt
+
+[ResourceModAuthor]
+type = Buffer
+data = "Created by Levi, more at Patreon.com/LeviMods"
+
+[ResourceModName]
+type = Buffer
+data = "VDN"
+
+[CommandListManageMod]       
+$NuraManager_active = 10
+
+if $\NuraThings\ModManager\setID == 1
+    if $mod_type_id == $\NuraThings\ModManager\ActiveTypeID
+
+        if $mod_enabled
+    
+            if $id_slot == 0
+                $\NuraThings\ModManager\ActiveID = $mod_id
+    
+            else if $id_slot == 1
+                $\NuraThings\ModManager\ActiveID1 = $mod_id
+    
+            ;else if $id_slot == 2
+            ;    $\NuraThings\ModManager\ActiveID2 = $mod_id
+    ;
+            ;else if $id_slot == 3
+            ;    $\NuraThings\ModManager\ActiveID3 = $mod_id
+    ;
+            ;else if $id_slot == 4
+            ;    $\NuraThings\ModManager\ActiveID4 = $mod_id
+    ;
+            ;else if $id_slot == 5
+            ;    $\NuraThings\ModManager\ActiveID5 = $mod_id
+    ;
+            ;else if $\NuraThings\ModManager\ChooseActiveID == 0
+            ;    $\NuraThings\ModManager\ActiveID = $mod_id
+    ;
+            ;else if $\NuraThings\ModManager\ChooseActiveID == 1
+            ;    $\NuraThings\ModManager\ActiveID1 = $mod_id
+    ;
+            ;else if $\NuraThings\ModManager\ChooseActiveID == 2
+            ;    $\NuraThings\ModManager\ActiveID2 = $mod_id
+    ;
+            ;else if $\NuraThings\ModManager\ChooseActiveID == 3
+            ;    $\NuraThings\ModManager\ActiveID3 = $mod_id
+    ;
+            ;else if $\NuraThings\ModManager\ChooseActiveID == 4
+            ;    $\NuraThings\ModManager\ActiveID4 = $mod_id
+    ;
+            ;else if $\NuraThings\ModManager\ChooseActiveID == 5
+            ;    $\NuraThings\ModManager\ActiveID5 = $mod_id
+            endif
+        endif
+    endif
+endif
+   
+if $swapped_in || $\NuraThings\ModManager\ResetIDs == 1
+
+    $\NuraThings\ModManager\ModTypeID = $mod_type_id
+
+    run = CustomShader\NuraThings\ModManager\HandleModelIDs
+
+    if $mod_type_id == $\NuraThings\ModManager\ActiveTypeID
+
+        if $mod_enabled
+
+            if $id_slot == 0
+                $\NuraThings\ModManager\ActiveID = $mod_id
+
+            else if $id_slot == 1
+                $\NuraThings\ModManager\ActiveID1 = $mod_id
+
+            ;else if $id_slot == 2
+            ;    $\NuraThings\ModManager\ActiveID2 = $mod_id
+;
+            ;else if $id_slot == 3
+            ;    $\NuraThings\ModManager\ActiveID3 = $mod_id
+;
+            ;else if $id_slot == 4
+            ;    $\NuraThings\ModManager\ActiveID4 = $mod_id
+;
+            ;else if $id_slot == 5
+            ;    $\NuraThings\ModManager\ActiveID5 = $mod_id
+;
+            ;else if $\NuraThings\ModManager\ChooseActiveID == 0
+            ;    $\NuraThings\ModManager\ActiveID = $mod_id
+;
+            ;else if $\NuraThings\ModManager\ChooseActiveID == 1
+            ;    $\NuraThings\ModManager\ActiveID1 = $mod_id
+;
+            ;else if $\NuraThings\ModManager\ChooseActiveID == 2
+            ;    $\NuraThings\ModManager\ActiveID2 = $mod_id
+;
+            ;else if $\NuraThings\ModManager\ChooseActiveID == 3
+            ;    $\NuraThings\ModManager\ActiveID3 = $mod_id
+;
+            ;else if $\NuraThings\ModManager\ChooseActiveID == 4
+            ;    $\NuraThings\ModManager\ActiveID4 = $mod_id
+;
+            ;else if $\NuraThings\ModManager\ChooseActiveID == 5
+            ;    $\NuraThings\ModManager\ActiveID5 = $mod_id
+            endif
+
+        ;else if $\NuraThings\ModManager\ModCount == 0
+        ;    $\NuraThings\ModManager\ActiveID = 0
+        ;    $\NuraThings\ModManager\ActiveID1 = 0
+        ;    $\NuraThings\ModManager\ActiveID2 = 0
+        ;    $\NuraThings\ModManager\ActiveID3 = 0
+        ;    $\NuraThings\ModManager\ActiveID4 = 0
+        ;    $\NuraThings\ModManager\ActiveID5 = 0
+        endif
+
+
+        if $\NuraThings\ModManager\Random_Mode == 1
+            post $\NuraThings\ModManager\get_random_id_next_frame = 1
+        endif
+
+        if $Nura_Manager_First_Run
+            if $\NuraThings\ModManager\Random_Mode == 2
+                post $\NuraThings\ModManager\get_random_id_next_frame = 1
+            endif
+
+            ;ResourceVirtualBody = copy ResourceNaviaBodyDiffuse
+
+            post $Nura_Manager_First_Run = 0
+        endif
+
+    endif
+
+    $swapped_in = 0
+endif
+
+
+if $mod_type_id == $\NuraThings\ModManager\ActiveTypeID
+
+    if $once_per_frame  
+
+        $\NuraThings\ModManager\AllModsActiveCount = $\NuraThings\ModManager\AllModsActiveCount+1
+
+        $\NuraThings\ModManager\ModCount = $\NuraThings\ModManager\ModCount+1
+
+        if $mod_id == -1 || $\NuraThings\ModManager\ResetIDs == 2
+            $mod_id = $\NuraThings\ModManager\ModCount
+        endif
+
+        $once_per_frame = 0
+
+        $\NuraThings\ModManager\ModID = $mod_id
+
+        run = CustomShader\NuraThings\ModManager\HandleModIDs
+    endif
+
+    if $mod_id == $\NuraThings\ModManager\ActiveID || $mod_id == $\NuraThings\ModManager\ActiveID1 || $mod_id == $\NuraThings\ModManager\ActiveID2 || $mod_id == $\NuraThings\ModManager\ActiveID3 || $mod_id == $\NuraThings\ModManager\ActiveID2 || $mod_id == $\NuraThings\ModManager\ActiveID3 || $mod_id == $\NuraThings\ModManager\ActiveID4 || $mod_id == $\NuraThings\ModManager\ActiveID5
+        $mod_enabled = 1
+
+        if $mod_id == $\NuraThings\ModManager\ActiveID
+            $id_slot = 0
+        else if $mod_id == $\NuraThings\ModManager\ActiveID1
+            $id_slot = 1
+        ;else if $mod_id == $\NuraThings\ModManager\ActiveID2
+        ;    $id_slot = 2
+        ;else if $mod_id == $\NuraThings\ModManager\ActiveID3
+        ;    $id_slot = 3
+        ;else if $mod_id == $\NuraThings\ModManager\ActiveID4
+        ;    $id_slot = 4
+        ;else if $mod_id == $\NuraThings\ModManager\ActiveID5
+        ;    $id_slot = 5
+        endif
+
+
+	Resource\NuraThings\ModManager\ModPath = ref ResourceModPath unless_null
+	Resource\NuraThings\ModManager\ModToggles = ref ResourceModToggles unless_null
+	Resource\NuraThings\ModManager\ModAuthor = ref ResourceModAuthor unless_null
+	Resource\NuraThings\ModManager\ModName = ref ResourceModName unless_null
+
+        
+    else
+        $mod_enabled = 0
+        
+    endif
+endif
+
+
+if $once_per_frame  
+    $\NuraThings\ModManager\AllModsActiveCount = $\NuraThings\ModManager\AllModsActiveCount+1
+    $once_per_frame = 0
+endif
+
+
+
+
+[ResourceVirtualBody]
+
+
+[ResourceVirtualDress]
+
+
+[ResourceVirtualHead]
+
+
+[CustomShaderDraw]
+hs = null
+ds = null
+gs = null
+cs = null
+run = BuiltInCommandListUnbindAllRenderTargets
+
+local $x87 = x87
+local $y87 = y87
+local $z87 = z87
+local $w87 = w87
+
+x87 = 512/res_width
+y87 = 512/res_height
+;z87 = 0.5975
+;w87 = -0.005
+
+z87 = 0.4
+w87 = 0.2
+
+vs = Mods/BufferValues/NuraThings/Shaders/UIElement.hlsl
+ps = Mods/BufferValues/NuraThings/Shaders/UIElement.hlsl
+blend = ADD SRC_ALPHA INV_SRC_ALPHA
+cull = none
+topology = triangle_strip
+o0 = set_viewport bb
+Draw = 4,0
+
+clear = ps-t100
+ps-t100 = null
+
+x87 = x87
+y87 = y87
+
+z87 = $z87
+w87 = $w87
+
+
+[CommandListModifyTexture]
+
+$\NuraThings\TextureManipulator\hue_center = $hue_center
+$\NuraThings\TextureManipulator\hue_range = $hue_range
+$\NuraThings\TextureManipulator\tint_strength = $tint_strength
+
+run = CustomShader\NuraThings\TextureManipulator\ModifyTexture
+
+if $texture_id == 0
+    ResourceVirtualBody = copy Resource\NuraThings\TextureManipulator\VirtualTexture
+else if $texture_id == 1
+    ResourceVirtualDress = copy Resource\NuraThings\TextureManipulator\VirtualTexture
+else if $texture_id == 2
+    ResourceVirtualHead = copy Resource\NuraThings\TextureManipulator\VirtualTexture
+endif
+
+clear = cs-t0
+clear = cs-u0
+
+cs-t0 = null
+cs-u0 = null
+
+clear = Resource\NuraThings\TextureManipulator\VirtualTexture

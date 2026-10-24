@@ -1,0 +1,96 @@
+ORFix Guide by Veritas921, Edited by Nurarihyon
+
+
+! ORFix tends to break every Update
+! Broken ORFix results in Green Characters
+! When ORFix is broken - the Answer is Patience (Check for GIMI Updates inside XXMI Launcher)
+! Note that ORFix Udpate(s) pushed soon after the Game Update might not fix all the issues
+! (ORFix | ORFixAPI | ORFix Applier) - 3 Things that are Related, but are not the same
+
+
+If You have Working ORFix yet some of Your Mods are still Green - They might not have ORFix Applied, or have it Applied incorrectly
+
+Nowadays there's:
+
+ORFix Applier - A Tool that should be able to fix most of the ORFix issues
+https://gamebanana.com/tools/16472
+
+
+! In case ORFix Applier fails, You're forced to fix the broken Mod(s) Manually:
+
+    - Do not add ORFix or NNFix underneath Face Texture Overrides, they will break!
+
+        If you have a Mod with a FaceHead Section, use this example as a Reference:
+
+            [TextureOverrideGanyuFaceHeadADiffuse]
+            hash = b2657593
+            Resource\GIMI\LightMap = ref ResourceGanyuFaceHeadALightmap
+            Resource\GIMI\Diffuse = ref ResourceGanyuFaceHeadADiffuse
+            run = CommandList\GIMI\SetTextures
+
+
+        ORFixAPI Alternative to ORFix:
+             Resource\GIMI\NormalMap = ref ResourceDehyaBodyNormalMap
+             Resource\GIMI\Diffuse = ref ResourceDehyaBodyDiffuse
+             Resource\GIMI\LightMap  = ref ResourceDehyaBodyLightmap
+
+             run = CommandList\GIMI\SetTextures
+             DrawIndexed = 1234, 0, 0
+
+             (Can be used instead of ps-t# Slots + run = CommandList\global\ORFix\ORFix | NNFix)
+
+
+    - If the section has no slots (ps-t#), do not add any ORFix Command.
+
+    - Mods with Normal Maps
+        Slots should follow this Order to Correctly appear:
+            ps-t0 is for NormalMaps
+            ps-t1 is for Diffuse
+            ps-t2 is for Lightmap
+
+        Use this Command under the Slots and before the DrawIndexed:
+            run = CommandList\global\ORFix\ORFix
+
+        Example:
+            [TextureOverrideAinoHead]
+            hash = 3738cbb7
+            match_first_index = 0
+            ib = ResourceAinoHeadIB
+
+            ps-t0 = ResourceAinoHeadNormalMap
+            ps-t1 = ResourceAinoHeadDiffuse
+            ps-t2 = ResourceAinoHeadLightMap
+
+            run = CommandList\global\ORFix\ORFix
+
+            ; AinoHead-vb0=d94c8962.txt (3374)
+            drawindexed = 10014, 0, 0
+
+
+    - Mods without Normal Maps
+        Slots should follow this Order to Correctly appear:
+            ps-t0 is for Diffuse
+            ps-t1 is for Lightmap
+
+        Use this Command under the Slots and before the DrawIndexed:
+            run = CommandList\global\ORFix\NNFix
+            
+        Example:
+            [TextureOverrideAinoEyesHead]
+            hash = 41ed9030
+            match_first_index = 0
+            ib = ResourceAinoEyesHeadIB
+
+            ps-t0 = ResourceAinoEyesHeadDiffuse
+            ps-t1 = ResourceAinoEyesHeadLightMap
+
+            run = CommandList\global\ORFix\NNFix
+
+            ; AinoEyesHead-vb0=7273ff41.txt (176)
+            drawindexed = 636, 0, 0
+
+
+
+Common Issues:
+- You may have a Duplicate of ORFix. Some Mods include them, and these should be removed.
+    XXMI Launcher should detect and ask You to disable them, but in case it doesn't -> Search for ORFix in Your Mods Folder, and Delete em all

@@ -1,0 +1,24 @@
+namespace = HideUID
+; Debugging script (Unreleased Text Formatter)
+
+[Present]
+post Resource\ShaderFixes\help.ini\Help = null
+x0 = $NameCard
+y0 = $ProfileBackground
+z0 = $MiliastraProfileFlower
+run = CommandListTest
+
+[CommandListTest]
+Resource\RichText\Rich = ResourceText
+run = CustomShader\RichText\Parse
+Resource\ShaderFixes\help.ini\Help = Resource\RichText\Parsed
+Resource\ShaderFixes\help.ini\Params = Resource\ShaderFixes\help.ini\ParamsShort
+run = CustomShader\ShaderFixes\help.ini\FormatText
+
+
+[ResourceText]
+type = Buffer
+data = "Namecard = [{x0:i}], Profile Background = [{y0:i}], Milastra Wonderland = [{z0:i}]"
+
+
+; Made by Unicornshell

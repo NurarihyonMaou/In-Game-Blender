@@ -1,0 +1,11 @@
+Toggle (Amount): Key(s) and Back(s)
+
+Swappiercingnavel/Piercing (4): NO_MODIFIERS ] and Alt ]
+Swaptop/Top (2): NO_MODIFIERS 6 and Alt 6
+Swappants/Pants (2): NO_MODIFIERS 7 and Alt 7
+Swaparm/Arm (2): NO_MODIFIERS 9 and Alt 9
+Swapboots/Boots (2): NO_MODIFIERS 8 and Alt 8
+Swapvision/Vision (2): NO_MODIFIERS / and Alt /
+Swapcape/Cape (2): NO_MODIFIERS = and Alt =
+Swapcloak/Cloak (2): NO_MODIFIERS ; and Alt ;
+Swapfeather/Feather (2): NO_MODIFIERS ' and Alt '

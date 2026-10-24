@@ -1,0 +1,1586 @@
+; Skirk
+
+; Constants -------------------------
+
+[Constants]
+global $active = 0
+global $creditinfo = 0
+
+global persist $top = 0
+global persist $bottom = 0
+global persist $skirt = 0
+global persist $gloves = 0
+global persist $legs = 0
+global persist $scarf = 0
+global persist $headpiece = 0
+global persist $pauldrons = 0
+global persist $topStraps = 0
+global persist $bottomStraps = 0
+
+global persist $pubes = 0
+global persist $wombtattoo = 0
+
+[KeyResetToggle]
+condition = $active == 1 || $active == 2
+key = VK_Backspace
+type = cycle
+$top = 			0,5
+$bottom = 		0,3
+$skirt = 		0,0
+$gloves = 		0,5
+$legs = 		0,5
+$scarf = 		0,3
+$headpiece = 	0,1
+$pauldrons = 	0,3
+$topStraps = 	0,6
+$bottomStraps = 0,4
+
+[KeyCycle]
+condition = $active == 1 || $active == 2
+key = .
+key = VK_Right
+back = ,
+back = VK_Left
+type = cycle
+
+;1.Full Plate, 2.Skimpy Plate
+;3.Full Knight, 4.Knight Skimpy, 5.Knight Exposed
+;6.OG Full, 7.OG Skimpy, 8.OG Exposed
+;9.Pasties, 0.Nude Torso Knight, A.Nude Torso OG, B.Nude
+;				1,2,3,4,5,6,7,8,9,0,A,B
+$top = 			0,0,1,2,5,1,2,5,4,5,5,5
+$bottom = 		0,0,1,2,3,3,3,3,2,3,3,3
+$skirt = 		0,0,1,1,0,1,0,0,0,0,0,0
+$gloves = 		0,1,0,0,0,2,3,3,0,0,3,5
+$legs = 		0,2,0,0,0,1,1,1,0,0,1,5
+$scarf = 		0,0,0,0,0,0,0,0,0,0,0,0
+$headpiece = 	0,0,0,0,0,0,0,0,0,0,0,0
+$pauldrons = 	0,0,0,0,0,2,2,2,0,0,3,3
+$topStraps = 	0,1,0,0,1,0,0,1,0,6,6,6
+$bottomStraps = 0,2,0,4,0,0,0,2,2,4,4,4
+
+[Keytop]
+condition = $active == 1 || $active == 2
+key = no_modifiers y
+type = cycle
+$top = 0,1,2,3,4,5
+$creditinfo = 0
+
+[Keybottom]
+condition = $active == 1 || $active == 2
+key = no_modifiers h
+type = cycle
+$bottom = 0,1,2,3
+$creditinfo = 0
+
+[KeytopStraps]
+condition = $active == 1 || $active == 2
+key = alt y
+type = cycle
+$topStraps = 0,1,2,3,4,5,6
+$creditinfo = 0
+
+[KeybottomStraps]
+condition = $active == 1 || $active == 2
+key = alt h
+type = cycle
+$bottomStraps = 0,1,2,3,4
+$creditinfo = 0
+
+[Keylegs]
+condition = $active == 1 || $active == 2
+key = n
+type = cycle
+$legs = 0,1,2,3,4,5
+$creditinfo = 0
+
+[Keyskirt]
+condition = $active == 1 || $active == 2
+key = u
+type = cycle
+$skirt = 0,1
+$creditinfo = 0
+
+[Keypauldrons]
+condition = $active == 1 || $active == 2
+key = 6
+type = cycle
+$pauldrons = 0,1,2,3
+$creditinfo = 0
+
+[Keygloves]
+condition = $active == 1 || $active == 2
+key = 7
+type = cycle
+$gloves = 0,1,2,3,4,5
+$creditinfo = 0
+
+[Keyscarf]
+condition = $active == 1 || $active == 2
+key = 8
+type = cycle
+$scarf = 0,1,2,3
+$creditinfo = 0
+
+[KeyHeadpiece]
+condition = $active == 1 || $active == 2
+key = 9
+type = cycle
+$headpiece = 0,1
+$creditinfo = 0
+
+[KeyPubes]
+condition = $active == 1 || $active == 2
+key = _
+type = cycle
+$pubes = 0,1
+$creditinfo = 0
+
+[KeyWT]
+condition = $active == 1 || $active == 2
+key = =
+type = cycle
+$wombtattoo = 0,1
+$creditinfo = 0
+
+[Present]
+post $active = 0
+run = CommandListCreditInfo
+
+; Overrides -------------------------
+
+[TextureOverrideSkirkHairPosition]
+hash = 1d025d3b
+vb0 = ResourceSkirkHairPosition
+; $active = 1
+
+[TextureOverrideSkirkHairBlend]
+hash = e520d278
+vb1 = ResourceSkirkHairBlend
+handling = skip
+draw = 2457,0 
+
+[TextureOverrideSkirkHairTexcoord]
+hash = 6ac3b9bf
+vb1 = ResourceSkirkHairTexcoord
+
+[TextureOverrideSkirkHairVertexLimitRaise]
+hash = 49393f27
+; override_vertex_count = 2457
+; override_byte_stride = 84
+
+[TextureOverrideSkirkWhiteBodyPosition]
+hash = 9ce8105a
+vb0 = ResourceSkirkWhiteBodyPosition
+$active = 1
+
+[TextureOverrideSkirkWhiteBodyBlend]
+hash = f7cfc40f
+vb1 = ResourceSkirkWhiteBodyBlend
+handling = skip
+draw = 85372,0 
+
+[TextureOverrideSkirkWhiteBodyTexcoord]
+hash = 0c49941e
+vb1 = ResourceSkirkWhiteBodyTexcoord
+
+[TextureOverrideSkirkWhiteBodyVertexLimitRaise]
+hash = 52da0bc7
+; override_vertex_count = 85372
+; override_byte_stride = 92
+
+[TextureOverrideSkirkExtraPosition]
+hash = 1795d9cb
+vb0 = ResourceSkirkExtraPosition
+; $active = 1
+
+[TextureOverrideSkirkExtraBlend]
+hash = ef433e3b
+vb1 = ResourceSkirkExtraBlend
+handling = skip
+draw = 833,0 
+
+[TextureOverrideSkirkExtraTexcoord]
+hash = bf2a349f
+vb1 = ResourceSkirkExtraTexcoord
+
+[TextureOverrideSkirkExtraVertexLimitRaise]
+hash = efd8a950
+; override_vertex_count = 833
+; override_byte_stride = 84
+
+[TextureOverrideSkirkLimbsPosition]
+hash = a788689b
+vb0 = ResourceSkirkLimbsPosition
+; $active = 1
+
+;COPYPASTECHANGE**************
+[ResourceVB0]
+type = Buffer
+stride = 40
+
+[TextureOverrideSkirkLimbsBlend]
+hash = e1de8e8e
+vb1 = ResourceSkirkLimbsBlend
+handling = skip
+draw = 89014,0 
+
+;COPYPASTECHANGE**************
+ResourceVB0 = copy so0
+
+[TextureOverrideSkirkLimbsTexcoord]
+hash = 5979231d
+vb1 = ResourceSkirkLimbsTexcoord
+
+[TextureOverrideSkirkLimbsVertexLimitRaise]
+hash = b8b82723
+; override_vertex_count = 85511
+; override_byte_stride = 92
+
+[TextureOverrideSkirkBlackBodyPosition]
+hash = 2711cd82
+vb0 = ResourceSkirkBlackBodyPosition
+$active = 2
+
+[TextureOverrideSkirkBlackBodyBlend]
+hash = 16298249
+vb1 = ResourceSkirkBlackBodyBlend
+handling = skip
+draw = 51195,0 
+
+[TextureOverrideSkirkBlackBodyTexcoord]
+hash = e7027075
+vb1 = ResourceSkirkBlackBodyTexcoord
+
+[TextureOverrideSkirkBlackBodyVertexLimitRaise]
+hash = 88dfbb52
+; override_vertex_count = 627
+; override_byte_stride = 92
+
+[TextureOverrideSkirkHairIB]
+hash = 74811ddf
+handling = skip
+
+[TextureOverrideSkirkHairHead]
+hash = 74811ddf
+match_first_index = 0
+ib = ResourceSkirkHairHeadIB
+ps-t0 = ResourceSkirkHairHeadNormalMap
+ps-t1 = ResourceSkirkHairHeadDiffuse
+ps-t2 = ResourceSkirkHairHeadLightMap
+run = CommandList\global\ORFix\ORFix
+; SkirkHairHead (0)
+drawindexed = 0, 0, 0
+; SkirkHairHead
+	; HairFront (2443)
+	drawindexed = 8334, 0, 0
+	; Nose Mark (14)
+	drawindexed = 36, 8334, 0
+
+[TextureOverrideSkirkWhiteBodyIB]
+hash = 1fbe8217
+handling = skip
+
+[TextureOverrideSkirkWhiteBodyHead]
+hash = 1fbe8217
+match_first_index = 0
+ib = ResourceSkirkWhiteBodyHeadIB
+if $wombtattoo == 0
+	if $pubes == 0
+		ps-t0 = ResourceSkirkBlackBodyExtraDiffuseR
+run = CommandList\global\ORFix\NNFix
+	else
+		ps-t0 = ResourceSkirkBlackBodyExtraDiffuseP
+run = CommandList\global\ORFix\NNFix
+	endif
+else
+	if $pubes == 0
+		ps-t0 = ResourceSkirkBlackBodyExtraDiffuse
+run = CommandList\global\ORFix\NNFix
+	else
+		ps-t0 = ResourceSkirkBlackBodyExtraDiffusePWT
+run = CommandList\global\ORFix\NNFix
+	endif
+endif
+ps-t1 = ResourceSkirkWhiteBodyHeadLightMap
+run = CommandList\global\ORFix\NNFix
+; SkirkWhiteBodyHead (0)
+drawindexed = 0, 0, 0
+; SkirkWhiteBodyHead
+
+if $top == 0
+; Bikini Armor
+	; Plate Breasts (2584)
+	drawindexed = 9252, 75771, 0
+	; Dress Medallion (360)
+	drawindexed = 780, 0, 0
+elif $top == 1
+; OG Top
+	; LS Dress Main Full (5568)
+	drawindexed = 16692, 7788, 0
+	; LS Dress Ribbons (941)
+	drawindexed = 2451, 39030, 0
+elif $top == 2
+; No Front
+	; LS Dress Main No Front (4966)
+	drawindexed = 14550, 24480, 0
+	; LS Dress Ribbons (941)
+	drawindexed = 2451, 39030, 0
+	; Skirk Body Light Nipples (506)
+	drawindexed = 2808, 91941, 0
+elif $top == 3
+; Bra Only
+	; LS Dress Breast Cups Connected (860)
+	drawindexed = 2748, 5040, 0
+	; Dress Medallion (360)
+	drawindexed = 780, 0, 0
+elif $top == 4
+; Pasties
+	; LS Nipple Armor (458)
+	drawindexed = 1164, 43632, 0
+elif $top == 5
+; Nothing
+	; Skirk Body Light Nipples (506)
+	drawindexed = 2808, 91941, 0
+endif
+	; ; LS Dress Breast Cups (724)
+	; drawindexed = 2460, 2580, 0
+
+if $bottom == 0
+; Bikini Armor
+	; Plate Crotch (1130)
+	drawindexed = 3498, 85023, 0
+	; Plate Sides (1446)
+	drawindexed = 3420, 88521, 0
+elif $bottom == 1
+; Bikini Armor
+	; Plate Crotch (1130)
+	drawindexed = 3498, 85023, 0
+elif $bottom == 2
+	; LS Crotch Guard (796)
+	drawindexed = 1800, 780, 0
+elif $bottom == 3
+;No Bottoms
+endif
+
+if $pauldrons == 0
+;Pauldrons
+	; LS Pauldrons (2548)
+	drawindexed = 6144, 44796, 0
+elif $pauldrons == 1
+;Pauldrons + sleeves
+	; LS Pauldrons (2548)
+	drawindexed = 6144, 44796, 0
+	; LS Upper Sleeves (2710)
+	drawindexed = 7020, 68751, 0
+	; LS Upper Chest Gems (116)
+	drawindexed = 120, 68631, 0
+elif $pauldrons == 2
+	; LS Upper Sleeves (2710)
+	drawindexed = 7020, 68751, 0
+	; LS Upper Chest Gems (116)
+	drawindexed = 120, 68631, 0
+elif $pauldrons == 3
+;No Pauldrons
+endif
+
+if $scarf == 0 || $scarf == 1
+	; LS Scarf (1587)
+	drawindexed = 4851, 50940, 0
+endif
+
+if $gloves == 0
+; Full Gauntlets and Gloves
+	; LS Glove Stars (216)
+	drawindexed = 774, 41481, 0
+elif $gloves == 1
+; Full Gauntlets
+elif $gloves == 2
+; Long Gloves and Stars
+	; LS Glove Stars (216)
+	drawindexed = 774, 41481, 0
+elif $gloves == 3
+; Short Gloves
+elif $gloves == 4
+; Cuffs
+elif $gloves == 5
+; No Gloves
+endif
+
+if $headpiece == 0
+	; LS Hair Piece Large (514)
+	drawindexed = 1377, 42255, 0
+endif
+
+if $topStraps == 0
+; Full Straps
+	; LS Straps Vertical (974)
+	drawindexed = 2259, 64551, 0
+	; LS Straps Upper Torso (1361)
+	drawindexed = 3360, 61191, 0
+elif $topStraps == 1
+; Exposed Straps
+	; LS Straps Vertical Crotchless (820)
+	drawindexed = 1821, 66810, 0
+	; LS Straps Upper Torso (1361)
+	drawindexed = 3360, 61191, 0
+elif $topStraps == 2
+; Vertical Only
+	; LS Straps Vertical (974)
+	drawindexed = 2259, 64551, 0
+elif $topStraps == 3
+; Vertical Exposed
+	; LS Straps Vertical Crotchless (820)
+	drawindexed = 1821, 66810, 0
+elif $topStraps == 4
+; Side Straps
+	; LS Straps Upper Torso (1361)
+	drawindexed = 3360, 61191, 0
+elif $topStraps == 5
+; Choker Only
+	; LS Straps Choker Only (529)
+	drawindexed = 1164, 57999, 0
+elif $topStraps == 6
+; No Straps
+endif
+
+if $bottomStraps == 0
+; Full Straps
+	; LS Straps Under Skirt (204)
+	drawindexed = 468, 60723, 0
+	; LS Straps Hip Straps (110)
+	drawindexed = 306, 59163, 0
+	; LS Straps HipThighs (452)
+	drawindexed = 1254, 59469, 0
+elif $bottomStraps == 1
+; No Thigh Straps
+	; LS Straps Under Skirt (204)
+	drawindexed = 468, 60723, 0
+	; LS Straps Hip Straps (110)
+	drawindexed = 306, 59163, 0
+elif $bottomStraps == 2
+; Hip Straps
+	; LS Straps Hip Straps (110)
+	drawindexed = 306, 59163, 0
+elif $bottomStraps == 3
+; Thigh Straps
+	; LS Straps HipThighs (452)
+	drawindexed = 1254, 59469, 0
+elif $bottomStraps == 4
+; No Straps
+endif
+
+if $legs == 0
+;full boots and socks
+		; LS Knee Guard (1976)
+		; LS Shin Armor (8954)
+		; Knight Thigh Filigree (1212)
+	; Skirk Legging Boots.UpperOnly (763)
+	; Skirk Body Light Upper Torso Stocking Squeeze (12626)
+	drawindexed = 68448, 164823, 0
+elif $legs == 1
+;Socks
+	; Skirk Legging Boots (1739)
+	; Skirk Body Light Upper Torso Stocking Squeeze (12626)
+	drawindexed = 68448, 164823, 0
+	; LS Shoe Guards (902)
+	drawindexed = 2208, 55791, 0
+elif $legs == 2
+;Boots
+		; LS Knee Guard (1976)\
+		; LS Shin Armor (8954)
+	; ; Skirk Body Light Upper Torso.ThighSqueeze (12855)
+	; drawindexed = 70074, 233271, 0
+		; ; Bunny Suit Thigh Strap (236)
+		; drawindexed = 852, 325617, 0
+		; Skirk Body Light Upper Torso (12855)
+		drawindexed = 70074, 94749, 0
+elif $legs == 3
+;barelegs and heels
+		; Bunny Heels (1400)
+		; Cartethiya Golden Anklets (318)
+		; Cartethiya Thorns Anklet (484)
+		; Skirk Body Lower Legs (5794)
+	; ; Skirk Body Light Upper Torso.ThighSqueeze (12855)
+	; drawindexed = 70074, 233271, 0
+		; ; Bunny Suit Thigh Strap (236)
+		; drawindexed = 852, 325617, 0
+		; Skirk Body Light Upper Torso (12855)
+		drawindexed = 70074, 94749, 0
+elif $legs == 4
+		; Skirk Body Light Upper Torso (12855)
+		drawindexed = 70074, 94749, 0
+elif $legs == 5
+		; Skirk Body Light Upper Torso (12855)
+		drawindexed = 70074, 94749, 0
+; bare legs
+		; Cartethiya Golden Anklets (318)
+		; Cartethiya Thorns Anklet (484)
+		; Skirk Body Lower Legs (5794)
+endif
+
+;ENABLE WITH OUTFIT CHANGE
+	; ; Bunny Light
+	; 	; Bunny Collar (382)
+	; 	drawindexed = 1908, 308541, 0
+	; 	; Cartethiya Blue Armbands (168)
+	; 	drawindexed = 684, 327429, 0
+	; ; Cartethiya Bodysuit (6303)
+	; drawindexed = 21348, 328113, 0
+	; 	; Cartethiya Chain (1142)
+	; 	drawindexed = 3798, 349461, 0
+	; 	; Cartethiya Shoulder Straps.Main (648)
+	; 	drawindexed = 2304, 353259, 0
+
+vb0 = ResourceVB0
+vb2 = ResourceVB0
+vb1 = ResourceSkirkLimbsTexcoord
+vb3 = ResourceVB0
+ib = ResourceSkirkLimbsBodyIB
+
+if $legs == 0
+;full boots and socks
+		; LS Knee Guard (1976)
+		drawindexed = 5400, 210282, 0
+		; LS Shin Armor (8954)
+		drawindexed = 32382, 215682, 0
+		; Knight Thigh Filigree (1212)
+		drawindexed = 3456, 7200, 0
+elif $legs == 1
+;Socks
+elif $legs == 2
+;Boots
+		; LS Knee Guard (1976)
+		drawindexed = 5400, 210282, 0
+		; LS Shin Armor (8954)
+		drawindexed = 32382, 215682, 0
+		; Skirk Body Knees (636)
+		drawindexed = 3336, 14064, 0
+elif $legs == 3
+;barelegs and heels
+		; Bunny Heels (1400)
+		drawindexed = 6444, 119196, 0
+		; Cartethiya Golden Anklets (318)
+		drawindexed = 900, 125640, 0
+		; Cartethiya Thorns Anklet (484)
+		drawindexed = 1872, 126540, 0
+		; Skirk Body Lower Legs (5794)
+		drawindexed = 29928, 58104, 0
+elif $legs == 4
+; bare legs
+		; Cartethiya Golden Anklets (318)
+		drawindexed = 900, 125640, 0
+		; Cartethiya Thorns Anklet (484)
+		drawindexed = 1872, 126540, 0
+		; Skirk Body Lower Legs (5794)
+		drawindexed = 29928, 58104, 0
+elif $legs == 5
+; bare legs
+		; Skirk Body Lower Legs (5794)
+		drawindexed = 29928, 58104, 0
+endif
+
+if $gloves == 0
+; Full Gauntlets and Gloves
+	; LS Glove Stars (216)
+	; LS Elbow Guards (2384)
+	drawindexed = 7488, 128412, 0
+	; LS Gauntlets (16916)
+	drawindexed = 74382, 135900, 0
+	; Skirk Body Lower Arms (1066)
+	drawindexed = 5868, 17400, 0
+elif $gloves == 1
+; Full Gauntlets
+	; LS Elbow Guards (2384)
+	drawindexed = 7488, 128412, 0
+	; LS Gauntlets (16916)
+	drawindexed = 74382, 135900, 0
+	; Skirk Body Lower Arms (1066)
+	drawindexed = 5868, 17400, 0
+elif $gloves == 2
+; Long Gloves and Stars
+	; LS Glove Stars (216)
+elif $gloves == 3
+; Short Gloves
+	; Skirk Body Lower Arms (1066)
+	drawindexed = 5868, 17400, 0
+elif $gloves == 4
+; Cuffs
+	; Skirk Body Lower Arms (1066)
+	drawindexed = 5868, 17400, 0
+	; Skirk Body Lower Hands (7030)
+	drawindexed = 34836, 23268, 0
+	; Bunny Cuffs Classic (3015)
+	drawindexed = 7200, 0, 0
+elif $gloves == 5
+; No Gloves
+	; Skirk Body Lower Arms (1066)
+	drawindexed = 5868, 17400, 0
+	; Skirk Body Lower Hands (7030)
+	drawindexed = 34836, 23268, 0
+endif
+
+;INSERT LIMB ARMS for White part
+	; Skirk Light Limbs
+
+[TextureOverrideSkirkExtraIB]
+hash = 056da8f3
+handling = skip
+
+[TextureOverrideSkirkExtraHead]
+hash = 056da8f3
+match_first_index = 0
+ib = ResourceSkirkExtraHeadIB
+ps-t0 = ResourceSkirkExtraHeadDiffuse
+ps-t1 = ResourceSkirkExtraHeadLightMap
+run = CommandList\global\ORFix\NNFix
+; SkirkExtraHead (0)
+drawindexed = 0, 0, 0
+; SkirkExtraHead
+
+if $skirt == 1
+	; Skirt Transparent (833)
+	drawindexed = 3606, 0, 0
+endif
+
+[TextureOverrideSkirkLimbsIB]
+hash = dafe18b6
+handling = skip
+
+[TextureOverrideSkirkLimbsHead]
+hash = dafe18b6
+match_first_index = 0
+ib = ResourceSkirkLimbsHeadIB
+ps-t0 = ResourceSkirkLimbsHeadNormalMap
+ps-t1 = ResourceSkirkLimbsHeadDiffuse
+ps-t2 = ResourceSkirkLimbsHeadLightMap
+run = CommandList\global\ORFix\ORFix
+; SkirkLimbsHead (0)
+drawindexed = 0, 0, 0
+; SkirkLimbsHead
+	; HairBack (3503)
+	drawindexed = 13650, 0, 0
+
+[TextureOverrideSkirkLimbsBody]
+hash = dafe18b6
+match_first_index = 13650
+ib = ResourceSkirkLimbsBodyIB
+ps-t0 = ResourceSkirkLimbsBodyDiffuse
+ps-t1 = ResourceSkirkLimbsBodyLightMap
+ps-t2 = ResourceSkirkLimbsBodyNormalMap
+run = CommandList\global\ORFix\NNFix
+; SkirkLimbsBody (0)
+drawindexed = 0, 0, 0
+; SkirkLimbsBody
+
+if $gloves == 0
+; Full Gauntlets and Gloves
+	; LS Glove Stars (216)
+	; LS Elbow Guards (2384)
+	; LS Gauntlets (16916)
+	; Skirk Gloves.Elbows (267)
+	drawindexed = 1218, 97374, 0
+elif $gloves == 1
+; Full Gauntlets
+	; LS Elbow Guards (2384)
+	; LS Gauntlets (16916)
+elif $gloves == 2
+; Long Gloves and Stars
+	; LS Glove Stars (216)
+	; Skirk Arm Shards (260)
+	drawindexed = 276, 10656, 0
+	; Skirk Gloves (1867)
+	drawindexed = 9342, 88032, 0
+elif $gloves == 3
+; Short Gloves
+	; Skirk Body Lower Arms (1066)
+	; Skirk Gloves.Elbows (267)
+	drawindexed = 1218, 97374, 0
+	; Skirk Gloves.Lower (1574)
+	drawindexed = 7692, 98592, 0
+elif $gloves == 4
+; Cuffs
+	; Skirk Body Lower Arms (1066)
+	; Skirk Body Lower Hands (7030)
+	; Bunny Cuffs Classic (3015)
+elif $gloves == 5
+; No Gloves
+	; Skirk Body Lower Arms (1066)
+	; Skirk Body Lower Hands (7030)
+endif
+
+
+	; ; Skirk Gloves.Upper (319)
+	; drawindexed = 1650, 106284, 0
+
+if $headpiece == 0
+	; Skirk Hair Shards (48)
+	drawindexed = 48, 107934, 0
+endif
+
+	if $scarf == 0 || $scarf == 2
+	; Skirk Scarf Long (150)
+	drawindexed = 426, 118770, 0
+	endif
+
+if $legs == 0
+;full boots and socks
+		; LS Knee Guard (1976)
+		; LS Shin Armor (8954)
+		; Knight Thigh Filigree (1212)
+	; Skirk Legging Boots.UpperOnly (763)
+	drawindexed = 3240, 115530, 0
+elif $legs == 1
+;Socks
+	; Skirk Legging Boots (1739)
+	drawindexed = 7548, 107982, 0
+elif $legs == 2
+;Boots
+		; LS Knee Guard (1976)\
+		; LS Shin Armor (8954)
+elif $legs == 3
+;barelegs and heels
+		; Bunny Heels (1400)
+		; Cartethiya Golden Anklets (318)
+		; Cartethiya Thorns Anklet (484)
+		; Skirk Body Lower Legs (5794)
+elif $legs == 4
+; bare legs
+		; Cartethiya Golden Anklets (318)
+		; Cartethiya Thorns Anklet (484)
+		; Skirk Body Lower Legs (5794)
+endif
+
+
+[TextureOverrideSkirkBlackBodyIB]
+hash = ac3db451
+handling = skip
+
+[TextureOverrideSkirkBlackBodyHead]
+hash = ac3db451
+match_first_index = 0
+ib = ResourceSkirkBlackBodyHeadIB
+if $wombtattoo == 0
+	if $pubes == 0
+		ps-t0 = ResourceSkirkBlackBodyExtraDiffuseR
+run = CommandList\global\ORFix\NNFix
+	else
+		ps-t0 = ResourceSkirkBlackBodyExtraDiffuseP
+run = CommandList\global\ORFix\NNFix
+	endif
+else
+	if $pubes == 0
+		ps-t0 = ResourceSkirkBlackBodyExtraDiffuse
+run = CommandList\global\ORFix\NNFix
+	else
+		ps-t0 = ResourceSkirkBlackBodyExtraDiffusePWT
+run = CommandList\global\ORFix\NNFix
+	endif
+endif
+ps-t1 = ResourceSkirkBlackBodyHeadLightMap
+run = CommandList\global\ORFix\NNFix
+; SkirkBlackBodyHead (0)
+drawindexed = 0, 0, 0
+; SkirkBlackBodyHead
+
+;TOP 0-5
+if $top == 0
+;Plate breasts
+	; Plate Breasts.DS (2334)
+	drawindexed = 7752, 51426, 0
+	; DS Neck Spikes (404)
+	drawindexed = 516, 37212, 0
+	; DS Bodysuit Dark.Torso.Frame.Main (2454)
+	drawindexed = 5652, 6198, 0
+elif $top == 1
+;OG Top
+	; DS Neck Spikes (404)
+	drawindexed = 516, 37212, 0
+	; DS Torso Gems (236)
+	drawindexed = 504, 50922, 0
+	; DS Bodysuit Dark.Torso.Frame.Main (2454)
+	drawindexed = 5652, 6198, 0
+	; DS Bodysuit Dark.Torso.Frame.Vertical.Boobstraps (1447)
+	drawindexed = 3897, 17568, 0
+elif $top == 2
+;Skimpier 1
+	; DS Neck Spikes (404)
+	drawindexed = 516, 37212, 0
+	; DS Torso Gems (236)
+	drawindexed = 504, 50922, 0
+	; DS Bodysuit Dark.Torso.Frame.Vertical.Boobstraps.NipplesOut (1447)
+	drawindexed = 3897, 21465, 0
+	; DS Bodysuit Dark.Torso.Frame.MainExposed (2470)
+	drawindexed = 5718, 11850, 0
+	; Skirk Body Dark Nipples (506)
+	drawindexed = 2808, 62676, 0
+elif $top == 3
+;Skimpier 2
+	; DS Neck Spikes (404)
+	drawindexed = 516, 37212, 0
+	; DS Bodysuit Dark.Torso.Frame.MainExposed (2470)
+	drawindexed = 5718, 11850, 0
+	; Skirk Body Dark Nipples (506)
+	drawindexed = 2808, 62676, 0
+elif $top == 4
+;Pasties
+	; DS Nipple Armor (458)
+	drawindexed = 1164, 37728, 0
+elif $top == 5
+;NO Top
+	; Skirk Body Dark Nipples (506)
+	drawindexed = 2808, 62676, 0
+endif
+
+;BOTTOM 0-3
+
+if $bottom == 0
+	; Plate Crotch.DS (1130)
+	drawindexed = 3498, 59178, 0
+	; DS Spiked Skirt Funnels.001 (1864)
+	drawindexed = 3726, 47196, 0
+elif $bottom == 1
+	; DS Spiked Skirt Funnels.001 (1864)
+	drawindexed = 3726, 47196, 0
+	; Crotch Guard.DS (798)
+	drawindexed = 1800, 0, 0
+elif $bottom == 2
+	; DS Spiked Skirt Funnels.001 (1864)
+	drawindexed = 3726, 47196, 0
+elif $bottom == 3
+endif
+
+
+
+
+;PAULDRON 0-3
+if $pauldrons == 0
+	; DS Pauldrons (2548)
+	drawindexed = 6144, 38892, 0
+elif $pauldrons == 1
+	; DS Pauldrons (2548)
+	drawindexed = 6144, 38892, 0
+elif $pauldrons == 2
+elif $pauldrons == 3
+; NO Pauldrons
+endif
+
+;SCARF 0
+
+;GLOVES 0-5
+if $gloves == 0
+; Full Gauntlets and Gloves
+	; LS Glove Stars (216)
+	; LS Elbow Guards (2384)
+	; LS Gauntlets (16916)
+	; Skirk Gloves.Elbows (267)
+	; DS Finger Armor (692)
+	drawindexed = 1932, 31836, 0
+	; DS Forearm Parts (860)
+	drawindexed = 2256, 33768, 0
+elif $gloves == 1
+; Full Gauntlets
+	; LS Elbow Guards (2384)
+	; LS Gauntlets (16916)
+	; DS Finger Armor (692)
+	drawindexed = 1932, 31836, 0
+	; DS Forearm Parts (860)
+	drawindexed = 2256, 33768, 0
+elif $gloves == 2
+; Long Gloves and Stars
+	; LS Glove Stars (216)
+	; Skirk Arm Shards (260)
+	; Skirk Gloves (1867)
+	; DS Finger Armor (692)
+	drawindexed = 1932, 31836, 0
+	; DS Forearm Parts (860)
+	drawindexed = 2256, 33768, 0
+elif $gloves == 3
+; Short Gloves
+	; Skirk Body Lower Arms (1066)
+	; Skirk Gloves.Elbows (267)
+	; Skirk Gloves.Lower (1574)
+	; DS Finger Armor (692)
+	drawindexed = 1932, 31836, 0
+	; DS Forearm Parts (860)
+	drawindexed = 2256, 33768, 0
+elif $gloves == 4
+; Cuffs
+	; Skirk Body Lower Arms (1066)
+	; Skirk Body Lower Hands (7030)
+	; Bunny Cuffs Classic (3015)
+elif $gloves == 5
+; No Gloves
+	; Skirk Body Lower Arms (1066)
+	; Skirk Body Lower Hands (7030)
+endif
+
+
+;HEADPIECE 0-1
+if $headpiece == 0
+	; Skirk Hair Shards (48)
+	; DS Hairpiece (449)
+	drawindexed = 1188, 36024, 0
+endif
+
+;LEGS 0-5
+if $legs == 0
+;full boots and socks
+		; LS Knee Guard (1976)
+		; LS Shin Armor (8954)
+		; Knight Thigh Filigree (1212)
+	; Skirk Legging Boots.UpperOnly (763)
+	; Skirk Body Dark Thigh Boots (12835)
+	drawindexed = 69654, 65484, 0
+	; DS Shoe Guards.with Shin Armor (516)
+	drawindexed = 1080, 46116, 0
+elif $legs == 1
+;Socks
+	; Skirk Legging Boots (1739)
+	; Skirk Body Dark Thigh Boots (12835)
+	drawindexed = 69654, 65484, 0
+	; DS Shoe Guards (516)
+	drawindexed = 1080, 45036, 0
+elif $legs == 2
+;Boots
+		; LS Knee Guard (1976)\
+		; LS Shin Armor (8954)
+	; Skirk Body Dark Torso (13056)
+	drawindexed = 71226, 135138, 0
+	; DS Shoe Guards.with Shin Armor (516)
+	drawindexed = 1080, 46116, 0
+elif $legs == 3
+;barelegs and heels
+		; Bunny Heels (1400)
+		; Cartethiya Golden Anklets (318)
+		; Cartethiya Thorns Anklet (484)
+		; Skirk Body Lower Legs (5794)
+	; Skirk Body Dark Torso (13056)
+	drawindexed = 71226, 135138, 0
+elif $legs == 4
+; bare legs
+		; Cartethiya Golden Anklets (318)
+		; Cartethiya Thorns Anklet (484)
+		; Skirk Body Lower Legs (5794)
+	; Skirk Body Dark Torso (13056)
+	drawindexed = 71226, 135138, 0
+elif $legs == 5
+	; Skirk Body Dark Torso (13056)
+	drawindexed = 71226, 135138, 0
+endif
+
+;STRAPS TOP 0-6
+if $top == 1 || $top == 2
+	if $topStraps == 0
+	; Full Straps
+		; LS Straps Vertical (974)
+		; LS Straps Upper Torso (1361)
+		; DS Bodysuit Dark.AssWindow (268)
+		drawindexed = 1206, 1800, 0
+		; DS Bodysuit Dark.Torso.BottomWindow (176)
+		drawindexed = 810, 3288, 0
+		; DS Bodysuit Dark.Torso.MidWindow (44)
+		drawindexed = 144, 25362, 0
+		; DS Bodysuit Dark.Torso.TitsWindow (411)
+		drawindexed = 2007, 25506, 0
+	elif $topStraps == 1
+	; Exposed Straps
+		; LS Straps Vertical Crotchless (820)
+		; LS Straps Upper Torso (1361)
+	elif $topStraps == 2
+	; Vertical Only
+		; LS Straps Vertical (974)
+		; DS Bodysuit Dark.AssWindow (268)
+		drawindexed = 1206, 1800, 0
+		; DS Bodysuit Dark.Torso.BottomWindow (176)
+		drawindexed = 810, 3288, 0
+		; DS Bodysuit Dark.Torso.MidWindow (44)
+		drawindexed = 144, 25362, 0
+		; DS Bodysuit Dark.Torso.TitsWindow (411)
+		drawindexed = 2007, 25506, 0
+	elif $topStraps == 3
+	; Vertical Exposed
+		; LS Straps Vertical Crotchless (820)
+		; DS Bodysuit Dark.Torso.TitsWindow (411)
+		drawindexed = 2007, 25506, 0
+	elif $topStraps == 4
+	; Side Straps
+		; LS Straps Upper Torso (1361)
+		; DS Bodysuit Dark.Torso.BottomWindow (176)
+		drawindexed = 810, 3288, 0
+
+	elif $topStraps == 5
+	; Choker Only
+		; LS Straps Choker Only (529)
+		; DS Bodysuit Dark.Torso.MidWindow (44)
+		drawindexed = 144, 25362, 0
+
+	elif $topStraps == 6
+	; No Straps
+	endif
+endif
+	; ; DS Bodysuit Dark.Torso.TitsWindow.001 (945)
+	; drawindexed = 4323, 27513, 0
+
+;STRAPS BOTTOM 0-4
+if $top == 1 || $top == 2
+	if $bottomStraps == 0
+	; Full Straps
+		; LS Straps Under Skirt (204)
+		; LS Straps Hip Straps (110)
+		; LS Straps HipThighs (452)
+		; DS Bodysuit Dark.Torso.Frame.GroinStraps (127)
+		drawindexed = 345, 4098, 0
+		; DS Bodysuit Dark.Torso.Frame.HipStraps (635)
+		drawindexed = 1599, 4443, 0
+		; DS Bodysuit Dark.Torso.Frame.HipStraps.FunnelWindows (46)
+		drawindexed = 156, 6042, 0
+		; DS Bodysuit Dark.HipsThighFrame (78)
+		drawindexed = 282, 3006, 0
+	elif $bottomStraps == 1
+	; No Thigh Straps
+		; LS Straps Under Skirt (204)
+		; LS Straps Hip Straps (110)
+		; DS Bodysuit Dark.Torso.Frame.GroinStraps (127)
+		drawindexed = 345, 4098, 0
+		; DS Bodysuit Dark.Torso.Frame.HipStraps (635)
+		drawindexed = 1599, 4443, 0
+	elif $bottomStraps == 2
+	; Hip Straps
+		; LS Straps Hip Straps (110)
+		; DS Bodysuit Dark.Torso.Frame.HipStraps (635)
+		drawindexed = 1599, 4443, 0
+	elif $bottomStraps == 3
+	; Thigh Straps
+		; LS Straps HipThighs (452)
+		; DS Bodysuit Dark.Torso.Frame.GroinStraps (127)
+		drawindexed = 345, 4098, 0
+	elif $bottomStraps == 4
+	; No Straps
+	endif
+endif
+
+vb0 = ResourceVB0
+vb2 = ResourceVB0
+vb1 = ResourceSkirkLimbsTexcoord
+vb3 = ResourceVB0
+ib = ResourceSkirkLimbsBodyIB
+
+if $legs == 0
+;full boots and socks
+		; LS Knee Guard (1976)
+		; LS Shin Armor (8954)
+				; DS Knee Guard (1788)
+		drawindexed = 4176, 322446, 0
+		; DS Shin Armor (8052)
+		drawindexed = 30174, 326622, 0
+		; Knight Thigh Filigree (1212)
+		drawindexed = 3456, 7200, 0
+elif $legs == 1
+;Socks
+elif $legs == 2
+;Boots
+		; LS Knee Guard (1976)
+		; LS Shin Armor (8954)
+				; DS Knee Guard (1788)
+		drawindexed = 4176, 322446, 0
+		; DS Shin Armor (8052)
+		drawindexed = 30174, 326622, 0
+		; Skirk Body Knees (636)
+		drawindexed = 3336, 14064, 0
+elif $legs == 3
+;barelegs and heels
+		; Bunny Heels (1400)
+		drawindexed = 6444, 119196, 0
+		; Cartethiya Golden Anklets (318)
+		drawindexed = 900, 125640, 0
+		; Cartethiya Thorns Anklet (484)
+		drawindexed = 1872, 126540, 0
+		; Skirk Body Lower Legs (5794)
+		drawindexed = 29928, 58104, 0
+elif $legs == 4
+; bare legs
+		; Cartethiya Golden Anklets (318)
+		drawindexed = 900, 125640, 0
+		; Cartethiya Thorns Anklet (484)
+		drawindexed = 1872, 126540, 0
+		; Skirk Body Lower Legs (5794)
+		drawindexed = 29928, 58104, 0
+elif $legs == 5
+; bare legs
+		; Skirk Body Lower Legs (5794)
+		drawindexed = 29928, 58104, 0
+endif
+
+if $gloves == 0
+; Full Gauntlets and Gloves
+	; LS Glove Stars (216)
+	; LS Elbow Guards (2384)
+	; LS Gauntlets (16916)
+			; DS Gauntlets (16906)
+		drawindexed = 74382, 248064, 0
+	; Skirk Body Lower Arms (1066)
+	drawindexed = 5868, 17400, 0
+elif $gloves == 1
+; Full Gauntlets
+	; LS Elbow Guards (2384)
+	; LS Gauntlets (16916)
+			; DS Gauntlets (16906)
+		drawindexed = 74382, 248064, 0
+	; Skirk Body Lower Arms (1066)
+	drawindexed = 5868, 17400, 0
+elif $gloves == 2
+; Long Gloves and Stars
+	; LS Glove Stars (216)
+elif $gloves == 3
+; Short Gloves
+	; Skirk Body Lower Arms (1066)
+	drawindexed = 5868, 17400, 0
+elif $gloves == 4
+; Cuffs
+	; Skirk Body Lower Arms (1066)
+	drawindexed = 5868, 17400, 0
+	; Skirk Body Lower Hands (7030)
+	drawindexed = 34836, 23268, 0
+	; Bunny Cuffs Classic (3015)
+	drawindexed = 7200, 0, 0
+elif $gloves == 5
+; No Gloves
+	; Skirk Body Lower Arms (1066)
+	drawindexed = 5868, 17400, 0
+	; Skirk Body Lower Hands (7030)
+	drawindexed = 34836, 23268, 0
+endif	
+
+[TextureOverrideSkirkBlackBodyBody]
+hash = ac3db451
+match_first_index = 34230
+ib = ResourceSkirkBlackBodyBodyIB
+ps-t0 = ResourceSkirkBlackBodyBodyDiffuse
+ps-t1 = ResourceSkirkBlackBodyBodyLightMap
+; SkirkBlackBodyBody (0)
+drawindexed = 0, 0, 0
+
+;SCARF
+
+if $scarf == 0 || $scarf == 2
+; SkirkBlackBodyBody
+	; Back Fins (189)
+	drawindexed = 789, 0, 0
+endif
+
+[TextureOverrideSkirkBlackBodyDress]
+hash = ac3db451
+match_first_index = 35019
+ib = ResourceSkirkBlackBodyDressIB
+ps-t0 = ResourceSkirkBlackBodyDressDiffuse
+ps-t1 = ResourceSkirkBlackBodyDressLightMap
+ps-t2 = ResourceSkirkBlackBodyDressNormalMap
+run = CommandList\global\ORFix\NNFix
+; SkirkBlackBodyDress (0)
+drawindexed = 0, 0, 0
+; SkirkBlackBodyDress
+
+;BOTTOM
+if $bottom == 0
+	; Plate Crotch.DS (1130)
+	; DS Spiked Skirt Funnels.001 (1864)
+	; DS Bodysuit Dark.Torso.Frame.HipStraps.FunnelWindows (46)
+	; DS Spiked Skirt Funnels (24)
+	drawindexed = 36, 2481, 0
+elif $bottom == 1
+	; Plate Crotch.DS (1130)
+	; DS Spiked Skirt Funnels (24)
+	drawindexed = 36, 2481, 0
+elif $bottom == 2
+	; DS Spiked Skirt Funnels.001 (1864)
+	; DS Bodysuit Dark.Torso.Frame.HipStraps.FunnelWindows (46)
+	; Crotch Guard.DS (798)
+	; DS Spiked Skirt Funnels (24)
+	drawindexed = 36, 2481, 0
+elif $bottom == 3
+endif
+
+if $bottomStraps == 0
+; Full Straps
+	; LS Straps Under Skirt (204)
+	; LS Straps Hip Straps (110)
+	; LS Straps HipThighs (452)
+elif $bottomStraps == 1
+; No Thigh Straps
+	; LS Straps Under Skirt (204)
+	; LS Straps Hip Straps (110)
+elif $bottomStraps == 2
+; Hip Straps
+	; LS Straps Hip Straps (110)
+elif $bottomStraps == 3
+; Thigh Straps
+	; LS Straps HipThighs (452)
+elif $bottomStraps == 4
+; No Straps
+endif
+
+;STRAPS BOTTOM
+
+if $top == 1 || $top == 2
+	if $topStraps == 0
+	; Full Straps
+		; LS Straps Vertical (974)
+		; LS Straps Upper Torso (1361)
+		; DS Bodysuit Dark.AssWindow (268)
+		; DS Bodysuit Dark.Torso.BottomWindow (176)
+		; DS Bodysuit Dark.Torso.MidWindow (44)
+		; DS Bodysuit Dark.Torso.TitsWindow (411)
+		; DS Bodysuit Dark.Blue.SideAbsWindows (114)
+		drawindexed = 432, 351, 0
+		; DS Bodysuit Dark.Blue.SideBoobWindows (274)
+		drawindexed = 1206, 783, 0
+
+		if ($top == 1 || $top == 2)
+				; DS Bodysuit Dark.Blue.FunnelWindows (59)
+				drawindexed = 177, 0, 0
+			if ($bottomStraps == 1 || $bottomStraps == 2)
+				; DS Bodysuit Dark.Blue.SideHipWindows (114)
+				drawindexed = 492, 1989, 0
+				; DS Bodysuit Dark.Blue.HipWindows (46)
+				drawindexed = 174, 177, 0
+			endif
+		endif
+
+	elif $topStraps == 1
+	; Exposed Straps
+		; LS Straps Vertical Crotchless (820)
+		; LS Straps Upper Torso (1361)
+		; DS Bodysuit Dark.Torso.TitsWindow (411)
+		; DS Bodysuit Dark.Torso.BottomWindow (176)
+
+	elif $topStraps == 2
+	; Vertical Only
+		; LS Straps Vertical (974)
+		; DS Bodysuit Dark.Torso.TitsWindow (411)
+		; DS Bodysuit Dark.Torso.MidWindow (44)
+		; DS Bodysuit Dark.Blue.SideAbsWindows (114)
+		drawindexed = 432, 351, 0
+		; DS Bodysuit Dark.Blue.SideBoobWindows (274)
+		drawindexed = 1206, 783, 0
+		
+		if ($top == 1 || $top == 2)
+			; DS Bodysuit Dark.Blue.FunnelWindows (59)
+			drawindexed = 177, 0, 0
+			if ($bottomStraps == 1 || $bottomStraps == 2)
+				; DS Bodysuit Dark.Blue.SideHipWindows (114)
+				drawindexed = 492, 1989, 0
+				; DS Bodysuit Dark.Blue.HipWindows (46)
+				drawindexed = 174, 177, 0
+			endif
+		endif
+		
+	elif $topStraps == 3
+	; Vertical Exposed
+		; DS Bodysuit Dark.Blue.SideBoobWindows (274)
+		drawindexed = 1206, 783, 0
+		; LS Straps Vertical Crotchless (820)
+		; DS Bodysuit Dark.Torso.BottomWindow (176)
+	elif $topStraps == 4
+	; Side Straps
+		; DS Bodysuit Dark.Blue.SideAbsWindows (114)
+		drawindexed = 432, 351, 0
+
+		if ($top == 1 || $top == 2)
+			if ($bottomStraps == 1 || $bottomStraps == 2)
+				; DS Bodysuit Dark.Blue.SideHipWindows (114)
+				drawindexed = 492, 1989, 0
+			endif
+		endif
+
+		; LS Straps Upper Torso (1361)
+		; DS Bodysuit Dark.Torso.TitsWindow (411)
+	elif $topStraps == 5
+	; Choker Only
+		; DS Bodysuit Dark.Blue.SideAbsWindows (114)
+		drawindexed = 432, 351, 0
+		; LS Straps Choker Only (529)
+		; DS Bodysuit Dark.Torso.MidWindow (44)
+	elif $topStraps == 6
+	; No Straps
+	endif
+endif
+
+
+[TextureOverrideSkirkBlackBodyExtra]
+hash = ac3db451
+match_first_index = 37533
+ib = ResourceSkirkBlackBodyExtraIB
+if $wombtattoo == 0
+	if $pubes == 0
+		ps-t0 = ResourceSkirkBlackBodyExtraDiffuseR
+	else
+		ps-t0 = ResourceSkirkBlackBodyExtraDiffuseP
+	endif
+else
+	if $pubes == 0
+		ps-t0 = ResourceSkirkBlackBodyExtraDiffuse
+	else
+		ps-t0 = ResourceSkirkBlackBodyExtraDiffusePWT
+	endif
+endif
+
+ps-t1 = ResourceSkirkBlackBodyExtraLightMap
+; SkirkBlackBodyExtra (0)
+drawindexed = 0, 0, 0
+; SkirkBlackBodyExtra
+
+;TOP
+
+;BOTTOM
+
+;PAULDRON
+
+;SCARF
+
+;PAULDRON 0-3
+if $pauldrons == 0
+	; DS Pauldrons (2548)
+	; DS Arm Stars (216)
+	drawindexed = 774, 0, 0
+elif $pauldrons == 1
+	; DS Pauldrons (2548)
+elif $pauldrons == 2
+	; DS Arm Stars (216)
+	drawindexed = 774, 0, 0
+elif $pauldrons == 3
+; NO Pauldrons
+endif
+
+;HEADPIECE
+if $headpiece == 0
+	; DS Head Feathers (65)
+	drawindexed = 189, 2226, 0
+endif
+
+;LEGS
+
+;STRAPS TOP
+
+;STRAPS BOTTOM
+
+if $bottom == 0 || $bottom == 1 || $bottom == 2
+	; DS Dress Hip Floaters (314)
+	drawindexed = 1368, 774, 0
+	; DS Frame Back Windows (32)
+	drawindexed = 84, 2142, 0
+endif
+
+
+; CommandList -----------------------
+
+[CommandListCreditInfo]
+if $creditinfo == 0 && $active == 1
+    pre Resource\ShaderFixes\help.ini\Notification = ResourceCreditInfo
+    pre run = CustomShader\ShaderFixes\help.ini\FormatText
+    pre $\ShaderFixes\help.ini\notification_timeout = time + 5.0
+    $creditinfo = 1
+endif
+
+; Resources -------------------------
+
+[ResourceSkirkHairPosition]
+type = Buffer
+stride = 40
+filename = SkirkHairPosition.buf
+
+[ResourceSkirkHairBlend]
+type = Buffer
+stride = 32
+filename = SkirkHairBlend.buf
+
+[ResourceSkirkHairTexcoord]
+type = Buffer
+stride = 12
+filename = SkirkHairTexcoord.buf
+
+[ResourceSkirkWhiteBodyPosition]
+type = Buffer
+stride = 40
+filename = SkirkWhiteBodyPosition.buf
+
+[ResourceSkirkWhiteBodyBlend]
+type = Buffer
+stride = 32
+filename = SkirkWhiteBodyBlend.buf
+
+[ResourceSkirkWhiteBodyTexcoord]
+type = Buffer
+stride = 20
+filename = SkirkWhiteBodyTexcoord.buf
+
+[ResourceSkirkExtraPosition]
+type = Buffer
+stride = 40
+filename = SkirkExtraPosition.buf
+
+[ResourceSkirkExtraBlend]
+type = Buffer
+stride = 32
+filename = SkirkExtraBlend.buf
+
+[ResourceSkirkExtraTexcoord]
+type = Buffer
+stride = 12
+filename = SkirkExtraTexcoord.buf
+
+[ResourceSkirkLimbsPosition]
+type = Buffer
+stride = 40
+filename = SkirkLimbsPosition.buf
+
+[ResourceSkirkLimbsBlend]
+type = Buffer
+stride = 32
+filename = SkirkLimbsBlend.buf
+
+[ResourceSkirkLimbsTexcoord]
+type = Buffer
+stride = 20
+filename = SkirkLimbsTexcoord.buf
+
+[ResourceSkirkBlackBodyPosition]
+type = Buffer
+stride = 40
+filename = SkirkBlackBodyPosition.buf
+
+[ResourceSkirkBlackBodyBlend]
+type = Buffer
+stride = 32
+filename = SkirkBlackBodyBlend.buf
+
+[ResourceSkirkBlackBodyTexcoord]
+type = Buffer
+stride = 20
+filename = SkirkBlackBodyTexcoord.buf
+
+[ResourceSkirkHairHeadIB]
+type = Buffer
+format = DXGI_FORMAT_R32_UINT
+filename = SkirkHairHead.ib
+
+[ResourceSkirkWhiteBodyHeadIB]
+type = Buffer
+format = DXGI_FORMAT_R32_UINT
+filename = SkirkWhiteBodyHead.ib
+
+[ResourceSkirkExtraHeadIB]
+type = Buffer
+format = DXGI_FORMAT_R32_UINT
+filename = SkirkExtraHead.ib
+
+[ResourceSkirkLimbsHeadIB]
+type = Buffer
+format = DXGI_FORMAT_R32_UINT
+filename = SkirkLimbsHead.ib
+
+[ResourceSkirkLimbsBodyIB]
+type = Buffer
+format = DXGI_FORMAT_R32_UINT
+filename = SkirkLimbsBody.ib
+
+[ResourceSkirkBlackBodyHeadIB]
+type = Buffer
+format = DXGI_FORMAT_R32_UINT
+filename = SkirkBlackBodyHead.ib
+
+[ResourceSkirkBlackBodyBodyIB]
+type = Buffer
+format = DXGI_FORMAT_R32_UINT
+filename = SkirkBlackBodyBody.ib
+
+[ResourceSkirkBlackBodyDressIB]
+type = Buffer
+format = DXGI_FORMAT_R32_UINT
+filename = SkirkBlackBodyDress.ib
+
+[ResourceSkirkBlackBodyExtraIB]
+type = Buffer
+format = DXGI_FORMAT_R32_UINT
+filename = SkirkBlackBodyExtra.ib
+
+[ResourceSkirkHairHeadNormalMap]
+filename = SkirkHairHeadNormalMap.dds
+
+[ResourceSkirkHairHeadDiffuse]
+filename = SkirkHairHeadDiffuse.dds
+
+[ResourceSkirkHairHeadLightMap]
+filename = SkirkHairHeadLightMap.dds
+
+[ResourceSkirkWhiteBodyHeadDiffuse]
+filename = SkirkWhiteBodyHeadDiffuse.dds
+
+[ResourceSkirkWhiteBodyHeadLightMap]
+filename = SkirkWhiteBodyHeadLightMap.dds
+
+[ResourceSkirkExtraHeadDiffuse]
+filename = SkirkExtraHeadDiffuse.dds
+
+[ResourceSkirkExtraHeadLightMap]
+filename = SkirkExtraHeadLightMap.dds
+
+[ResourceSkirkLimbsHeadNormalMap]
+filename = SkirkLimbsHeadNormalMap.dds
+
+[ResourceSkirkLimbsHeadDiffuse]
+filename = SkirkLimbsHeadDiffuse.dds
+
+[ResourceSkirkLimbsHeadLightMap]
+filename = SkirkLimbsHeadLightMap.dds
+
+[ResourceSkirkLimbsBodyDiffuse]
+filename = SkirkLimbsBodyDiffuse.dds
+
+[ResourceSkirkLimbsBodyLightMap]
+filename = SkirkLimbsBodyLightMap.dds
+
+[ResourceSkirkLimbsBodyNormalMap]
+filename = SkirkLimbsBodyNormalMap.dds
+
+[ResourceSkirkBlackBodyHeadDiffuse]
+filename = SkirkBlackBodyHeadDiffuse.dds
+
+[ResourceSkirkBlackBodyHeadLightMap]
+filename = SkirkBlackBodyHeadLightMap.dds
+
+[ResourceSkirkBlackBodyBodyDiffuse]
+filename = SkirkBlackBodyBodyDiffuse.dds
+
+[ResourceSkirkBlackBodyBodyLightMap]
+filename = SkirkBlackBodyBodyLightMap.dds
+
+[ResourceSkirkBlackBodyDressDiffuse]
+filename = SkirkBlackBodyDressDiffuse.dds
+
+[ResourceSkirkBlackBodyDressLightMap]
+filename = SkirkBlackBodyDressLightMap.dds
+
+[ResourceSkirkBlackBodyDressNormalMap]
+filename = SkirkBlackBodyDressNormalMap.dds
+
+;WT
+[ResourceSkirkBlackBodyExtraDiffuse]
+filename = SkirkBlackBodyExtraDiffuse.dds
+;Regular
+[ResourceSkirkBlackBodyExtraDiffuseR]
+filename = SkirkBlackBodyExtraDiffuseR.dds
+[ResourceSkirkBlackBodyExtraDiffuseP]
+filename = SkirkBlackBodyExtraDiffuseP.dds
+[ResourceSkirkBlackBodyExtraDiffusePWT]
+filename = SkirkBlackBodyExtraDiffusePWT.dds
+
+[ResourceSkirkBlackBodyExtraLightMap]
+filename = SkirkBlackBodyExtraLightMap.dds
+
+[ResourceCreditInfo]
+type = Buffer
+data = "Created by www.patreon.com/lewd_lad"
+
+; .ini generated by XXMI (XX-Model-Importer)
+; If you have any issues or find any bugs, please open a ticket at https://github.com/leotorrez/XXMI-Tools/issues

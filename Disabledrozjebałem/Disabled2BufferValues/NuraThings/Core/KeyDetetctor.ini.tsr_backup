@@ -1,0 +1,483 @@
+namespace = NuraThings\KeyDetector
+
+[Constants]
+global $detect_keys
+global $key_code
+global $last_key_code
+
+
+;[Present]
+;if $detect_keys
+;    $\NuraThings\Print\Numbers\Number = $last_key_code
+;    $\NuraThings\Print\Numbers\widthScale = 1
+;    $\NuraThings\Print\Numbers\heightScale = 4
+;    run = CommandList\NuraThings\Print\Numbers\Run
+;endif
+
+
+[KeyEnable]
+condition = !$detect_keys
+key = VK_CONTROL VK_SHIFT VK_ALT
+$detect_keys = 1
+
+[KeyShift]
+condition = $detect_keys
+key = VK_SHIFT
+$key_code = 1
+
+[KeyAA]
+condition = $detect_keys
+key = A
+$key_code = 10
+
+[KeyAB]
+condition = $detect_keys
+key = B
+$key_code = 11
+
+[KeyAC]
+condition = $detect_keys
+key = C
+$key_code = 12
+
+[KeyAD]
+condition = $detect_keys
+key = D
+$key_code = 13
+
+[KeyAE]
+condition = $detect_keys
+key = E
+$key_code = 14
+
+[KeyAF]
+condition = $detect_keys
+key = F
+$key_code = 15
+
+[KeyAG]
+condition = $detect_keys
+key = G
+$key_code = 16
+
+[KeyAH]
+condition = $detect_keys
+key = H
+$key_code = 17
+
+[KeyAI]
+condition = $detect_keys
+key = I
+$key_code = 18
+
+[KeyAJ]
+condition = $detect_keys
+key = J
+$key_code = 19
+
+[KeyAK]
+condition = $detect_keys
+key = K
+$key_code = 20
+
+[KeyAL]
+condition = $detect_keys
+key = L
+$key_code = 21
+
+[KeyAM]
+condition = $detect_keys
+key = M
+$key_code = 22
+
+[KeyAN]
+condition = $detect_keys
+key = N
+$key_code = 23
+
+[KeyAO]
+condition = $detect_keys
+key = O
+$key_code = 24
+
+[KeyAP]
+condition = $detect_keys
+key = P
+$key_code = 25
+
+[KeyAQ]
+condition = $detect_keys
+key = Q
+$key_code = 26
+
+[KeyAR]
+condition = $detect_keys
+key = R
+$key_code = 27
+
+[KeyAS]
+condition = $detect_keys
+key = S
+$key_code = 28
+
+[KeyAT]
+condition = $detect_keys
+key = T
+$key_code = 29
+
+[KeyAU]
+condition = $detect_keys
+key = U
+$key_code = 30
+
+[KeyAV]
+condition = $detect_keys
+key = V
+$key_code = 31
+
+[KeyAW]
+condition = $detect_keys
+key = W
+$key_code = 32
+
+[KeyAX]
+condition = $detect_keys
+key = X
+$key_code = 33
+
+[KeyAY]
+condition = $detect_keys
+key = Y
+$key_code = 34
+
+[KeyAZ]
+condition = $detect_keys
+key = Z
+$key_code = 35
+
+
+[KeySpace]
+condition = $detect_keys
+key = VK_SPACE
+$key_code = 2
+
+[Key0]
+condition = $detect_keys
+key = 0
+$key_code = 40
+
+[Key1]
+condition = $detect_keys
+key = 1
+$key_code = 41
+
+[Key2]
+condition = $detect_keys
+key = 2
+$key_code = 42
+
+[Key3]
+condition = $detect_keys
+key = 3
+$key_code = 43
+
+[Key4]
+condition = $detect_keys
+key = 4
+$key_code = 44
+
+[Key5]
+condition = $detect_keys
+key = 5
+$key_code = 45
+
+[Key6]
+condition = $detect_keys
+key = 6
+$key_code = 46
+
+[Key7]
+condition = $detect_keys
+key = 7
+$key_code = 47
+
+[Key8]
+condition = $detect_keys
+key = 8
+$key_code = 48
+
+[Key9]
+condition = $detect_keys
+key = 9
+$key_code = 49
+
+[KeyLeft]
+condition = $detect_keys
+key = VK_LEFT
+$key_code = 50
+
+[KeyRight]
+condition = $detect_keys
+key = VK_RIGHT
+$key_code = 51
+
+[KeyUp]
+condition = $detect_keys
+key = VK_UP
+$key_code = 52
+
+[KeyDown]
+condition = $detect_keys
+key = VK_DOWN
+$key_code = 53
+
+[KeyBackspace]
+condition = $detect_keys
+key = VK_BACK
+$key_code = 54
+
+[KeyEnter]
+condition = $detect_keys
+key = VK_RETURN
+$key_code = 55
+
+[KeyEscape]
+condition = $detect_keys
+key = VK_ESCAPE
+$key_code = 56
+
+[KeyTab]
+condition = $detect_keys
+key = VK_TAB
+$key_code = 57
+
+[KeyControl]
+condition = $detect_keys
+key = VK_CONTROL
+$key_code = 59
+
+[KeyF1]
+condition = $detect_keys
+key = VK_F1
+$key_code = 60
+
+[KeyF2]
+condition = $detect_keys
+key = VK_F2
+$key_code = 61
+
+[KeyF3]
+condition = $detect_keys
+key = VK_F3
+$key_code = 62
+
+[KeyF4]
+condition = $detect_keys
+key = VK_F4
+$key_code = 63
+
+[KeyF5]
+condition = $detect_keys
+key = VK_F5
+$key_code = 64
+
+[KeyF6]
+condition = $detect_keys
+key = VK_F6
+$key_code = 65
+
+[KeyF7]
+condition = $detect_keys
+key = VK_F7
+$key_code = 66
+
+[KeyF8]
+condition = $detect_keys
+key = VK_F8
+$key_code = 67
+
+[KeyF9]
+condition = $detect_keys
+key = VK_F9
+$key_code = 68
+
+[KeyF10]
+condition = $detect_keys
+key = VK_F10
+$key_code = 69
+
+[KeyF11]
+condition = $detect_keys
+key = VK_F11
+$key_code = 70
+
+[KeyF12]
+condition = $detect_keys
+key = VK_F12
+$key_code = 71
+
+[KeyInsert]
+condition = $detect_keys
+key = VK_INSERT
+$key_code = 72
+
+[KeyDelete]
+condition = $detect_keys
+key = VK_DELETE
+$key_code = 73
+
+[KeyHome]
+condition = $detect_keys
+key = VK_HOME
+$key_code = 74
+
+[KeyEnd]
+condition = $detect_keys
+key = VK_END
+$key_code = 75
+
+[KeyPageUp]
+condition = $detect_keys
+key = VK_PRIOR
+$key_code = 76
+
+[KeyPageDown]
+condition = $detect_keys
+key = VK_NEXT
+$key_code = 77
+
+[KeyNewLine]
+condition = $detect_keys
+key = VK_SHIFT VK_ENTER
+$key_code = 78
+
+
+[KeyBigA]
+condition = $detect_keys
+key = VK_SHIFT A
+$key_code = 79
+
+[KeyBigB]
+condition = $detect_keys
+key = VK_SHIFT B
+$key_code = 80
+
+[KeyBigC]
+condition = $detect_keys
+key = VK_SHIFT C
+$key_code = 81
+
+[KeyBigD]
+condition = $detect_keys
+key = VK_SHIFT D
+$key_code = 82
+
+[KeyBigE]
+condition = $detect_keys
+key = VK_SHIFT E
+$key_code = 83
+
+[KeyBigF]
+condition = $detect_keys
+key = VK_SHIFT F
+$key_code = 84
+
+[KeyBigG]
+condition = $detect_keys
+key = VK_SHIFT G
+$key_code = 85
+
+[KeyBigH]
+condition = $detect_keys
+key = VK_SHIFT H
+$key_code = 86
+
+[KeyBigI]
+condition = $detect_keys
+key = VK_SHIFT I
+$key_code = 87
+
+[KeyBigJ]
+condition = $detect_keys
+key = VK_SHIFT J
+$key_code = 88
+
+[KeyBigK]
+condition = $detect_keys
+key = VK_SHIFT K
+$key_code = 89
+
+[KeyBigL]
+condition = $detect_keys
+key = VK_SHIFT L
+$key_code = 90
+
+[KeyBigM]
+condition = $detect_keys
+key = VK_SHIFT M
+$key_code = 91
+
+[KeyBigN]
+condition = $detect_keys
+key = VK_SHIFT N
+$key_code = 92
+
+[KeyBigO]
+condition = $detect_keys
+key = VK_SHIFT O
+$key_code = 93
+
+[KeyBigP]
+condition = $detect_keys
+key = VK_SHIFT P
+$key_code = 94
+
+[KeyBigQ]
+condition = $detect_keys
+key = VK_SHIFT Q
+$key_code = 95
+
+[KeyBigR]
+condition = $detect_keys
+key = VK_SHIFT R
+$key_code = 96
+
+[KeyBigS]
+condition = $detect_keys
+key = VK_SHIFT S
+$key_code = 97
+
+[KeyBigT]
+condition = $detect_keys
+key = VK_SHIFT T
+$key_code = 98
+
+[KeyBigU]
+condition = $detect_keys
+key = VK_SHIFT U
+$key_code = 99
+
+[KeyBigV]
+condition = $detect_keys
+key = VK_SHIFT V
+$key_code = 100
+
+[KeyBigW]
+condition = $detect_keys
+key = VK_SHIFT W
+$key_code = 101
+
+[KeyBigX]
+condition = $detect_keys
+key = VK_SHIFT X
+$key_code = 102
+
+[KeyBigY]
+condition = $detect_keys
+key = VK_SHIFT Y
+$key_code = 103
+
+[KeyBigZ]
+condition = $detect_keys
+key = VK_SHIFT Z
+$key_code = 104

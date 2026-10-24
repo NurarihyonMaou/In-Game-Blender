@@ -1,0 +1,460 @@
+namespace = NuraThings\ColorPicker
+
+[Constants]
+global $check_color = 0
+global $affect_color = 0
+global $color_changed
+
+global $menu = 0
+global $selector_type = 0
+
+global $use_packed
+
+global $offset_x = 0.7
+global $offset_y = 0.4
+
+global $menu_width
+global $menu_height
+
+post $menu_width = 512/res_width
+post $menu_height = 512/res_height
+
+global $InRange
+global $wait_frame
+
+global $selector_type_changed
+
+global $hue
+global $saturation
+global $value
+
+global $packedHSV
+global $packedHSL
+global $packedRGB
+
+global $previousPackedRGB
+global $previousPackedHSV
+global $previousPackedHSL
+
+global $x91
+
+global $frame
+
+;global $texture_width
+;global $texture_height
+
+;global $run_next_frame
+
+[Present]
+
+;if $run_next_frame == 1
+;    run = CustomShaderAverageGlowColors
+;    run = CustomShaderOutputGlowColors
+;endif
+
+;if $run_next_frame > 0 
+;    $run_next_frame = $run_next_frame-1
+;endif
+
+if $previousPackedHSL != $packedHSL || $previousPackedHSV != $packedHSV || $previousPackedRGB != $packedRGB
+    $color_changed = 1
+else
+    $color_changed = 0
+endif
+
+if $menu
+
+    if $check_color
+        run = CommandListIsWithinMenuRange
+            
+        if $InRange
+            $affect_color = 1
+            $frame = $frame+1
+        else
+            $affect_color = 0
+        endif
+    else
+        $affect_color = 0
+    endif
+
+    $x91 = x91
+
+    x91 = $affect_color
+
+    run = CustomShaderDrawColorPickers
+
+    ;Resource\Debugger\DebugRW = ref ResourceSomeBuffer
+
+    ps-t100 = copy ResourceColorPickers
+    run = CustomShaderDraw
+
+endif
+
+if $selector_type_changed > 0
+    post $selector_type_changed = $selector_type_changed - 1
+endif
+
+;$\NuraThings\Print\Numbers\Number = $frame
+;$\NuraThings\Print\Numbers\widthScale = 6
+;$\NuraThings\Print\Numbers\heightScale = 7
+;run = CommandList\NuraThings\Print\Numbers\Run
+;
+;$\NuraThings\Print\Numbers\Number = $wait_frame
+;$\NuraThings\Print\Numbers\widthScale = 6
+;$\NuraThings\Print\Numbers\heightScale = 8
+;run = CommandList\NuraThings\Print\Numbers\Run
+;$\NuraThings\Print\Numbers\Number = $previousPackedHSL != $packedHSL
+;$\NuraThings\Print\Numbers\widthScale = 6
+;$\NuraThings\Print\Numbers\heightScale = 3
+;run = CommandList\NuraThings\Print\Numbers\Run
+;
+;$\NuraThings\Print\Numbers\Number = $previousPackedRGB != $packedRGB
+;$\NuraThings\Print\Numbers\widthScale = 6
+;$\NuraThings\Print\Numbers\heightScale = 4
+;run = CommandList\NuraThings\Print\Numbers\Run
+;
+;$\NuraThings\Print\Numbers\Number = $previousPackedHSV != $packedHSV
+;$\NuraThings\Print\Numbers\widthScale = 6
+;$\NuraThings\Print\Numbers\heightScale = 5
+;run = CommandList\NuraThings\Print\Numbers\Run
+;s-t100 = ResourceMapHolder
+;un = CustomShaderDraw
+
+;if $use_packed > 0
+;    $use_packed = $use_packed - 1
+;endif
+
+
+; COMMAND LISTS
+
+
+[CommandListIsWithinMenuRange]
+if cursor_x >= $offset_x && cursor_y >= $offset_y && cursor_x <= $offset_x + $menu_width && cursor_y <= $offset_y + $menu_height
+    $InRange = 1
+else
+    $InRange = 0
+endif
+
+
+[CommandListSetWaitFrame]
+$wait_frame = $frame
+
+
+[CommandListStorePackedColors]
+$previousPackedHSL = $packedHSL
+$previousPackedHSV = $packedHSV
+$previousPackedRGB = $packedRGB
+
+if $selector_type == 0
+    store = $packedHSV, ResourceStoreColors, 3
+elif $selector_type == 1
+    store = $packedRGB, ResourceStoreColors, 3
+elif $selector_type == 2
+    store = $packedHSL, ResourceStoreColors, 3
+endif
+
+
+[CommandListStoreHSV]
+store = $hue, ResourceStoreColors, 0
+store = $saturation, ResourceStoreColors, 1
+store = $value, ResourceStoreColors, 2
+
+if $selector_type == 2
+    $hue = $hue * 360
+endif
+
+[CommandListAddType]
+$selector_type = $selector_type + 1
+if $selector_type == 3
+    $selector_type = 0
+endif
+
+$selector_type_changed = 2
+
+[CommandListMinusType]
+$selector_type = $selector_type - 1
+if $selector_type == -1
+    $selector_type = 2
+endif
+
+$selector_type_changed = 2
+
+; KEYS
+
+[KeyMenu]
+key = N
+type = cycle
+$menu = 0,1
+
+[KeyAffectHSV]
+condition = $menu
+key = VK_ALT VK_CONTROL
+type = hold
+$check_color = 1
+run = CommandListSetWaitFrame
+
+
+[KeySelectorTypeAdd]
+condition = $menu
+key = >
+run = CommandListAddType
+
+[KeySelectorTypeMinus]
+condition = $menu
+key = <
+run = CommandListMinusType
+
+; RESOURCES
+
+
+[ResourceSomeBuffer]
+type = RWBuffer
+format = R32G32B32A32_FLOAT
+array = 64
+  
+
+[ResourceStoreColors]
+type = Buffer
+format = R32_FLOAT
+array = 4
+
+
+; GLOW
+
+;[ResourceStoreAllGlowColors]
+;type = Buffer
+;stride = 12
+;format = R32_FLOAT
+;array = 512
+;
+;[ResourceAllGlowCounter]
+;type = Buffer
+;stride = 4
+;array = 1
+;
+;[ResourceStoreMergedGlowColors]
+;type = Buffer
+;stride = 16
+;format = R32G32B32A32_FLOAT
+;array = 512
+;
+;[ResourceStoreOutputGlowColors]
+;type = Buffer
+;stride = 12
+;format = R32_FLOAT
+;array = 4
+;
+;
+;[ResourceGlowCounts]
+;type = Buffer
+;stride = 4
+;array = 512
+
+
+
+
+[ResourceColorPickers]
+type = RWTexture2D
+format = R32G32B32A32_FLOAT
+width = 512
+height = 512
+array = 1
+msaa = 1
+
+[ResourceMapHolder]
+
+
+; CUSTOM SHADERS
+;[CustomShaderGetGlowColors]
+;hs = null
+;ds = null
+;gs = null
+;vs = null
+;ps = null
+;run = BuiltInCommandListUnbindAllRenderTargets
+;
+;cs = Mods/BufferValues/NuraThings/Shaders/GetGlowColors.hlsl
+;
+;cs-t0 = ResourceMapHolder
+;
+;cs-u1 = ResourceStoreAllGlowColors
+;cs-u2 = ResourceAllGlowCounter
+;cs-u3 = ResourceGlowCounts
+;cs-u4 = ResourceSomeBuffer
+;
+;dispatch = ($texture_width+1)//32, ($texture_height+1)//32, 1
+;
+;cs-t0 = null
+;cs-u1 = null
+;cs-u2 = null
+;cs-u3 = null
+;cs-u4 = null
+;
+;
+;[CustomShaderAverageGlowColors]
+;hs = null
+;ds = null
+;gs = null
+;vs = null
+;ps = null
+;run = BuiltInCommandListUnbindAllRenderTargets
+;
+;cs = Mods/BufferValues/NuraThings/Shaders/AverageGlowColors.hlsl
+;
+;cs-t0 = ResourceStoreAllGlowColors
+;cs-t1 = ResourceGlowCounts
+;cs-u0 = ResourceStoreMergedGlowColors
+;cs-u4 = ResourceSomeBuffer
+;
+;dispatch = 1, 1, 1
+;
+;cs-t0 = null
+;cs-t1 = null
+;cs-u0 = null
+;cs-u4 = null
+;
+;
+;[CustomShaderOutputGlowColors]
+;hs = null
+;ds = null
+;gs = null
+;vs = null
+;ps = null
+;run = BuiltInCommandListUnbindAllRenderTargets
+;
+;cs = Mods/BufferValues/NuraThings/Shaders/PassGlowColors.hlsl
+;
+;cs-t0 = ResourceStoreMergedGlowColors
+;cs-u1 = ResourceStoreOutputGlowColors
+;cs-u4 = ResourceSomeBuffer
+;
+;dispatch = 1, 1, 1
+;
+;cs-t0 = null
+;cs-u1 = null
+;cs-u4 = null
+
+
+[CustomShaderDrawColorPickers]
+hs = null
+ds = null
+gs = null
+vs = null
+ps = null
+run = BuiltInCommandListUnbindAllRenderTargets
+
+
+cs = Mods/BufferValues/NuraThings/Shaders/ColorPickers.hlsl
+
+local $x89 = x89
+local $y89 = y89
+local $z89 = z89
+local $w89 = w89
+
+local $y91 = y91
+local $z91 = z91
+local $w91 = w91
+
+local $x24 = x24
+local $y24 = y24
+
+x89 = cursor_x
+y89 = cursor_y
+
+z89 = res_width
+w89 = res_height
+
+y91 = $use_packed
+w91 = $selector_type
+
+
+x93 = $packedHSV
+y93 = $packedRGB
+z93 = $packedHSL
+;w93 = $use_packed
+
+x24 = $offset_x
+y24 = $offset_y
+
+if $selector_type == 0
+    z91 = $packedHSV
+elif $selector_type == 1
+    z91 = $packedRGB
+elif $selector_type == 2
+    z91 = $packedHSL
+endif
+
+
+cs-u0 = ResourceColorPickers
+cs-u1 = ResourceStoreColors
+cs-u2 = ResourceSomeBuffer
+;cs-u3 = ResourceStoreOutputGlowColors
+
+dispatch = 512//32, 512//32, 1
+
+cs-u0 = null
+cs-u1 = null
+cs-u2 = null
+;cs-u3 = null
+
+x89 = $x89
+y89 = $y89
+z89 = $z89
+w89 = $w89
+
+x91 = $x91
+y91 = $y91
+z91 = $z91
+w91 = $w91
+
+x24 = $x24
+y24 = $y24
+
+post $use_packed = 0
+
+
+[CustomShaderDraw]
+hs = null
+ds = null
+gs = null
+cs = null
+run = BuiltInCommandListUnbindAllRenderTargets
+
+local $x87 = x87
+local $y87 = y87
+local $z87 = z87
+local $w87 = w87
+
+
+x87 = 512/res_width
+y87 = 512/res_height
+;z87 = 0.5975
+;w87 = -0.005
+z87 = $offset_x
+w87 = $offset_y
+
+vs = Mods/BufferValues/NuraThings/Shaders/UIElement.hlsl
+ps = Mods/BufferValues/NuraThings/Shaders/UIElement.hlsl
+blend = ADD SRC_ALPHA INV_SRC_ALPHA
+cull = none
+topology = triangle_strip
+o0 = set_viewport bb
+Draw = 4,0
+
+clear = ps-t100
+ps-t100 = null
+
+x87 = x87
+y87 = y87
+
+z87 = $z87
+w87 = $w87
+
+;[CommandListDealWithGlowColors]
+;;clear = ResourceAllGlowCounter
+;;clear = ResourceGlowCounts
+;;clear = ResourceStoreAllGlowColors
+;;clear = ResourceStoreMergedGlowColors
+;
+;run = CustomShaderGetGlowColors
+;$run_next_frame = 20

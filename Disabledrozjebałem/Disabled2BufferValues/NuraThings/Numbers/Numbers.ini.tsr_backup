@@ -1,0 +1,53 @@
+namespace = NuraThings\Numbers
+
+[ResourceDot]
+filename = dot.dds
+[ResourceMinus]
+filename = minus.dds
+
+[ResourceNumber0]
+filename = num_0.dds
+[ResourceNumber1]
+filename = num_1.dds
+[ResourceNumber2]
+filename = num_2.dds
+[ResourceNumber3]
+filename = num_3.dds
+[ResourceNumber4]
+filename = num_4.dds
+[ResourceNumber5]
+filename = num_5.dds
+[ResourceNumber6]
+filename = num_6.dds
+[ResourceNumber7]
+filename = num_7.dds
+[ResourceNumber8]
+filename = num_8.dds
+[ResourceNumber9]
+filename = num_9.dds
+
+[ResourceBlackDot]
+filename = Black/dot.dds
+[ResourceBlackMinus]
+filename = Black/minus.dds
+
+[ResourceBlackNumber0]
+filename = Black/num_0.dds
+[ResourceBlackNumber1]
+filename = Black/num_1.dds
+[ResourceBlackNumber2]
+filename = Black/num_2.dds
+[ResourceBlackNumber3]
+filename = Black/num_3.dds
+[ResourceBlackNumber4]
+filename = Black/num_4.dds
+[ResourceBlackNumber5]
+filename = Black/num_5.dds
+[ResourceBlackNumber6]
+filename = Black/num_6.dds
+[ResourceBlackNumber7]
+filename = Black/num_7.dds
+[ResourceBlackNumber8]
+filename = Black/num_8.dds
+[ResourceBlackNumber9]
+filename = Black/num_9.dds

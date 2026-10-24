@@ -1,0 +1,1133 @@
+namespace = NuraThings\MiniGames\FloppyBirb
+
+[Constants]
+global $open
+
+; Game states: 0 = Menu, 1 = In-Game, 2 = Paused, 3 = Failed
+global $state
+
+global $fps = 60
+global persist $speed = 0.09
+
+global $sv = 2
+
+global $time
+global $game_over_time = -1
+
+global persist $games_played
+global persist $time_played
+global persist $frames_played
+
+global persist $hscore
+global persist $hash
+
+global persist $ncoded_hscore
+global persist $hscore_time
+global persist $hscore_frame
+
+global $score
+
+global $pipe1_scored
+global $pipe2_scored
+global $pipe3_scored
+
+global $frame_width = 800
+global $frame_height = 1120
+
+global $box_x = 0.5
+global $box_y = 0.055
+global $box_width = 640
+global $box_height = 960
+
+global $pipe_width = 140
+global $pipe_height = 1184
+global $pipe_spacing = 330
+
+global $gap_limit = 220
+global $gap_min = 275
+global $gap_max = 670
+global $gap_y_limit = 280
+
+global $safe_y
+global $prev_y
+global $loop_count
+
+global $ground_height = 112
+
+global $birb_x = 0.4
+global $birb_y = 0.4
+global $birb_width = 64
+global $birb_height = 52
+
+global $birb_width_eff
+global $birb_height_eff
+
+global $rotation = 0
+global $rot_abs
+global $rot_shrink
+
+global $targetRotation = 0
+global $max_up_angle = -25
+global $max_down_angle = 45
+
+global $gravity = 0.00075
+global $jump_force = -0.0125
+global $birb_velocity
+global $birb_max_y
+
+
+global $cloud_width = 96
+global $cloud_height = 48
+
+global $temp_cloud_max
+
+global $cloud_min_y = 0.14
+global $cloud_max_y = 0.52
+
+
+; Cloud Movement and Scale
+global $cloud1_x
+global $cloud2_x
+global $cloud3_x
+
+global $cloud1_y
+global $cloud2_y
+global $cloud3_y
+
+global $cloud1_scale
+global $cloud2_scale
+global $cloud3_scale
+
+global $cloud_speed = 0.02
+
+global $__out
+
+
+global $pipe_x
+global $pipe_y
+
+global $pipe1_x = -1
+global $pipe2_x = -1
+global $pipe3_x = -1
+
+global $pipe1_gap_y
+global $pipe2_gap_y
+global $pipe3_gap_y
+
+global $temp_max
+global $jump
+global $jump_height
+
+global $score_fx_timer
+global $score_fx_show = 0
+global $score_fx_x
+global $score_fx_y
+global $score_fx_width = 64
+global $score_fx_height = 64
+
+global $x87
+global $y87
+global $z87
+global $w87
+
+global $x88
+global $y88
+global $z88
+global $w88
+
+global $x89
+
+global $x136
+global $y136
+
+post $frame_width  = $frame_width / res_width
+post $frame_height = $frame_height / res_height
+
+post $box_width = $box_width / res_width
+post $box_height = $box_height / res_height
+
+post $pipe_width = $pipe_width / res_width
+post $pipe_height = $pipe_height / res_height
+post $pipe_spacing = $pipe_spacing / res_width
+
+post $gap_limit = $gap_limit / res_height
+post $gap_min = $gap_min / res_height
+post $gap_max = $gap_max / res_height
+
+post $ground_height = $ground_height / res_height
+
+post $birb_x = $birb_x - (($birb_width / 2) / res_width)
+post $birb_width = $birb_width / res_width
+post $birb_height = $birb_height / res_height
+
+post $cloud_width = $cloud_width / res_width
+post $cloud_height = $cloud_height / res_height
+
+post $pipe_y = $box_y + $box_height - $ground_height
+
+post $gap_y_limit = $gap_y_limit / res_height
+
+post $pipe_x = $box_x + ($box_width/2)
+
+post $score_fx_width = $score_fx_width / res_width
+post $score_fx_height = $score_fx_height / res_height
+
+if $hscore > 0
+    post run = CustomShaderSV
+endif
+
+[Present]
+if $open
+    run = CommandListDrawScene
+
+    if $sv == 1
+        $state = 4
+    endif
+
+    if $score < 10
+        $\NuraThings\Print\Numbers\Number = $score
+        $\NuraThings\Print\Numbers\widthScale = 4.615
+        $\NuraThings\Print\Numbers\heightScale = 0.975
+        run = CommandList\NuraThings\Print\Numbers\Run
+    else
+        $\NuraThings\Print\Numbers\Number = $score
+        $\NuraThings\Print\Numbers\widthScale = 4.5
+        $\NuraThings\Print\Numbers\heightScale = 0.975
+        run = CommandList\NuraThings\Print\Numbers\Run
+    endif
+
+    if $hscore < 10
+        $\NuraThings\Print\Numbers\Number = $hscore
+        $\NuraThings\Print\Numbers\widthScale = 4.615
+        $\NuraThings\Print\Numbers\heightScale = 1.425
+        run = CommandList\NuraThings\Print\Numbers\Run
+    else
+        $\NuraThings\Print\Numbers\Number = $hscore
+        $\NuraThings\Print\Numbers\widthScale = 4.5
+        $\NuraThings\Print\Numbers\heightScale = 1.425
+        run = CommandList\NuraThings\Print\Numbers\Run
+    endif
+    ;$\NuraThings\Print\Numbers\Number = $state
+    ;$\NuraThings\Print\Numbers\widthScale = 5.65
+    ;$\NuraThings\Print\Numbers\heightScale = 1
+    ;run = CommandList\NuraThings\Print\Numbers\Run
+;;
+    ;$\NuraThings\Print\Numbers\Number = $birb_y
+    ;$\NuraThings\Print\Numbers\widthScale = 7
+    ;$\NuraThings\Print\Numbers\heightScale = 1
+    ;run = CommandList\NuraThings\Print\Numbers\Run
+;;
+    ;$\NuraThings\Print\Numbers\Number = $box_y + $box_height
+    ;$\NuraThings\Print\Numbers\widthScale = 8
+    ;$\NuraThings\Print\Numbers\heightScale = 1
+    ;run = CommandList\NuraThings\Print\Numbers\Run
+;
+    ;$\NuraThings\Print\Numbers\Number = $pipe_spacing
+    ;$\NuraThings\Print\Numbers\widthScale = 9
+    ;$\NuraThings\Print\Numbers\heightScale = 1
+    ;run = CommandList\NuraThings\Print\Numbers\Run
+;
+    ;$\NuraThings\Print\Numbers\Number = $box_y
+    ;$\NuraThings\Print\Numbers\widthScale = 1
+    ;$\NuraThings\Print\Numbers\heightScale = 2
+    ;run = CommandList\NuraThings\Print\Numbers\Run
+;;
+    ;$\NuraThings\Print\Numbers\Number = $ground_height
+    ;$\NuraThings\Print\Numbers\widthScale = 2
+    ;$\NuraThings\Print\Numbers\heightScale = 2
+    ;run = CommandList\NuraThings\Print\Numbers\Run
+;
+    ;$\NuraThings\Print\Numbers\Number = $gap_limit
+    ;$\NuraThings\Print\Numbers\widthScale = 3
+    ;$\NuraThings\Print\Numbers\heightScale = 2
+    ;run = CommandList\NuraThings\Print\Numbers\Run
+;
+    ;$\NuraThings\Print\Numbers\Number = $pipe1_gap_y
+    ;$\NuraThings\Print\Numbers\widthScale = 4
+    ;$\NuraThings\Print\Numbers\heightScale = 2
+    ;run = CommandList\NuraThings\Print\Numbers\Run
+    ;
+    ;$\NuraThings\Print\Numbers\Number = $pipe2_gap_y
+    ;$\NuraThings\Print\Numbers\widthScale = 5
+    ;$\NuraThings\Print\Numbers\heightScale = 2
+    ;run = CommandList\NuraThings\Print\Numbers\Run
+;
+    ;$\NuraThings\Print\Numbers\Number = $pipe3_gap_y
+    ;$\NuraThings\Print\Numbers\widthScale = 6
+    ;$\NuraThings\Print\Numbers\heightScale = 2
+    ;run = CommandList\NuraThings\Print\Numbers\Run
+;
+    ;$\NuraThings\Print\Numbers\Number = $birb_velocity
+    ;$\NuraThings\Print\Numbers\widthScale = 7
+    ;$\NuraThings\Print\Numbers\heightScale = 2
+    ;run = CommandList\NuraThings\Print\Numbers\Run
+    Resource\NuraThings\Print\Custom\Font = Resource\NuraThings\Print\Custom\PixelFont
+
+    if $state == 0
+        Resource\NuraThings\Print\Custom\Text = copy ResourceStart
+        Resource\NuraThings\Print\Custom\TextParams = copy ResourcePrint
+        run = CommandList\NuraThings\Print\Custom\PrintText
+
+    elif $state == 1
+
+        $frames_played = $frames_played + 1
+
+        if time - $time >= 1
+            $time_played = $time_played + 1
+            $time = time
+        endif 
+        
+
+        ; Move all pipes leftward
+        $pipe1_x = $pipe1_x - ($speed / $fps)
+        $pipe2_x = $pipe2_x - ($speed / $fps)
+        $pipe3_x = $pipe3_x - ($speed / $fps)
+
+        ; Recycle pipe1
+        if $pipe1_x <= $box_x - ($box_width/2) - $pipe_width
+            if $pipe2_x > $pipe3_x
+                $temp_max = $pipe2_x
+            else
+                $temp_max = $pipe3_x
+            endif
+
+            $pipe1_x = $temp_max + $pipe_spacing
+            
+        $\math\rand\min = $gap_min
+        $\math\rand\max = $gap_max
+        run = commandlist\math\rand\run
+
+        $pipe1_gap_y = $\math\rand\out
+            $pipe1_scored = 0
+        endif
+
+        ; Recycle pipe2
+        if $pipe2_x <= $box_x - ($box_width/2) - $pipe_width
+            if $pipe1_x > $pipe3_x
+                $temp_max = $pipe1_x
+            else
+                $temp_max = $pipe3_x
+            endif
+            $pipe2_x = $temp_max + $pipe_spacing
+
+            $prev_y = $pipe1_gap_y
+            run = CommandListGetSafeGap
+            $pipe2_gap_y = $safe_y
+
+            $pipe2_scored = 0
+        endif
+
+        ; Recycle pipe3
+        if $pipe3_x <= $box_x - ($box_width/2) - $pipe_width
+            if $pipe1_x > $pipe2_x
+                $temp_max = $pipe1_x
+            else
+                $temp_max = $pipe2_x
+            endif
+            $pipe3_x = $temp_max + $pipe_spacing
+
+            $prev_y = $pipe2_gap_y
+            run = CommandListGetSafeGap
+            $pipe3_gap_y = $safe_y
+
+            $pipe3_scored = 0
+        endif
+
+        ; === Bird Physics ===
+
+        ; Apply gravity
+        $birb_velocity = $birb_velocity + $gravity
+
+        ; Update Y position
+        $birb_y = $birb_y + $birb_velocity
+
+        ; Clamp to Ceiling
+        if $birb_y < $box_y
+            $birb_y = $box_y
+            $birb_velocity = 0
+        endif
+
+        ; Clamp to Ground
+        $birb_max_y = $box_y + $box_height - $ground_height - $birb_height
+        
+        if $birb_y > $birb_max_y
+            $birb_y = $birb_max_y
+            $birb_velocity = 0
+        endif
+
+
+        ; === Collision Detection ===
+
+
+        ; Compute ABS(Rotation)
+        $rot_abs = $rotation
+        if $rot_abs < 0
+            $rot_abs = -$rot_abs
+        endif
+
+        ; Shrink hitbox slightly based on tilt (up to 20% smaller at ±90°)
+        $rot_shrink = 1 - ($rot_abs / 90 * 0.2)
+
+        $birb_width_eff  = $birb_width  * $rot_shrink
+        $birb_height_eff = $birb_height * $rot_shrink
+
+
+        ; === Pipe 1 Collision ===
+        if $pipe1_x < $birb_x + $birb_width_eff && $pipe1_x + $pipe_width > $birb_x
+            if $birb_y < $pipe1_gap_y - ($gap_limit / 2)
+                $state = 3
+            endif
+            if $birb_y + $birb_height_eff > $pipe1_gap_y + ($gap_limit / 2)
+                $state = 3
+            endif
+        endif
+
+
+        ; === Pipe 2 Collision ===
+        if $pipe2_x < $birb_x + $birb_width_eff && $pipe2_x + $pipe_width > $birb_x
+            if $birb_y < $pipe2_gap_y - ($gap_limit / 2)
+                $state = 3
+            endif
+            if $birb_y + $birb_height_eff > $pipe2_gap_y + ($gap_limit / 2)
+                $state = 3
+            endif
+        endif
+
+
+        ; === Pipe 3 Collision ===
+        if $pipe3_x < $birb_x + $birb_width_eff && $pipe3_x + $pipe_width > $birb_x
+            if $birb_y < $pipe3_gap_y - ($gap_limit / 2)
+                $state = 3
+            endif
+            if $birb_y + $birb_height_eff > $pipe3_gap_y + ($gap_limit / 2)
+                $state = 3
+            endif
+        endif
+
+
+        ; === Ground Collision ===
+        if $birb_y >= $birb_max_y
+            $state = 3
+        endif
+
+        ; === Ceiling Collision ===
+        if $birb_y <= $box_y
+            $state = 3
+        endif
+
+
+        if $state == 3
+            $game_over_time = -1
+            $games_played = $games_played+1
+        endif
+
+        ; === Score Detection ===
+
+        ; Pipe 1
+        if $pipe1_x + $pipe_width < $birb_x && $pipe1_scored == 0
+            $score = $score + 1
+            $pipe1_scored = 1
+
+            $score_fx_x = $birb_x
+            $score_fx_y = $birb_y
+            $score_fx_timer = 1
+            $score_fx_show = 1
+        endif
+
+        ; Pipe 2
+        if $pipe2_x + $pipe_width < $birb_x && $pipe2_scored == 0
+            $score = $score + 1
+            $pipe2_scored = 1
+
+            $score_fx_x = $birb_x
+            $score_fx_y = $birb_y
+            $score_fx_timer = 1
+            $score_fx_show = 1
+        endif
+
+        ; Pipe 3
+        if $pipe3_x + $pipe_width < $birb_x && $pipe3_scored == 0
+            $score = $score + 1
+            $pipe3_scored = 1
+
+            $score_fx_x = $birb_x
+            $score_fx_y = $birb_y
+            $score_fx_timer = 1
+            $score_fx_show = 1
+        endif
+
+        if $score > $hscore
+            $hscore = $score
+
+            $ncoded_hscore = ($hscore * 1337) + (($frames_played % 10000) * 3) + ($time_played % 3600)
+            $hscore_frame  = ($frames_played * 7) + 42
+            $hscore_time   = ($time_played * 13) + $hscore
+
+            run = CustomShaderSV
+        endif
+
+
+        ; Move clouds left
+        $cloud1_x = $cloud1_x - ($cloud_speed / $fps)
+        $cloud2_x = $cloud2_x - ($cloud_speed / $fps)
+        $cloud3_x = $cloud3_x - ($cloud_speed / $fps)
+
+        ; Recycle cloud 1
+        if $cloud1_x < $box_x - ($box_width / 2) - $cloud_width
+            if $cloud2_x > $cloud3_x
+                $temp_cloud_max = $cloud2_x
+            else
+                $temp_cloud_max = $cloud3_x
+            endif
+            $cloud1_x = $temp_cloud_max + 0.3
+
+            run = CommandListGenerateCloudScale
+            $cloud1_scale = $__out
+
+            run = CommandListGenerateCloudY
+            $cloud1_y = $__out
+        endif
+
+        ; Recycle cloud 2
+        if $cloud2_x < $box_x - ($box_width / 2) - $cloud_width
+            if $cloud1_x > $cloud3_x
+                $temp_cloud_max = $cloud1_x
+            else
+                $temp_cloud_max = $cloud3_x
+            endif
+            $cloud2_x = $temp_cloud_max + 0.3
+
+            run = CommandListGenerateCloudScale
+            $cloud2_scale = $__out
+
+            run = CommandListGenerateCloudY
+            $cloud2_y = $__out
+        endif
+
+        ; Recycle cloud 3
+        if $cloud3_x < $box_x - ($box_width / 2) - $cloud_width
+            if $cloud1_x > $cloud2_x
+                $temp_cloud_max = $cloud1_x
+            else
+                $temp_cloud_max = $cloud2_x
+            endif
+            $cloud3_x = $temp_cloud_max + 0.3
+
+            run = CommandListGenerateCloudScale
+            $cloud3_scale = $__out
+
+            run = CommandListGenerateCloudY
+            $cloud3_y = $__out
+        endif
+
+
+        if $score_fx_timer > 0
+            $score_fx_timer = $score_fx_timer + 1
+
+            if $score_fx_timer > $fps
+                $score_fx_show = 0
+                $score_fx_timer = 0
+            endif
+        endif
+
+    elif $state == 2
+        Resource\NuraThings\Print\Custom\Text = copy ResourcePaused
+        Resource\NuraThings\Print\Custom\TextParams = copy ResourcePrint
+        run = CommandList\NuraThings\Print\Custom\PrintText
+
+        ;run = CommandList\NuraThings\Print\Letters\V2\ClearTypeCodes
+;
+        ;$\NuraThings\Print\Letters\V2\offset_x = -0.225
+        ;$\NuraThings\Print\Letters\V2\offset_y = 0.1
+;
+        ;$\NuraThings\Print\Letters\V2\TextCode0 = 25 + (10*40) + (30*40**2) + (28*40**3)
+;
+        ;$\NuraThings\Print\Letters\V2\TextCode1 = 14 + (13*40)
+;
+        ;run = CommandList\NuraThings\Print\Letters\V2\RenderText
+
+    elif $state == 3
+        if $game_over_time == -1
+            $game_over_time = time
+        endif
+
+        if time - $game_over_time >= 0.35
+            $game_over_time = 0
+        endif
+
+        Resource\NuraThings\Print\Custom\Text = copy ResourceGameOver
+        Resource\NuraThings\Print\Custom\TextParams = copy ResourcePrint
+        run = CommandList\NuraThings\Print\Custom\PrintText
+
+        ;run = CommandList\NuraThings\Print\Letters\V2\ClearTypeCodes
+;
+        ;$\NuraThings\Print\Letters\V2\offset_x = -0.2
+        ;$\NuraThings\Print\Letters\V2\offset_y = 0.1
+;
+        ;$\NuraThings\Print\Letters\V2\TextCode0 = 16 + (10*40) + (22*40**2) + (14*40**3)
+;
+        ;run = CommandList\NuraThings\Print\Letters\V2\RenderText
+;
+;
+        ;$\NuraThings\Print\Letters\V2\offset_x = -0.2
+        ;$\NuraThings\Print\Letters\V2\offset_y = -0.1
+;
+        ;$\NuraThings\Print\Letters\V2\TextCode0 = 24 + (31*40) + (14*40**2) + (27*40**3)
+;
+        ;run = CommandList\NuraThings\Print\Letters\V2\RenderText
+
+    elif $state == 4
+        $hscore = 0
+        $score = 0
+        $hscore_frame = 0
+        $hscore_time = 0
+        $ncoded_hscore = 0
+        $speed = 0.18
+
+        Resource\NuraThings\Print\Custom\Text = copy ResourceInvalid
+        Resource\NuraThings\Print\Custom\TextParams = copy ResourcePrint
+        run = CommandList\NuraThings\Print\Custom\PrintText
+
+       ;run = CommandList\NuraThings\Print\Letters\V2\ClearTypeCodes
+
+       ;$\NuraThings\Print\Letters\V2\offset_x = -0.2
+       ;$\NuraThings\Print\Letters\V2\offset_y = 0.1
+
+       ;$\NuraThings\Print\Letters\V2\TextCode0 = 28 + (12*40) + (24*40**2) + (27*40**3)
+       ;$\NuraThings\Print\Letters\V2\TextCode1 = 14 
+
+       ;run = CommandList\NuraThings\Print\Letters\V2\RenderText
+
+
+       ;$\NuraThings\Print\Letters\V2\offset_x = -0.2
+       ;$\NuraThings\Print\Letters\V2\offset_y = -0.1
+
+       ;$\NuraThings\Print\Letters\V2\TextCode0 = 10 + (21*40) + (29*40**2) + (14*40**3)  
+       ;$\NuraThings\Print\Letters\V2\TextCode1 = 27 + (10*40) + (29*40**2) + (18*40**3) 
+       ;$\NuraThings\Print\Letters\V2\TextCode2 = 24 + (23*40) + (0*40**2) + (0*40**3)     
+       ;run = CommandList\NuraThings\Print\Letters\V2\RenderText
+
+
+       ;$\NuraThings\Print\Letters\V2\offset_x = -0.2
+       ;$\NuraThings\Print\Letters\V2\offset_y = -0.2
+
+       ;$\NuraThings\Print\Letters\V2\TextCode0 = 13 + (14*40) + (29*40**2) + (14*40**3) 
+       ;$\NuraThings\Print\Letters\V2\TextCode1 = 12 + (29*40) + (14*40**2) + (13*40**3) 
+       ;$\NuraThings\Print\Letters\V2\TextCode2 = 0
+       ;run = CommandList\NuraThings\Print\Letters\V2\RenderText
+
+        if time - $time >= 5
+            $sv = 0
+        endif
+    endif
+
+    Resource\NuraThings\Print\Custom\Font = Resource\NuraThings\Print\Custom\DefaultFont
+endif
+
+;Resource\Debugger\DebugRW = ref ResourceDebug
+
+[KeyOpenGame]
+key = 9
+type = cycle
+$open = 0,1
+
+[KeyStartGameResume]
+condition = $open && $state == 2
+key = VK_SPACE
+$state = 1
+
+[KeyStartGame]
+condition = $open && ($state == 0 || $state == 4 || ($state == 3 && $game_over_time == 0))
+key = VK_SPACE
+run = CommandListGameStart
+
+[KeyPause]
+condition = $open && $state == 1
+key = P
+$state = 2
+
+[KeyBirbJump]
+condition = $open && $state == 1
+key = VK_SPACE
+run = CommandListJump
+
+[KeyRestart]
+condition = $open && $state == 3
+key = R
+run = CommandListGameStart
+
+
+[CommandListJump]
+$birb_velocity = $jump_force
+
+
+[CommandListGenerateCloudScale]
+$\math\rand\min = 0.75
+$\math\rand\max = 2.5
+run = commandlist\math\rand\run
+$__out = $\math\rand\out
+
+
+[CommandListGenerateCloudY]
+$\math\rand\min = $cloud_min_y
+$\math\rand\max = $cloud_max_y
+run = commandlist\math\rand\run
+$__out = $\math\rand\out
+
+
+
+[CommandListGetSafeGap]
+$safe_y = -1
+
+if $safe_y == -1
+    if $loop_count < 30
+        run = CommandListTryToGetRandomSafeGap
+        $loop_count = $loop_count+1
+
+        if $safe_y == -1
+            run = CommandListGetSafeGap
+        else
+            $loop_count = 0
+        endif
+    else
+        $safe_y = $prev_y
+        $loop_count = 0
+    endif
+endif
+
+[CommandListTryToGetRandomSafeGap]
+local $test_y
+local $delta_y
+
+$\math\rand\min = $gap_min
+$\math\rand\max = $gap_max
+run = commandlist\math\rand\run
+$test_y = $\math\rand\out
+
+; Calculate delta
+$delta_y = $test_y - $prev_y
+if $delta_y < 0
+    $delta_y = -$delta_y
+endif
+
+; Is the delta OK?
+if $delta_y < $gap_y_limit
+    $safe_y = $test_y
+endif
+
+
+[CommandListBackupIniParams]
+$x87 = x87
+$y87 = y87
+$z87 = z87
+$w87 = w87
+
+$x88 = x88
+$y88 = y88
+$z88 = z88
+$w88 = w88
+
+$x89 = x89
+
+$x136 = x136
+$y136 = y136
+
+[CommandListRestoreIniParams]
+x87 = $x87
+y87 = $y87
+z87 = $z87
+w87 = $w87
+
+x88 = $x88
+y88 = $y88
+z88 = $z88
+w88 = $w88
+
+x89 = $x89
+
+x136 = $x136
+y136 = $y136
+
+[CommandListGameStart]
+$score = 0
+
+$state = 1
+
+$pipe1_x = $pipe_x
+$pipe2_x = $pipe1_x + $pipe_spacing
+$pipe3_x = $pipe2_x + $pipe_spacing
+
+$\math\rand\min = $gap_min
+$\math\rand\max = $gap_max
+run = commandlist\math\rand\run
+
+$pipe1_gap_y = $\math\rand\out
+
+
+
+$prev_y = $pipe1_gap_y
+run = CommandListGetSafeGap
+
+$pipe2_gap_y = $safe_y
+
+
+
+$prev_y = $pipe2_gap_y
+run = CommandListGetSafeGap
+
+$pipe3_gap_y = $safe_y
+
+
+$birb_y = 0.4
+$birb_velocity = 0
+
+$score = 0
+$pipe1_scored = 0
+$pipe2_scored = 0
+$pipe3_scored = 0
+
+
+
+; X positions
+$cloud1_x = $box_x + ($box_width / 4)
+$cloud2_x = $cloud1_x + 0.15
+$cloud3_x = $cloud2_x + 0.15
+
+; Random Y
+run = CommandListGenerateCloudY
+$cloud1_y = $__out
+
+run = CommandListGenerateCloudY
+$cloud2_y = $__out
+
+run = CommandListGenerateCloudY
+$cloud3_y = $__out
+
+; Random Scale
+run = CommandListGenerateCloudScale
+$cloud1_scale = $__out
+
+run = CommandListGenerateCloudScale
+$cloud2_scale = $__out
+
+run = CommandListGenerateCloudScale
+$cloud3_scale = $__out
+
+
+
+
+[CommandListDrawScene]
+run = CommandListBackupIniParams
+
+x88 = ($box_x - ($box_width / 2)) * res_width
+y88 = $box_y * res_height
+z88 = ($box_x + ($box_width / 2)) * res_width
+w88 = ($box_y + $box_height) * res_height
+
+x136 = 69
+
+; Background
+x87 = $box_width
+y87 = $box_height
+z87 = $box_x - ($box_width / 2)
+w87 = $box_y
+ps-t100 = ResourceBackground
+run = CustomShaderDraw
+
+
+; Clouds
+
+if $cloud1_x <= $box_x + ($box_width/2)
+    x87 = $cloud_width * $cloud1_scale
+    y87 = $cloud_height * $cloud1_scale
+    z87 = $cloud1_x
+    w87 = $cloud1_y
+    ps-t100 = ResourceCloud
+    run = CustomShaderDraw
+endif
+
+if $cloud2_x <= $box_x + ($box_width/2)
+    x87 = $cloud_width * $cloud2_scale
+    y87 = $cloud_height * $cloud2_scale
+    z87 = $cloud2_x
+    w87 = $cloud2_y
+    ps-t100 = ResourceCloud
+    run = CustomShaderDraw
+endif
+
+if $cloud3_x <= $box_x + ($box_width/2)
+    x87 = $cloud_width * $cloud3_scale
+    y87 = $cloud_height * $cloud3_scale
+    z87 = $cloud3_x
+    w87 = $cloud3_y
+    ps-t100 = ResourceCloud
+    run = CustomShaderDraw
+endif
+
+; Bird
+x87 = $birb_width
+y87 = $birb_height
+z87 = $birb_x
+w87 = $birb_y
+
+local $w136 = w136
+local $x137 = x136
+
+w136 = 69
+
+; Map velocity to target rotation (simple scale)
+$targetRotation = $birb_velocity * 2000
+; Clamp targetRotation manually
+if $targetRotation < $max_up_angle
+    $targetRotation = $max_up_angle
+elif $targetRotation > $max_down_angle
+    $targetRotation = $max_down_angle
+endif
+; Smooth interpolation
+$rotation = $rotation + ($targetRotation - $rotation) * 0.4
+
+;if $birb_velocity > 0
+;
+;elif $birb_velocity < 0
+;    x137 = 25
+;else
+;    x137 = 0
+;endif
+x137 = $rotation
+ps-t100 = ResourceBirb
+run = CustomShaderDraw
+
+w136 = $w136
+x137 = $x137
+
+; ============================================
+; PIPE 1
+; ============================================
+if $pipe1_x <= $box_x + ($box_width / 2)
+
+    ; === TOP PIPE ===
+    x87 = $pipe_width
+    y87 = $pipe_height
+
+    z87 = $pipe1_x
+    w87 = $pipe1_gap_y - ($gap_limit / 2) - $pipe_height
+
+    ps-t100 = ResourcePipe2
+    run = CustomShaderDraw
+
+    ; === BOTTOM PIPE ===
+    x87 = $pipe_width
+    y87 = $pipe_height
+
+    z87 = $pipe1_x
+    w87 = $pipe1_gap_y + ($gap_limit / 2)
+
+    ps-t100 = ResourcePipe
+    run = CustomShaderDraw
+
+endif
+
+
+; ============================================
+; PIPE 2
+; ============================================
+if $pipe2_x <= $box_x + ($box_width / 2)
+
+    ; === TOP PIPE ===
+    x87 = $pipe_width
+    y87 = $pipe_height
+
+    z87 = $pipe2_x
+    w87 = $pipe2_gap_y - ($gap_limit / 2) - $pipe_height
+
+    ps-t100 = ResourcePipe2
+    run = CustomShaderDraw
+
+    ; === BOTTOM PIPE ===
+    x87 = $pipe_width
+    y87 = $pipe_height
+
+    z87 = $pipe2_x
+    w87 = $pipe2_gap_y + ($gap_limit / 2)
+
+    ps-t100 = ResourcePipe
+    run = CustomShaderDraw
+
+endif
+
+
+; ============================================
+; PIPE 3
+; ============================================
+if $pipe3_x <= $box_x + ($box_width / 2)
+
+    ; === TOP PIPE ===
+    x87 = $pipe_width
+    y87 = $pipe_height
+
+    z87 = $pipe3_x
+    w87 = $pipe3_gap_y - ($gap_limit / 2) - $pipe_height
+
+    ps-t100 = ResourcePipe2
+    run = CustomShaderDraw
+
+    ; === BOTTOM PIPE ===
+    x87 = $pipe_width
+    y87 = $pipe_height
+
+    z87 = $pipe3_x
+    w87 = $pipe3_gap_y + ($gap_limit / 2)
+
+    ps-t100 = ResourcePipe
+    run = CustomShaderDraw
+
+endif
+
+
+;Ground
+x87 = $box_width
+y87 = $ground_height
+z87 = $box_x - ($box_width/2)
+w87 = $box_y + $box_height - $ground_height
+ps-t100 = ResourceGround
+run = CustomShaderDraw
+
+;Frame
+
+x136 = 0
+
+x87 = $frame_width
+y87 = $frame_height
+z87 = $box_x - ($frame_width / 2)
+w87 = $box_y - ($frame_height - $box_height) / 2
+ps-t100 = ResourceFrame
+run = CustomShaderDraw
+
+
+if $score_fx_show == 1
+    y136 = 69
+    x89 = 1 - ($score_fx_timer / $fps)
+
+    x87 = $score_fx_width
+    y87 = $score_fx_height
+    z87 = $score_fx_x
+    w87 = $score_fx_y - ($score_fx_timer * 0.001)
+    ps-t100 = ResourcePoint
+    run = CustomShaderDraw
+endif
+
+run = CommandListRestoreIniParams
+
+[ResourceBackground]
+filename = Background.dds
+
+[ResourceBirb]
+filename = Birb.dds
+
+[ResourcePipe]
+filename = Pipe.dds
+
+[ResourcePipe2]
+filename = Pipe2.dds
+
+[ResourceGround]
+filename = Ground.dds
+
+[ResourceCloud]
+filename = Cloud.dds
+
+[ResourceFrame]
+filename = Frame.dds
+
+[ResourcePoint]
+filename = Point.dds
+
+[ResourceSV]
+type = RWBuffer
+format = R32_FLOAT
+array = 2
+
+[ResourceDebug]
+type = RWBuffer
+format = R32G32B32A32_FLOAT
+array = 32
+
+[ResourcePrint]
+type = StructuredBuffer
+array = 1
+data = R32_FLOAT  -0.25 0.15 0.25 -0.15  1.0 1.0 1.0 1   0.0 0.0 0.0 0.0   0.02  0.05   2 1   1   6
+
+[ResourceStart]
+type = Buffer
+format = R8_UINT
+data = "Press Space to Start"
+
+[ResourcePaused]
+type = Buffer
+format = R8_UINT
+data = "Paused"
+
+[ResourceGameOver]
+type = Buffer
+format = R8_UINT
+data = "Game Over"
+
+[ResourceInvalid]
+type = Buffer
+format = R8_UINT
+data = "Score tampering detected."
+
+[CustomShaderSV]
+hs = null
+ds = null
+gs = null
+vs = null
+ps = null
+run = BuiltInCommandListUnbindAllRenderTargets
+
+local $x91 = x91
+local $y91 = y91
+local $z91 = z91
+local $w91 = w91
+
+x91 = $ncoded_hscore
+y91 = $hscore_frame
+z91 = $hscore_time
+w91 = $hscore
+
+cs = Mods/BufferValues/NuraThings/Shaders/SV.hlsl
+
+cs-u0 = ResourceSV
+cs-u1 = ResourceDebug
+
+dispatch = 1,1,1
+
+store = $sv, ResourceSV, 0
+store = $hash, ResourceSV, 1
+
+x91 = $x91
+y91 = $y91
+z91 = $z91
+w91 = $w91
+
+cs-u0 = null
+cs-u1 = null
+
+[CustomShaderDraw]
+hs = null
+ds = null
+gs = null
+cs = null
+run = BuiltInCommandListUnbindAllRenderTargets
+
+vs = Mods/BufferValues/NuraThings/Shaders/UIElement.hlsl
+ps = Mods/BufferValues/NuraThings/Shaders/UIElement.hlsl
+
+blend = ADD SRC_ALPHA INV_SRC_ALPHA
+cull = none
+topology = triangle_strip
+o0 = set_viewport bb
+Draw = 4,0
+
+clear = ps-t100
+ps-t100 = null

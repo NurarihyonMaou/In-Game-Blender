@@ -1,0 +1,258 @@
+[Constants]
+global persist $ui = 0
+
+[KeyUI]
+key = alt x
+type = cycle
+$ui = 0,1
+
+[ShaderOverrideMostOfIconsA]
+hash = 04911d8f38cd5d4b
+run = CommandListUI
+
+[ShaderOverrideMostOfIconsB]
+hash = 0f825651a0920d77
+run = CommandListUI
+
+[ShaderOverrideHpBar]
+hash = 4f028a0d23349e1f
+run = CommandListUI
+
+[ShaderOverrideHpBarText]
+hash = 8ee342030cd22651
+run = CommandListUI
+
+[ShaderOverridePhlogistonBarA]
+hash = 27bf8f0365360a89
+run = CommandListUI
+
+[ShaderOverridePhlogistonBarB]
+hash = 6ecf9b2d5553107d
+run = CommandListUI
+
+[ShaderOverridePhlogistonBarC]
+hash = e6263b3659dea688
+run = CommandListUI
+
+[ShaderOverrideTransformToSaurianIconAura1]
+hash = 3a6685ae83cb5c7b
+run = CommandListUI
+
+[ShaderOverrideTransformToSaurianIconAura2]
+hash = 4498e954d511cf34
+run = CommandListUI
+
+[ShaderOverrideQucusaurusPhlogistonBar]
+hash = 6c78ebf8233869e5
+run = CommandListUI
+
+[ShaderOverrideWandererStaminaBarA]
+hash = 728ef80e121537e3
+run = CommandListUI
+
+[ShaderOverrideWandererStaminaBarB]
+hash = 1422847935f9c32c
+run = CommandListUI
+
+[ShaderOverrideDamageNumber]
+hash = 327cc44412c2049e
+run = CommandListUI
+
+[ShaderOverrideDamageNumberLunarCharged]
+hash = aae5825e1f29c64a
+run = CommandListUI
+
+[ShaderOverrideMiniMap]
+hash = 875746a7f2e927b9
+run = CommandListUI
+
+[TextureOverrideMiniMapQuestIconAura]
+hash = 72ea26f9
+run = CommandListUI
+
+[ShaderOverrideMiniMapSandStorm]
+hash = af24a4d9287d0208
+run = CommandListUI
+
+[ShaderOverrideMiniMapRedArea]
+hash = cdc45abfb2a37368
+run = CommandListUI
+
+[ShaderOverrideMiniMapDarkArea]
+hash = 2871e636900278be
+run = CommandListUI
+
+[ShaderOverrideMiniMapOutOfBoundBorder]
+hash = 5fd59e300b5f80d1
+run = CommandListUI
+
+[ShaderOverrideMiniMapGrayDomainIcon]
+hash = 2ced5e755fe6400a
+run = CommandListUI
+
+[ShaderOverrideMiniMapYellowQuestCircle]
+hash = 69d1295b3d01ecef
+run = CommandListUI
+
+[ShaderOverrideRedUnexploredAreasInMap]
+hash = 96007e4ecdff45a4
+run = CommandListUI
+
+[ShaderOverridePauseMenuAvatar]
+hash = 36692159afa551b1
+run = CommandListUI
+
+[ShaderOverridePauseMenuNameCard]
+hash = 9b1298b241de8c24
+run = CommandListUI
+
+[ShaderOverridePauseMenuAura]
+hash = c236e571449b934f
+run = CommandListUI
+
+[ShaderOverrideGadgetIcon]
+hash = 8cd27a7410b5416c
+run = CommandListUI
+
+[ShaderOverrideItemSparkle]
+hash = 8e1d37efad41b881
+run = CommandListUI
+
+[ShaderOverrideCharacterLeftSelection]
+hash = 23dd10b05e19844e
+run = CommandListUI
+
+[ShaderOverrideElementalSkillOffCooldownReady]
+hash = bb3be9315bb4d3e4
+run = CommandListUI
+
+[ShaderOverrideTimeClock]
+hash = fbb1987e5cadfada
+run = CommandListUI
+
+[ShaderOverrideWhiteCircleInSereniteaPot]
+hash = 474916fa6df5cc8a
+run = CommandListUI
+
+[TextureOverrideGenshinLogoInCamera]
+hash = 5d0d5a61
+handling = skip
+
+[TextureOverrideCornerUID]
+hash = 83fd403f
+match_first_index = 0
+handling = skip
+
+; 5.8 Start
+
+[ShaderOverrideElementalSkillsIcons]
+hash = 58948e84c4313fc0
+run = CommandListUI
+
+[ShaderOverrideElementalSkillsAuraA]
+hash = c31781e102ec4c69
+run = CommandListUI
+
+[ShaderOverrideElementalSkillsAuraB]
+hash = 4b1f77b60a4d15e9
+run = CommandListUI
+
+[ShaderOverrideElementalSkillsAuraC]
+hash = 9f66b7e0f5d56cf5
+run = CommandListUI
+
+[ShaderOverrideElementalAnemo]
+hash = b6fa6210b28376fd
+run = CommandListUI
+
+[ShaderOverrideElementalPyro]
+hash = da5ae1a87606b8f3
+run = CommandListUI
+
+[ShaderOverrideElementalElectro]
+hash = 5139729c71edd619
+run = CommandListUI
+
+[ShaderOverrideElementalDendro]
+hash = 7cc4978ff46563f8
+run = CommandListUI
+
+[ShaderOverrideElementalCryo]
+hash = e7608fe22bc955d0
+run = CommandListUI
+
+[ShaderOverrideElementalGeo]
+hash = 6b9a2dee115f667b
+run = CommandListUI
+
+[ShaderOverrideNightSoulBarCharacterReadyToSwitch]
+hash = f05d6e68d247bf84
+run = CommandListUI
+
+[ShaderOverrideFourLeafSigilAura]
+hash = 449846ff1d801302
+allow_duplicate_hash = true
+run = CommandListUI
+
+[ShaderOverrideNightSoulBarKachinaA]
+hash = e49aa4120448a625
+run = CommandListUI
+
+[ShaderOverrideNightSoulBarKachinaB]
+hash = 7a66102914962d81
+run = CommandListUI
+
+[ShaderOverrideNightSoulBarKachinaC]
+hash = e77b6baf7812cd09
+run = CommandListUI
+
+[ShaderOverrideNightSoulBarMualaniA]
+hash = d35cf5ada1b80323
+run = CommandListUI
+
+[ShaderOverrideNightSoulBarMualaniB]
+hash = dcb510a410a56b47
+run = CommandListUI
+
+[ShaderOverrideNightSoulBarMualaniC]
+hash = 783d45cfe699b74d
+run = CommandListUI
+
+[ShaderOverrideNightSoulBarKinichA]
+hash = 7eae74c275b20a6b
+run = CommandListUI
+
+[ShaderOverrideNightSoulBarKinichB]
+hash = e13fe25f723e4069
+run = CommandListUI
+
+[ShaderOverrideNightSoulBarXilonen]
+hash = 4bfa2b7cccc86874
+run = CommandListUI
+
+[ShaderOverrideNightSoulBarChasca]
+hash = 160c2cf16bd02cf6
+run = CommandListUI
+
+[ShaderOverrideNightSoulBarIfaA]
+hash = 2bab78ca37bf6dc6
+run = CommandListUI
+
+[ShaderOverrideNightSoulBarIfaB]
+hash = 3294abf7298df638
+run = CommandListUI
+
+[ShaderOverrideSkirkMirror]
+hash = cb9891889de3e590
+run = CommandListUI
+
+[ShaderOverrideSkirkElementalCircle]
+hash = 2d4bdc163d9045da
+run = CommandListUI
+
+; 5.8 End
+
+[CommandListUI]
+if $ui == 1
+	handling = skip
+endif

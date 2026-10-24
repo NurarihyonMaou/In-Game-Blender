@@ -1,0 +1,482 @@
+namespace = NuraThings\TextureEditMenu\Chascmilia
+;**** TEXTURETHING SHADER ****
+;Contributors: SinsOfSeven
+[ResourceVirtual]
+[ResourceVirtual2]
+[ResourceVirtual3]
+
+[ResourceBackupColor]
+[ResourceBackupColorHair]
+[ResourceBackupColorEyes]
+
+[ResourceRGBBar]
+filename = ../resources/RGBBar.dds
+
+[ResourceColorWheel]
+filename = ../resources/ColorWheel.dds
+
+[ResourceColor]
+type = RWBuffer
+format = R32G32B32A32_FLOAT
+array = 1
+data = R32G32B32A32_FLOAT 0 0 0 0
+
+[ResourceColorHair]
+type = RWBuffer
+format = R32G32B32A32_FLOAT
+array = 1
+data = R32G32B32A32_FLOAT 0 0 0 0
+
+[ResourceColorEyes]
+type = RWBuffer
+format = R32G32B32A32_FLOAT
+array = 1
+data = R32G32B32A32_FLOAT 0 0 0 0
+
+
+[Constants]
+global $rgb_bar_x
+
+global $slider_type = 0
+
+global persist $box_x = 0.6
+global persist $box_y = 0.35
+global persist $bar_x = 0.59
+global persist $bar_y = 0.355
+global $offset = 0.03
+
+global $m = 0
+
+global $r = -1
+global $g = -1
+global $b = -1
+global $a = 1
+
+global $h = -1
+
+global persist $h0 = -1
+global persist $h1 = -1
+global persist $h2 = -1
+
+global persist $r0 = -1
+global persist $g0 = -1
+global persist $b0 = -1
+
+global persist $r1 = -1
+global persist $g1 = -1
+global persist $b1 = -1
+
+global persist $r2 = -1
+global persist $g2 = -1
+global persist $b2 = -1
+
+global $c = -1
+global $ch = -1
+
+global $_1
+global $_2
+
+global $use_sliders = 0
+global $move_menu = 0
+global $update_color = 0
+
+global $updated = 0
+
+
+post ResourceBackupColor = copy ResourceColor
+post ResourceBackupColorHair = copy ResourceColorHair
+post ResourceBackupColorEyes = copy ResourceColorEyes
+
+
+[CustomShaderGetColor]
+    cs-u6 = copy ResourceColor
+    cs-u7 = copy ResourceColorHair
+    cs-u4 = copy ResourceColorEyes
+    cs-t52 = copy ResourceColorWheel
+
+    cs = GetColor.hlsl
+    local $width = 256 // 32
+    local $height = 256 // 32
+    dispatch = $width, $height, 1
+
+    ResourceColor = cs-u6
+    ResourceColorHair = cs-u7
+    ResourceColorEyes = cs-u4
+
+    clear = cs-u6
+    clear = cs-u7
+    clear = cs-u4
+    clear = cs-t52
+
+[CustomShaderRunShader]
+; Store Vals
+
+local $x87 = x87
+local $y87 = y87
+local $z87 = z87
+local $w87 = w87
+
+local $x88 = x88
+local $y88 = y88
+local $z88 = z88
+local $w88 = w88
+
+local $x89 = x89
+local $y89 = y89
+local $z89 = z89
+local $w89 = w89
+
+local $x100 = x100
+local $y100 = y100
+local $z100 = z100
+
+local $lastX
+local $lastY
+
+local $lastZ
+local $lastW
+
+local $lastX2
+local $lastY2
+
+if $lastX != x101 || $lastY != y101 || $lastZ != z101 || $lastW != w101 || $lastX2 != x102 || $lastY2 != y102
+    $update_color = 1
+    $lastX = x101
+    $lastY = y101
+
+    $lastZ = z101
+    $lastW = w101
+
+    $lastX2 = x102
+    $lastY2 = y102
+endif
+
+
+; Set Values
+x87 = $r0
+y87 = $g0
+z87 = $b0
+w87 = $a
+
+x88 = $r1
+y88 = $g1
+z88 = $b1
+w88 = $a
+
+x89 = $r2
+y89 = $g2
+z89 = $b2
+w89 = $a
+
+x100 = $h0
+y100 = $h1
+z100 = $h2
+
+; Calculate Map
+
+local $rgba_last
+local $lastHue
+
+if ($rgba_last != $r+$g+$b+$a || $update_color == 1 || $h != $lastHue)
+
+    run = CustomShaderGetColor
+
+    $rgba_last = $r+$g+$b+$a
+    $update_color = 0
+    $lastHue = $h
+
+    ResourceVirtual = copy cs-t50
+
+    clear = cs-t50
+
+    cs-u5 = copy ResourceVirtual
+    cs-u6 = copy ResourceColor
+    cs-u7 = copy ResourceColorHair
+    cs-u4 = copy ResourceColorEyes
+
+    if ($r != -1 || $g != -1 || $b != -1) || $h != -1
+        cs = TextureShader.hlsl
+        $_1 = $_1 // 32
+        $_2 = $_2 // 32
+        dispatch = $_1, $_2, 1
+    endif
+
+    if x99 == 0
+        ResourceVirtual = copy cs-u5
+    else if x99 == 1
+        ResourceVirtual2 = copy cs-u5
+    else
+        ResourceVirtual3 = copy cs-u5
+    endif
+
+    $updated = 1
+
+    clear = cs-t51
+    clear = cs-u5
+    clear = cs-u6
+    clear = cs-u7
+    clear = cs-u4
+
+    ; Clean Up
+
+    x87 = $x87
+    y87 = $y87
+    z87 = $z87
+    w87 = $w87
+
+    x88 = $x88
+    y88 = $y88
+    z88 = $z88
+    w88 = $w88
+
+    x89 = $x89
+    y89 = $y89
+    z89 = $z89
+    w89 = $w89
+    
+    x100 = $x100
+    y100 = $y100
+    z100 = $z100
+
+    $_1 = 0
+    $_2 = 0
+
+endif
+
+; <-------> UI SECTION <------->
+[ResourceSliderR]
+filename = SliderR.dds
+[ResourceSliderG]
+filename = SliderG.dds
+[ResourceSliderB]
+filename = SliderB.dds
+[ResourceSliderA]
+filename = SliderA.dds
+[ResourceBackground]
+filename = BackGround.dds
+[ResourceForeground]
+filename = ForeGround.dds
+
+[CustomShaderElement]
+hs = null
+ds = null
+gs = null
+cs = null
+run = BuiltInCommandListUnbindAllRenderTargets
+
+vs = draw_2d.hlsl
+ps = draw_2d.hlsl
+blend = ADD SRC_ALPHA INV_SRC_ALPHA
+cull = none
+topology = triangle_strip
+o0 = set_viewport bb
+Draw = 4,0
+
+clear = ps-t100
+
+[CommandListSetColor]
+local $x = z87
+local $xo = z87 + x87
+local $y = w87
+local $yo = w87 + y87
+
+if $use_sliders
+    if $slider_type == 0
+        if cursor_x > $x && cursor_x < $xo 
+            if cursor_y > $y && cursor_y < $yo
+                $c = 1-(cursor_y-$y)/y87
+            endif
+        endif
+    else
+        if cursor_y > 0.19 && cursor_y < 0.19 + (8/res_height)
+            if cursor_x > $rgb_bar_x && cursor_x < $rgb_bar_x+(256/res_width)
+                $ch = (cursor_x-$rgb_bar_x)/(256/res_width)
+            endif
+        endif
+    endif
+endif
+
+[CommandListUpdateHue]
+if x99 == 0
+    $h0 = $h
+else if x99 == 1
+    $h1 = $h
+else if x99 == 2
+    $h2 = $h
+endif 
+
+
+[CommandListUpdateRGB]
+if x99 == 0
+    $r0 = $r
+    $g0 = $g
+    $b0 = $b
+else if x99 == 1
+    $r1 = $r
+    $g1 = $g
+    $b1 = $b
+else if x99 == 2
+    $r2 = $r
+    $g2 = $g
+    $b2 = $b
+endif 
+
+[CommandListSetHue]
+$ch = $h
+ps-t100 = ResourceRGBBar
+run = CommandListSetColor
+if $ch >= 0
+    $h = $ch
+    run = CommandListUpdateHue
+endif
+
+[CommandListSetRed]
+$c = $r
+ps-t100 = ResourceSliderR
+run = CommandListSetColor
+if $c >= 0
+    $r = $c
+    run = CommandListUpdateRGB
+endif
+
+[CommandListSetGreen]
+$c = $g
+ps-t100 = ResourceSliderG
+run = CommandListSetColor
+if $c >= 0
+    $g = $c
+    run = CommandListUpdateRGB
+endif
+
+[CommandListSetBlue]
+$c = $b
+ps-t100 = ResourceSliderB
+run = CommandListSetColor
+if $c >= 0
+    $b = $c
+    run = CommandListUpdateRGB
+endif
+
+[CommandListSetAlpha]
+$c = $a
+ps-t100 = ResourceSliderA
+run = CommandListSetColor
+if $c >= 0
+    $a = $c
+endif
+
+[CommandListCursors]
+local $x87 = x87
+local $y87 = y87
+local $z87 = z87
+local $w87 = w87
+
+if $slider_type == 0
+    z87 = z87-x87*0.2
+    w87 = w87 + y87 * (1-$c) - 0.005
+else
+    w87 = w87 - 0.001
+    z87 = z87 + x87 * $ch - 0.005
+endif
+
+x87 = 0.01618033988
+y87 = 0.01
+run = CustomShaderElement
+x87 = $x87
+y87 = $y87
+z87 = $z87
+w87 = $w87
+
+;$c = 0
+
+[CommandListDraw]
+$updated = 0
+$slider_type = y99
+
+if x99 == 0
+    $h = $h0
+    $r = $r0
+    $g = $g0
+    $b = $b0
+else if x99 == 1
+    $h = $h1
+    $r = $r1
+    $g = $g1
+    $b = $b1
+else if x99 == 2
+    $h = $h2
+    $r = $r2
+    $g = $g2
+    $b = $b2
+endif 
+
+
+if $slider_type == 0
+    ; BOX
+    ps-t100 = ResourceBackground
+    x87 = 0.13
+    y87 = 0.3
+    z87 = $box_x
+    w87 = $box_y
+    run = CustomShaderElement
+
+    ; BAR
+    x87 = 0.01
+    y87 = 0.3 * 0.95
+    w87 = $bar_y
+
+    ; BAR.R
+    z87 = $bar_x+$offset
+    ps-t100 = ResourceForeground
+    run = CustomShaderElement
+    run = CommandListSetRed
+    run = CommandListCursors
+
+    ; BAR.G
+    z87 = $bar_x+($offset*2)
+    ps-t100 = ResourceForeground
+    run = CustomShaderElement
+    run = CommandListSetGreen
+    run = CommandListCursors
+
+    ; BAR.B
+    z87 = $bar_x+($offset*3)
+    ps-t100 = ResourceForeground
+    run = CustomShaderElement
+    run = CommandListSetBlue
+    run = CommandListCursors
+
+else if $slider_type == 1
+    x87 = 256/res_width
+    y87 = 8/res_height
+    z87 = $rgb_bar_x
+    w87 = 0.19
+    ps-t100 = ResourceRGBBar
+    run = CustomShaderElement
+    run = CommandListSetHue
+    run = CommandListCursors
+    
+else
+    x87 = 256/res_width
+    y87 = 256/res_height
+    z87 = $rgb_bar_x
+    w87 = 0.19
+
+    ps-t100 = ResourceColorWheel
+    run = CustomShaderElement
+endif
+; BAR.A
+;x87 = 0.01
+;z87 = 0.699
+;ps-t100 = ResourceForeground
+;run = CustomShaderElement
+;run = CommandListSetAlpha
+;run = CommandListCursors
+
+; PREVIEW
+;x87 = 0.025
+;y87 = 0.025 * res_width/res_height
+;z87 = 0.70
+;w87 = 0.4
+;ps-t100 = ResourceVirtual
+;run = CustomShaderElement

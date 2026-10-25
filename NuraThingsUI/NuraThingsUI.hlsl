@@ -685,6 +685,14 @@ float4 main(VSOut input) : SV_Target0
 
     }
 
+    if (page == 0u && hover >= 30u && hover <= 37u)
+    {
+        float toolTipMask = RoundRect(p, float2(0.35f, 0.565f), float2(0.83f, 0.605f), 0.006f);
+        col = lerp(col, float4(0.012f, 0.020f, 0.028f, 0.98f), toolTipMask);
+        float toolTipEdge = Box(p, float2(0.35f, 0.565f), float2(0.83f, 0.568f));
+        col = lerp(col, float4(0.0f, 0.40f, 0.58f, 1.0f), toolTipEdge);
+    }
+
     return col;
 
 }

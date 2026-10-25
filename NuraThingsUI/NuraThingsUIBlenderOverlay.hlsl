@@ -136,6 +136,8 @@ float4 main(VSOut input) : SV_Target0
     uint keybindSelectedMacro = (uint)clamp(UIState[49] + 0.5f, 0.0f, 3.0f);
     uint keybindAction = (uint)clamp(UIState[50] + 0.5f, 1.0f, 21.0f);
     uint keybindArg = (uint)clamp(UIState[51] + 0.5f, 0.0f, 4.0f);
+    bool keybindActionListOpen = UIState[52] > 0.5f;
+    float keybindActionListScroll = floor(clamp(UIState[53], 0.0f, 13.0f) + 0.5f);
     float weightVGListScroll = clamp(UIState[44], 0.0f, 110.0f);
     float weightTarget = saturate(UIState[39]);
     int activeMaskSlot = UIState[18];
@@ -165,7 +167,7 @@ float4 main(VSOut input) : SV_Target0
     }
 
     // The tool bar is shared by every Mesh Editor tool.
-    float toolbar = RoundRect(p, float2(0.012f, 0.130f), float2(0.100f, 0.726f), 0.010f);
+    float toolbar = RoundRect(p, float2(0.012f, 0.130f), float2(0.100f, 0.792f), 0.010f);
     col = lerp(col, float4(0.020f, 0.024f, 0.030f, 0.94f), toolbar);
     if (Box(p, float2(0.012f, 0.140f), float2(0.100f, 0.205f)) > 0.5f) col = ToolButton(tool, 0u, hover);
     if (Box(p, float2(0.012f, 0.213f), float2(0.100f, 0.278f)) > 0.5f) col = ToolButton(tool, 1u, hover);
@@ -175,6 +177,11 @@ float4 main(VSOut input) : SV_Target0
     if (Box(p, float2(0.012f, 0.505f), float2(0.100f, 0.570f)) > 0.5f) col = ToolButton(tool, 5u, hover);
     if (Box(p, float2(0.012f, 0.578f), float2(0.100f, 0.643f)) > 0.5f) col = ToolButton(tool, 6u, hover);
     if (Box(p, float2(0.012f, 0.651f), float2(0.100f, 0.716f)) > 0.5f) col = ToolButton(tool, 7u, hover);
+    float weightsButton = RoundRect(p, float2(0.012f, 0.735f), float2(0.100f, 0.792f), 0.006f);
+    float4 weightsButtonColor = hover == 108u
+        ? float4(0.0f, 0.16f, 0.21f, 1.0f)
+        : (tool == 15u ? float4(0.0f, 0.13f, 0.18f, 1.0f) : float4(0.035f, 0.040f, 0.048f, 0.96f));
+    col = lerp(col, weightsButtonColor, weightsButton);
 
     if (weightPaint)
     {
@@ -325,7 +332,7 @@ float4 main(VSOut input) : SV_Target0
             col = hover == 220u ? float4(0.17f, 0.06f, 0.06f, 1.0f) : float4(0.075f, 0.040f, 0.045f, 1.0f);
     }
 
-    if (!weightPaint || maskPanelOpen)
+    if (weightPaint && maskPanelOpen)
     {
         // COMPACT NAMED MASKS PANEL. In Weight Paint, UIState[46] controls visibility.
         // Its hit IDs are routed independently of the selected Mesh Editor tool. — coordinates match NuraThingsUIInput.hlsl.
@@ -469,7 +476,7 @@ float4 main(VSOut input) : SV_Target0
     }
 
     // KeyBind Manager: independent panel, drawn above named masks.
-    float keyButton = RoundRect(p, float2(0.012f, 0.735f), float2(0.100f, 0.792f), 0.006f);
+    float keyButton = RoundRect(p, float2(0.012f, 0.804f), float2(0.100f, 0.861f), 0.006f);
     float4 keyButtonColor = (hover == 254u || keybindPanelOpen)
         ? float4(0.0f, 0.16f, 0.21f, 1.0f)
         : float4(0.035f, 0.040f, 0.048f, 0.96f);
@@ -503,12 +510,34 @@ float4 main(VSOut input) : SV_Target0
         float assign = RoundRect(p, float2(0.895f, 0.463f), float2(0.965f, 0.498f), 0.004f);
         col = lerp(col, hover == 384u ? float4(0.0f, 0.20f, 0.27f, 1.0f) : float4(0.035f, 0.070f, 0.060f, 0.98f), assign);
 
-        float actionMinus = RoundRect(p, float2(0.750f, 0.505f), float2(0.790f, 0.540f), 0.004f);
-        col = lerp(col, hover == 382u ? float4(0.0f, 0.19f, 0.25f, 1.0f) : float4(0.035f, 0.040f, 0.048f, 1.0f), actionMinus);
-        float actionPlus = RoundRect(p, float2(0.910f, 0.505f), float2(0.965f, 0.540f), 0.004f);
-        col = lerp(col, hover == 383u ? float4(0.0f, 0.19f, 0.25f, 1.0f) : float4(0.035f, 0.040f, 0.048f, 1.0f), actionPlus);
-        float actionField = RoundRect(p, float2(0.795f, 0.505f), float2(0.905f, 0.540f), 0.004f);
-        col = lerp(col, float4(0.030f, 0.050f, 0.060f, 1.0f), actionField);
+        float actionField = RoundRect(p, float2(0.750f, 0.505f), float2(0.965f, 0.540f), 0.004f);
+        float4 actionFieldColor = (hover == 382u || keybindActionListOpen)
+            ? float4(0.0f, 0.16f, 0.21f, 1.0f)
+            : float4(0.030f, 0.050f, 0.060f, 1.0f);
+        col = lerp(col, actionFieldColor, actionField);
+
+        if (keybindActionListOpen)
+        {
+            float actionListPanel = RoundRect(p, float2(0.746f, 0.174f), float2(0.968f, 0.447f), 0.006f);
+            col = lerp(col, float4(0.012f, 0.016f, 0.022f, 0.995f), actionListPanel);
+            [unroll]
+            for (uint actionRow = 0u; actionRow < 8u; ++actionRow)
+            {
+                float rowMinY = 0.180f + (float)actionRow * 0.033f;
+                float rowMaxY = rowMinY + 0.029f;
+                uint actionId = (uint)keybindActionListScroll + actionRow + 1u;
+                float rowMask = RoundRect(p, float2(0.750f, rowMinY), float2(0.950f, rowMaxY), 0.003f);
+                float4 rowColor = (hover == 400u + actionRow)
+                    ? float4(0.0f, 0.18f, 0.24f, 1.0f)
+                    : (actionId == keybindAction ? float4(0.0f, 0.13f, 0.18f, 0.99f) : float4(0.035f, 0.040f, 0.048f, 0.97f));
+                col = lerp(col, rowColor, rowMask);
+            }
+            float scrollTrack = RoundRect(p, float2(0.954f, 0.180f), float2(0.962f, 0.440f), 0.003f);
+            col = lerp(col, float4(0.045f, 0.055f, 0.065f, 1.0f), scrollTrack);
+            float scrollY = lerp(0.183f, 0.342f, keybindActionListScroll / 13.0f);
+            float scrollThumb = RoundRect(p, float2(0.954f, scrollY), float2(0.962f, scrollY + 0.095f), 0.003f);
+            col = lerp(col, float4(0.0f, 0.46f, 0.62f, 1.0f), scrollThumb);
+        }
 
         float argMinus = RoundRect(p, float2(0.750f, 0.545f), float2(0.790f, 0.580f), 0.004f);
         col = lerp(col, hover == 385u ? float4(0.0f, 0.19f, 0.25f, 1.0f) : float4(0.035f, 0.040f, 0.048f, 1.0f), argMinus);
@@ -581,6 +610,14 @@ float4 main(VSOut input) : SV_Target0
         col = lerp(col, float4(0.005f, 0.010f, 0.016f, 1.0f), centerShadow);
         float centerMark = BrushCenterMark(p, screen, 1.0f);
         col = lerp(col, float4(0.95f, 1.0f, 1.0f, 1.0f), centerMark);
+    }
+
+    if (hover >= 100u && hover <= 108u)
+    {
+        float tooltipPanel = RoundRect(p, float2(0.12f, 0.880f), float2(0.98f, 0.920f), 0.004f);
+        col = lerp(col, float4(0.010f, 0.016f, 0.023f, 0.97f), tooltipPanel);
+        float tooltipEdge = Box(p, float2(0.12f, 0.9185f), float2(0.98f, 0.920f));
+        col = lerp(col, float4(0.0f, 0.40f, 0.58f, 1.0f), tooltipEdge);
     }
 
     return col;

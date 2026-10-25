@@ -50,6 +50,7 @@ Texture1D<float4> IniParams : register(t120);
 #define WEIGHT_UI IniParams[116]
 #define CURRENT_MESH_TOOL IniParams[117].x
 #define WEIGHT_VG_LIST_SCROLL IniParams[118].x
+#define KEYBIND_ACTION_SCROLL IniParams[119].x
 
 #define WRITE_NAME(BASE, OFFSET) \
     MaskNames[(OFFSET) + 0]  = (uint)max(IniParams[(BASE) + 0].x, 0.0f); \
@@ -309,6 +310,9 @@ void main(uint3 id : SV_DispatchThreadID)
         UIState[49] = 0.0f; // Selected macro slot.
         UIState[50] = 1.0f; // Action selector.
         UIState[51] = 0.0f; // Action argument.
+        UIState[52] = 0.0f; // KeyBind action dropdown visibility.
+        UIState[53] = floor(clamp(KEYBIND_ACTION_SCROLL, 0.0f, 13.0f) + 0.5f);
+        UIState[54] = 0.0f; // Mouse over the action dropdown list.
 
     }
 
@@ -344,6 +348,8 @@ void main(uint3 id : SV_DispatchThreadID)
     uint keybindSelectedMacro = (uint)clamp(UIState[49] + 0.5f, 0.0f, 3.0f);
     uint keybindAction = (uint)clamp(UIState[50] + 0.5f, 1.0f, 21.0f);
     uint keybindArg = (uint)clamp(UIState[51] + 0.5f, 0.0f, 4.0f);
+    bool keybindActionListOpen = UIState[52] > 0.5f;
+    float keybindActionListScroll = floor(clamp(KEYBIND_ACTION_SCROLL, 0.0f, 13.0f) + 0.5f);
     float weightVGListScroll = floor(clamp(WEIGHT_VG_LIST_SCROLL, 0.0f, 110.0f) + 0.5f);
     uint currentMeshTool = (uint)clamp(CURRENT_MESH_TOOL + 0.5f, 0.0f, 15.0f);
     uint previousTool = tool;
@@ -388,7 +394,12 @@ void main(uint3 id : SV_DispatchThreadID)
             mirrorOpen = false;
         }
     }
-    if (tool != 15u) weightVGListOpen = false;
+    if (tool != 15u)
+    {
+        weightVGListOpen = false;
+        maskPanelOpen = false;
+    }
+    if (keybindPanelOpen) maskPanelOpen = false;
 
     // -------------------------------------------------------------------------
     // Jiggle System state. Each group occupies two IniParams rows beginning at 39:
@@ -920,14 +931,23 @@ void main(uint3 id : SV_DispatchThreadID)
             else if (InRect(p, float2(0.51f, 0.58f), float2(0.64f, 0.625f)))
                 hover = 341u;
         }
-        else if (InRect(p, float2(0.012f, 0.735f), float2(0.100f, 0.792f)))
+        else if (InRect(p, float2(0.012f, 0.804f), float2(0.100f, 0.861f)))
         {
             hover = 254u;
+        }
+        else if (InRect(p, float2(0.012f, 0.735f), float2(0.100f, 0.792f)))
+        {
+            hover = 108u;
         }
         else if (keybindPanelOpen && InRect(p, float2(0.735f, 0.125f), float2(0.980f, 0.710f)))
         {
             hover = 369u; // Consume clicks on the manager panel background.
-            if (InRect(p, float2(0.750f, 0.180f), float2(0.965f, 0.209f))) hover = 370u;
+            if (keybindActionListOpen && InRect(p, float2(0.750f, 0.180f), float2(0.965f, 0.444f)))
+            {
+                uint actionRow = (uint)clamp(floor((p.y - 0.180f) / 0.033f), 0.0f, 7.0f);
+                hover = 400u + actionRow;
+            }
+            else if (InRect(p, float2(0.750f, 0.180f), float2(0.965f, 0.209f))) hover = 370u;
             else if (InRect(p, float2(0.750f, 0.213f), float2(0.965f, 0.242f))) hover = 371u;
             else if (InRect(p, float2(0.750f, 0.246f), float2(0.965f, 0.275f))) hover = 372u;
             else if (InRect(p, float2(0.750f, 0.279f), float2(0.965f, 0.308f))) hover = 373u;
@@ -938,8 +958,7 @@ void main(uint3 id : SV_DispatchThreadID)
             else if (InRect(p, float2(0.750f, 0.463f), float2(0.820f, 0.498f))) hover = 380u;
             else if (InRect(p, float2(0.825f, 0.463f), float2(0.890f, 0.498f))) hover = 381u;
             else if (InRect(p, float2(0.895f, 0.463f), float2(0.965f, 0.498f))) hover = 384u;
-            else if (InRect(p, float2(0.750f, 0.505f), float2(0.790f, 0.540f))) hover = 382u;
-            else if (InRect(p, float2(0.910f, 0.505f), float2(0.965f, 0.540f))) hover = 383u;
+            else if (InRect(p, float2(0.750f, 0.505f), float2(0.965f, 0.540f))) hover = 382u;
             else if (InRect(p, float2(0.750f, 0.545f), float2(0.790f, 0.580f))) hover = 385u;
             else if (InRect(p, float2(0.910f, 0.545f), float2(0.965f, 0.580f))) hover = 386u;
             else if (InRect(p, float2(0.750f, 0.585f), float2(0.800f, 0.620f))) hover = 390u;
@@ -1118,6 +1137,7 @@ void main(uint3 id : SV_DispatchThreadID)
             else if (hover == 254u)
             {
                 keybindPanelOpen = !keybindPanelOpen;
+                keybindActionListOpen = false;
                 if (keybindPanelOpen)
                 {
                     maskPanelOpen = false;
@@ -1125,21 +1145,60 @@ void main(uint3 id : SV_DispatchThreadID)
                     weightVGListOpen = false; activeSlider = 0u;
                 }
             }
+            else if (hover >= 100u && hover <= 108u)
+            {
+                if (hover == 108u)
+                {
+                    tool = 15u;
+                    strength = saturate((weightStrength - 0.05f) / 0.95f);
+                    actualStrength = weightStrength;
+                }
+                else
+                {
+                    tool = hover - 100u;
+                    strength = GetStrengthUI(tool);
+                    actualStrength = GetStrengthDefault(tool);
+                }
+                activeSlider = 0u;
+                maskPanelOpen = false;
+                keybindPanelOpen = false;
+                keybindActionListOpen = false;
+                falloffOpen = false; weightModeOpen = false; mirrorOpen = false; weightVGListOpen = false;
+            }
+            else if (hover == 253u && tool == 15u)
+            {
+                maskPanelOpen = !maskPanelOpen;
+                if (maskPanelOpen)
+                {
+                    keybindPanelOpen = false;
+                    keybindActionListOpen = false;
+                }
+                falloffOpen = false; weightModeOpen = false; mirrorOpen = false;
+                weightVGListOpen = false; activeSlider = 0u;
+            }
             else if (keybindPanelOpen)
             {
-                if (hover >= 370u && hover <= 377u)
+                if (keybindActionListOpen)
+                {
+                    if (hover >= 400u && hover <= 407u)
+                    {
+                        keybindAction = (uint)clamp(keybindActionListScroll + (float)(hover - 400u) + 1.0f, 1.0f, 21.0f);
+                        keybindActionListOpen = false;
+                    }
+                    else
+                    {
+                        keybindActionListOpen = false;
+                    }
+                    activeSlider = 0u;
+                }
+                else if (hover >= 370u && hover <= 377u)
                 {
                     keybindSelectedSlot = hover - 370u;
                     activeSlider = 0u;
                 }
                 else if (hover == 382u)
                 {
-                    keybindAction = keybindAction <= 1u ? 21u : keybindAction - 1u;
-                    activeSlider = 0u;
-                }
-                else if (hover == 383u)
-                {
-                    keybindAction = keybindAction >= 21u ? 1u : keybindAction + 1u;
+                    keybindActionListOpen = !keybindActionListOpen;
                     activeSlider = 0u;
                 }
                 else if (hover == 385u)
@@ -1167,13 +1226,7 @@ void main(uint3 id : SV_DispatchThreadID)
                 // The mask panel is an independent UI surface; clicking it never changes
                 // Weight Paint's tool ID or weight mode. The shared INI dispatcher consumes
                 // the same mask action IDs as it does for the other Mesh Editor tools.
-                if (hover == 253u)
-                {
-                    maskPanelOpen = !maskPanelOpen;
-                    falloffOpen = false; weightModeOpen = false; mirrorOpen = false;
-                    weightVGListOpen = false; activeSlider = 0u;
-                }
-                else if (maskPanelOpen && hover >= 300u && hover <= 307u)
+                if (maskPanelOpen && hover >= 300u && hover <= 307u)
                 {
                     maskSlot = hover - 300u;
                     activeSlider = 0u;
@@ -1437,6 +1490,9 @@ void main(uint3 id : SV_DispatchThreadID)
     UIState[49] = (float)keybindSelectedMacro;
     UIState[50] = (float)keybindAction;
     UIState[51] = (float)keybindArg;
+    UIState[52] = keybindActionListOpen ? 1.0f : 0.0f;
+    UIState[53] = floor(clamp(keybindActionListScroll, 0.0f, 13.0f) + 0.5f);
+    UIState[54] = (keybindActionListOpen && keybindPanelOpen && InRect(p, float2(0.750f, 0.180f), float2(0.965f, 0.444f))) ? 1.0f : 0.0f;
 
     WRITE_NAME(80, 0);
     WRITE_NAME(84, 16);

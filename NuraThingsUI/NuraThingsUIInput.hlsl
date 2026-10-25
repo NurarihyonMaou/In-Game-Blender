@@ -43,8 +43,6 @@ Texture1D<float4> IniParams : register(t120);
 
 #define TOOL_MASK 7u
 
-#define TOOL_WEIGHT 15u
-
 #define UI_FALLOFF UIState[16]
 #define UI_FALLOFF_OPEN UIState[17]
 #define MASK_UI IniParams[38]
@@ -82,24 +80,37 @@ bool InRect(float2 p, float2 mn, float2 mx)
 }
 
 float GetStrengthDefault(uint tool)
+
 {
-    switch(tool){
-        case 0:
-        case 1:
-            return STRENGTH_SCULPT;
-        case 2:
-            return STRENGTH_SMOOTH;
-        case 3:
-            return STRENGTH_PINCH;
-        case 4:
-            return STRENGTH_CREASE;
-        case 5:
-            return STRENGTH_FLATTEN;
-        case 6:
-            return STRENGTH_SCALE;
-        default:
-            return STRENGTH_MASK;
-    }
+
+    if (tool <= 1u)
+
+        return STRENGTH_SCULPT;
+
+    else if (tool == 2u)
+
+        return STRENGTH_SMOOTH;
+
+    else if (tool == 3u)
+
+        return STRENGTH_PINCH;
+
+    else if (tool == 4u)
+
+        return STRENGTH_CREASE;
+
+    else if (tool == 5u)
+
+        return STRENGTH_FLATTEN;
+
+    else if (tool == 6u)
+
+        return STRENGTH_SCALE;
+
+    else
+
+        return STRENGTH_MASK;
+
 }
 
 float GetStrengthMin(uint tool)
@@ -284,7 +295,7 @@ void main(uint3 id : SV_DispatchThreadID)
         UIState[29] = 0.0f;
 
         UIState[37] = clamp(WEIGHT_UI.x, 0.0f, 117.0f);
-        UIState[38] = clamp(WEIGHT_UI.y, 0.0f, 2.0f);
+        UIState[38] = clamp(WEIGHT_UI.y, 0.0f, 4.0f);
         UIState[39] = saturate(WEIGHT_UI.z);
         UIState[40] = clamp(WEIGHT_UI.w, 0.05f, 1.0f);
         UIState[41] = 0.0f;
@@ -292,6 +303,12 @@ void main(uint3 id : SV_DispatchThreadID)
         UIState[43] = 0.0f;
         UIState[44] = floor(clamp(WEIGHT_VG_LIST_SCROLL, 0.0f, 110.0f) + 0.5f);
         UIState[45] = 0.0f;
+        UIState[46] = 0.0f; // Independent named-mask panel visibility.
+        UIState[47] = 0.0f; // KeyBind Manager panel visibility.
+        UIState[48] = 0.0f; // Selected keybind slot.
+        UIState[49] = 0.0f; // Selected macro slot.
+        UIState[50] = 1.0f; // Action selector.
+        UIState[51] = 0.0f; // Action argument.
 
     }
 
@@ -315,12 +332,18 @@ void main(uint3 id : SV_DispatchThreadID)
     bool falloffOpen = UI_FALLOFF_OPEN > 0.5f;
 
     float weightVG = clamp(WEIGHT_UI.x, 0.0f, 117.0f);
-    uint weightMode = (uint)clamp(WEIGHT_UI.y + 0.5f, 0.0f, 2.0f);
+    uint weightMode = (uint)clamp(WEIGHT_UI.y + 0.5f, 0.0f, 4.0f);
     float weightTarget = saturate(WEIGHT_UI.z);
     float weightStrength = clamp(WEIGHT_UI.w, 0.05f, 1.0f);
     bool weightModeOpen = UIState[41] > 0.5f;
     bool mirrorOpen = UIState[42] > 0.5f;
     bool weightVGListOpen = UIState[43] > 0.5f;
+    bool maskPanelOpen = UIState[46] > 0.5f;
+    bool keybindPanelOpen = UIState[47] > 0.5f;
+    uint keybindSelectedSlot = (uint)clamp(UIState[48] + 0.5f, 0.0f, 7.0f);
+    uint keybindSelectedMacro = (uint)clamp(UIState[49] + 0.5f, 0.0f, 3.0f);
+    uint keybindAction = (uint)clamp(UIState[50] + 0.5f, 1.0f, 21.0f);
+    uint keybindArg = (uint)clamp(UIState[51] + 0.5f, 0.0f, 4.0f);
     float weightVGListScroll = floor(clamp(WEIGHT_VG_LIST_SCROLL, 0.0f, 110.0f) + 0.5f);
     uint currentMeshTool = (uint)clamp(CURRENT_MESH_TOOL + 0.5f, 0.0f, 15.0f);
     uint previousTool = tool;
@@ -350,7 +373,7 @@ void main(uint3 id : SV_DispatchThreadID)
         if (tool == 15u)
         {
             weightVG = clamp(WEIGHT_UI.x, 0.0f, 117.0f);
-            weightMode = (uint)clamp(WEIGHT_UI.y + 0.5f, 0.0f, 2.0f);
+            weightMode = (uint)clamp(WEIGHT_UI.y + 0.5f, 0.0f, 4.0f);
             weightTarget = saturate(WEIGHT_UI.z);
             weightStrength = clamp(WEIGHT_UI.w, 0.05f, 1.0f);
             if (activeSlider != 51u)
@@ -722,12 +745,6 @@ void main(uint3 id : SV_DispatchThreadID)
                 else if (InRect(p, float2(0.50f, 0.610f), float2(0.74f, 0.650f))) hover = 522u;
                 else if (InRect(p, float2(0.50f, 0.675f), float2(0.74f, 0.715f))) hover = 523u;
                 else if (InRect(p, float2(0.50f, 0.740f), float2(0.74f, 0.780f))) hover = 524u;
-
-                else if (InRect(p, float2(0.35f, 0.480f), float2(0.495f, 0.520f))) hover = 560u;
-                else if (InRect(p, float2(0.35f, 0.545f), float2(0.495f, 0.585f))) hover = 561u;
-                else if (InRect(p, float2(0.35f, 0.610f), float2(0.495f, 0.650f))) hover = 562u;
-                else if (InRect(p, float2(0.35f, 0.675f), float2(0.495f, 0.715f))) hover = 563u;
-                else if (InRect(p, float2(0.35f, 0.740f), float2(0.495f, 0.780f))) hover = 564u;
             }
             else if (jiggleTab == 1u)
             {
@@ -738,10 +755,6 @@ void main(uint3 id : SV_DispatchThreadID)
                 else if (InRect(p, float2(0.50f, 0.690f), float2(0.575f, 0.735f))) hover = 530u;
                 else if (InRect(p, float2(0.585f, 0.690f), float2(0.660f, 0.735f))) hover = 531u;
                 else if (InRect(p, float2(0.670f, 0.690f), float2(0.745f, 0.735f))) hover = 532u;
-
-                 else if (InRect(p, float2(0.35f, 0.480f), float2(0.495f, 0.520f))) hover = 565u;
-                else if (InRect(p, float2(0.35f, 0.545f), float2(0.495f, 0.585f))) hover = 566u;
-                else if (InRect(p, float2(0.35f, 0.610f), float2(0.495f, 0.650f))) hover = 567u;
             }
             else
             {
@@ -753,7 +766,6 @@ void main(uint3 id : SV_DispatchThreadID)
                 else if (InRect(p, float2(0.365f, 0.635f), float2(0.505f, 0.685f))) hover = 543u;
                 else if (InRect(p, float2(0.515f, 0.635f), float2(0.655f, 0.685f))) hover = 544u;
                 else if (InRect(p, float2(0.665f, 0.635f), float2(0.815f, 0.685f))) hover = 545u;
-                else if (InRect(p, float2(0.35f, 0.480f), float2(0.495f, 0.520f))) hover = 568u;
             }
 
             if (click)
@@ -900,13 +912,46 @@ void main(uint3 id : SV_DispatchThreadID)
 
     else if (overlay)
     {
-        // Rename modal captures clicks until Save or Cancel.
+        // Rename modal remains modal. The keybind manager is a separate overlay panel.
         if (renameOpen)
         {
             if (InRect(p, float2(0.36f, 0.58f), float2(0.49f, 0.625f)))
                 hover = 340u;
             else if (InRect(p, float2(0.51f, 0.58f), float2(0.64f, 0.625f)))
                 hover = 341u;
+        }
+        else if (InRect(p, float2(0.012f, 0.735f), float2(0.100f, 0.792f)))
+        {
+            hover = 254u;
+        }
+        else if (keybindPanelOpen && InRect(p, float2(0.735f, 0.125f), float2(0.980f, 0.710f)))
+        {
+            hover = 369u; // Consume clicks on the manager panel background.
+            if (InRect(p, float2(0.750f, 0.180f), float2(0.965f, 0.209f))) hover = 370u;
+            else if (InRect(p, float2(0.750f, 0.213f), float2(0.965f, 0.242f))) hover = 371u;
+            else if (InRect(p, float2(0.750f, 0.246f), float2(0.965f, 0.275f))) hover = 372u;
+            else if (InRect(p, float2(0.750f, 0.279f), float2(0.965f, 0.308f))) hover = 373u;
+            else if (InRect(p, float2(0.750f, 0.312f), float2(0.965f, 0.341f))) hover = 374u;
+            else if (InRect(p, float2(0.750f, 0.345f), float2(0.965f, 0.374f))) hover = 375u;
+            else if (InRect(p, float2(0.750f, 0.378f), float2(0.965f, 0.407f))) hover = 376u;
+            else if (InRect(p, float2(0.750f, 0.411f), float2(0.965f, 0.440f))) hover = 377u;
+            else if (InRect(p, float2(0.750f, 0.463f), float2(0.820f, 0.498f))) hover = 380u;
+            else if (InRect(p, float2(0.825f, 0.463f), float2(0.890f, 0.498f))) hover = 381u;
+            else if (InRect(p, float2(0.895f, 0.463f), float2(0.965f, 0.498f))) hover = 384u;
+            else if (InRect(p, float2(0.750f, 0.505f), float2(0.790f, 0.540f))) hover = 382u;
+            else if (InRect(p, float2(0.910f, 0.505f), float2(0.965f, 0.540f))) hover = 383u;
+            else if (InRect(p, float2(0.750f, 0.545f), float2(0.790f, 0.580f))) hover = 385u;
+            else if (InRect(p, float2(0.910f, 0.545f), float2(0.965f, 0.580f))) hover = 386u;
+            else if (InRect(p, float2(0.750f, 0.585f), float2(0.800f, 0.620f))) hover = 390u;
+            else if (InRect(p, float2(0.805f, 0.585f), float2(0.850f, 0.620f))) hover = 391u;
+            else if (InRect(p, float2(0.855f, 0.585f), float2(0.900f, 0.620f))) hover = 392u;
+            else if (InRect(p, float2(0.905f, 0.585f), float2(0.965f, 0.620f))) hover = 393u;
+            else if (InRect(p, float2(0.750f, 0.625f), float2(0.800f, 0.660f))) hover = 394u;
+            else if (InRect(p, float2(0.805f, 0.625f), float2(0.850f, 0.660f))) hover = 395u;
+            else if (InRect(p, float2(0.855f, 0.625f), float2(0.900f, 0.660f))) hover = 396u;
+            else if (InRect(p, float2(0.905f, 0.625f), float2(0.965f, 0.660f))) hover = 397u;
+            else if (InRect(p, float2(0.750f, 0.665f), float2(0.850f, 0.700f))) hover = 398u;
+            else if (InRect(p, float2(0.860f, 0.665f), float2(0.965f, 0.700f))) hover = 399u;
         }
         else if (tool == 15u)
         {
@@ -926,11 +971,55 @@ void main(uint3 id : SV_DispatchThreadID)
             else if (weightModeOpen && InRect(p, float2(0.640f, 0.084f), float2(0.770f, 0.118f))) hover = 243u;
             else if (weightModeOpen && InRect(p, float2(0.640f, 0.120f), float2(0.770f, 0.154f))) hover = 244u;
             else if (weightModeOpen && InRect(p, float2(0.640f, 0.156f), float2(0.770f, 0.190f))) hover = 245u;
+            else if (weightModeOpen && InRect(p, float2(0.640f, 0.192f), float2(0.770f, 0.226f))) hover = 251u;
+            else if (weightModeOpen && InRect(p, float2(0.640f, 0.228f), float2(0.770f, 0.262f))) hover = 252u;
 
             else if (mirrorOpen && InRect(p, float2(0.790f, 0.084f), float2(0.960f, 0.118f))) hover = 247u;
             else if (mirrorOpen && InRect(p, float2(0.790f, 0.120f), float2(0.960f, 0.154f))) hover = 248u;
             else if (mirrorOpen && InRect(p, float2(0.790f, 0.156f), float2(0.960f, 0.190f))) hover = 249u;
             else if (mirrorOpen && InRect(p, float2(0.790f, 0.192f), float2(0.960f, 0.226f))) hover = 250u;
+
+            // Independent named-mask panel toggle. This occupies the spare row below MIRROR.
+            // When the MIRROR popup is open its options above take priority.
+            else if (!mirrorOpen && InRect(p, float2(0.790f, 0.084f), float2(0.960f, 0.118f))) hover = 253u;
+
+            // Named-mask panel is routable while Weight Paint (tool 15) remains active.
+            // The panel background itself receives a hit ID so blank-panel clicks cannot
+            // fall through to an underlying control.
+            else if (maskPanelOpen && InRect(p, float2(0.760f, 0.140f), float2(0.783f, 0.183f))) hover = 330u;
+            else if (maskPanelOpen && InRect(p, float2(0.787f, 0.140f), float2(0.874f, 0.183f))) hover = 300u;
+            else if (maskPanelOpen && InRect(p, float2(0.880f, 0.140f), float2(0.960f, 0.183f))) hover = 320u;
+            else if (maskPanelOpen && InRect(p, float2(0.760f, 0.187f), float2(0.783f, 0.230f))) hover = 331u;
+            else if (maskPanelOpen && InRect(p, float2(0.787f, 0.187f), float2(0.874f, 0.230f))) hover = 301u;
+            else if (maskPanelOpen && InRect(p, float2(0.880f, 0.187f), float2(0.960f, 0.230f))) hover = 321u;
+            else if (maskPanelOpen && InRect(p, float2(0.760f, 0.234f), float2(0.783f, 0.277f))) hover = 332u;
+            else if (maskPanelOpen && InRect(p, float2(0.787f, 0.234f), float2(0.874f, 0.277f))) hover = 302u;
+            else if (maskPanelOpen && InRect(p, float2(0.880f, 0.234f), float2(0.960f, 0.277f))) hover = 322u;
+            else if (maskPanelOpen && InRect(p, float2(0.760f, 0.281f), float2(0.783f, 0.324f))) hover = 333u;
+            else if (maskPanelOpen && InRect(p, float2(0.787f, 0.281f), float2(0.874f, 0.324f))) hover = 303u;
+            else if (maskPanelOpen && InRect(p, float2(0.880f, 0.281f), float2(0.960f, 0.324f))) hover = 323u;
+            else if (maskPanelOpen && InRect(p, float2(0.760f, 0.328f), float2(0.783f, 0.371f))) hover = 334u;
+            else if (maskPanelOpen && InRect(p, float2(0.787f, 0.328f), float2(0.874f, 0.371f))) hover = 304u;
+            else if (maskPanelOpen && InRect(p, float2(0.880f, 0.328f), float2(0.960f, 0.371f))) hover = 324u;
+            else if (maskPanelOpen && InRect(p, float2(0.760f, 0.375f), float2(0.783f, 0.418f))) hover = 335u;
+            else if (maskPanelOpen && InRect(p, float2(0.787f, 0.375f), float2(0.874f, 0.418f))) hover = 305u;
+            else if (maskPanelOpen && InRect(p, float2(0.880f, 0.375f), float2(0.960f, 0.418f))) hover = 325u;
+            else if (maskPanelOpen && InRect(p, float2(0.760f, 0.422f), float2(0.783f, 0.465f))) hover = 336u;
+            else if (maskPanelOpen && InRect(p, float2(0.787f, 0.422f), float2(0.874f, 0.465f))) hover = 306u;
+            else if (maskPanelOpen && InRect(p, float2(0.880f, 0.422f), float2(0.960f, 0.465f))) hover = 326u;
+            else if (maskPanelOpen && InRect(p, float2(0.760f, 0.469f), float2(0.783f, 0.512f))) hover = 337u;
+            else if (maskPanelOpen && InRect(p, float2(0.787f, 0.469f), float2(0.874f, 0.512f))) hover = 307u;
+            else if (maskPanelOpen && InRect(p, float2(0.880f, 0.469f), float2(0.960f, 0.512f))) hover = 327u;
+            else if (maskPanelOpen && InRect(p, float2(0.760f, 0.555f), float2(0.805f, 0.593f))) hover = 350u;
+            else if (maskPanelOpen && InRect(p, float2(0.810f, 0.555f), float2(0.855f, 0.593f))) hover = 351u;
+            else if (maskPanelOpen && InRect(p, float2(0.860f, 0.555f), float2(0.905f, 0.593f))) hover = 352u;
+            else if (maskPanelOpen && InRect(p, float2(0.910f, 0.555f), float2(0.960f, 0.593f))) hover = 353u;
+            else if (maskPanelOpen && InRect(p, float2(0.768f, 0.600f), float2(0.828f, 0.638f))) hover = 354u;
+            else if (maskPanelOpen && InRect(p, float2(0.833f, 0.600f), float2(0.893f, 0.638f))) hover = 355u;
+            else if (maskPanelOpen && InRect(p, float2(0.898f, 0.600f), float2(0.960f, 0.638f))) hover = 356u;
+            else if (maskPanelOpen && InRect(p, float2(0.780f, 0.516f), float2(0.860f, 0.548f))) hover = 361u;
+            else if (maskPanelOpen && InRect(p, float2(0.885f, 0.516f), float2(0.960f, 0.548f))) hover = 362u;
+            else if (maskPanelOpen && InRect(p, float2(0.750f, 0.125f), float2(0.970f, 0.665f))) hover = 359u;
 
             // One selector button opens the vertically scrollable VG ID list.
             else if (InRect(p, float2(0.120f, 0.087f), float2(0.300f, 0.120f))) hover = 240u;
@@ -952,7 +1041,6 @@ void main(uint3 id : SV_DispatchThreadID)
             else if (InRect(p, float2(0.012f, 0.505f), float2(0.100f, 0.570f))) hover = 105u;
             else if (InRect(p, float2(0.012f, 0.578f), float2(0.100f, 0.643f))) hover = 106u;
             else if (InRect(p, float2(0.012f, 0.651f), float2(0.100f, 0.716f))) hover = 107u;
-            else if (InRect(p, float2(0.012f, 0.724), float2(0.100f, 0.789f))) hover = 115u;
         }
         else
         {
@@ -1005,7 +1093,6 @@ void main(uint3 id : SV_DispatchThreadID)
             else if (InRect(p, float2(0.012f, 0.505f), float2(0.100f, 0.570f))) hover = 105u;
             else if (InRect(p, float2(0.012f, 0.578f), float2(0.100f, 0.643f))) hover = 106u;
             else if (InRect(p, float2(0.012f, 0.651f), float2(0.100f, 0.716f))) hover = 107u;
-            else if (InRect(p, float2(0.012f, 0.724), float2(0.100f, 0.789f))) hover = 115u;
             else if (InRect(p, float2(0.16f, 0.039f), float2(0.245f, 0.069f))) hover = 200u;
             else if (InRect(p, float2(+0.3629f, +0.0405f), float2(+0.4379f, +0.0705f))) hover = 201u;
             else if (InRect(p, float2(+0.5600f, +0.0414f), float2(+0.6600f, +0.0714f))) hover = 230u;
@@ -1028,9 +1115,86 @@ void main(uint3 id : SV_DispatchThreadID)
                     activeSlider = 0u;
                 }
             }
+            else if (hover == 254u)
+            {
+                keybindPanelOpen = !keybindPanelOpen;
+                if (keybindPanelOpen)
+                {
+                    maskPanelOpen = false;
+                    falloffOpen = false; weightModeOpen = false; mirrorOpen = false;
+                    weightVGListOpen = false; activeSlider = 0u;
+                }
+            }
+            else if (keybindPanelOpen)
+            {
+                if (hover >= 370u && hover <= 377u)
+                {
+                    keybindSelectedSlot = hover - 370u;
+                    activeSlider = 0u;
+                }
+                else if (hover == 382u)
+                {
+                    keybindAction = keybindAction <= 1u ? 21u : keybindAction - 1u;
+                    activeSlider = 0u;
+                }
+                else if (hover == 383u)
+                {
+                    keybindAction = keybindAction >= 21u ? 1u : keybindAction + 1u;
+                    activeSlider = 0u;
+                }
+                else if (hover == 385u)
+                {
+                    keybindArg = keybindArg == 0u ? 4u : keybindArg - 1u;
+                    activeSlider = 0u;
+                }
+                else if (hover == 386u)
+                {
+                    keybindArg = keybindArg >= 4u ? 0u : keybindArg + 1u;
+                    activeSlider = 0u;
+                }
+                else if (hover >= 390u && hover <= 393u)
+                {
+                    keybindSelectedMacro = hover - 390u;
+                    activeSlider = 0u;
+                }
+                else
+                {
+                    activeSlider = 0u;
+                }
+            }
             else if (tool == 15u)
             {
-                if (hover >= 260u && hover <= 267u)
+                // The mask panel is an independent UI surface; clicking it never changes
+                // Weight Paint's tool ID or weight mode. The shared INI dispatcher consumes
+                // the same mask action IDs as it does for the other Mesh Editor tools.
+                if (hover == 253u)
+                {
+                    maskPanelOpen = !maskPanelOpen;
+                    falloffOpen = false; weightModeOpen = false; mirrorOpen = false;
+                    weightVGListOpen = false; activeSlider = 0u;
+                }
+                else if (maskPanelOpen && hover >= 300u && hover <= 307u)
+                {
+                    maskSlot = hover - 300u;
+                    activeSlider = 0u;
+                }
+                else if (maskPanelOpen && hover >= 320u && hover <= 327u)
+                {
+                    renameSlot = hover - 320u;
+                    renameOpen = true;
+                    activeSlider = 0u;
+                    falloffOpen = false; weightModeOpen = false; mirrorOpen = false;
+                    weightVGListOpen = false;
+                }
+                else if (maskPanelOpen && ((hover >= 330u && hover <= 337u) ||
+                                           (hover >= 350u && hover <= 356u) ||
+                                           hover == 359u || hover == 361u || hover == 362u))
+                {
+                    // Selection, preview toggles and mask operations are dispatched by INI.
+                    // Keep the mask panel open; do not retarget or start a weight operation.
+                    activeSlider = 0u;
+                }
+                else if (hover >= 260u && hover <= 267u)
                 {
                     weightVG = clamp(floor(weightVGListScroll + (float)(hover - 260u) + 0.5f), 0.0f, 117.0f);
                     weightVGListOpen = false;
@@ -1045,6 +1209,14 @@ void main(uint3 id : SV_DispatchThreadID)
                 else if (hover >= 243u && hover <= 245u)
                 {
                     weightMode = hover - 243u;
+                    weightModeOpen = false;
+                    falloffOpen = false;
+                    mirrorOpen = false;
+                    activeSlider = 0u;
+                }
+                else if (hover == 251u || hover == 252u)
+                {
+                    weightMode = hover == 251u ? 3u : 4u;
                     weightModeOpen = false;
                     falloffOpen = false;
                     mirrorOpen = false;
@@ -1085,9 +1257,9 @@ void main(uint3 id : SV_DispatchThreadID)
                 else if (hover == 201u) { activeSlider = 51u; falloffOpen = false; weightModeOpen = false; mirrorOpen = false; }
                 else if (hover == 202u) { activeSlider = 52u; falloffOpen = false; weightModeOpen = false; mirrorOpen = false; }
                 else if (hover == 230u) { falloffOpen = !falloffOpen; weightModeOpen = false; mirrorOpen = false; weightVGListOpen = false; activeSlider = 0u; }
-                else if (hover == 242u) { weightModeOpen = !weightModeOpen; falloffOpen = false; mirrorOpen = false; weightVGListOpen = false; activeSlider = 0u; }
-                else if (hover == 246u) { mirrorOpen = !mirrorOpen; falloffOpen = false; weightModeOpen = false; weightVGListOpen = false; activeSlider = 0u; }
-                else if (hover >= 100u && hover <= 115u)
+                else if (hover == 242u) { weightModeOpen = !weightModeOpen; if (weightModeOpen) maskPanelOpen = false; falloffOpen = false; mirrorOpen = false; weightVGListOpen = false; activeSlider = 0u; }
+                else if (hover == 246u) { mirrorOpen = !mirrorOpen; if (mirrorOpen) maskPanelOpen = false; falloffOpen = false; weightModeOpen = false; weightVGListOpen = false; activeSlider = 0u; }
+                else if (hover >= 100u && hover <= 107u)
                 {
                     tool = hover - 100u;
                     activeSlider = 0u;
@@ -1121,7 +1293,7 @@ void main(uint3 id : SV_DispatchThreadID)
                     falloffOpen = false;
                     activeSlider = 0u;
                 }
-                else if (hover >= 100u && hover <= 115u)
+                else if (hover >= 100u && hover <= 107u)
                 {
                     tool = hover - 100u;
                     activeSlider = 0u;
@@ -1251,7 +1423,7 @@ void main(uint3 id : SV_DispatchThreadID)
     UIState[36] = jiggleEdgeFalloff;
 
     UIState[37] = clamp(weightVG, 0.0f, 117.0f);
-    UIState[38] = (float)clamp(weightMode, 0u, 2u);
+    UIState[38] = (float)clamp(weightMode, 0u, 4u);
     UIState[39] = saturate(weightTarget);
     UIState[40] = clamp(weightStrength, 0.05f, 1.0f);
     UIState[41] = weightModeOpen ? 1.0f : 0.0f;
@@ -1259,6 +1431,12 @@ void main(uint3 id : SV_DispatchThreadID)
     UIState[43] = weightVGListOpen ? 1.0f : 0.0f;
     UIState[44] = floor(clamp(weightVGListScroll, 0.0f, 110.0f) + 0.5f);
     UIState[45] = (weightVGListOpen && InRect(p, float2(0.120f, 0.126f), float2(0.300f, 0.404f))) ? 1.0f : 0.0f;
+    UIState[46] = maskPanelOpen ? 1.0f : 0.0f;
+    UIState[47] = keybindPanelOpen ? 1.0f : 0.0f;
+    UIState[48] = (float)keybindSelectedSlot;
+    UIState[49] = (float)keybindSelectedMacro;
+    UIState[50] = (float)keybindAction;
+    UIState[51] = (float)keybindArg;
 
     WRITE_NAME(80, 0);
     WRITE_NAME(84, 16);

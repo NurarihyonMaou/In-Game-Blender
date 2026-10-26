@@ -609,6 +609,29 @@ float4 main(VSOut input) : SV_Target0
         }
 
         // =========================================================================
+        // JIGGLE TOOLTIPS
+        // =========================================================================
+        // The footer occupies the unused strip below the controls, so descriptions
+        // never cover the sliders or preset buttons. Text is rendered by the
+        // existing MSDF text path in NuraThingsUI_Integration.ini.
+        bool jiggleTooltipHover =
+               (hover >= 500u && hover <= 507u)
+            || (hover >= 510u && hover <= 515u)
+            || (hover >= 520u && hover <= 528u)
+            || (hover >= 530u && hover <= 532u)
+            || (hover >= 540u && hover <= 545u)
+            || (hover >= 560u && hover <= 568u);
+
+        if (page == 1u && jiggleTooltipHover)
+        {
+            if (Box(p, float2(0.35f, 0.795f), float2(0.83f, 0.845f)) > 0.5f)
+                col = float4(0.018f, 0.026f, 0.034f, 1.0f);
+
+            if (Box(p, float2(0.35f, 0.795f), float2(0.83f, 0.800f)) > 0.5f)
+                col = float4(0.0f, 0.48f, 0.64f, 1.0f);
+        }
+
+        // =========================================================================
         // HOVER
         // =========================================================================
         if (hover == 10u && Box(p, float2(0.17f, 0.23f), float2(0.32f, 0.31f)) > 0.5f)

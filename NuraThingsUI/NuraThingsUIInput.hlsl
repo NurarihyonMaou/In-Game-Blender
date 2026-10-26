@@ -51,6 +51,7 @@ Texture1D<float4> IniParams : register(t120);
 #define CURRENT_MESH_TOOL IniParams[117].x
 #define WEIGHT_VG_LIST_SCROLL IniParams[118].x
 #define KEYBIND_ACTION_SCROLL IniParams[119].x
+#define KEYBIND_ACTION_LIST_FORCE_OPEN IniParams[119].y
 
 #define WRITE_NAME(BASE, OFFSET) \
     MaskNames[(OFFSET) + 0]  = (uint)max(IniParams[(BASE) + 0].x, 0.0f); \
@@ -348,7 +349,7 @@ void main(uint3 id : SV_DispatchThreadID)
     uint keybindSelectedMacro = (uint)clamp(UIState[49] + 0.5f, 0.0f, 3.0f);
     uint keybindAction = (uint)clamp(UIState[50] + 0.5f, 1.0f, 21.0f);
     uint keybindArg = (uint)clamp(UIState[51] + 0.5f, 0.0f, 4.0f);
-    bool keybindActionListOpen = UIState[52] > 0.5f;
+    bool keybindActionListOpen = UIState[52] > 0.5f || KEYBIND_ACTION_LIST_FORCE_OPEN > 0.5f;
     float keybindActionListScroll = floor(clamp(KEYBIND_ACTION_SCROLL, 0.0f, 13.0f) + 0.5f);
     float weightVGListScroll = floor(clamp(WEIGHT_VG_LIST_SCROLL, 0.0f, 110.0f) + 0.5f);
     uint currentMeshTool = (uint)clamp(CURRENT_MESH_TOOL + 0.5f, 0.0f, 15.0f);
@@ -750,12 +751,18 @@ void main(uint3 id : SV_DispatchThreadID)
 
             if (jiggleTab == 0u)
             {
-                // Basic spring settings.
+                // Basic spring settings. Separate label IDs are hover-only so
+                // clicking a label cannot accidentally start dragging its slider.
                 if (InRect(p, float2(0.50f, 0.480f), float2(0.74f, 0.520f))) hover = 520u;
                 else if (InRect(p, float2(0.50f, 0.545f), float2(0.74f, 0.585f))) hover = 521u;
                 else if (InRect(p, float2(0.50f, 0.610f), float2(0.74f, 0.650f))) hover = 522u;
                 else if (InRect(p, float2(0.50f, 0.675f), float2(0.74f, 0.715f))) hover = 523u;
                 else if (InRect(p, float2(0.50f, 0.740f), float2(0.74f, 0.780f))) hover = 524u;
+                else if (InRect(p, float2(0.35f, 0.480f), float2(0.495f, 0.520f))) hover = 560u;
+                else if (InRect(p, float2(0.35f, 0.545f), float2(0.495f, 0.585f))) hover = 561u;
+                else if (InRect(p, float2(0.35f, 0.610f), float2(0.495f, 0.650f))) hover = 562u;
+                else if (InRect(p, float2(0.35f, 0.675f), float2(0.495f, 0.715f))) hover = 563u;
+                else if (InRect(p, float2(0.35f, 0.740f), float2(0.495f, 0.780f))) hover = 564u;
             }
             else if (jiggleTab == 1u)
             {
@@ -766,6 +773,9 @@ void main(uint3 id : SV_DispatchThreadID)
                 else if (InRect(p, float2(0.50f, 0.690f), float2(0.575f, 0.735f))) hover = 530u;
                 else if (InRect(p, float2(0.585f, 0.690f), float2(0.660f, 0.735f))) hover = 531u;
                 else if (InRect(p, float2(0.670f, 0.690f), float2(0.745f, 0.735f))) hover = 532u;
+                else if (InRect(p, float2(0.35f, 0.480f), float2(0.495f, 0.520f))) hover = 565u;
+                else if (InRect(p, float2(0.35f, 0.545f), float2(0.495f, 0.585f))) hover = 566u;
+                else if (InRect(p, float2(0.35f, 0.610f), float2(0.495f, 0.650f))) hover = 567u;
             }
             else
             {
@@ -777,6 +787,7 @@ void main(uint3 id : SV_DispatchThreadID)
                 else if (InRect(p, float2(0.365f, 0.635f), float2(0.505f, 0.685f))) hover = 543u;
                 else if (InRect(p, float2(0.515f, 0.635f), float2(0.655f, 0.685f))) hover = 544u;
                 else if (InRect(p, float2(0.665f, 0.635f), float2(0.815f, 0.685f))) hover = 545u;
+                else if (InRect(p, float2(0.35f, 0.480f), float2(0.495f, 0.520f))) hover = 568u;
             }
 
             if (click)

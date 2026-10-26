@@ -39,6 +39,7 @@ Buffer<float> ProtectionMask : register(t1);
 StructuredBuffer<BlendBuf> OriginalBlend : register(t2);
 Buffer<uint> WeightAdjacency : register(t3);
 Buffer<float> WeightSnapshot : register(t4);
+Buffer<float4> DabHistory : register(t5);
 RWStructuredBuffer<BlendBuf> EditableBlend : register(u0);
 RWBuffer<float4> EditorState : register(u1);
 Texture1D<float4> IniParams : register(t120);
@@ -47,6 +48,7 @@ Texture1D<float4> IniParams : register(t120);
 #define PAINT_EXT      IniParams[41]
 #define REPLAY_BRUSH   IniParams[42]
 #define GRADIENT_END   IniParams[43]
+#define REPLAY_DAB_INDEX IniParams[44].x
 #define MIRROR_PARAMS  IniParams[36]
 
 #define MAX_WEIGHT_NEIGHBORS 32u
@@ -261,10 +263,10 @@ void NormalizeWeights(inout float4 weights, int4 indices, uint selectedSlot, uin
 
         otherTotal = 0.0f;
         [unroll]
-        for (uint k = 0u; k < 4u; ++k)
+        for (uint k2 = 0u; k2 < 4u; ++k2)
         {
-            if (k != selectedSlot)
-                otherTotal += GetFloat4Component(weights, k);
+            if (k2 != selectedSlot)
+                otherTotal += GetFloat4Component(weights, k2);
         }
     }
 
@@ -274,10 +276,10 @@ void NormalizeWeights(inout float4 weights, int4 indices, uint selectedSlot, uin
         float scale = remainingWeight / otherTotal;
 
         [unroll]
-        for (uint k = 0u; k < 4u; ++k)
+        for (uint k3 = 0u; k3 < 4u; ++k3)
         {
             if (k != selectedSlot)
-                SetFloat4Component(weights, k, GetFloat4Component(weights, k) * scale);
+                SetFloat4Component(weights, k3, GetFloat4Component(weights, k3) * scale);
         }
 
         SetFloat4Component(weights, selectedSlot, selectedWeight);
@@ -550,8 +552,10 @@ void main(uint3 dispatchThreadID : SV_DispatchThreadID)
 
     if (IsReplay())
     {
-        brushPos = REPLAY_BRUSH.xyz;
-        brushValid = REPLAY_BRUSH.w > 0.5f;
+        uint dabIndex = (uint)max(REPLAY_DAB_INDEX + 0.5f, 0.0f);
+        float4 dabRecord = DabHistory[dabIndex];
+        brushPos = dabRecord.xyz;
+        brushValid = dabRecord.w > 0.5f;
     }
     else
     {

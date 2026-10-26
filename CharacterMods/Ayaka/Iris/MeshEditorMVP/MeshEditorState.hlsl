@@ -108,7 +108,7 @@ void main(uint3 id : SV_DispatchThreadID)
             s8.xy = CURSOR.xy;
 
             float2 totalDeltaPx = CURSOR.xy - s1.xy;
-            s4.xyz = s2.xyz * totalDeltaPx.x - s3.xyz * totalDeltaPx.y; // Screen Y is inverted relative to the local drag basis.
+            s4.xyz = s2.xyz * totalDeltaPx.x + s3.xyz * totalDeltaPx.y;
 
             if (hoverValid && hoverSurfaceValid)
             {

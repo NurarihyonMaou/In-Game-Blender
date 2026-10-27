@@ -1,4 +1,5 @@
 Buffer<float> UIState : register(t0);
+Buffer<float> NuraUIModuleWidgets : register(t1);
 
 Texture1D<float4> IniParams : register(t120);
 
@@ -170,6 +171,7 @@ float4 main(VSOut input) : SV_Target0
     uint mirrorAxis = (uint)max(UIState[6] + 0.5f, 0.0f);
 
     uint activeSlider = (uint)max(UIState[7] + 0.5f, 0.0f);
+    uint selectedModuleOneBased = (uint)max(UIState[55] + 0.5f, 0.0f);
 
     float radius = UIState[8];
 
@@ -264,6 +266,14 @@ float4 main(VSOut input) : SV_Target0
         if (Box(p, float2(0.17f, 0.68f), float2(0.32f, 0.76f)) > 0.5f)
 
             col = page == 5u
+
+                ? float4(0.0f, 0.10f, 0.14f, 1.0f)
+
+                : float4(0.025f, 0.030f, 0.040f, 1.0f);
+
+        if (Box(p, float2(0.17f, 0.77f), float2(0.32f, 0.85f)) > 0.5f)
+
+            col = (page == 6u || page == 7u)
 
                 ? float4(0.0f, 0.10f, 0.14f, 1.0f)
 
@@ -609,6 +619,131 @@ float4 main(VSOut input) : SV_Target0
         }
 
         // =========================================================================
+        // DROP-IN MODULE DIRECTORY (page 6)
+        // Each module draws its own row and details through its own Module.ini.
+        // =========================================================================
+        if (page == 6u)
+        {
+            if (Box(p, float2(0.35f, 0.205f), float2(0.83f, 0.85f)) > 0.5f)
+                col = float4(0.035f, 0.045f, 0.055f, 1.0f);
+            if (Box(p, float2(0.345f, 0.220f), float2(0.575f, 0.825f)) > 0.5f)
+                col = float4(0.018f, 0.022f, 0.030f, 1.0f);
+            if (Box(p, float2(0.585f, 0.220f), float2(0.830f, 0.825f)) > 0.5f)
+                col = float4(0.018f, 0.022f, 0.030f, 1.0f);
+            if (Box(p, float2(0.345f, 0.220f), float2(0.575f, 0.225f)) > 0.5f ||
+                Box(p, float2(0.585f, 0.220f), float2(0.830f, 0.225f)) > 0.5f)
+                col = float4(0.0f, 0.45f, 0.65f, 1.0f);
+            if (selectedModuleOneBased > 0u && Box(p, float2(0.615f, 0.680f), float2(0.800f, 0.735f)) > 0.5f)
+                col = ButtonColor(false, hover == 700u);
+        }
+
+        // Generic module view: module-owned widget descriptors are rendered by Core.
+        // A module may add further artwork/text from its own Module.ini/HLSL.
+        if (page == 7u && selectedModuleOneBased > 0u && selectedModuleOneBased <= 32u)
+        {
+            if (Box(p, float2(0.35f, 0.205f), float2(0.83f, 0.85f)) > 0.5f)
+                col = float4(0.035f, 0.045f, 0.055f, 1.0f);
+            if (Box(p, float2(0.355f, 0.215f), float2(0.455f, 0.265f)) > 0.5f)
+                col = ButtonColor(false, hover == 701u);
+            if (Box(p, float2(0.365f, 0.285f), float2(0.815f, 0.290f)) > 0.5f)
+                col = float4(0.0f, 0.45f, 0.65f, 1.0f);
+
+            uint moduleSlot = selectedModuleOneBased - 1u;
+            [loop]
+            for (uint widget = 0u; widget < 8u; ++widget)
+            {
+                uint base = (moduleSlot * 8u + widget) * 8u;
+                uint widgetType = (uint)max(round(NuraUIModuleWidgets[base]), 0.0f);
+                if (widgetType == 0u) continue;
+
+                float2 mn = float2(NuraUIModuleWidgets[base + 1u], NuraUIModuleWidgets[base + 2u]);
+                float2 mx = float2(NuraUIModuleWidgets[base + 3u], NuraUIModuleWidgets[base + 4u]);
+                float value = NuraUIModuleWidgets[base + 5u];
+                bool widgetHovered = hover == 800u + widget;
+
+                if (widgetType == 1u)
+                {
+                    float range = max(NuraUIModuleWidgets[base + 7u] - NuraUIModuleWidgets[base + 6u], 0.0001f);
+                    float t = saturate((value - NuraUIModuleWidgets[base + 6u]) / range);
+                    float midY = (mn.y + mx.y) * 0.5f;
+                    float trackHalfHeight = max((mx.y - mn.y) * 0.17f, 0.003f);
+                    float knobX = lerp(mn.x, mx.x, t);
+                    float track = RoundRect(p, float2(mn.x, midY - trackHalfHeight), float2(mx.x, midY + trackHalfHeight), 0.004f);
+                    col = lerp(col, float4(0.015f, 0.024f, 0.032f, 1.0f), track);
+                    float fill = RoundRect(p, float2(mn.x, midY - trackHalfHeight), float2(knobX, midY + trackHalfHeight), 0.004f);
+                    bool sliderActive = widgetHovered || activeSlider == 800u + widget;
+                    float fillGreen = sliderActive ? 0.64f : 0.42f;
+                    col = lerp(col, float4(0.0f, fillGreen, 0.58f, 1.0f), fill);
+                    float knob = Circle(p, float2(knobX, midY), sliderActive ? 0.012f : 0.009f);
+                    col = lerp(col, float4(0.0f, 0.65f, 0.86f, 1.0f), knob);
+                }
+                else if (widgetType == 2u)
+                {
+                    float box = RoundRect(p, mn, mx, 0.006f);
+                    float4 buttonFill = value > 0.5f
+                        ? (widgetHovered ? float4(0.0f, 0.28f, 0.34f, 1.0f) : float4(0.0f, 0.18f, 0.23f, 1.0f))
+                        : (widgetHovered ? float4(0.0f, 0.16f, 0.21f, 1.0f) : float4(0.025f, 0.035f, 0.045f, 1.0f));
+                    col = lerp(col, buttonFill, box);
+                    float border = Box(p, mn, float2(mx.x, mn.y + 0.003f)) + Box(p, float2(mn.x, mx.y - 0.003f), mx);
+                    col = lerp(col, float4(0.0f, 0.45f, 0.65f, 1.0f), saturate(border));
+                }
+                else if (widgetType == 3u)
+                {
+                    // Action button. Five internal markers make successive presses visible.
+                    float box = RoundRect(p, mn, mx, 0.006f);
+                    float4 buttonFill = widgetHovered
+                        ? float4(0.0f, 0.20f, 0.27f, 1.0f)
+                        : float4(0.025f, 0.045f, 0.055f, 1.0f);
+                    col = lerp(col, buttonFill, box);
+                    float border = Box(p, mn, float2(mx.x, mn.y + 0.0025f))
+                                 + Box(p, float2(mn.x, mx.y - 0.0025f), mx);
+                    col = lerp(col, float4(0.0f, 0.45f, 0.65f, 1.0f), saturate(border));
+                    float actionPhase = fmod(floor(max(value, 0.0f)), 6.0f);
+                    float midY = (mn.y + mx.y) * 0.5f;
+                    float usableWidth = max(mx.x - mn.x, 0.001f) * 0.56f;
+                    [unroll]
+                    for (uint marker = 0u; marker < 5u; ++marker)
+                    {
+                        float markerX = (mn.x + mx.x) * 0.5f + (((float)marker - 2.0f) / 4.0f) * usableWidth;
+                        float markerMask = Circle(p, float2(markerX, midY), 0.0042f);
+                        float markerActive = step((float)marker + 1.0f, actionPhase);
+                        float4 markerColor = markerActive > 0.5f
+                            ? float4(0.0f, 0.78f, 0.88f, 1.0f)
+                            : float4(0.10f, 0.18f, 0.22f, 1.0f);
+                        col = lerp(col, markerColor, markerMask);
+                    }
+                }
+                else if (widgetType == 4u)
+                {
+                    // Cycle selector. A moving marker shows the current enum value.
+                    float box = RoundRect(p, mn, mx, 0.006f);
+                    float4 buttonFill = widgetHovered
+                        ? float4(0.0f, 0.16f, 0.22f, 1.0f)
+                        : float4(0.025f, 0.035f, 0.045f, 1.0f);
+                    col = lerp(col, buttonFill, box);
+                    float border = Box(p, mn, float2(mx.x, mn.y + 0.0025f))
+                                 + Box(p, float2(mn.x, mx.y - 0.0025f), mx);
+                    col = lerp(col, float4(0.0f, 0.45f, 0.65f, 1.0f), saturate(border));
+
+                    float minValue = NuraUIModuleWidgets[base + 6u];
+                    float maxValue = max(NuraUIModuleWidgets[base + 7u], minValue);
+                    float cycleT = (maxValue > minValue)
+                        ? saturate((value - minValue) / (maxValue - minValue))
+                        : 0.0f;
+                    float midY = (mn.y + mx.y) * 0.5f;
+                    float trackInset = (mx.x - mn.x) * 0.13f;
+                    float trackMinX = mn.x + trackInset;
+                    float trackMaxX = mx.x - trackInset;
+                    float track = RoundRect(p, float2(trackMinX, midY - 0.003f), float2(trackMaxX, midY + 0.003f), 0.002f);
+                    col = lerp(col, float4(0.01f, 0.025f, 0.032f, 1.0f), track);
+                    float markerX = lerp(trackMinX, trackMaxX, cycleT);
+                    float marker = Circle(p, float2(markerX, midY), 0.0065f);
+                    col = lerp(col, float4(0.0f, 0.78f, 0.90f, 1.0f), marker);
+                }
+            }
+        }
+
+        // =========================================================================
         // JIGGLE TOOLTIPS
         // =========================================================================
         // The footer occupies the unused strip below the controls, so descriptions
@@ -655,6 +790,10 @@ float4 main(VSOut input) : SV_Target0
             col = float4(0.0f, 0.16f, 0.21f, 1.0f);
 
         else if (hover == 15u && Box(p, float2(0.17f, 0.68f), float2(0.32f, 0.76f)) > 0.5f)
+
+            col = float4(0.0f, 0.16f, 0.21f, 1.0f);
+
+        else if (hover == 16u && Box(p, float2(0.17f, 0.77f), float2(0.32f, 0.85f)) > 0.5f)
 
             col = float4(0.0f, 0.16f, 0.21f, 1.0f);
 

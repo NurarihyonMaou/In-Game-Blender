@@ -5,8 +5,6 @@
 //   t0 = current writable position buffer (base/object space, including sculpt delta)
 //   t1 = combined protection mask
 //   t2 = immutable source Blend buffer used to recover other influence ratios
-//   t3 = one-ring adjacency (count + up to 32 neighbor vertex IDs per vertex)
-//   t4 = selected-VG weight snapshot captured before each smooth dab
 //   u0 = editable Blend buffer (RWStructuredBuffer<BlendBuf>, stride 32)
 //   u1 = MeshEditorState
 //
@@ -14,8 +12,8 @@
 //   [36] = mirror (enabled, axis, plane, epsilon)
 //   [40] = selected VG ID, operation (0 replace / 1 add / 2 subtract / 3 smooth / 4 gradient), strength, target weight
 //   [41] = radius, replay flag, falloff mode, reserved
-//   [42] = replay brush centre for dab modes, or Gradient start.xyz + valid flag
-//   [43] = Gradient end.xyz + valid flag (used only when mode == 4)
+//   [42] = replay brush position.xyz, valid flag
+//   [43] = Gradient endpoint.xyz, valid flag (mode 4)
 //
 // Live painting computes its brush centre from the same triangle+barycentric state
 // as the mask painter and publishes the centre in EditorState[17] for stroke history.
@@ -37,9 +35,8 @@ struct BlendBuf
 StructuredBuffer<PosBuf> PositionBuffer : register(t0);
 Buffer<float> ProtectionMask : register(t1);
 StructuredBuffer<BlendBuf> OriginalBlend : register(t2);
-Buffer<uint> WeightAdjacency : register(t3);
-Buffer<float> WeightSnapshot : register(t4);
-Buffer<float4> DabHistory : register(t5);
+StructuredBuffer<BlendBuf> GradientSnapshot : register(t3);
+Buffer<float4> GradientStateBuffer : register(t4);
 RWStructuredBuffer<BlendBuf> EditableBlend : register(u0);
 RWBuffer<float4> EditorState : register(u1);
 Texture1D<float4> IniParams : register(t120);
@@ -47,12 +44,8 @@ Texture1D<float4> IniParams : register(t120);
 #define PAINT_PARAMS   IniParams[40]
 #define PAINT_EXT      IniParams[41]
 #define REPLAY_BRUSH   IniParams[42]
-#define GRADIENT_END   IniParams[43]
-#define REPLAY_DAB_INDEX IniParams[44].x
 #define MIRROR_PARAMS  IniParams[36]
-
-#define MAX_WEIGHT_NEIGHBORS 32u
-#define WEIGHT_ADJACENCY_STRIDE (MAX_WEIGHT_NEIGHBORS + 1u)
+#define GRADIENT_END   IniParams[43]
 
 #define STATE_BRUSH_TRI    9u
 #define STATE_BRUSH_BARY   10u
@@ -113,6 +106,11 @@ uint FalloffMode()
 bool IsReplay()
 {
     return PAINT_EXT.y > 0.5f;
+}
+
+bool IsGradientPreview()
+{
+    return PaintMode() == 4u && PAINT_EXT.w > 0.5f;
 }
 
 bool MirrorEnabled()
@@ -263,10 +261,10 @@ void NormalizeWeights(inout float4 weights, int4 indices, uint selectedSlot, uin
 
         otherTotal = 0.0f;
         [unroll]
-        for (uint k2 = 0u; k2 < 4u; ++k2)
+        for (uint ot = 0u; ot < 4u; ++ot)
         {
-            if (k2 != selectedSlot)
-                otherTotal += GetFloat4Component(weights, k2);
+            if (ot != selectedSlot)
+                otherTotal += GetFloat4Component(weights, ot);
         }
     }
 
@@ -276,10 +274,10 @@ void NormalizeWeights(inout float4 weights, int4 indices, uint selectedSlot, uin
         float scale = remainingWeight / otherTotal;
 
         [unroll]
-        for (uint k3 = 0u; k3 < 4u; ++k3)
+        for (uint k = 0u; k < 4u; ++k)
         {
             if (k != selectedSlot)
-                SetFloat4Component(weights, k3, GetFloat4Component(weights, k3) * scale);
+                SetFloat4Component(weights, k, GetFloat4Component(weights, k) * scale);
         }
 
         SetFloat4Component(weights, selectedSlot, selectedWeight);
@@ -293,94 +291,7 @@ void NormalizeWeights(inout float4 weights, int4 indices, uint selectedSlot, uin
     }
 }
 
-float GetSnapshotWeight(uint vertexID)
-{
-    return saturate(WeightSnapshot[vertexID]);
-}
-
-void ApplyWeightSmoothAt(uint vertexID, float falloff)
-{
-    if (falloff <= 0.0f)
-        return;
-
-    float protection = saturate(ProtectionMask[vertexID]);
-    float amount = saturate(PAINT_PARAMS.z) * falloff * (1.0f - protection);
-    if (amount <= 0.0f)
-        return;
-
-    uint selectedVG = SelectedVG();
-    uint adjacencyBase = vertexID * WEIGHT_ADJACENCY_STRIDE;
-    uint neighborCount = min(WeightAdjacency[adjacencyBase], MAX_WEIGHT_NEIGHBORS);
-    if (neighborCount == 0u)
-        return;
-
-    float neighborWeightTotal = 0.0f;
-    uint validNeighbors = 0u;
-    [loop]
-    for (uint n = 0u; n < MAX_WEIGHT_NEIGHBORS; ++n)
-    {
-        if (n >= neighborCount)
-            break;
-
-        uint neighborID = WeightAdjacency[adjacencyBase + 1u + n];
-        if (neighborID >= VERTEX_COUNT || neighborID == vertexID)
-            continue;
-
-        // This buffer is captured before the dab, so every vertex smooths from
-        // the same pre-dab state rather than racing writes from neighboring threads.
-        neighborWeightTotal += GetSnapshotWeight(neighborID);
-        validNeighbors++;
-    }
-
-    if (validNeighbors == 0u)
-        return;
-
-    float averageWeight = saturate(neighborWeightTotal / (float)validNeighbors);
-    BlendBuf blend = EditableBlend[vertexID];
-    float4 weights = saturate(blend.blendWeights);
-    int4 indices = blend.blendIndices;
-
-    int selectedSlot = -1;
-    uint lowestSlot = 0u;
-    float lowestWeight = GetFloat4Component(weights, 0u);
-
-    [unroll]
-    for (uint k = 0u; k < 4u; ++k)
-    {
-        if (GetInt4Component(indices, k) == (int)selectedVG)
-            selectedSlot = (int)k;
-
-        float weight = GetFloat4Component(weights, k);
-        if (weight < lowestWeight)
-        {
-            lowestWeight = weight;
-            lowestSlot = k;
-        }
-    }
-
-    // Smooth can introduce the selected VG where neighboring vertices already
-    // use it. Do not add an influence when the local neighborhood has no weight.
-    if (selectedSlot < 0)
-    {
-        if (averageWeight <= 1e-8f)
-            return;
-
-        selectedSlot = (int)lowestSlot;
-        SetInt4Component(indices, lowestSlot, (int)selectedVG);
-        SetFloat4Component(weights, lowestSlot, 0.0f);
-    }
-
-    uint slot = (uint)selectedSlot;
-    float oldWeight = saturate(GetFloat4Component(weights, slot));
-    SetFloat4Component(weights, slot, lerp(oldWeight, averageWeight, amount));
-
-    NormalizeWeights(weights, indices, slot, vertexID, 3u);
-    blend.blendWeights = weights;
-    blend.blendIndices = indices;
-    EditableBlend[vertexID] = blend;
-}
-
-void ApplyWeightAt(uint vertexID, float falloff)
+void ApplyWeightAt(uint vertexID, float falloff, float gradientT)
 {
     if (falloff <= 0.0f)
         return;
@@ -393,7 +304,15 @@ void ApplyWeightAt(uint vertexID, float falloff)
     uint selectedVG = SelectedVG();
     uint mode = PaintMode();
 
-    BlendBuf blend = EditableBlend[vertexID];
+    BlendBuf blend;
+    // Preview frames must always start from the saved blend at stroke start,
+    // never from the previous preview result. Other tools and history replay use
+    // the live editable blend as usual.
+    if (mode == 4u && IsGradientPreview())
+        blend = GradientSnapshot[vertexID];
+    else
+        blend = EditableBlend[vertexID];
+
     float4 weights = saturate(blend.blendWeights);
     int4 indices = blend.blendIndices;
 
@@ -402,21 +321,33 @@ void ApplyWeightAt(uint vertexID, float falloff)
     float lowestWeight = GetFloat4Component(weights, 0u);
 
     [unroll]
-    for (uint k = 0u; k < 4u; ++k)
+    for (uint k2 = 0u; k2 < 4u; ++k2)
     {
-        if (GetInt4Component(indices, k) == (int)selectedVG)
-            selectedSlot = (int)k;
+        if (GetInt4Component(indices, k2) == (int)selectedVG)
+            selectedSlot = (int)k2;
 
-        float weight = GetFloat4Component(weights, k);
+        float weight = GetFloat4Component(weights, k2);
         if (weight < lowestWeight)
         {
             lowestWeight = weight;
-            lowestSlot = k;
+            lowestSlot = k2;
         }
     }
 
-    // Subtract cannot create a group that is not present on this vertex.
-    if (selectedSlot < 0 && (mode == 2u || (mode == 0u && PAINT_PARAMS.w <= 0.0f)))
+    // Blender-style Gradient: Target Weight is strongest at the stroke start,
+    // gradually blending back to each vertex's pre-stroke weight toward the end.
+    // During live preview currentSelectedWeight comes from GradientSnapshot, so
+    // successive frames never accumulate changes on top of previous previews.
+    float currentSelectedWeight = selectedSlot >= 0
+        ? saturate(GetFloat4Component(weights, (uint)selectedSlot))
+        : 0.0f;
+    float targetWeight = mode == 4u
+        ? lerp(saturate(PAINT_PARAMS.w), currentSelectedWeight, saturate(gradientT))
+        : saturate(PAINT_PARAMS.w);
+
+    // Subtract cannot create a group. Do not allocate a new influence if the
+    // selected group's effective gradient target is still zero.
+    if (selectedSlot < 0 && (mode == 2u || ((mode == 0u || mode == 4u) && targetWeight <= 0.0f)))
         return;
 
     // A vertex can store at most four influences. When adding a fifth,
@@ -430,9 +361,7 @@ void ApplyWeightAt(uint vertexID, float falloff)
 
     uint slot = (uint)selectedSlot;
     float oldWeight = saturate(GetFloat4Component(weights, slot));
-    float targetWeight = saturate(PAINT_PARAMS.w);
-
-    if (mode == 0u)          // Replace / Paint toward target weight.
+    if (mode == 0u || mode == 4u) // Replace / Gradient from current weight toward Target.
         SetFloat4Component(weights, slot, lerp(oldWeight, targetWeight, amount));
     else if (mode == 1u)     // Add.
         SetFloat4Component(weights, slot, min(oldWeight + amount, 1.0f));
@@ -445,95 +374,6 @@ void ApplyWeightAt(uint vertexID, float falloff)
     EditableBlend[vertexID] = blend;
 }
 
-void ApplyWeightGradientAt(uint vertexID)
-{
-    if (REPLAY_BRUSH.w <= 0.5f || GRADIENT_END.w <= 0.5f)
-        return;
-
-    float3 start = REPLAY_BRUSH.xyz;
-    float3 end = GRADIENT_END.xyz;
-    float3 axis = end - start;
-    float axisLengthSq = dot(axis, axis);
-    if (axisLengthSq <= 1e-12f)
-        return;
-
-    float radius = max(PAINT_EXT.x, 1e-7f);
-    float3 vertexPos = PositionBuffer[vertexID].pos;
-    float t = saturate(dot(vertexPos - start, axis) / axisLengthSq);
-    float3 closest = start + axis * t;
-    float falloff = CalculateFalloff(length(vertexPos - closest), radius);
-
-    if (MirrorEnabled() && MirrorDistinct(start))
-    {
-        float3 mirroredStart = MirrorPoint(start);
-        float3 mirroredEnd = MirrorPoint(end);
-        float3 mirroredAxis = mirroredEnd - mirroredStart;
-        float mirroredLengthSq = dot(mirroredAxis, mirroredAxis);
-        if (mirroredLengthSq > 1e-12f)
-        {
-            float mirroredT = saturate(dot(vertexPos - mirroredStart, mirroredAxis) / mirroredLengthSq);
-            float3 mirroredClosest = mirroredStart + mirroredAxis * mirroredT;
-            float mirroredFalloff = CalculateFalloff(length(vertexPos - mirroredClosest), radius);
-            if (mirroredFalloff > falloff)
-            {
-                falloff = mirroredFalloff;
-                t = mirroredT;
-            }
-        }
-    }
-
-    if (falloff <= 0.0f)
-        return;
-
-    float protection = saturate(ProtectionMask[vertexID]);
-    float amount = saturate(PAINT_PARAMS.z) * falloff * (1.0f - protection);
-    if (amount <= 0.0f)
-        return;
-
-    uint selectedVG = SelectedVG();
-    BlendBuf blend = EditableBlend[vertexID];
-    float4 weights = saturate(blend.blendWeights);
-    int4 indices = blend.blendIndices;
-
-    int selectedSlot = -1;
-    uint lowestSlot = 0u;
-    float lowestWeight = GetFloat4Component(weights, 0u);
-
-    [unroll]
-    for (uint k = 0u; k < 4u; ++k)
-    {
-        if (GetInt4Component(indices, k) == (int)selectedVG)
-            selectedSlot = (int)k;
-
-        float weight = GetFloat4Component(weights, k);
-        if (weight < lowestWeight)
-        {
-            lowestWeight = weight;
-            lowestSlot = k;
-        }
-    }
-
-    float targetWeight = saturate(PAINT_PARAMS.w) * t;
-    if (selectedSlot < 0 && targetWeight <= 1e-8f)
-        return;
-
-    if (selectedSlot < 0)
-    {
-        selectedSlot = (int)lowestSlot;
-        SetInt4Component(indices, lowestSlot, (int)selectedVG);
-        SetFloat4Component(weights, lowestSlot, 0.0f);
-    }
-
-    uint slot = (uint)selectedSlot;
-    float oldWeight = saturate(GetFloat4Component(weights, slot));
-    SetFloat4Component(weights, slot, lerp(oldWeight, targetWeight, amount));
-    NormalizeWeights(weights, indices, slot, vertexID, 4u);
-
-    blend.blendWeights = weights;
-    blend.blendIndices = indices;
-    EditableBlend[vertexID] = blend;
-}
-
 [numthreads(64, 1, 1)]
 void main(uint3 dispatchThreadID : SV_DispatchThreadID)
 {
@@ -541,21 +381,30 @@ void main(uint3 dispatchThreadID : SV_DispatchThreadID)
     if (vertexID >= VERTEX_COUNT)
         return;
 
-    if (PaintMode() == 4u)
-    {
-        ApplyWeightGradientAt(vertexID);
-        return;
-    }
+    uint mode = PaintMode();
+    if (mode == 3u)
+        return; // Smooth uses its own topology-aware two-pass pipeline.
+
+    bool gradientPreview = IsGradientPreview();
+    // Restore every vertex from the immutable pre-stroke snapshot before any
+    // early returns. This removes stale paint from the previous preview frame
+    // when the user moves the gradient endpoint.
+    if (gradientPreview)
+        EditableBlend[vertexID] = GradientSnapshot[vertexID];
 
     float3 brushPos = 0.0f;
     bool brushValid;
 
-    if (IsReplay())
+    if (gradientPreview)
     {
-        uint dabIndex = (uint)max(REPLAY_DAB_INDEX + 0.5f, 0.0f);
-        float4 dabRecord = DabHistory[dabIndex];
-        brushPos = dabRecord.xyz;
-        brushValid = dabRecord.w > 0.5f;
+        float4 gradientStart = GradientStateBuffer[0];
+        brushPos = gradientStart.xyz;
+        brushValid = gradientStart.w > 0.5f;
+    }
+    else if (IsReplay())
+    {
+        brushPos = REPLAY_BRUSH.xyz;
+        brushValid = REPLAY_BRUSH.w > 0.5f;
     }
     else
     {
@@ -574,6 +423,46 @@ void main(uint3 dispatchThreadID : SV_DispatchThreadID)
 
     float radius = max(PAINT_EXT.x, 1e-7f);
     float3 vertexPos = PositionBuffer[vertexID].pos;
+
+    if (mode == 4u)
+    {
+        // Live preview reads both endpoints directly from the capture resource.
+        // History replay reads the recorded endpoint from IniParams[43].
+        float4 endpointState = gradientPreview ? GradientStateBuffer[1] : GRADIENT_END;
+        if ((!gradientPreview && !IsReplay()) || endpointState.w <= 0.5f)
+            return;
+
+        float3 endPos = endpointState.xyz;
+        float3 segment = endPos - brushPos;
+        float segmentLenSq = dot(segment, segment);
+        float t = segmentLenSq > 1e-12f
+            ? saturate(dot(vertexPos - brushPos, segment) / segmentLenSq)
+            : 1.0f;
+        float3 closest = brushPos + segment * t;
+        float falloff = CalculateFalloff(length(vertexPos - closest), radius);
+
+        if (MirrorEnabled() && MirrorDistinct(brushPos))
+        {
+            float3 mirroredStart = MirrorPoint(brushPos);
+            float3 mirroredEnd = MirrorPoint(endPos);
+            float3 mirroredSegment = mirroredEnd - mirroredStart;
+            float mirroredLenSq = dot(mirroredSegment, mirroredSegment);
+            float mirroredT = mirroredLenSq > 1e-12f
+                ? saturate(dot(vertexPos - mirroredStart, mirroredSegment) / mirroredLenSq)
+                : 1.0f;
+            float3 mirroredClosest = mirroredStart + mirroredSegment * mirroredT;
+            float mirroredFalloff = CalculateFalloff(length(vertexPos - mirroredClosest), radius);
+            if (mirroredFalloff > falloff)
+            {
+                falloff = mirroredFalloff;
+                t = mirroredT;
+            }
+        }
+
+        ApplyWeightAt(vertexID, falloff, t);
+        return;
+    }
+
     float falloff = CalculateFalloff(length(vertexPos - brushPos), radius);
 
     if (MirrorEnabled() && MirrorDistinct(brushPos))
@@ -585,8 +474,5 @@ void main(uint3 dispatchThreadID : SV_DispatchThreadID)
         falloff = max(falloff, mirroredFalloff);
     }
 
-    if (PaintMode() == 3u)
-        ApplyWeightSmoothAt(vertexID, falloff);
-    else
-        ApplyWeightAt(vertexID, falloff);
+    ApplyWeightAt(vertexID, falloff, 1.0f);
 }

@@ -8,14 +8,12 @@ struct PosBuf
 RWBuffer<float4> VertexDelta : register(u0);
 StructuredBuffer<PosBuf> BasePositionBuffer : register(t0);
 Buffer<float> Mask : register(t5);
-Buffer<float4> DabHistory : register(t6);
 
 Texture1D<float4> IniParams : register(t120);
 
 #define DAB_PARAMS      IniParams[34]
 #define STROKE_PARAMS   IniParams[35]
 #define MIRROR_PARAMS   IniParams[36]
-#define DAB_HISTORY_INDEX IniParams[43].x
 
 #define TOOL_GRAB       0.0f
 #define TOOL_INFLATE    1.0f
@@ -249,14 +247,6 @@ void main(uint3 id : SV_DispatchThreadID)
     if (vertexID >= VERTEX_COUNT)
         return;
 
-    // Load the centre / Grab delta from GPU-resident history. The CPU pool stores
-    // only strength and radius, avoiding three per-dab resource readbacks.
-    uint dabIndex = (uint)max(DAB_HISTORY_INDEX + 0.5f, 0.0f);
-    float4 dabRecord = DabHistory[dabIndex];
-    if (dabRecord.w <= 0.5f)
-        return;
-    float3 dabPosition = dabRecord.xyz;
-
     // Keep all contributions from THIS replayed dab separate from the
     // accumulated delta. The mask attenuates the new dab, never the previous
     // VertexDelta; otherwise replay can repeatedly rescale prior edits.
@@ -272,7 +262,7 @@ void main(uint3 id : SV_DispatchThreadID)
 
         if (selectedVertex < VERTEX_COUNT)
         {
-            float3 baseDrag = dabPosition;
+            float3 baseDrag = DAB_PARAMS.xyz;
             float3 selectedPos = BasePositionBuffer[selectedVertex].pos;
 
             strokeDelta += ApplyGrab(
@@ -295,7 +285,7 @@ void main(uint3 id : SV_DispatchThreadID)
     }
     else if (tool == 1u)
     {
-        float3 brushPos = dabPosition;
+        float3 brushPos = DAB_PARAMS.xyz;
         float amount = DAB_PARAMS.w;
 
         strokeDelta += ApplyInflate(
@@ -315,7 +305,7 @@ void main(uint3 id : SV_DispatchThreadID)
     }
     else if (tool == 3u)
     {
-        float3 brushPos = dabPosition;
+        float3 brushPos = DAB_PARAMS.xyz;
         float amount = DAB_PARAMS.w;
 
         strokeDelta += ApplyPinch(
@@ -335,7 +325,7 @@ void main(uint3 id : SV_DispatchThreadID)
     }
     else if (tool == 4u)
     {
-        float3 brushPos = dabPosition;
+        float3 brushPos = DAB_PARAMS.xyz;
         float amount = DAB_PARAMS.w;
 
         strokeDelta += ApplyCrease(
@@ -355,7 +345,7 @@ void main(uint3 id : SV_DispatchThreadID)
     }
     else if (tool == 5u)
     {
-        float3 brushPos = dabPosition;
+        float3 brushPos = DAB_PARAMS.xyz;
         float amount = DAB_PARAMS.w;
 
         uint selectedVertex = (uint)max(STROKE_PARAMS.z + 0.5f, 0.0f);
@@ -384,7 +374,7 @@ void main(uint3 id : SV_DispatchThreadID)
     }
     else if (tool == 6u)
     {
-        float3 brushPos = dabPosition;
+        float3 brushPos = DAB_PARAMS.xyz;
         float amount = DAB_PARAMS.w;
 
         strokeDelta += ApplyScale(

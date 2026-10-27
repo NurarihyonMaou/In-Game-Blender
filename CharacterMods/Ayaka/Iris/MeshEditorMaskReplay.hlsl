@@ -11,7 +11,6 @@ struct PosBuf
 };
 
 StructuredBuffer<PosBuf> BasePositionBuffer : register(t0);
-Buffer<float4> DabHistory : register(t1);
 RWBuffer<float> NamedMasks : register(u0);
 Texture1D<float4> IniParams : register(t120);
 
@@ -20,7 +19,6 @@ Texture1D<float4> IniParams : register(t120);
 #define RADIUS          IniParams[35].x
 #define MIRROR_PARAMS   IniParams[36]
 #define MASK_SLOT_PARAM IniParams[37].x
-#define DAB_HISTORY_INDEX IniParams[43].x
 
 #define VERTEX_COUNT    79355u
 #define MASK_SLOT_COUNT 8u
@@ -81,14 +79,8 @@ void main(uint3 dispatchThreadID : SV_DispatchThreadID)
     if (vertexID >= VERTEX_COUNT)
         return;
 
-    uint dabIndex = (uint)max(DAB_HISTORY_INDEX + 0.5f, 0.0f);
-    float4 dabRecord = DabHistory[dabIndex];
-    if (dabRecord.w <= 0.5f)
-        return;
-    float3 brushPos = dabRecord.xyz;
+    ApplyBrush(vertexID, BRUSH_POS);
 
-    ApplyBrush(vertexID, brushPos);
-
-    if (MirrorEnabled() && MirrorDistinct(brushPos))
-        ApplyBrush(vertexID, MirrorPoint(brushPos));
+    if (MirrorEnabled() && MirrorDistinct(BRUSH_POS))
+        ApplyBrush(vertexID, MirrorPoint(BRUSH_POS));
 }

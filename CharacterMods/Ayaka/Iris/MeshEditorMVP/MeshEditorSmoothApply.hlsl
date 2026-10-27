@@ -23,7 +23,6 @@ StructuredBuffer<PosBuf> BasePositionBuffer : register(t0);
 RWBuffer<float4> EditorState : register(u1);
 RWBuffer<uint> Accum : register(u2);
 RWBuffer<float4> VertexDelta : register(u3);
-Buffer<float4> DabHistory : register(t4);
 
 Texture1D<float4> IniParams : register(t120);
 
@@ -55,16 +54,10 @@ float3 GetBrushCenter()
     return p0 * bary.x + p1 * bary.y + p2 * bary.z;
 }
 
-float4 GetReplayDab()
-{
-    uint dabIndex = (uint)max(REPLAY_CENTER.x + 0.5f, 0.0f);
-    return DabHistory[dabIndex];
-}
-
 float3 GetActiveBrushCenter()
 {
     return REPLAY_STATE.x > 0.5f
-        ? GetReplayDab().xyz
+        ? REPLAY_CENTER.xyz
         : GetBrushCenter();
 }
 
@@ -140,9 +133,8 @@ void main(uint3 id : SV_DispatchThreadID)
         return;
 
     bool replay = REPLAY_STATE.x > 0.5f;
-    float4 replayDab = replay ? GetReplayDab() : 0.0f;
     float3 brushPos = GetActiveBrushCenter();
-    bool brushValid = replay ? replayDab.w > 0.5f : EditorState[BRUSH_POS].w > 0.5f;
+    bool brushValid = replay || EditorState[BRUSH_POS].w > 0.5f;
 
     if (vertexID == 0u)
     {

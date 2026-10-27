@@ -2,6 +2,8 @@
 // prototype; NuraThingsUI.ini invokes this shader, not the legacy file.
 RWBuffer<float> UIState : register(u0);
 RWBuffer<uint> MaskNames : register(u1);
+RWBuffer<float> NuraUIModuleWidgets : register(u2);
+Buffer<uint> NuraUIModuleRegistry : register(t0);
 
 Texture1D<float4> IniParams : register(t120);
 
@@ -51,6 +53,7 @@ Texture1D<float4> IniParams : register(t120);
 #define CURRENT_MESH_TOOL IniParams[117].x
 #define WEIGHT_VG_LIST_SCROLL IniParams[118].x
 #define KEYBIND_ACTION_SCROLL IniParams[119].x
+#define NURAUI_MODULE_SCROLL IniParams[118].y
 #define KEYBIND_ACTION_LIST_FORCE_OPEN IniParams[119].y
 
 #define WRITE_NAME(BASE, OFFSET) \
@@ -314,6 +317,7 @@ void main(uint3 id : SV_DispatchThreadID)
         UIState[52] = 0.0f; // KeyBind action dropdown visibility.
         UIState[53] = floor(clamp(KEYBIND_ACTION_SCROLL, 0.0f, 13.0f) + 0.5f);
         UIState[54] = 0.0f; // Mouse over the action dropdown list.
+        UIState[55] = 0.0f; // Selected module slot + 1; zero means no module selected.
 
     }
 
@@ -503,6 +507,10 @@ void main(uint3 id : SV_DispatchThreadID)
 
             hover = 15u;
 
+        else if (InRect(p, float2(0.17f, 0.77f), float2(0.32f, 0.85f)))
+
+            hover = 16u;
+
         // ---------------------------------------------------------------------
 
         // Mesh content
@@ -609,7 +617,7 @@ void main(uint3 id : SV_DispatchThreadID)
 
                 // Sidebar page
 
-                if (hover >= 10u && hover <= 15u)
+                if (hover >= 10u && hover <= 16u)
 
                 {
 
@@ -922,6 +930,128 @@ void main(uint3 id : SV_DispatchThreadID)
                     jiggleEdgeFalloff = lerp(0.25f, 2.5f, t);
             }
 
+            if (!lmb)
+                activeSlider = 0u;
+        }
+        else if (page == 6u)
+        {
+            // Module directory. Clicking a row selects it; OPEN enters its actual view.
+            uint moduleScroll = (uint)clamp(floor(NURAUI_MODULE_SCROLL + 0.5f), 0.0f, 24.0f);
+            uint selectedModuleOneBased = (uint)max(UIState[55] + 0.5f, 0.0f);
+            if (InRect(p, float2(0.345f, 0.220f), float2(0.575f, 0.825f)))
+            {
+                hover = 699u;
+                if (p.x >= 0.350f && p.x <= 0.565f && p.y >= 0.235f && p.y <= 0.783f)
+                {
+                    uint row = (uint)clamp(floor((p.y - 0.235f) / 0.070f), 0.0f, 7.0f);
+                    float rowTop = 0.235f + (float)row * 0.070f;
+                    if (InRect(p, float2(0.350f, rowTop), float2(0.565f, rowTop + 0.058f)))
+                    {
+                        uint slot = moduleScroll + row;
+                        if (slot < 32u && NuraUIModuleRegistry[slot] != 0u)
+                            hover = 600u + slot;
+                    }
+                }
+            }
+            else if (InRect(p, float2(0.585f, 0.220f), float2(0.830f, 0.825f)))
+            {
+                hover = 699u;
+                if (selectedModuleOneBased > 0u &&
+                    InRect(p, float2(0.615f, 0.680f), float2(0.800f, 0.735f)))
+                    hover = 700u;
+            }
+            activeSlider = 0u;
+        }
+        else if (page == 7u)
+        {
+            // Every module gets the same generic widget hit-testing on its own view.
+            uint selectedModuleOneBased = (uint)max(UIState[55] + 0.5f, 0.0f);
+            if (InRect(p, float2(0.355f, 0.215f), float2(0.455f, 0.265f)))
+            {
+                hover = 701u; // Back to the module directory.
+            }
+            else if (selectedModuleOneBased > 0u && selectedModuleOneBased <= 32u)
+            {
+                uint moduleSlot = selectedModuleOneBased - 1u;
+                [loop]
+                for (uint widget = 0u; widget < 8u; ++widget)
+                {
+                    uint base = (moduleSlot * 8u + widget) * 8u;
+                    uint widgetType = (uint)max(round(NuraUIModuleWidgets[base]), 0.0f);
+                    if (widgetType == 0u)
+                        continue;
+                    float2 mn = float2(NuraUIModuleWidgets[base + 1u], NuraUIModuleWidgets[base + 2u]);
+                    float2 mx = float2(NuraUIModuleWidgets[base + 3u], NuraUIModuleWidgets[base + 4u]);
+                    if (InRect(p, mn, mx))
+                    {
+                        hover = 800u + widget;
+                        break;
+                    }
+                }
+            }
+            if (click)
+            {
+                if (hover == 701u)
+                {
+                    clicked = hover;
+                    page = 6u;
+                    activeSlider = 0u;
+                }
+                else if (hover >= 800u && hover < 808u && selectedModuleOneBased > 0u && selectedModuleOneBased <= 32u)
+                {
+                    uint widget = hover - 800u;
+                    uint base = ((selectedModuleOneBased - 1u) * 8u + widget) * 8u;
+                    uint widgetType = (uint)max(round(NuraUIModuleWidgets[base]), 0.0f);
+                    clicked = hover;
+                    if (widgetType == 1u)
+                    {
+                        activeSlider = hover;
+                    }
+                    else if (widgetType == 2u)
+                    {
+                        NuraUIModuleWidgets[base + 5u] = NuraUIModuleWidgets[base + 5u] > 0.5f ? 0.0f : 1.0f;
+                    }
+                    else if (widgetType == 3u)
+                    {
+                        // Action widget: click increments a persistent event counter.
+                        // A module can detect a new activation by comparing this value
+                        // with the value it observed on its previous frame.
+                        float actionMin = floor(NuraUIModuleWidgets[base + 6u] + 0.5f);
+                        float actionMax = floor(NuraUIModuleWidgets[base + 7u] + 0.5f);
+                        float actionValue = floor(NuraUIModuleWidgets[base + 5u] + 0.5f);
+                        if (actionMax <= actionMin)
+                            actionMax = actionMin + 1.0f;
+                        actionValue = (actionValue >= actionMax) ? actionMin : actionValue + 1.0f;
+                        NuraUIModuleWidgets[base + 5u] = actionValue;
+                    }
+                    else if (widgetType == 4u)
+                    {
+                        // Cycle widget: click advances an integer-valued selection.
+                        float cycleMin = floor(NuraUIModuleWidgets[base + 6u] + 0.5f);
+                        float cycleMax = floor(NuraUIModuleWidgets[base + 7u] + 0.5f);
+                        float cycleValue = floor(NuraUIModuleWidgets[base + 5u] + 0.5f);
+                        if (cycleMax < cycleMin)
+                            cycleMax = cycleMin;
+                        cycleValue = (cycleValue >= cycleMax) ? cycleMin : cycleValue + 1.0f;
+                        NuraUIModuleWidgets[base + 5u] = cycleValue;
+                    }
+                }
+            }
+            if (lmb && activeSlider >= 800u && activeSlider < 808u && selectedModuleOneBased > 0u && selectedModuleOneBased <= 32u)
+            {
+                uint widget = activeSlider - 800u;
+                uint base = ((selectedModuleOneBased - 1u) * 8u + widget) * 8u;
+                uint widgetType = (uint)max(round(NuraUIModuleWidgets[base]), 0.0f);
+                if (widgetType == 1u)
+                {
+                    float x1 = NuraUIModuleWidgets[base + 1u];
+                    float x2 = NuraUIModuleWidgets[base + 3u];
+                    float minValue = NuraUIModuleWidgets[base + 6u];
+                    float maxValue = NuraUIModuleWidgets[base + 7u];
+                    float t = saturate((p.x - x1) / max(x2 - x1, 0.0001f));
+                    NuraUIModuleWidgets[base + 5u] = lerp(minValue, maxValue, t);
+                }
+            }
             if (!lmb)
                 activeSlider = 0u;
         }
@@ -1428,10 +1558,22 @@ void main(uint3 id : SV_DispatchThreadID)
 
     // Sidebar hit-tests take priority over page contents, so handle page navigation
     // once here, outside the content-page branches.
-    if (mainUI && click && hover >= 10u && hover <= 15u)
+    if (mainUI && click && hover >= 10u && hover <= 16u)
     {
         clicked = hover;
         page = hover - 10u;
+        activeSlider = 0u;
+    }
+    else if (mainUI && click && hover >= 600u && hover < 632u)
+    {
+        clicked = hover;
+        UIState[55] = (float)(hover - 599u);
+        activeSlider = 0u;
+    }
+    else if (mainUI && click && page == 6u && hover == 700u && UIState[55] > 0.5f)
+    {
+        clicked = hover;
+        page = 7u;
         activeSlider = 0u;
     }
 

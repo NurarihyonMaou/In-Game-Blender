@@ -422,8 +422,8 @@ void ConsiderTriangle(
         nearestSlot = 2u;
     }
 
-    // Smaller depth is nearer to the camera.
-    if (hitDepth > bestDepth)
+    // The visible-depth pass uses GREATER_EQUAL (reversed-Z): larger depth is nearer.
+    if (hitDepth < bestDepth)
         return;
 
     float3 rightLocal;
@@ -488,7 +488,8 @@ void main(uint3 dispatchThreadID : SV_DispatchThreadID,
 
     float padPx = max(PICK_PARAMS.w, 0.0f);
 
-    float bestDepth = HUGE;
+    // Reversed-Z sentinel: all valid depth values (normally [0, 1]) are greater.
+    float bestDepth = -HUGE;
     uint bestIndexBase = 0u;
     uint bestTri = 0u;
     uint bestV0 = 0u;
@@ -536,7 +537,7 @@ void main(uint3 dispatchThreadID : SV_DispatchThreadID,
             bestConditioning);
     }
 
-    bool haveHit = bestDepth < HUGE;
+    bool haveHit = bestDepth > -HUGE;
 
     sBestDepth[tid] = bestDepth;
     sBestIndexBase[tid] = bestIndexBase;
@@ -573,7 +574,8 @@ void main(uint3 dispatchThreadID : SV_DispatchThreadID,
     {
         if (tid < stride)
         {
-            if (sBestDepth[tid + stride] < sBestDepth[tid])
+            // Reversed-Z: reduce by maximum depth, not minimum.
+            if (sBestDepth[tid + stride] > sBestDepth[tid])
             {
                 sBestDepth[tid] = sBestDepth[tid + stride];
                 sBestIndexBase[tid] = sBestIndexBase[tid + stride];
@@ -597,7 +599,7 @@ void main(uint3 dispatchThreadID : SV_DispatchThreadID,
         GroupMemoryBarrierWithGroupSync();
     }
 
-    if (tid == 0u && sBestDepth[0] < HUGE)
+    if (tid == 0u && sBestDepth[0] > -HUGE)
     {
         uint selectedVertex =
             sBestSlot[0] == 0u ? sBestV0[0] :

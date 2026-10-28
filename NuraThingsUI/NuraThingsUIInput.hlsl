@@ -3,7 +3,9 @@
 RWBuffer<float> UIState : register(u0);
 RWBuffer<uint> MaskNames : register(u1);
 RWBuffer<float> NuraUIModuleWidgets : register(u2);
+RWBuffer<float> NuraUIModuleSettingDescriptors : register(u3);
 Buffer<uint> NuraUIModuleRegistry : register(t0);
+Buffer<uint> NuraUIModuleSettingTokens : register(t1);
 
 Texture1D<float4> IniParams : register(t120);
 
@@ -55,6 +57,7 @@ Texture1D<float4> IniParams : register(t120);
 #define KEYBIND_ACTION_SCROLL IniParams[119].x
 #define NURAUI_MODULE_SCROLL IniParams[118].y
 #define KEYBIND_ACTION_LIST_FORCE_OPEN IniParams[119].y
+#define NURAUI_SETTINGS_SCROLL IniParams[119].z
 
 #define WRITE_NAME(BASE, OFFSET) \
     MaskNames[(OFFSET) + 0]  = (uint)max(IniParams[(BASE) + 0].x, 0.0f); \
@@ -956,7 +959,52 @@ void main(uint3 id : SV_DispatchThreadID)
         }
         else if (page == 5u)
         {
-            if (InRect(p, float2(0.365f, 0.330f), float2(0.560f, 0.390f)))
+            uint settingsScroll = (uint)clamp(floor(NURAUI_SETTINGS_SCROLL + 0.5f), 0.0f, 60.0f);
+            [loop]
+            for (uint settingRow = 0u; settingRow < 64u; ++settingRow)
+            {
+                if (NuraUIModuleSettingTokens[settingRow] == 0u || settingRow < settingsScroll || settingRow >= settingsScroll + 4u)
+                    continue;
+                uint visibleRow = settingRow - settingsScroll;
+                float rowTop = 0.502f + (float)visibleRow * 0.034f;
+                float rowBottom = rowTop + 0.027f;
+                if (InRect(p, float2(0.690f, rowTop), float2(0.810f, rowBottom)))
+                {
+                    hover = 900u + settingRow;
+                    uint settingBase = settingRow * 8u;
+                    uint settingType = (uint)max(round(NuraUIModuleSettingDescriptors[settingBase]), 0.0f);
+                    if (click && settingType == 1u)
+                    {
+                        NuraUIModuleSettingDescriptors[settingBase + 1u] =
+                            NuraUIModuleSettingDescriptors[settingBase + 1u] > 0.5f ? 0.0f : 1.0f;
+                        clicked = hover;
+                    }
+                    else if (click && settingType == 2u)
+                    {
+                        activeSlider = hover;
+                        clicked = hover;
+                    }
+                    break;
+                }
+            }
+
+            if (lmb && activeSlider >= 900u && activeSlider < 964u)
+            {
+                uint settingRow = activeSlider - 900u;
+                uint settingBase = settingRow * 8u;
+                uint settingType = (uint)max(round(NuraUIModuleSettingDescriptors[settingBase]), 0.0f);
+                if (NuraUIModuleSettingTokens[settingRow] != 0u && settingType == 2u)
+                {
+                    float minimum = NuraUIModuleSettingDescriptors[settingBase + 2u];
+                    float maximum = NuraUIModuleSettingDescriptors[settingBase + 3u];
+                    float t = saturate((p.x - 0.700f) / 0.105f);
+                    NuraUIModuleSettingDescriptors[settingBase + 1u] = lerp(minimum, maximum, t);
+                }
+            }
+            if (!lmb && activeSlider >= 900u && activeSlider < 964u)
+                activeSlider = 0u;
+
+            if (hover == 0u && InRect(p, float2(0.365f, 0.330f), float2(0.560f, 0.390f)))
                 hover = 730u;
         }
         else if (page == 6u)

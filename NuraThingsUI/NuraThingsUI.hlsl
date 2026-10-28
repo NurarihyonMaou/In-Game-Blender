@@ -1,6 +1,8 @@
 Buffer<float> UIState : register(t0);
 Buffer<float> NuraUIModuleWidgets : register(t1);
 Buffer<uint> NuraUIModuleRegistry : register(t2);
+Buffer<uint> NuraUIModuleSettingTokens : register(t3);
+Buffer<float> NuraUIModuleSettingDescriptors : register(t4);
 
 Texture1D<float4> IniParams : register(t120);
 
@@ -690,6 +692,52 @@ float4 main(VSOut input) : SV_Target0
                 col = float4(0.018f, 0.022f, 0.030f, 1.0f);
             if (Box(p, float2(0.365f, 0.480f), float2(0.815f, 0.485f)) > 0.5f)
                 col = float4(0.0f, 0.45f, 0.65f, 1.0f);
+
+            // Module-contributed Settings share a compact, scrollable 64-row registry.
+            uint settingsScroll = (uint)clamp(floor(IniParams[119].z + 0.5f), 0.0f, 60.0f);
+            [unroll]
+            for (uint visibleSetting = 0u; visibleSetting < 4u; ++visibleSetting)
+            {
+                uint settingRow = settingsScroll + visibleSetting;
+                if (settingRow >= 64u || NuraUIModuleSettingTokens[settingRow] == 0u)
+                    continue;
+
+                uint settingBase = settingRow * 8u;
+                uint settingType = (uint)max(round(NuraUIModuleSettingDescriptors[settingBase]), 0.0f);
+                float value = NuraUIModuleSettingDescriptors[settingBase + 1u];
+                float minimum = NuraUIModuleSettingDescriptors[settingBase + 2u];
+                float maximum = max(NuraUIModuleSettingDescriptors[settingBase + 3u], minimum);
+                float rowTop = 0.502f + (float)visibleSetting * 0.034f;
+                float rowBottom = rowTop + 0.027f;
+                float2 controlMin = float2(0.690f, rowTop);
+                float2 controlMax = float2(0.810f, rowBottom);
+                bool settingHovered = hover == 900u + settingRow;
+
+                if (settingType == 1u)
+                {
+                    float button = RoundRect(p, controlMin, controlMax, 0.004f);
+                    float4 toggleColor = value > 0.5f
+                        ? (settingHovered ? float4(0.0f, 0.52f, 0.64f, 1.0f) : float4(0.0f, 0.30f, 0.39f, 1.0f))
+                        : (settingHovered ? float4(0.10f, 0.16f, 0.19f, 1.0f) : float4(0.035f, 0.045f, 0.055f, 1.0f));
+                    col = lerp(col, toggleColor, button);
+                    float border = Box(p, controlMin, float2(controlMax.x, controlMin.y + 0.0018f))
+                                 + Box(p, float2(controlMin.x, controlMax.y - 0.0018f), controlMax);
+                    col = lerp(col, float4(0.0f, 0.45f, 0.65f, 1.0f), saturate(border));
+                }
+                else if (settingType == 2u)
+                {
+                    float t = saturate((value - minimum) / max(maximum - minimum, 0.0001f));
+                    float midY = (rowTop + rowBottom) * 0.5f;
+                    float trackHalf = 0.0035f;
+                    float track = RoundRect(p, float2(0.700f, midY - trackHalf), float2(0.805f, midY + trackHalf), 0.002f);
+                    col = lerp(col, float4(0.015f, 0.024f, 0.032f, 1.0f), track);
+                    float knobX = lerp(0.700f, 0.805f, t);
+                    float fill = RoundRect(p, float2(0.700f, midY - trackHalf), float2(knobX, midY + trackHalf), 0.002f);
+                    col = lerp(col, settingHovered ? float4(0.0f, 0.66f, 0.78f, 1.0f) : float4(0.0f, 0.42f, 0.58f, 1.0f), fill);
+                    float knob = Circle(p, float2(knobX, midY), settingHovered ? 0.0065f : 0.005f);
+                    col = lerp(col, float4(0.0f, 0.75f, 0.90f, 1.0f), knob);
+                }
+            }
         }
 
         // =========================================================================

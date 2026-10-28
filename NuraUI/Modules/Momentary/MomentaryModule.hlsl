@@ -5,6 +5,7 @@
 Buffer<float> UIState : register(t0);
 Buffer<float> ModuleSlot : register(t1);
 Buffer<float> ModuleWidgets : register(t2);
+Buffer<float> ModuleSettings : register(t3);
 Texture1D<float4> IniParams : register(t120);
 
 struct VSOut { float4 pos : SV_Position; };
@@ -71,8 +72,10 @@ float4 main(VSOut input) : SV_Target0
         uint cycleBase = NURAUI_MODULE_WIDGET_BASE(slot, 3u);
         uint pulseBase = NURAUI_MODULE_WIDGET_BASE(slot, 4u);
 
-        float sliderValue = saturate(ModuleWidgets[sliderBase + 5u]);
-        bool enabled = ModuleWidgets[toggleBase + 5u] > 0.5f;
+        float globalIntensity = saturate(ModuleSettings[1]);
+        float sliderValue = saturate(ModuleWidgets[sliderBase + 5u]) * globalIntensity;
+        bool globalEnabled = ModuleSettings[0] > 0.5f;
+        bool enabled = ModuleWidgets[toggleBase + 5u] > 0.5f && globalEnabled;
         float actionCount = max(ModuleWidgets[actionBase + 5u], 0.0f);
         uint outputMode = (uint)clamp(floor(ModuleWidgets[cycleBase + 5u] + 0.5f), 0.0f, 3.0f);
 

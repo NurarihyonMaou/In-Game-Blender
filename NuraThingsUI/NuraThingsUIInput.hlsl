@@ -232,6 +232,8 @@ void main(uint3 id : SV_DispatchThreadID)
 
     bool open = mainUI || overlay;
 
+    float favoriteWheelEnabled = IniParams[120].x > 0.5f ? 1.0f : 0.0f;
+
     bool lmb = UI_INPUT.x > 0.5f;
 
     bool prevLmb = UIState[2] > 0.5f;
@@ -318,7 +320,25 @@ void main(uint3 id : SV_DispatchThreadID)
         UIState[53] = floor(clamp(KEYBIND_ACTION_SCROLL, 0.0f, 13.0f) + 0.5f);
         UIState[54] = 0.0f; // Mouse over the action dropdown list.
         UIState[55] = 0.0f; // Selected module slot + 1; zero means no module selected.
+        UIState[56] = 0.0f; // Favorite wheel selected module slot + 1.
+        UIState[57] = favoriteWheelEnabled; // Persistent Favorite Wheel enable state, mirrored for UI rendering.
 
+    }
+
+    // Type-5 controls are one-frame pulses. Clear the currently selected module's
+    // pulse slots every frame, including while the menu is closed, before handling a new click.
+    uint pulseModuleOneBased = (uint)max(UIState[55] + 0.5f, 0.0f);
+    if (pulseModuleOneBased > 0u && pulseModuleOneBased <= 32u)
+    {
+        uint pulseModuleSlot = pulseModuleOneBased - 1u;
+        [unroll]
+        for (uint pulseWidget = 0u; pulseWidget < 8u; ++pulseWidget)
+        {
+            uint pulseBase = (pulseModuleSlot * 8u + pulseWidget) * 8u;
+            uint pulseType = (uint)max(round(NuraUIModuleWidgets[pulseBase]), 0.0f);
+            if (pulseType == 5u)
+                NuraUIModuleWidgets[pulseBase + 5u] = 0.0f;
+        }
     }
 
     uint page = (uint)max(UIState[0] + 0.5f, 0.0f);
@@ -457,6 +477,10 @@ void main(uint3 id : SV_DispatchThreadID)
 
     uint clicked = 0u;
 
+    // The clicked favorite's module ID is passed through UIState[58].
+    // This avoids a second INI-side lookup from the R32_UINT module registry.
+    float favoriteClickedModuleId = 0.0f;
+
     // -------------------------------------------------------------------------
 
     // Synchronize values which are not currently being edited
@@ -507,9 +531,6 @@ void main(uint3 id : SV_DispatchThreadID)
 
             hover = 15u;
 
-        else if (InRect(p, float2(0.17f, 0.77f), float2(0.32f, 0.85f)))
-
-            hover = 16u;
 
         // ---------------------------------------------------------------------
 
@@ -933,6 +954,11 @@ void main(uint3 id : SV_DispatchThreadID)
             if (!lmb)
                 activeSlider = 0u;
         }
+        else if (page == 5u)
+        {
+            if (InRect(p, float2(0.365f, 0.330f), float2(0.560f, 0.390f)))
+                hover = 730u;
+        }
         else if (page == 6u)
         {
             // Module directory. Clicking a row selects it; OPEN enters its actual view.
@@ -945,11 +971,13 @@ void main(uint3 id : SV_DispatchThreadID)
                 {
                     uint row = (uint)clamp(floor((p.y - 0.235f) / 0.070f), 0.0f, 7.0f);
                     float rowTop = 0.235f + (float)row * 0.070f;
-                    if (InRect(p, float2(0.350f, rowTop), float2(0.565f, rowTop + 0.058f)))
+                    uint slot = moduleScroll + row;
+                    if (slot < 32u && NuraUIModuleRegistry[slot] != 0u)
                     {
-                        uint slot = moduleScroll + row;
-                        if (slot < 32u && NuraUIModuleRegistry[slot] != 0u)
-                            hover = 600u + slot;
+                        if (InRect(p, float2(0.525f, rowTop), float2(0.565f, rowTop + 0.058f)))
+                            hover = 640u + slot; // Favorite star; does not select/open the module.
+                        else if (InRect(p, float2(0.350f, rowTop), float2(0.520f, rowTop + 0.058f)))
+                            hover = 600u + slot; // Select module row.
                     }
                 }
             }
@@ -1034,6 +1062,11 @@ void main(uint3 id : SV_DispatchThreadID)
                             cycleMax = cycleMin;
                         cycleValue = (cycleValue >= cycleMax) ? cycleMin : cycleValue + 1.0f;
                         NuraUIModuleWidgets[base + 5u] = cycleValue;
+                    }
+                    else if (widgetType == 5u)
+                    {
+                        // Momentary button: emit a one-frame pulse; the next input dispatch clears it.
+                        NuraUIModuleWidgets[base + 5u] = 1.0f;
                     }
                 }
             }
@@ -1558,10 +1591,35 @@ void main(uint3 id : SV_DispatchThreadID)
 
     // Sidebar hit-tests take priority over page contents, so handle page navigation
     // once here, outside the content-page branches.
-    if (mainUI && click && hover >= 10u && hover <= 16u)
+    if (mainUI && click && hover >= 10u && hover <= 15u)
     {
         clicked = hover;
-        page = hover - 10u;
+        if (hover == 10u) page = 0u;
+        else if (hover == 11u) page = 1u;
+        else if (hover == 12u) page = 2u;
+        else if (hover == 13u) page = 4u;
+        else if (hover == 14u) page = 5u;
+        else if (hover == 15u) page = 6u;
+        activeSlider = 0u;
+    }
+    else if (mainUI && click && hover >= 640u && hover < 672u)
+    {
+        uint favoriteSlot = hover - 640u;
+        if (favoriteSlot < 32u)
+        {
+            uint favoriteModuleId = NuraUIModuleRegistry[favoriteSlot];
+            if (favoriteModuleId != 0u)
+            {
+                clicked = hover;
+                favoriteClickedModuleId = (float)favoriteModuleId;
+            }
+        }
+        activeSlider = 0u;
+    }
+    else if (mainUI && click && hover == 730u)
+    {
+        clicked = hover;
+        favoriteWheelEnabled = 1.0f - favoriteWheelEnabled;
         activeSlider = 0u;
     }
     else if (mainUI && click && hover >= 600u && hover < 632u)
@@ -1646,6 +1704,8 @@ void main(uint3 id : SV_DispatchThreadID)
     UIState[52] = keybindActionListOpen ? 1.0f : 0.0f;
     UIState[53] = floor(clamp(keybindActionListScroll, 0.0f, 13.0f) + 0.5f);
     UIState[54] = (keybindActionListOpen && keybindPanelOpen && InRect(p, float2(0.750f, 0.180f), float2(0.965f, 0.444f))) ? 1.0f : 0.0f;
+    UIState[57] = favoriteWheelEnabled;
+    UIState[58] = favoriteClickedModuleId;
 
     WRITE_NAME(80, 0);
     WRITE_NAME(84, 16);

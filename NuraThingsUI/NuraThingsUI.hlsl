@@ -1,5 +1,6 @@
 Buffer<float> UIState : register(t0);
 Buffer<float> NuraUIModuleWidgets : register(t1);
+Buffer<uint> NuraUIModuleRegistry : register(t2);
 
 Texture1D<float4> IniParams : register(t120);
 
@@ -105,6 +106,35 @@ float Circle(float2 p, float2 center, float radius)
 
     return 1.0f - smoothstep(radius - aa, radius + aa, dist);
 
+}
+
+uint NuraUIFavoriteId(uint favoriteIndex)
+{
+    if (favoriteIndex < 4u)
+        return (uint)max(round(IniParams[121][favoriteIndex]), 0.0f);
+    return (uint)max(round(IniParams[122][favoriteIndex - 4u]), 0.0f);
+}
+
+uint NuraUIFavoriteOrder(uint moduleId)
+{
+    if (moduleId == 0u) return 0u;
+    [unroll]
+    for (uint i = 0u; i < 8u; ++i)
+        if (NuraUIFavoriteId(i) == moduleId) return i + 1u;
+    return 0u;
+}
+
+float StarMask(float2 p, float2 center, float outerRadius)
+{
+    float aspect = SCREEN_WIDTH / max(SCREEN_HEIGHT, 1.0f);
+    float2 d = p - center;
+    d.x *= aspect;
+    float r = length(d);
+    float a = atan2(d.y, d.x);
+    float wave = 0.5f + 0.5f * cos(5.0f * a);
+    float boundary = lerp(outerRadius * 0.48f, outerRadius, wave);
+    float aa = max(fwidth(r), 0.0007f);
+    return 1.0f - smoothstep(boundary - aa, boundary + aa, r);
 }
 
 float4 ButtonColor(bool active, bool hovered)
@@ -249,7 +279,7 @@ float4 main(VSOut input) : SV_Target0
 
         if (Box(p, float2(0.17f, 0.50f), float2(0.32f, 0.58f)) > 0.5f)
 
-            col = page == 3u
+            col = page == 4u
 
                 ? float4(0.0f, 0.10f, 0.14f, 1.0f)
 
@@ -257,7 +287,7 @@ float4 main(VSOut input) : SV_Target0
 
         if (Box(p, float2(0.17f, 0.59f), float2(0.32f, 0.67f)) > 0.5f)
 
-            col = page == 4u
+            col = page == 5u
 
                 ? float4(0.0f, 0.10f, 0.14f, 1.0f)
 
@@ -265,19 +295,15 @@ float4 main(VSOut input) : SV_Target0
 
         if (Box(p, float2(0.17f, 0.68f), float2(0.32f, 0.76f)) > 0.5f)
 
-            col = page == 5u
-
-                ? float4(0.0f, 0.10f, 0.14f, 1.0f)
-
-                : float4(0.025f, 0.030f, 0.040f, 1.0f);
-
-        if (Box(p, float2(0.17f, 0.77f), float2(0.32f, 0.85f)) > 0.5f)
-
             col = (page == 6u || page == 7u)
 
                 ? float4(0.0f, 0.10f, 0.14f, 1.0f)
 
                 : float4(0.025f, 0.030f, 0.040f, 1.0f);
+
+        // The former seventh tab row is deliberately left unused.
+        if (Box(p, float2(0.17f, 0.77f), float2(0.32f, 0.85f)) > 0.5f)
+            col = float4(0.025f, 0.030f, 0.040f, 1.0f);
 
         // =========================================================================
         // MESH PAGE
@@ -619,6 +645,54 @@ float4 main(VSOut input) : SV_Target0
         }
 
         // =========================================================================
+        // GLOBAL KEYBINDS PAGE (page 2). Module-owned rows are printed by each module INI.
+        // =========================================================================
+        if (page == 2u)
+        {
+            if (Box(p, float2(0.35f, 0.205f), float2(0.83f, 0.85f)) > 0.5f)
+                col = float4(0.035f, 0.045f, 0.055f, 1.0f);
+            if (Box(p, float2(0.365f, 0.225f), float2(0.815f, 0.465f)) > 0.5f)
+                col = float4(0.018f, 0.022f, 0.030f, 1.0f);
+            if (Box(p, float2(0.365f, 0.480f), float2(0.815f, 0.810f)) > 0.5f)
+                col = float4(0.018f, 0.022f, 0.030f, 1.0f);
+            if (Box(p, float2(0.365f, 0.225f), float2(0.815f, 0.230f)) > 0.5f ||
+                Box(p, float2(0.365f, 0.480f), float2(0.815f, 0.485f)) > 0.5f)
+                col = float4(0.0f, 0.45f, 0.65f, 1.0f);
+        }
+
+        // =========================================================================
+        // DEBUG PAGE (page 4)
+        // =========================================================================
+        if (page == 4u)
+        {
+            if (Box(p, float2(0.35f, 0.205f), float2(0.83f, 0.85f)) > 0.5f)
+                col = float4(0.035f, 0.045f, 0.055f, 1.0f);
+            if (Box(p, float2(0.365f, 0.240f), float2(0.815f, 0.790f)) > 0.5f)
+                col = float4(0.018f, 0.022f, 0.030f, 1.0f);
+            if (Box(p, float2(0.365f, 0.240f), float2(0.815f, 0.245f)) > 0.5f)
+                col = float4(0.0f, 0.45f, 0.65f, 1.0f);
+        }
+
+        // =========================================================================
+        // SETTINGS PAGE (page 5)
+        // =========================================================================
+        if (page == 5u)
+        {
+            if (Box(p, float2(0.35f, 0.205f), float2(0.83f, 0.85f)) > 0.5f)
+                col = float4(0.035f, 0.045f, 0.055f, 1.0f);
+            if (Box(p, float2(0.365f, 0.270f), float2(0.815f, 0.445f)) > 0.5f)
+                col = float4(0.018f, 0.022f, 0.030f, 1.0f);
+            if (Box(p, float2(0.365f, 0.270f), float2(0.815f, 0.275f)) > 0.5f)
+                col = float4(0.0f, 0.45f, 0.65f, 1.0f);
+            if (Box(p, float2(0.365f, 0.330f), float2(0.560f, 0.390f)) > 0.5f)
+                col = ButtonColor(UIState[57] > 0.5f, hover == 730u);
+            if (Box(p, float2(0.365f, 0.480f), float2(0.815f, 0.645f)) > 0.5f)
+                col = float4(0.018f, 0.022f, 0.030f, 1.0f);
+            if (Box(p, float2(0.365f, 0.480f), float2(0.815f, 0.485f)) > 0.5f)
+                col = float4(0.0f, 0.45f, 0.65f, 1.0f);
+        }
+
+        // =========================================================================
         // DROP-IN MODULE DIRECTORY (page 6)
         // Each module draws its own row and details through its own Module.ini.
         // =========================================================================
@@ -633,6 +707,30 @@ float4 main(VSOut input) : SV_Target0
             if (Box(p, float2(0.345f, 0.220f), float2(0.575f, 0.225f)) > 0.5f ||
                 Box(p, float2(0.585f, 0.220f), float2(0.830f, 0.225f)) > 0.5f)
                 col = float4(0.0f, 0.45f, 0.65f, 1.0f);
+
+            uint moduleScrollForStars = (uint)clamp(floor(IniParams[118].y + 0.5f), 0.0f, 24.0f);
+            [unroll]
+            for (uint starRow = 0u; starRow < 8u; ++starRow)
+            {
+                uint moduleSlotForStar = moduleScrollForStars + starRow;
+                if (moduleSlotForStar >= 32u) continue;
+                uint moduleIdForStar = NuraUIModuleRegistry[moduleSlotForStar];
+                if (moduleIdForStar == 0u) continue;
+                float starTop = 0.235f + (float)starRow * 0.070f;
+                float2 starMin = float2(0.525f, starTop);
+                float2 starMax = float2(0.565f, starTop + 0.058f);
+                if (Box(p, starMin, starMax) > 0.5f)
+                {
+                    uint favoriteOrder = NuraUIFavoriteOrder(moduleIdForStar);
+                    bool starHovered = hover == 640u + moduleSlotForStar;
+                    col = lerp(col, ButtonColor(favoriteOrder > 0u, starHovered), RoundRect(p, starMin, starMax, 0.006f));
+                    float star = StarMask(p, float2(0.545f, starTop + 0.029f), 0.012f);
+                    float4 starColor = favoriteOrder > 0u
+                        ? float4(0.15f, 0.78f, 0.96f, 1.0f)
+                        : float4(0.43f, 0.52f, 0.60f, 1.0f);
+                    col = lerp(col, starColor, star);
+                }
+            }
             if (selectedModuleOneBased > 0u && Box(p, float2(0.615f, 0.680f), float2(0.800f, 0.735f)) > 0.5f)
                 col = ButtonColor(false, hover == 700u);
         }
@@ -739,6 +837,28 @@ float4 main(VSOut input) : SV_Target0
                     float markerX = lerp(trackMinX, trackMaxX, cycleT);
                     float marker = Circle(p, float2(markerX, midY), 0.0065f);
                     col = lerp(col, float4(0.0f, 0.78f, 0.90f, 1.0f), marker);
+                }
+                else if (widgetType == 5u)
+                {
+                    // Momentary pulse button: value is set to 1 on click and cleared next frame.
+                    float box = RoundRect(p, mn, mx, 0.006f);
+                    bool fired = value > 0.5f;
+                    float4 buttonFill = fired
+                        ? float4(0.98f, 0.66f, 0.08f, 1.0f)
+                        : widgetHovered
+                            ? float4(0.0f, 0.20f, 0.27f, 1.0f)
+                            : float4(0.025f, 0.045f, 0.055f, 1.0f);
+                    col = lerp(col, buttonFill, box);
+                    float border = Box(p, mn, float2(mx.x, mn.y + 0.0025f))
+                                 + Box(p, float2(mn.x, mx.y - 0.0025f), mx);
+                    col = lerp(col, fired ? float4(1.0f, 0.86f, 0.30f, 1.0f) : float4(0.0f, 0.45f, 0.65f, 1.0f), saturate(border));
+                    if (fired)
+                    {
+                        float midY = (mn.y + mx.y) * 0.5f;
+                        float pulseLine = RoundRect(p, float2((mn.x + mx.x) * 0.5f, midY),
+                            float2((mx.x - mn.x) * 0.12f, 0.0025f), 0.002f);
+                        col = lerp(col, float4(1.0f, 0.96f, 0.74f, 1.0f), pulseLine);
+                    }
                 }
             }
         }

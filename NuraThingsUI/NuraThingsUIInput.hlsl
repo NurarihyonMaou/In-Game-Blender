@@ -6,6 +6,7 @@ RWBuffer<float> NuraUIModuleWidgets : register(u2);
 RWBuffer<float> NuraUIModuleSettingDescriptors : register(u3);
 Buffer<uint> NuraUIModuleRegistry : register(t0);
 Buffer<uint> NuraUIModuleSettingTokens : register(t1);
+Buffer<uint> NuraUIModuleKeybindTokens : register(t2);
 
 Texture1D<float4> IniParams : register(t120);
 
@@ -58,6 +59,7 @@ Texture1D<float4> IniParams : register(t120);
 #define NURAUI_MODULE_SCROLL IniParams[118].y
 #define KEYBIND_ACTION_LIST_FORCE_OPEN IniParams[119].y
 #define NURAUI_SETTINGS_SCROLL IniParams[119].z
+#define NURAUI_KEYBIND_SCROLL IniParams[119].w
 
 #define WRITE_NAME(BASE, OFFSET) \
     MaskNames[(OFFSET) + 0]  = (uint)max(IniParams[(BASE) + 0].x, 0.0f); \
@@ -325,6 +327,9 @@ void main(uint3 id : SV_DispatchThreadID)
         UIState[55] = 0.0f; // Selected module slot + 1; zero means no module selected.
         UIState[56] = 0.0f; // Favorite wheel selected module slot + 1.
         UIState[57] = favoriteWheelEnabled; // Persistent Favorite Wheel enable state, mirrored for UI rendering.
+        UIState[59] = 128.0f; // Selected compact module KeyBind row; 128 means none.
+        UIState[60] = 0.0f;   // Reserved for KeyBind manager UI state.
+        UIState[61] = 128.0f; // Last GPU-dispatched key row; 128 means no binding.
 
     }
 
@@ -349,6 +354,8 @@ void main(uint3 id : SV_DispatchThreadID)
     uint tool = (uint)max(UIState[1] + 0.5f, 0.0f);
 
     uint activeSlider = (uint)max(UIState[7] + 0.5f, 0.0f);
+
+    uint selectedKeybindRow = (uint)clamp(floor(UIState[59] + 0.5f), 0.0f, 128.0f);
 
     uint mirrorAxis = (uint)max(UIState[6] + 0.5f, 0.0f);
 
@@ -957,6 +964,25 @@ void main(uint3 id : SV_DispatchThreadID)
             if (!lmb)
                 activeSlider = 0u;
         }
+        else if (page == 2u)
+        {
+            // The global KeyBinds tab shows five compact module action rows at a time.
+            uint keybindScroll = (uint)clamp(floor(NURAUI_KEYBIND_SCROLL + 0.5f), 0.0f, 123.0f);
+            [unroll]
+            for (uint visibleKeybind = 0u; visibleKeybind < 5u; ++visibleKeybind)
+            {
+                uint row = keybindScroll + visibleKeybind;
+                if (row >= 128u || NuraUIModuleKeybindTokens[row] == 0u) continue;
+                float rowTop = 0.520f + (float)visibleKeybind * 0.060f;
+                float rowBottom = rowTop + 0.047f;
+                if (InRect(p, float2(0.365f, rowTop), float2(0.690f, rowBottom)))
+                    hover = 800u + row;
+                else if (InRect(p, float2(0.700f, rowTop), float2(0.770f, rowBottom)))
+                    hover = 940u + visibleKeybind; // Capture/replace key.
+                else if (InRect(p, float2(0.780f, rowTop), float2(0.815f, rowBottom)))
+                    hover = 950u + visibleKeybind; // Clear key.
+            }
+        }
         else if (page == 5u)
         {
             uint settingsScroll = (uint)clamp(floor(NURAUI_SETTINGS_SCROLL + 0.5f), 0.0f, 60.0f);
@@ -1022,7 +1048,7 @@ void main(uint3 id : SV_DispatchThreadID)
                     uint slot = moduleScroll + row;
                     if (slot < 32u && NuraUIModuleRegistry[slot] != 0u)
                     {
-                        if (InRect(p, float2(0.525f, rowTop), float2(0.565f, rowTop + 0.058f)))
+                        if (InRect(p, float2(0.520f, rowTop), float2(0.570f, rowTop + 0.058f)))
                             hover = 640u + slot; // Favorite star; does not select/open the module.
                         else if (InRect(p, float2(0.350f, rowTop), float2(0.520f, rowTop + 0.058f)))
                             hover = 600u + slot; // Select module row.
@@ -1343,6 +1369,16 @@ void main(uint3 id : SV_DispatchThreadID)
             else if (InRect(p, float2(0.86f, 0.060f), float2(0.97f, 0.082f))) hover = 220u;
             else if (InRect(p, float2(0.780f, 0.516f), float2(0.860f, 0.548f))) hover = 361u;
             else if (InRect(p, float2(0.885f, 0.516f), float2(0.960f, 0.548f))) hover = 362u;
+        }
+
+        if (click && page == 2u)
+        {
+            if (hover >= 800u && hover < 928u)
+                selectedKeybindRow = hover - 800u;
+            else if (hover >= 940u && hover <= 944u)
+                selectedKeybindRow = (uint)clamp(floor(NURAUI_KEYBIND_SCROLL + 0.5f), 0.0f, 123.0f) + (hover - 940u);
+            else if (hover >= 950u && hover <= 954u)
+                selectedKeybindRow = (uint)clamp(floor(NURAUI_KEYBIND_SCROLL + 0.5f), 0.0f, 123.0f) + (hover - 950u);
         }
 
         if (click)
@@ -1754,6 +1790,7 @@ void main(uint3 id : SV_DispatchThreadID)
     UIState[54] = (keybindActionListOpen && keybindPanelOpen && InRect(p, float2(0.750f, 0.180f), float2(0.965f, 0.444f))) ? 1.0f : 0.0f;
     UIState[57] = favoriteWheelEnabled;
     UIState[58] = favoriteClickedModuleId;
+    UIState[59] = (float)selectedKeybindRow;
 
     WRITE_NAME(80, 0);
     WRITE_NAME(84, 16);

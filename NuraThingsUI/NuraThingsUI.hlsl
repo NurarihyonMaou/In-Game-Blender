@@ -3,6 +3,8 @@ Buffer<float> NuraUIModuleWidgets : register(t1);
 Buffer<uint> NuraUIModuleRegistry : register(t2);
 Buffer<uint> NuraUIModuleSettingTokens : register(t3);
 Buffer<float> NuraUIModuleSettingDescriptors : register(t4);
+Buffer<uint> NuraUIModuleKeybindTokens : register(t5);
+Buffer<float> NuraUIModuleKeybindDescriptors : register(t6);
 
 Texture1D<float4> IniParams : register(t120);
 
@@ -86,7 +88,7 @@ float RoundRect(float2 p, float2 minP, float2 maxP, float radius)
 
                  min(max(q.x, q.y), 0.0f) - radius;
 
-    float aa = fwidth(dist);
+    float aa = max(1.25f / max(SCREEN_HEIGHT, 1.0f), 0.0007f);
 
     return 1.0f - smoothstep(-aa, aa, dist);
 
@@ -104,7 +106,7 @@ float Circle(float2 p, float2 center, float radius)
 
     float dist = length(d);
 
-    float aa = fwidth(dist);
+    float aa = max(1.25f / max(SCREEN_HEIGHT, 1.0f), 0.0007f);
 
     return 1.0f - smoothstep(radius - aa, radius + aa, dist);
 
@@ -135,7 +137,7 @@ float StarMask(float2 p, float2 center, float outerRadius)
     float a = atan2(d.y, d.x);
     float wave = 0.5f + 0.5f * cos(5.0f * a);
     float boundary = lerp(outerRadius * 0.48f, outerRadius, wave);
-    float aa = max(fwidth(r), 0.0007f);
+    float aa = max(1.25f / max(SCREEN_HEIGHT, 1.0f), 0.0007f);
     return 1.0f - smoothstep(boundary - aa, boundary + aa, r);
 }
 
@@ -660,6 +662,42 @@ float4 main(VSOut input) : SV_Target0
             if (Box(p, float2(0.365f, 0.225f), float2(0.815f, 0.230f)) > 0.5f ||
                 Box(p, float2(0.365f, 0.480f), float2(0.815f, 0.485f)) > 0.5f)
                 col = float4(0.0f, 0.45f, 0.65f, 1.0f);
+
+            uint keybindScroll = (uint)clamp(floor(IniParams[119].w + 0.5f), 0.0f, 123.0f);
+            uint selectedKeybindRow = (uint)clamp(floor(UIState[59] + 0.5f), 0.0f, 128.0f);
+            [unroll]
+            for (uint visibleKeybind = 0u; visibleKeybind < 5u; ++visibleKeybind)
+            {
+                uint row = keybindScroll + visibleKeybind;
+                if (row >= 128u || NuraUIModuleKeybindTokens[row] == 0u) continue;
+                float rowTop = 0.520f + (float)visibleKeybind * 0.060f;
+                float rowBottom = rowTop + 0.047f;
+                float2 rowMin = float2(0.365f, rowTop);
+                float2 rowMax = float2(0.815f, rowBottom);
+                bool rowSelected = selectedKeybindRow == row;
+                bool rowHovered = hover == 800u + row;
+                float rowFill = RoundRect(p, rowMin, rowMax, 0.004f);
+                float4 rowColor = rowHovered ? float4(0.045f, 0.110f, 0.145f, 1.0f)
+                                : rowSelected ? float4(0.035f, 0.075f, 0.100f, 1.0f)
+                                              : float4(0.026f, 0.034f, 0.045f, 1.0f);
+                col = lerp(col, rowColor, rowFill);
+
+                float2 keyMin = float2(0.605f, rowTop + 0.004f);
+                float2 keyMax = float2(0.690f, rowBottom - 0.004f);
+                col = lerp(col, rowSelected ? float4(0.075f, 0.100f, 0.125f, 1.0f) : float4(0.012f, 0.020f, 0.028f, 1.0f), RoundRect(p, keyMin, keyMax, 0.003f));
+
+                float2 bindMin = float2(0.700f, rowTop + 0.003f);
+                float2 bindMax = float2(0.770f, rowBottom - 0.003f);
+                float bindMask = RoundRect(p, bindMin, bindMax, 0.003f);
+                float4 bindColor = hover == 940u + visibleKeybind ? float4(0.0f, 0.56f, 0.72f, 1.0f) : float4(0.0f, 0.25f, 0.33f, 1.0f);
+                col = lerp(col, bindColor, bindMask);
+
+                float2 clearMin = float2(0.780f, rowTop + 0.003f);
+                float2 clearMax = float2(0.815f, rowBottom - 0.003f);
+                float clearMask = RoundRect(p, clearMin, clearMax, 0.003f);
+                float4 clearColor = hover == 950u + visibleKeybind ? float4(0.60f, 0.15f, 0.13f, 1.0f) : float4(0.24f, 0.075f, 0.075f, 1.0f);
+                col = lerp(col, clearColor, clearMask);
+            }
         }
 
         // =========================================================================
@@ -765,17 +803,25 @@ float4 main(VSOut input) : SV_Target0
                 uint moduleIdForStar = NuraUIModuleRegistry[moduleSlotForStar];
                 if (moduleIdForStar == 0u) continue;
                 float starTop = 0.235f + (float)starRow * 0.070f;
-                float2 starMin = float2(0.525f, starTop);
-                float2 starMax = float2(0.565f, starTop + 0.058f);
+                float2 starMin = float2(0.520f, starTop);
+                float2 starMax = float2(0.570f, starTop + 0.058f);
                 if (Box(p, starMin, starMax) > 0.5f)
                 {
                     uint favoriteOrder = NuraUIFavoriteOrder(moduleIdForStar);
+                    bool isFavorite = favoriteOrder > 0u;
                     bool starHovered = hover == 640u + moduleSlotForStar;
-                    col = lerp(col, ButtonColor(favoriteOrder > 0u, starHovered), RoundRect(p, starMin, starMax, 0.006f));
-                    float star = StarMask(p, float2(0.545f, starTop + 0.029f), 0.012f);
-                    float4 starColor = favoriteOrder > 0u
-                        ? float4(0.15f, 0.78f, 0.96f, 1.0f)
-                        : float4(0.43f, 0.52f, 0.60f, 1.0f);
+                    float4 starButtonColor = starHovered
+                        ? (isFavorite ? float4(0.34f, 0.23f, 0.025f, 1.0f) : float4(0.095f, 0.125f, 0.145f, 1.0f))
+                        : (isFavorite ? float4(0.20f, 0.135f, 0.015f, 1.0f) : float4(0.045f, 0.060f, 0.075f, 1.0f));
+                    col = lerp(col, starButtonColor, RoundRect(p, starMin, starMax, 0.006f));
+                    float2 starCenter = float2(0.545f, starTop + 0.029f);
+                    float halo = Circle(p, starCenter, isFavorite ? 0.021f : 0.017f);
+                    float4 haloColor = isFavorite ? float4(0.95f, 0.55f, 0.04f, 1.0f) : float4(0.48f, 0.59f, 0.70f, 1.0f);
+                    col = lerp(col, haloColor, halo * (isFavorite ? 0.34f : 0.14f));
+                    float star = StarMask(p, starCenter, isFavorite ? 0.018f : 0.016f);
+                    float4 starColor = isFavorite
+                        ? float4(1.00f, 0.79f, 0.12f, 1.0f)
+                        : float4(0.82f, 0.88f, 0.94f, 1.0f);
                     col = lerp(col, starColor, star);
                 }
             }
